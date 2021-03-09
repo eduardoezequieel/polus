@@ -1,0 +1,9 @@
+/*Inicio de estilos para pagina principal*/
+body, nav{
+    background-color: #1E222E;
+}
+
+h1, p{
+    color: rgb(255, 255, 255);
+}
+
