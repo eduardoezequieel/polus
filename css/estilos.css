@@ -1,9 +1,48 @@
 /*Inicio de estilos para pagina principal*/
-body, nav{
-    background-color: #1E222E;
+*{
+    margin: 0;
+    padding: 0;
 }
 
-h1, p{
-    color: rgb(255, 255, 255);
+body, nav{
+    background-color: #1E222E;   
 }
+
+nav, button{
+    background-color: #1E222E;
+    font-family: 'Nunito', sans-serif;
+}
+
+p{
+    color: rgb(255, 255, 255);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#TituloIndex{
+    color: rgb(255, 255, 255);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 60px;
+}
+
+#title{
+    margin-top: 130px;
+    width: 500px;
+    /*background-color: rgb(0, 0, 0);*/
+    text-align: center;
+    margin-left: 3%;
+    
+}
+
+#imagen{
+    align-content: center;
+    width: 500px;
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+
 
