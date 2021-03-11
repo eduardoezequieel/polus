@@ -99,6 +99,15 @@ p{
     text-align: center;
 }
 
+.parrafo{
+    margin-top: 10px;
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 20px;
+    text-align: justify;
+}
+
 #contenedorPrincipal
 {
     margin-bottom: 80px;
@@ -147,10 +156,11 @@ p{
 }
 
 #acercaNosotros{
-    width: 500px;
-    margin-left: 50px;
-    margin-top: 50px;
+    background-color: #22242C;
+    color: white;
+    padding-top: 100px;
 }
+
 
 
 
