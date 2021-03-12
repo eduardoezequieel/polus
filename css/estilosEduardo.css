@@ -68,7 +68,7 @@ p{
     display: inline-block;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.2s;
-    background-color: #22242C;
+    background-color: #4A43BB;
     color: white;
     border: 0;
     border-radius: 24px;
@@ -154,11 +154,22 @@ p{
     font-family: 'Nunito', sans-serif;
     font-size: 20px;
 }
-
-#acercaNosotros{
+#catalogo{
     background-color: #22242C;
     color: white;
     padding-top: 100px;
+}
+
+#acercaNosotros{
+    background-color:  #16181D;
+    color: white;
+    padding-top: 100px;
+}
+#productos{
+	transition: all 0.5s ease;
+}
+#productos:hover{
+	transform: scale(0.9);
 }
 
 
