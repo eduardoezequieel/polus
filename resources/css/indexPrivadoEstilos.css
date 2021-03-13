@@ -1,0 +1,145 @@
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    
+}
+
+
+
+.titulo1{
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+    font-size: 16px;
+    padding-left: 25px;
+    letter-spacing: 1px;
+    margin-top:30px;
+}
+
+.margenIconos {
+    margin-right: 20px;
+}
+
+#barraLado{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    /*line-height: 20px;*/
+
+}
+
+nav ul{
+    list-style: none;
+}
+
+nav ul .usuarios-mostrar.mostrar{
+    display: block;
+}
+
+nav ul .productos-mostrar.mostrar1{
+    display: block;
+}
+
+nav ul li{
+    line-height: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+}
+
+nav ul li a{
+    position: relative;
+    text-decoration: none;
+    color: white;
+    padding-left: 25px;
+    display: block;
+    width: 100%;
+    border-left: 3px solid transparent;
+}
+
+nav ul li a:hover{
+    text-decoration: none;
+    color:#A492F9;
+    background-color: #22242C;
+  
+    border-left-color: #A492F9;
+}
+
+nav ul ul{
+    position: static;
+    display: none;
+}
+
+nav ul ul li{
+    line-height: 40px;
+    border-bottom: none;
+}
+
+nav ul ul li a{
+    font-size: 14px;
+    padding-left: 40px;
+}
+
+nav ul li a i{
+    position: absolute;
+    top: 30%;
+    right: 40px;
+    font-size: 20px;
+    transition: transform 0.4s;
+}
+
+nav ul li a i.rotate{
+    transform: rotate(180deg);
+}
+/* CSS SIDEBAR */
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+    background-color: #16181D;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    color: white;
+    width: 240px;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
