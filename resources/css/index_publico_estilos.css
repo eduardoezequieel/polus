@@ -228,6 +228,40 @@ p{
     display: inline;
 }
 
+@media screen and (max-width:999px){
+
+    #fila{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #title{
+        order: 2;
+    }
+
+    #imagen{
+        order: 1;
+       
+    }
+
+    #categoria{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+}
+
+@media screen and (max-width:1200px){
+
+    #title{
+        width:450px;
+    }
+
+}
+
+
 
 
 

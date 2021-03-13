@@ -11,10 +11,10 @@
                     <meta name="viewport" content="width=device-width, initial-scale=1">
 
                     <!-- Bootstrap core CSS -->
-                    <link href="../../app/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                    <link href="../../app/controllers/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
-                    <link rel="stylesheet" href="../../resources/css/indexPrivadoEstilos.css">
+                    <link rel="stylesheet" href="../../resources/css/index_privado_estilos.css">
 
                     <link rel="preconnect" href="https://fonts.gstatic.com">
                     

@@ -1,6 +1,6 @@
 <?php
 //Se incluye la clase con las plantillas del documento
-include('../../app/helpers/dashboardPage.php');
+include('../../app/helpers/dashboard_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
 dashboard_Page::sidebarTemplate('Polus - Dashboard');
 ?>
@@ -11,8 +11,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard');
       </div>
     </div>
     <!-- Bootstrap core JavaScript -->
-    <script src="../../app/jquery/jquery.min.js"></script>
-    <script src="../../app/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../app/controllers/jquery/jquery.min.js"></script>
+    <script src="../../app/controllers/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Iconos en Movimiento -->
     
