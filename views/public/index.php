@@ -1,70 +1,9 @@
-<!doctype html>
-<html lang="es">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="/css/indexEstilos.css">
-
-  <!-- Fuentes Personalizadas -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/43634cb7dc.js" crossorigin="anonymous"></script>
-
-  <title>Polus El Salvador</title>
-</head>
-<!--Inicio del navbar-->
-<body>
-  <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="/img/p icono.png" alt="img-fluid" height="40px" width="40px">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <ion-icon name="grid"></ion-icon>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Catalogo
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" id>
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#">Acerca de Nosotros</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#">Soporte</a>
-          </li>
-
-        </ul>
-        <form class="d-flex">
-          <button class="btn btn-outline-light botonEstilo">Iniciar Sesión</button>
-        </form>
-      </div>
-    </div>
-  </nav>
+<?php
+//Se incluye la clase con las plantillas del documento
+include('../../app/helpers/publicPage.php');
+//Se imprime la plantilla del encabezado y se envía el titulo para la página web
+public_Page::navbarTemplate('Polus El Salvador');
+?>
 <!--Fin del navbar-->
 <!--Inicio del Contenedor Principal-->
   <div class="container" id="contenedorPrincipal">
@@ -76,7 +15,7 @@
         </div>
 
         <div class="col-6" id="imagen">
-          <img src="/img/polus iconos.png" class="img-fluid">
+          <img src="../../resources/img/polus iconos.png" class="img-fluid">
         </div>
       </div>
     </header>
@@ -91,7 +30,7 @@
           <p class="parrafo" style="text-align: justify; margin-bottom: 50px;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>    
-          <img src="/img/quienessomos.PNG" class="img-fluid centrarImagenes" style="width: 330px; height: 300px;">
+          <img src="../../resources/img/quienessomos.PNG" class="img-fluid centrarImagenes" style="width: 330px; height: 300px;">
       </div>
 
       <div class="row">
@@ -100,7 +39,7 @@
           <p class="parrafo" style="text-align: justify;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>
-          <img src="/img/development.png" class="img-fluid centrarImagenes" style="width: 300px; height: 300px; margin-top: 100px; margin-bottom: 100px;">
+          <img src="../../resources/img/development.png" class="img-fluid centrarImagenes" style="width: 300px; height: 300px; margin-top: 100px; margin-bottom: 100px;">
         </div>
 
         <div class="col-6">
@@ -108,7 +47,7 @@
           <p class="parrafo" style="text-align: justify;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>
-          <img src="/img/vision.PNG" class="img-fluid centrarImagenes" style="width: 300px; height: 300px; margin-top: 100px;">
+          <img src="../../resources/img/vision.PNG" class="img-fluid centrarImagenes" style="width: 300px; height: 300px; margin-top: 100px;">
         </div>
       </div>
     </div>
@@ -120,7 +59,7 @@
             <div class="detalle">
 
             </div>
-            <img src="/img/modelo1.png" class="img-fluid" alt="" width="">
+            <img src="../../resources/img/modelo1.png" class="img-fluid" alt="" width="">
           </div>
         </div>
 
@@ -129,7 +68,7 @@
             <div class="detalle">
 
             </div>
-            <img src="/img/modelo2.png" class="img-fluid mb-1" alt="" width="">
+            <img src="../../resources/img/modelo2.png" class="img-fluid mb-1" alt="" width="">
           </div>
         </div>
       </div>
@@ -167,7 +106,7 @@
                 Sueteres
               </h3>
               <center>
-                <img id="productos" src="/img/hoodie.png" width="175" height="175">
+                <img id="productos" src="../../resources/img/hoodie.png" width="175" height="175">
               </center> 
               <center><button class="btn btn-outline-light"">Ver más</button></center>
             </div>
@@ -181,7 +120,7 @@
                 Camisetas
               </h3>
               <center>
-                <img id="productos" src="/img/camisaroja.png" width="175" height="175">
+                <img id="productos" src="../../resources/img/camisaroja.png" width="175" height="175">
               </center>
               <center><button class="btn btn-outline-light"">Ver más</button></center>
             </div>
@@ -195,7 +134,7 @@
                 Mascarillas
               </h3>
               <center>
-                <img id="productos" src="/img/mascarilla.png" width="175" height="175">
+                <img id="productos" src="../../resources/img/mascarilla.png" width="175" height="175">
               </center>
               <center><button class="btn btn-outline-light"">Ver más</button></center>
             </div>

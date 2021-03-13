@@ -1,5 +1,5 @@
 <?php
-    class sitioPublico{
+    class public_Page{
         public static function navbarTemplate($titulo){
             print(
                 '<!doctype html>
@@ -14,7 +14,7 @@
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
                     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-                <link rel="stylesheet" href="/css/indexEstilos.css">
+                <link rel="stylesheet" href="../../resources/css/indexEstilos.css">
 
                 <!-- Fuentes Personalizadas -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -31,7 +31,7 @@
                 <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
                     <div class="container">
                     <a class="navbar-brand" href="#">
-                        <img src="/img/p icono.png" alt="img-fluid" height="40px" width="40px">
+                        <img src="../../resources/img/p icono.png" alt="img-fluid" height="40px" width="40px">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
