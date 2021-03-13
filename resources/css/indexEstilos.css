@@ -4,8 +4,8 @@
     padding: 0;
 }
 
-a:hover{
-    text-decoration: none;
+a{
+    color:white;
 }
 
 body, nav{
@@ -42,6 +42,12 @@ p{
     color: rgb(255, 255, 255);
     font-family: 'Quicksand', sans-serif;
     font-size: 40px;
+}
+
+.titulos3{
+    color: rgb(255, 255, 255);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
 }
 
 #title{
@@ -81,6 +87,28 @@ p{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+.boton2{
+    font-size: 16px;
+    padding: 16px 26px;
+    min-width: 100px;
+    border-radius: 2px;
+    display: inline-block;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.2s;
+    background-color: #22242C;
+    color: white;
+    border: 0;
+    border-radius: 24px;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.boton2:hover{
+    background-color:#ffffff;
+    color: black;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 .botonEstilo{
     border-radius: 24px;
     padding: 10px 20px;
@@ -106,6 +134,13 @@ p{
     font-size: 20px;
     text-align: justify;
 }
+
+.parrafo2{
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: justify;
+}
+
 
 #contenedorPrincipal
 {
@@ -153,9 +188,7 @@ p{
     font-family: 'Nunito', sans-serif;
     font-size: 20px;
 }
-#catalogo{
-    background-color: #22242C;
-    color: white;
+#contenedorCategorias{
     padding-top: 100px;
 }
 
@@ -176,6 +209,26 @@ p{
     margin: auto;
     display: block;
 }
+
+.centrarImagenes2{
+    margin: auto;
+    display: block;
+}
+
+.modal-header{
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.modal-body, .modal-header, .modal-content, .model-footer, .modal-dialog{
+    background-color: #16181D;
+    color: white;
+}
+
+#lista li{
+    display: inline;
+}
+
+
 
 
 

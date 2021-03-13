@@ -10,7 +10,7 @@ public_Page::navbarTemplate('Polus El Salvador');
     <header>
       <div class="row">
         <div class="col-6" id="title">
-          <h1 class="titulos">Nunca es<br>suficiente ropa</h1>
+          <h1 class="titulos">Nunca es<br><span style="color: #605AC3;"><b>suficiente</b></span> ropa.</h1>
           <button class="boton mt-4"><i class="fas fa-shopping-cart" id="carrito"></i>Comprar Productos</button>
         </div>
 
@@ -73,95 +73,83 @@ public_Page::navbarTemplate('Polus El Salvador');
         </div>
       </div>
     </div>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-3">
-
-        </div>
-        <div class="col-6">
-
-        </div>
-        <div class="col-3">
-
-        </div>
-      </div>
-    </div>
   </section>
-
   <!--Inicio de Categoria-->
   <section>
-    <div class="container-fluid" id="catalogo">
-      <div class="row">
-        <h1 class="titulos2" style="text-align: center;">Mira lo que tenemos para ofrecerte</h1>
-        <p class="parrafo" style="text-align: center;"> Increibles productos para ti </p>
-      </div>
-      <div id="info" class="row seccion">
 
-        <div class="col-xl-4 col-lg-6 col-md-12 article1">
-          
-          <div class="card border-secondary" >					
-            <div class="card-body" style="background-color: #22242C;">
-              <h3 class="card-title text-center " style="color: aliceblue;">
-                Sueteres
-              </h3>
-              <center>
-                <img id="productos" src="../../resources/img/hoodie.png" width="175" height="175">
-              </center> 
-              <center><button class="btn btn-outline-light"">Ver más</button></center>
-            </div>
-          </div>
+    <div class="container-fluid" id="contenedorCategorias"style="background-color: #22242C;">
+      <div class="row">
+        <h1 class="titulos2" style="text-align: center;">Mira lo que tenemos <span style="color: #605AC3;"><b>para</b></span> ofrecerte.</h1>
+        <p class="parrafo mb-5 mt-5" style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui, tempora consectetur eum, quia nisi quidem ratione veniam incidunt quam earum iusto eos quisquam saepe autem non voluptatibus ducimus quae.</p>
+        <div class="col-4">
+          <p class="titulos3" style="text-align: center;">Ropa</p>
+          <img src="../../resources/img/clothes.png" style="width: 250px; margin-top: 50px;" class="img-fluid centrarImagenes2">
         </div>
-        <br>
-        <div class="col-xl-4 col-lg-6 col-md-12 article3">
-          <div class="card border-secondary mb-3">
-            <div class="card-body"style="background-color: #22242C;">
-              <h3 class="card-title text-center">
-                Camisetas
-              </h3>
-              <center>
-                <img id="productos" src="../../resources/img/camisaroja.png" width="175" height="175">
-              </center>
-              <center><button class="btn btn-outline-light"">Ver más</button></center>
-            </div>
-          </div>		
+        <div class="col-4">
+          <p class="titulos3" style="text-align: center;">Cuidado facial</p>
+          <img src="../../resources/img/skincare.png" style="width: 290px; margin-top:40px;" class="img-fluid centrarImagenes2">
         </div>
-        <br>
-        <div class="col-xl-4 col-lg-6 col-md-12 article3">
-          <div class="card border-secondary mb-3">
-            <div class="card-body" style="background-color: #22242C;">
-              <h3 class="card-title text-center">
-                Mascarillas
-              </h3>
-              <center>
-                <img id="productos" src="../../resources/img/mascarilla.png" width="175" height="175">
-              </center>
-              <center><button class="btn btn-outline-light"">Ver más</button></center>
-            </div>
-          </div>		
+        <div class="col-4">
+          <p class="titulos3" style="text-align: center;">Cosméticos</p>
+          <img src="../../resources/img/cosmetics.png" style="width: 295px; margin-top:40px;" class="img-fluid centrarImagenes2">
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">          
+          <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button>
+        </div>
+        <p class="titulos3" style="text-align: center; margin-top:50px; margin-bottom: 50px;">y mucho más <span style="color: #605AC3;"><b>proximamente</b></span>...</p>
+
       </div>
     </div>
-    
   </section>
   <!--Fin de Categoria-->
 
   <section>
-    <div class="container-fluid" id="acercaNosotros">
-      <div class="row">
-        <h1 class="titulos2" style="text-align: center;">Somos tu mejor <b>opción</b>.</h1>
-        <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, hic rerum unde vitae, maxime nam, iure obcaecati aliquam ipsa ex excepturi. Dolores dolorem expedita reiciendis nesciunt ipsum tenetur sunt atque?</p>
+    <div class="container" style="margin-bottom:30px;">
+      <div class="row" >
+        <h1 class="titulos2" style="text-align: center; margin-top:100px; margin-bottom:50px; padding-left:50px;">¿Tienes algún <span style="color: #605AC3;"><b>problema?</b></span> Podemos ayudarte.</h1>
+        <div class="col-8">
+          <p class="parrafo2" style="margin-top:100px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam necessitatibus, aspernatur, quia amet blanditiis, consectetur nostrum corrupti officia deserunt velit libero sed sint temporibus autem facilis reiciendis fugiat itaque! Labore.</p>
+        </div>
+        <div class="col-4">
+          <img src="../../resources/img/mails.png" alt="" class="img-fluid centrarImagenes2 mt-5" style="width:200px;">
+          <!-- Button trigger modal -->
+          <button type="button" style="margin:auto; display:block; margin-top:30px" class="boton2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Contactanos
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-outline-light">Enviar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <p style="text-align: center; margin-top:100px;">¿No has podido solucionar tu problema? Puedes contactarnos en nuestras redes sociales: </p>
     </div>
   </section>
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-  </script>
 
-  <!-- IONICONS -->
-  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-
-</body>
-
-</html>
+<?php
+public_Page::footerTemplate();
+?>
