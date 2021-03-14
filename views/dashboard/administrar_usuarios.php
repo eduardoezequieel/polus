@@ -150,7 +150,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                     </div>
                     <div class="col-12">
                         <table class="table table-hover">
-                            <thead class="table-dark">
+                            <thead class="bg-dark tabla">
                                 <tr>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Apellido</th>

@@ -125,7 +125,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                             <div class="mb-3">
                                 <label for="selecciona" class="form-label">Selecciona:</label><br>
                                 <button class="btn btn-outline-dark active" id="selecciona">Agregar</button>
-                                <button class="btn btn-outline-dark" id="secciona">Cancelar</button>
+                                <button class="btn btn-outline-dark" id="selecciona">Cancelar</button>
                             </div>
                         </div>
                     </div>
