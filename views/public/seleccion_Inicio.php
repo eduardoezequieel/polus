@@ -27,18 +27,13 @@
         <p class="texto mt-3">Selecciona una de las siguientes opciones:</p>
         <div class="row justify-content-center mt-4">
           <div class="col-6 minimizarDiv">
-            <button class="boton">Iniciar Sesión</button>
+            <a href="iniciar_sesion.php" class="btn boton">Iniciar Sesión</a>
           
           </div>
           <div class="col-6 minimizarDiv">
             <button class="boton2">Registrarse</button>
           </div>
         </div>
-        
-        
-        
-        
-        
       </div>
     </div>
 
