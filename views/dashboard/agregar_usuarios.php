@@ -65,7 +65,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                 <form>
                                     <div class="mb-3">
                                         <label for="Correo" class="form-label">Correo:</label>
-                                        <input type="email" class="form-control" id="Correo">
+                                        <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp" placeholder="ejemplo@mail.com">
                                     </div>
                                     <div class="mb-3">
                                         <label for="Usuario" class="form-label">Usuario:</label>

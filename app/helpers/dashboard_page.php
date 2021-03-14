@@ -45,7 +45,7 @@
                                 <li><a href="../../views/dashboard/agregar_usuarios.php">Agregar Usuarios</a></li>
                                 <li><a href="../../views/dashboard/administrar_usuarios.php">Administrar Usuarios</a></li>
                             </ul>
-                            <li><a href=""><span class="fas fa-user-tag lead" style="margin-right: 10px;"></span> Clientes</a></li>
+                            <li><a href="../../views/dashboard/administrar_clientes.php"><span class="fas fa-user-tag lead" style="margin-right: 10px;"></span> Clientes</a></li>
                             <h1 class="titulo1">TIENDA</h1>
                             <li><a href="#" class="productos-btn"><span class="fas fa-store-alt lead" style="margin-right: 10px;"></span> Productos<i class="fas fa-caret-down segundo flecha"></i></a></li>
                             <ul class="productos-mostrar">

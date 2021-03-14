@@ -16,7 +16,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
         <section>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12 title"><h1>Administrar usuarios</h1></div>
+                    <div class="col-lg-12 title"><h1>Administrar Clientes</h1></div>
                 </div><br>
                  <!-- Espacio para buscar -->
                 <div class="row">
@@ -79,19 +79,6 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <div class="mb-3">
                                         <label for="Usuario" class="form-label">Usuario:</label>
                                         <input type="text" class="form-control" id="Usuario">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="Tipo de usuario" class="form-label">Tipo de usuario:</label>
-                                        <div class="dropdown">
-                                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
-                                                Tipos de usuario
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="#">Administrador</a></li>
-                                                <li><a class="dropdown-item" href="#">Empleado</a></li>
-                                                <li><a class="dropdown-item" href="#">Repartidor</a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -157,7 +144,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <th scope="col">Género</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Usuario</th>
-                                    <th scope="col">Tipo de usuario</th>
+                                    <th scope="col">Nacimiento</th>
                                     <th scope="col">Teléfono</th>
                                     <th scope="col">Dirección</th>
                                 </tr>
@@ -169,7 +156,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <td>Femenino</td>
                                     <td>katy06salinas@gmail.com</td>
                                     <td>kath34</td>
-                                    <td>Administrador</td>
+                                    <td>03-02-2002</td>
                                     <td>7173-7109</td>
                                     <td>San Salvador</td>
                                 </tr>
@@ -178,7 +165,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <td>Masculino</td>
                                     <td>eduardoxlr@gmail.com</td>
                                     <td>eduardxlr</td>
-                                    <td>Empleado</td>
+                                    <td>17-04-2002</td>
                                     <td>7543-0245</td>
                                     <td>San Salvador</td>
                                 </tr>
@@ -188,7 +175,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <td>masculino</td>
                                     <td>magaña@gmail.com</td>
                                     <td>emagaña</td>
-                                    <td>Repartidor</td>
+                                    <td>01-12-2003</td>
                                     <td>8042-1840</td>
                                     <td>San Salvador</td>
                                 </tr>
