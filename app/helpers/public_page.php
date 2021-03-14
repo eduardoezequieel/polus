@@ -64,7 +64,7 @@
 
                         </ul>
                         <form class="d-flex">
-                        <a href="../../views/public/seleccion_Inicio.html" class="btn btn-outline-light botonEstilo">Iniciar Sesión</a>
+                        <a href="../../views/public/seleccion_Inicio.php" class="btn btn-outline-light botonEstilo">Iniciar Sesión</a>
                         
                         </form>
                     </div>
