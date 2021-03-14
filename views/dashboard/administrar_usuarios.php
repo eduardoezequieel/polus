@@ -149,7 +149,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                     </div>
                     <div class="col-12">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-responsive-lg">
                             <thead class="bg-dark tabla">
                                 <tr>
                                     <th scope="col">Nombre</th>
@@ -160,6 +160,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <th scope="col">Tipo de usuario</th>
                                     <th scope="col">Teléfono</th>
                                     <th scope="col">Dirección</th>
+                                    <th scope="col">Nacimiento</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -172,6 +173,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <td>Administrador</td>
                                     <td>7173-7109</td>
                                     <td>San Salvador</td>
+                                    <td>03-02-2002</td>
                                 </tr>
                                     <td>Eduardo Ezequiel</td>
                                     <td>López Rivera</td>
@@ -181,6 +183,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <td>Empleado</td>
                                     <td>7543-0245</td>
                                     <td>San Salvador</td>
+                                    <td>17-04-2002</td>
                                 </tr>
                                 <tr>
                                     <td>Eduardo Antonio</td>
@@ -191,6 +194,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <td>Repartidor</td>
                                     <td>8042-1840</td>
                                     <td>San Salvador</td>
+                                    <td>12-12-2003</td>
                                 </tr>
                             </tbody>
                         </table> 

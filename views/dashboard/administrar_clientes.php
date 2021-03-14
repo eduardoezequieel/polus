@@ -136,8 +136,8 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                     </div>
                     <div class="col-12">
-                        <table class="table table-hover">
-                            <thead class="table-dark">
+                        <table class="table table-hover table-responsive-lg">
+                            <thead class="bg-dark tabla">
                                 <tr>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Apellido</th>

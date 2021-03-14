@@ -71,48 +71,20 @@ dashboard_Page::sidebarTemplate('marca_privado_estilos.css', 'Polus - Dashboard'
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                     </div>
                     <div class="col-12">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-responsive-sm">
                             <thead class="bg-dark tabla">
                                 <tr>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Apellido</th>
-                                    <th scope="col">Género</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Usuario</th>
-                                    <th scope="col">Tipo de usuario</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Dirección</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Katherine Andrea</td>
-                                    <td>González Salinas</td>
-                                    <td>Femenino</td>
-                                    <td>katy06salinas@gmail.com</td>
-                                    <td>kath34</td>
-                                    <td>Administrador</td>
-                                    <td>7173-7109</td>
-                                    <td>San Salvador</td>
+                                    <td>Nike</td>
                                 </tr>
-                                    <td>Eduardo Ezequiel</td>
-                                    <td>López Rivera</td>
-                                    <td>Masculino</td>
-                                    <td>eduardoxlr@gmail.com</td>
-                                    <td>eduardxlr</td>
-                                    <td>Empleado</td>
-                                    <td>7543-0245</td>
-                                    <td>San Salvador</td>
+                                    <td>Adidas</td>
                                 </tr>
                                 <tr>
-                                    <td>Eduardo Antonio</td>
-                                    <td>Magaña Hernandez</td>
-                                    <td>masculino</td>
-                                    <td>magaña@gmail.com</td>
-                                    <td>emagaña</td>
-                                    <td>Repartidor</td>
-                                    <td>8042-1840</td>
-                                    <td>San Salvador</td>
+                                    <td>Fila</td>
                                 </tr>
                             </tbody>
                         </table> 

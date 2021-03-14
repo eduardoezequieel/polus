@@ -30,7 +30,7 @@ dashboard_Page::sidebarTemplate('pedidos_privado_estilos.css', 'Polus - Dashboar
                 <!-- Fila de primeros tres apartados -->
                 <div class="row">
                     <!-- Columna de opciones -->
-                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-sm-12 col-xs-12 opciones">
                         <p class="apartado">Opciones:</p>
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                         <!-- Botones -->
@@ -43,11 +43,11 @@ dashboard_Page::sidebarTemplate('pedidos_privado_estilos.css', 'Polus - Dashboar
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-8 encargo">
                         <p class="apartado">Últimos encargos:</p>
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                     <div class="col-12">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-responsive-lg">
                             <thead class="bg-dark tabla">
                                 <tr>
                                     <th scope="col">Factura</th>

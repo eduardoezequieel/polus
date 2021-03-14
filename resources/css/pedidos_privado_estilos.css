@@ -242,3 +242,16 @@ nav ul li a i.rotate{
     }
 
 }
+
+@media screen and (max-width:999px){
+
+    .opciones{
+        order: 2;
+    }
+
+    .encargo{
+        order: 1;
+       
+    }
+
+}
