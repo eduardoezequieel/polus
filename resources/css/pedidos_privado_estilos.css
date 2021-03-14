@@ -175,6 +175,7 @@ nav ul li a i.rotate{
     margin-left: 40px;
 }
 
+
 .formulario{
     margin-left: 40px;
 }
@@ -199,7 +200,7 @@ nav ul li a i.rotate{
 }
 
 .formulario1{
-    margin-left: 40px;
+    margin-left: 80px;
    
 }
 
@@ -237,6 +238,19 @@ nav ul li a i.rotate{
     
     .formulario2{
         margin-left: 0px;
+       
+    }
+
+}
+
+@media screen and (max-width:999px){
+
+    .opciones{
+        order: 2;
+    }
+
+    .encargo{
+        order: 1;
        
     }
 

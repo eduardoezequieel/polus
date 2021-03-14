@@ -156,10 +156,8 @@ nav ul li a i.rotate{
     margin-top: 5px;
 }
 
-.imagenGrafica{
-    margin: auto;
-    display: block;
-    width: 280px;
+#Cantidad{
+    width: 150px;
 }
 
 .imagenSeparator{
@@ -210,10 +208,12 @@ nav ul li a i.rotate{
 
 #selecciona{
     width: 140px;
+    margin-left: 50px;
 }
 
 .tabla{
     color: white;
+    
 }
 
 @media screen and (max-width:1200px){

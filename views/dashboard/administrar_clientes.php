@@ -16,8 +16,17 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
         <section>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12 title"><h1>Agregar usuarios</h1></div>
+                    <div class="col-lg-12 title"><h1>Administrar Clientes</h1></div>
                 </div><br>
+                 <!-- Espacio para buscar -->
+                <div class="row">
+                    <div class="col-lg-8 formulario2">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                            <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div><br><br>
                 <!-- Fila de primeros tres apartados -->
                 <div class="row">
                     <!-- Columna de información personal -->
@@ -25,7 +34,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                         <p class="apartado">Información personal:</p>
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                         <div class="row">
-                            <!-- Formulario del información personao -->
+                            <!-- Formulario del información personal -->
                             <div class="col-12 formulario">
                                 <form>
                                     <div class="mb-3">
@@ -71,19 +80,6 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                         <label for="Usuario" class="form-label">Usuario:</label>
                                         <input type="text" class="form-control" id="Usuario">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="Tipo de usuario" class="form-label">Tipo de usuario:</label>
-                                        <div class="dropdown">
-                                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
-                                                Tipos de usuario
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="#">Administrador</a></li>
-                                                <li><a class="dropdown-item" href="#">Empleado</a></li>
-                                                <li><a class="dropdown-item" href="#">Repartidor</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -121,16 +117,72 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                         <p class="apartado">Opciones:</p>
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                         <!-- Botones -->
-                        <div class="col-12 formulario">
-                            <div class="mb-3">
+                        <div class="col-12 formulario1">
+                            <div class="mb-3 ">
                                 <label for="selecciona" class="form-label">Selecciona:</label><br>
-                                <button class="btn btn-outline-dark active" id="selecciona">Agregar</button>
-                                <button class="btn btn-outline-dark" id="selecciona">Cancelar</button>
+                                <button class="btn btn-outline-dark" id="selecciona">Actualizar</button>
+                                <button class="btn btn-outline-dark" id="selecciona">Suspender</button><br><br>
+                                <button class="btn btn-outline-dark" id="selecciona">Activar</button>
+                                <button class="btn btn-outline-dark" id="selecciona">Reiniciar cuenta</button>
                             </div>
                         </div>
                     </div>
+                </div><br><br>
+                <!-- Fila de la tabla -->
+                <div class="row">
+                    <!-- Columnas de tabla de datos -->
+                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                        <p class="apartado">Tabla de datos:</p>
+                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-hover table-responsive-lg">
+                            <thead class="bg-dark tabla">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Género</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Nacimiento</th>
+                                    <th scope="col">Teléfono</th>
+                                    <th scope="col">Dirección</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Katherine Andrea</td>
+                                    <td>González Salinas</td>
+                                    <td>Femenino</td>
+                                    <td>katy06salinas@gmail.com</td>
+                                    <td>kath34</td>
+                                    <td>03-02-2002</td>
+                                    <td>7173-7109</td>
+                                    <td>San Salvador</td>
+                                </tr>
+                                    <td>Eduardo Ezequiel</td>
+                                    <td>López Rivera</td>
+                                    <td>Masculino</td>
+                                    <td>eduardoxlr@gmail.com</td>
+                                    <td>eduardxlr</td>
+                                    <td>17-04-2002</td>
+                                    <td>7543-0245</td>
+                                    <td>San Salvador</td>
+                                </tr>
+                                <tr>
+                                    <td>Eduardo Antonio</td>
+                                    <td>Magaña Hernandez</td>
+                                    <td>masculino</td>
+                                    <td>magaña@gmail.com</td>
+                                    <td>emagaña</td>
+                                    <td>12-12-2003</td>
+                                    <td>8042-1840</td>
+                                    <td>San Salvador</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </div>
                 </div>
-
             </div>
         </section>
     </div>
@@ -147,3 +199,4 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
     ?>
    </body>
 </html>
+
