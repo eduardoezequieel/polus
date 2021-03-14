@@ -1,8 +1,8 @@
 <?php
     class public_Page{
         public static function navbarTemplate($titulo){
-            print(
-                '<!doctype html>
+            print('
+                <!doctype html>
                 <html lang="es">
 
                 <head>
@@ -64,7 +64,8 @@
 
                         </ul>
                         <form class="d-flex">
-                        <button class="btn btn-outline-light botonEstilo">Iniciar Sesión</button>
+                        <a href="../../views/public/seleccion_Inicio.html" class="btn btn-outline-light botonEstilo">Iniciar Sesión</a>
+                        
                         </form>
                     </div>
                     </div>

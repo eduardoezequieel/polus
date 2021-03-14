@@ -67,18 +67,19 @@ p{
 
 .boton{
     font-size: 14px;
-    padding: 20px 36px;
-    min-width: 160px;
-    border-radius: 2px;
-    display: inline-block;
+    padding: 20px 0px;
+    min-width: 200px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.2s;
     background-color: #4A43BB;
-    color: white;
+    color: rgb(255, 255, 255);
     border: 0;
     border-radius: 24px;
     font-family: 'Nunito', sans-serif;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    font-weight: 100%;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
 }
 
 .boton:hover{
