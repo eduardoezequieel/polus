@@ -166,23 +166,53 @@ nav ul li a i.rotate{
     width: 280px;
 }
 
-.tituloUsuarios{
-    margin-top: 12px;
-    color: rgb(0, 0, 0);
-    font-family: 'Quicksand', sans-serif;
-    font-size: 30px;
-    text-align: center;
+.imagenSeparator{
+    margin-top: -50px;
+    width: 270px;
+    margin-left: 40px;
 }
 
-.titleDescripcion{
-    margin-top: 12px;
+.apartado{
     color: rgb(0, 0, 0);
     font-family: 'Quicksand', sans-serif;
-    font-size: 20px;
-    text-align: center;
+    font-size: 24px;
+    margin-left: 40px;
 }
 
-.verMas{
-    margin: auto;
-    display: block;
+.formulario{
+    margin-left: 40px;
+}
+
+.imagenUsuario1{
+    width: 120px;
+    border-radius: 20%;
+    margin-left: 30px;
+}
+
+.foto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#agregarFoto{
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+@media screen and (max-width:1200px){
+
+    .apartado{
+        margin-left: 1px;
+    }
+    
+    .formulario{
+        margin-left: 1px;
+    }
+    
+    .imagenSeparator{
+        margin-left: 1px;
+    }
+
 }
