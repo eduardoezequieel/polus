@@ -69,22 +69,21 @@ dashboard_Page::sidebarTemplate('productos_privado_estilos.css', 'Polus - Dashbo
                                     </ul>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="precio" class="form-label">Precio:</label>
+                            <label for="precio" class="form-label">Precio:</label><br>
+                            <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">$</span>
-                                <input type="text" class="form-control" placeholder="0.00">
-                                <div class="row">
-                                    <!-- Columna de opciones -->
-                                    <div class="col-12">
-                                        <p class="apartado1">Opciones:</p>
-                                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator1">
-                                        <!-- Botones -->
-                                        <div class="col-12 formulario1">
-                                            <div class="mb-3">
-                                                <label for="selecciona" class="form-label">Selecciona:</label><br>
-                                                <button class="btn btn-outline-dark active" id="selecciona">Agregar</button>
-                                                <button class="btn btn-outline-dark" id="selecciona">Cancelar</button>
-                                            </div>
+                            <input type="text" class="form-control" placeholder="0.00"></div><br>
+                            <div class="row">
+                                <!-- Columna de opciones -->
+                                <div class="col-12">
+                                    <p class="apartado1">Opciones:</p>
+                                    <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator1">
+                                    <!-- Botones -->
+                                    <div class="col-12 formulario1">
+                                        <div class="mb-3">
+                                            <label for="selecciona" class="form-label">Selecciona:</label><br>
+                                            <button class="btn btn-outline-dark active" id="selecciona">Agregar</button>
+                                            <button class="btn btn-outline-dark" id="selecciona">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>

@@ -56,7 +56,7 @@
                                 <li><a href="../../views/dashboard/tipos_producto.php">Tipos de Productos</a></li>
                                 <li><a href="../../views/dashboard/marca.php">Marcas</a></li>
                             </ul>
-                            <li><a href=""><span class="fas fa-truck lead" style="margin-right: 10px;"></span> Pedidos</a></li>
+                            <li><a href="../../views/dashboard/pedidos.php"><span class="fas fa-truck lead" style="margin-right: 10px;"></span> Pedidos</a></li>
                         </ul>
                         </nav>
                     </div>
