@@ -1,8 +1,8 @@
 <?php
     class dashboard_Page{
         public static function sidebarTemplate($css, $titulo){
-            print(
-                '
+            print('
+                
                 <!doctype html>
                 <html lang="es">
                 <head>
@@ -34,7 +34,7 @@
                     <!-- Sidebar -->
                     <div class="" id="sidebar-wrapper">
                         <div class="sidebar-heading">
-                        <img src="../../resources/img/polus tipografia.png" alt="" class="img-fluid pt-2">
+                        <a href="#" class="navbar-brand"> <img src="../../resources/img/polus tipografia.png" alt="" class="img-fluid pt-2"></a>
                         </div>
                         <nav class="sidebar-container" id="barraLado">
                         
