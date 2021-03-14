@@ -118,7 +118,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                         <!-- Botones -->
                         <div class="col-12 formulario1">
-                            <div class="mb-3">
+                            <div class="mb-3 ">
                                 <label for="selecciona" class="form-label">Selecciona:</label><br>
                                 <button class="btn btn-outline-dark" id="selecciona">Actualizar</button>
                                 <button class="btn btn-outline-dark" id="selecciona">Suspender</button><br><br>
@@ -175,7 +175,7 @@ dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboa
                                     <td>masculino</td>
                                     <td>magaña@gmail.com</td>
                                     <td>emagaña</td>
-                                    <td>01-12-2003</td>
+                                    <td>12-12-2003</td>
                                     <td>8042-1840</td>
                                     <td>San Salvador</td>
                                 </tr>

@@ -71,7 +71,8 @@ dashboard_Page::sidebarTemplate('productos_privado_estilos.css', 'Polus - Dashbo
                             </div>
                             <div class="mb-3">
                                 <label for="precio" class="form-label">Precio:</label>
-                                <input type="text" class="form-control" id="precio" placeholder="$0.00"><br><br>
+                                <span class="input-group-text" id="basic-addon1">$</span>
+                                <input type="text" class="form-control" placeholder="0.00">
                                 <div class="row">
                                     <!-- Columna de opciones -->
                                     <div class="col-12">
@@ -92,61 +93,6 @@ dashboard_Page::sidebarTemplate('productos_privado_estilos.css', 'Polus - Dashbo
                     </div>
                 </div>
             </div>
-            <!-- Fila de la tabla -->
-            <div class="row">
-                    <!-- Columnas de tabla de datos -->
-                    <div class="col-lg-4 col-sm-12 col-xs-12">
-                        <p class="apartado">Tabla de datos:</p>
-                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
-                    </div>
-                    <div class="col-12">
-                        <table class="table table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Apellido</th>
-                                    <th scope="col">Género</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Usuario</th>
-                                    <th scope="col">Tipo de usuario</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Dirección</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Katherine Andrea</td>
-                                    <td>González Salinas</td>
-                                    <td>Femenino</td>
-                                    <td>katy06salinas@gmail.com</td>
-                                    <td>kath34</td>
-                                    <td>Administrador</td>
-                                    <td>7173-7109</td>
-                                    <td>San Salvador</td>
-                                </tr>
-                                    <td>Eduardo Ezequiel</td>
-                                    <td>López Rivera</td>
-                                    <td>Masculino</td>
-                                    <td>eduardoxlr@gmail.com</td>
-                                    <td>eduardxlr</td>
-                                    <td>Empleado</td>
-                                    <td>7543-0245</td>
-                                    <td>San Salvador</td>
-                                </tr>
-                                <tr>
-                                    <td>Eduardo Antonio</td>
-                                    <td>Magaña Hernandez</td>
-                                    <td>masculino</td>
-                                    <td>magaña@gmail.com</td>
-                                    <td>emagaña</td>
-                                    <td>Repartidor</td>
-                                    <td>8042-1840</td>
-                                    <td>San Salvador</td>
-                                </tr>
-                            </tbody>
-                        </table> 
-                    </div>
-                </div>
         </div>
       </section>
     </div>

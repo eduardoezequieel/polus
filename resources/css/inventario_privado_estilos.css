@@ -156,15 +156,13 @@ nav ul li a i.rotate{
     margin-top: 5px;
 }
 
-.imagenGrafica{
-    margin: auto;
-    display: block;
-    width: 280px;
+#Cantidad{
+    width: 150px;
 }
 
 .imagenSeparator{
     margin-top: -50px;
-    width: 300px;
+    width: 270px;
     margin-left: 40px;
 }
 
@@ -175,27 +173,14 @@ nav ul li a i.rotate{
     margin-left: 40px;
 }
 
-.formulario2{
-    margin-left: 200px;
-   
-}
-
-.apartado1{
-    color: rgb(0, 0, 0);
-    font-family: 'Quicksand', sans-serif;
-    font-size: 24px;
-    margin-left: 0px;
-}
-
 .formulario{
-    margin-left: 45px;
+    margin-left: 40px;
 }
 
-
-.imagenSeparator1{
-    margin-top: -50px;
-    width: 300px;
-    margin-left: 0px;
+.imagenUsuario1{
+    width: 120px;
+    border-radius: 20%;
+    margin-left: 30px;
 }
 
 .foto{
@@ -205,31 +190,33 @@ nav ul li a i.rotate{
     align-items: center;
 }
 
-#selecciona{
-    width: 140px;
-}
-
-#selecciona1{
-    width: 140px;
-    margin-left: 80px;
-}
 
 #agregarFoto{
     margin-top: 10px;
     margin-left: 30px;
 }
 
-.imagenUsuario1{
-    width: 150px;
-    margin-left: 30px;
+.formulario1{
+    margin-left: 40px;
+   
+}
+
+.formulario2{
+    margin-left: 200px;
+   
+}
+
+#selecciona{
+    width: 140px;
+    margin-left: 50px;
 }
 
 .tabla{
     color: white;
+    
 }
 
-
-@media screen and (max-width:950px){
+@media screen and (max-width:1200px){
 
     .apartado{
         margin-left: 0px;
@@ -251,14 +238,6 @@ nav ul li a i.rotate{
     .formulario2{
         margin-left: 0px;
        
-    }
-
-    .imagenUsuario1{
-        margin-left: 0px;
-    }
-
-    #agregarFoto{
-        margin-left: 0px;
     }
 
 }

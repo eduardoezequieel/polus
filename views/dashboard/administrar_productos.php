@@ -17,8 +17,17 @@ dashboard_Page::sidebarTemplate('productos_privado_estilos.css', 'Polus - Dashbo
         <div class="container-fluid">
             <!-- Mostrar titulo -->
             <div class="row">
-                <div class="col-12 title"><h1>Agregar productos</h1></div>
+                <div class="col-12 title"><h1>Administrar productos</h1></div>
             </div><br>
+            <!-- Espacio para buscar -->
+            <div class="row">
+                <div class="col-lg-8 formulario2">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </div><br><br>
             <!-- Inicio del contenido-->
             <div class="row">
                 <!-- Columna de la información del producto-->
@@ -71,7 +80,10 @@ dashboard_Page::sidebarTemplate('productos_privado_estilos.css', 'Polus - Dashbo
                             </div>
                             <div class="mb-3">
                                 <label for="precio" class="form-label">Precio:</label>
-                                <input type="text" class="form-control" id="precio" placeholder="$0.00"><br><br>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">$</span>
+                                    <input type="text" class="form-control" placeholder="0.00">
+                                </div>
                                 <div class="row">
                                     <!-- Columna de opciones -->
                                     <div class="col-12">
@@ -81,8 +93,9 @@ dashboard_Page::sidebarTemplate('productos_privado_estilos.css', 'Polus - Dashbo
                                         <div class="col-12 formulario1">
                                             <div class="mb-3">
                                                 <label for="selecciona" class="form-label">Selecciona:</label><br>
-                                                <button class="btn btn-outline-dark active" id="selecciona">Agregar</button>
-                                                <button class="btn btn-outline-dark" id="selecciona">Cancelar</button>
+                                                <button class="btn btn-outline-dark" id="selecciona">Actualizar</button>
+                                                <button class="btn btn-outline-dark" id="selecciona">Supender</button><br><br>
+                                                <button class="btn btn-outline-dark" id="selecciona1">Activar</button>
                                             </div>
                                         </div>
                                     </div>
