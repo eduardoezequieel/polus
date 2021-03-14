@@ -5,12 +5,10 @@
     box-sizing: border-box;
 }
 
+
 body {
-    overflow: hidden;
-    
+    overflow: scroll;
 }
-
-
 
 .titulo1{
     font-family: 'Roboto Mono', monospace;
@@ -63,8 +61,6 @@ nav ul li a{
 nav ul li a:hover{
     text-decoration: none;
     color:#A492F9;
-    background-color: #22242C;
-  
     border-left-color: #A492F9;
 }
 
@@ -195,6 +191,7 @@ nav ul li a i.rotate{
     justify-content: center;
     align-items: center;
 }
+
 
 #agregarFoto{
     margin-top: 10px;
