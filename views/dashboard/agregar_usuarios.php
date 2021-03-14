@@ -2,7 +2,7 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/dashboard_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-dashboard_Page::sidebarTemplate('agregar_usuarios_privado_estilos.css', 'Polus - Dashboard');
+dashboard_Page::sidebarTemplate('usuarios_privado_estilos.css', 'Polus - Dashboard');
 ?>
     <!--Fin del sidebar-->
     <!-- Contenido de la Pagina -->
@@ -20,12 +20,12 @@ dashboard_Page::sidebarTemplate('agregar_usuarios_privado_estilos.css', 'Polus -
                 </div><br>
                 <!-- Fila de primeros tres apartados -->
                 <div class="row">
-                    <!-- Columna del primer apartado -->
+                    <!-- Columna de información personal -->
                     <div class="col-lg-4 col-sm-12 col-xs-12">
                         <p class="apartado">Información personal:</p>
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                         <div class="row">
-                            <!-- Formulario del primer apartado -->
+                            <!-- Formulario del información personao -->
                             <div class="col-12 formulario">
                                 <form>
                                     <div class="mb-3">
@@ -41,25 +41,26 @@ dashboard_Page::sidebarTemplate('agregar_usuarios_privado_estilos.css', 'Polus -
                                         <input type="text" class="form-control" id="Fecha de nacimiento" placeholder="dd-mm-aaaa">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="btn-group" class="form-label">Género:</label><br>
-                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                                            <label class="btn btn-outline-secondary" for="btnradio1">Femenino</label>
-
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                            <label class="btn btn-outline-secondary" for="btnradio2">Masculino</label>
+                                        <label class="form-label">Género:</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Femenino</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">Masculino</label>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <!-- Columna del segundo apartado -->
+                    </div><br>
+                    <!-- Columna de cuenta -->
                     <div class="col-lg-4 col-sm-12 col-xs-12">
                         <p class="apartado">Cuenta:</p>
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                         <div class="row">
-                            <!-- Formulario del segundo apartado -->
+                            <!-- Formulario de cuenta -->
                             <div class="col-12 formulario">
                                 <form>
                                     <div class="mb-3">
@@ -73,7 +74,7 @@ dashboard_Page::sidebarTemplate('agregar_usuarios_privado_estilos.css', 'Polus -
                                     <div class="mb-3">
                                         <label for="Tipo de usuario" class="form-label">Tipo de usuario:</label>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                                                 Tipos de usuario
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -87,21 +88,20 @@ dashboard_Page::sidebarTemplate('agregar_usuarios_privado_estilos.css', 'Polus -
                             </div>
                         </div>
                     </div>
-                    <!-- Columna del tercer apartado -->
+                    <!-- Columna de foto -->
                     <div class="col-lg-4 foto">
                         <img src="../../resources/img/dashboard_img/user.png" class="img-fluid imagenUsuario1">
                         <button class="btn btn-outline-dark" id="agregarFoto">Agregar foto</button>
                     </div>
-                </div>
+                </div><br><br>
                 <!-- Fila de ultimos dos apartados -->
                 <div class="row">
-                    <!-- Columna del cuarto apartado -->
+                    <!-- Columna de contacto -->
                     <div class="col-lg-4 col-sm-12 col-xs-12">
                         <p class="apartado">Contacto:</p>
                         <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
                             <div class="row">
-                                <!-- Formulario del cuarto apartado -->
-                                <div class="col-12 formulario">
+                                <!-- Formulario de contacto -->
                                 <div class="col-12 formulario">
                                     <form>
                                         <div class="mb-3">
@@ -110,16 +110,27 @@ dashboard_Page::sidebarTemplate('agregar_usuarios_privado_estilos.css', 'Polus -
                                         </div>
                                         <div class="mb-3">
                                             <label for="Dirección" class="form-label">Dirección:</label>
-                                            <textarea class="form-control" placeholder="Leave a comment here" id="direccion"></textarea>
+                                            <textarea class="form-control" id="direccion"></textarea>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                    </div>
+                    </div><br>
+                    <!-- Columna de opciones -->
                     <div class="col-lg-4 col-sm-12 col-xs-12">
-
+                        <p class="apartado">Opciones:</p>
+                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
+                        <!-- Botones -->
+                        <div class="col-12 formulario">
+                            <div class="mb-3">
+                                <label for="selecciona" class="form-label">Selecciona:</label><br>
+                                <button class="btn btn-outline-dark active" id="selecciona">Agregar</button>
+                                <button class="btn btn-outline-dark" id="secciona">Cancelar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
     </div>
