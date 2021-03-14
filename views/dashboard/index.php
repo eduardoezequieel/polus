@@ -15,9 +15,11 @@ dashboard_Page::sidebarTemplate('index_privado_estilos.css', 'Polus - Dashboard'
        <!-- Section para mostrar contenido -->
       <section>
         <div class="container-fluid">
+          <!-- Mostrar titulo -->
           <div class="row">
             <div class="col-12 title"><h1>Inicio</h1></div>
           </div>
+          <!-- Mostrar opciones -->
           <div class="row">
             <div class="col-lg-6">
               <img src="../../resources/img/dashboard_img/grafica2.png" class="img-fluid imagenGrafica">
@@ -26,7 +28,7 @@ dashboard_Page::sidebarTemplate('index_privado_estilos.css', 'Polus - Dashboard'
                 garantizar la integridad del mismo
               </p>
               <button class="btn btn-outline-dark verMas">Ver más</button>
-            </div>
+            </div><br>
             <div class="col-lg-6">
               <img src="../../resources/img/dashboard_img/grafica1.png" class="img-fluid imagenGrafica">
               <p class="parrafo tituloUsuarios">Gestionar Pedidos</p>
