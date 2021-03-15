@@ -1,0 +1,126 @@
+body {
+  overflow-x: hidden;
+}
+
+.ocultar{
+  display: none;
+}
+
+.padding1{
+  padding-left: 100px;
+}
+
+.padding2{
+  padding-left: 95px;
+}
+
+.titulosSidebar{
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.fondoOscuro {
+  background-color: #16181D;
+}
+
+.nav-link{
+  padding: 10px;
+  background-color: #16181D !important;
+  border-left: 3px solid transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Mulish', sans-serif;
+  font-weight: 300%;
+
+}
+
+li{
+  list-style: none;
+}
+
+#usuarioLabel{
+  margin-left: 5px;
+}
+
+.nav-link:hover{
+  border-left-color: #A492F9;
+  background-color: #1e2127 !important;
+}
+
+.submenu{
+  padding:5px !important;
+  border-bottom: none !important;
+}
+
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+  background-color: #16181D;
+}
+
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  transition: all 0.4s;
+}
+
+#sidebar.active {
+  margin-left: -17rem;
+}
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+
+.separator {
+  margin: 3rem 0;
+  border-bottom: 1px dashed #fff;
+}
+
+.text-uppercase {
+  letter-spacing: 0.1em;
+}
+
+.text-gray {
+  color: #aaa;
+}
+
+.nav-link {
+  text-transform: capitalize;
+}
+
+.nav-link:hover {
+  background: #f3f2f2;
+}
+
+.text-primary {
+  color: #7579e7 !important;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -17rem;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+
+  #content.active {
+    margin-left: 17rem;
+    width: calc(100% - 17rem);
+  }
+}

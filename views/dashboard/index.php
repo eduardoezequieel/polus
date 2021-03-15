@@ -2,19 +2,16 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/dashboard_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-dashboard_Page::sidebarTemplate('index_privado_estilos.css', 'Polus - Dashboard');
+dashboard_Page::sidebarTemplate('Polus - Dashboard','indexprivado_estilos.css');
 ?>
     <!--Fin del sidebar-->
     <!-- Contenido de la Pagina -->
-    <div id="page-content-wrapper">
-      <!-- Contenedor de la barra inicial -->
+    <div class="page-content p-5" id="content">
       <?php
-        //Se imprime la plantilla la barra inicial
-        dashboard_Page::barraInicial();
-        ?>
-       <!-- Section para mostrar contenido -->
-      <section>
-        <div class="container-fluid">
+      //Se imprime el script para las direcciones de Bootstrap core JavaScript
+      dashboard_Page::barraInicial();
+      ?>
+      <div class="container-fluid">
           <!-- Mostrar titulo -->
           <div class="row">
             <div class="col-12 title"><h1>Inicio</h1></div>
@@ -39,7 +36,6 @@ dashboard_Page::sidebarTemplate('index_privado_estilos.css', 'Polus - Dashboard'
             </div>
           </div>
         </div>
-      </section>
     </div>
     <!-- Bootstrap core JavaScript -->
     <?php
