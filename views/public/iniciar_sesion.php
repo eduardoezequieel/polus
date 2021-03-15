@@ -38,7 +38,7 @@
                     <div class="form-group mb-2">
                       <label for="exampleInputPassword1" class="mb-2 texto">Ingrese su contraseña</label>
                       <input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="exampleInputPassword1" placeholder="Contraseña">
-                      <a href="#" class="form-text">¿Hás olvidado tu contraseña?</a>
+                      <a href="seleccion_recuperacion.php" class="form-text">¿Hás olvidado tu contraseña?</a>
                     </div>
                     <div class="row justify-content-center">
                       <div class="col-12 d-flex justify-content-center align-items-center">

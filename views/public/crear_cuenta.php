@@ -82,7 +82,7 @@
                   <!-- Boton -->
                   <div class="row">
                     <div class="col-12 d-flex justify-content-center align-items-center">
-                      <a href="" class="btn boton2 d-block m-auto my-4">Registrate</a>
+                      <a href="confirmar_correo.php" class="btn boton2 d-block m-auto my-4">Registrate</a>
                     </div>
                   </div>
                 </form>
