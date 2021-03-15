@@ -4,7 +4,26 @@ include('../../app/helpers/public_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
 public_Page::navbarTemplate('Polus El Salvador');
 ?>
+<link rel="stylesheet" type="text/css" href="../../resources/css/carrito_publico.css">
 <!-- Inicio del carousel con imagenes de prueba-->
+<!--Inicio de boton para carrito-->
+<ul class="top-hnt-right-content col-lg-6">
+						<li class="transmitvcart galssescart2 cart cart box_1">
+							<form action="#" method="post" class="last">
+								<input type="hidden" name="cmd" value="_cart">
+								<input type="hidden" name="display" value="1">
+								<button class="top_transmitv_cart" type="submit" name="submit" value="">
+									My Cart
+									<span class="fa fa-shopping-cart"></span>
+								</button>
+							</form>
+						</li>
+					</ul>        
+<!--fin de boton para carrito-->
+
+
+
+
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
