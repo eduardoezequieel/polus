@@ -18,7 +18,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                 </div>
 
                 <div class="card-group">
-                    <div class="card text-white bg-dark mb-3">
+                    <div class="card border-light text-white bg-dark mb-3">
                         <center>
                         <img class="card-img-top" src="../../resources/img/aloe.png" style="width: 250px; margin-top: 50px;" alt="Card image cap">
                         </center>
@@ -29,7 +29,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                             </center>
                         </div>
                     </div>
-                    <div class="card text-white bg-dark mb-3">
+                    <div class="card border-light text-white bg-dark mb-3">
                         <center>
                         <img class="card-img-top" src="../../resources/img/acuacate.png" style="width: 350px; height:280px; margin-top: 50px;" alt="Card image cap">
                         </center>
@@ -40,7 +40,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                             </center>
                         </div>
                     </div>
-                    <div class="card text-white bg-dark mb-3">
+                    <div class="card border-light text-white bg-dark mb-3">
                         <center>
                         <img class="card-img-top" src="../../resources/img/pepino.png" style="width: 270px; height:280px; margin-top: 50px;" alt="Card image cap">
                         </center>
