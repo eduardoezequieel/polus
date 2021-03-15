@@ -32,7 +32,7 @@
                 <body>
                     <div class="d-flex" id="wrapper">
                     <!-- Sidebar -->
-                    <div class="" id="sidebar-wrapper">
+                    <div class="#" id="sidebar-wrapper">
                         <div class="sidebar-heading">
                         <a href="#" class="navbar-brand"> <img src="../../resources/img/polus tipografia.png" alt="" class="img-fluid pt-2"></a>
                         </div>

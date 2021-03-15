@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="../../resources/css/seleccion_Inicio_estilos.css">
     <title>Polus - Iniciar Sesión</title>
@@ -31,7 +32,7 @@
           
           </div>
           <div class="col-6 minimizarDiv">
-            <button class="boton2">Registrarse</button>
+            <a href="crear_cuenta.php" class="btn boton2">Registrarse</a>
           </div>
         </div>
       </div>
