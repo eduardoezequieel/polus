@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,33 +8,43 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-                    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">          
     <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+
+    <!-- Hoja de Estilos -->
     <link rel="stylesheet" href="../../resources/css/iniciar_sesion_publico.css">
     <title>Polus - Iniciar Sesión</title>
   </head>
   <body>
-    
+    <!-- Fondo -->
     <div id="background">
+      <!-- Caja -->
       <div id="form" class="paddingLados">
         <div class="row">
+          <!-- Columna 1 -->
             <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 paddingLados">
                 <h1 class="titulo mb-2 mt-5 pt-5">Iniciar Sesión</h1>
                 <form>
+                  <!-- Input Correo -->
                     <div class="form-group mb-2">
                       <label for="exampleInputEmail1" class="mb-2 texto">Ingrese su correo electrónico</label>
                       <input type="email" class="form-control personalizacionPolus personalizacionPolusP" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ejemplo@mail.com">
                     </div>
+                    <!-- Input Contraseña -->
                     <div class="form-group mb-2">
                       <label for="exampleInputPassword1" class="mb-2 texto">Ingrese su contraseña</label>
                       <input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="exampleInputPassword1" placeholder="Contraseña">
                       <a href="#" class="form-text">¿Hás olvidado tu contraseña?</a>
                     </div>
-                    <button class="boton d-block m-auto my-4">Iniciar Sesión</button>
+                    <div class="row justify-content-center">
+                      <div class="col-12 d-flex justify-content-center align-items-center">
+                        <a class="btn boton my-2">Iniciar Sesión</a>
+                      </div>
+                    </div>
                   </form>
             </div>
             <div class="col-md-6">

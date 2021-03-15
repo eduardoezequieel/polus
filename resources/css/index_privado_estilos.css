@@ -5,10 +5,10 @@
     box-sizing: border-box;
 }
 
-body {
-    overflow: scroll;
-}
 
+body{
+    overflow:hidden;
+}
 
 
 .titulo1{
@@ -29,7 +29,7 @@ body {
     font-weight: 300;
     font-size: 16px;
     /*line-height: 20px;*/
-
+    overflow: hidden;
 }
 
 nav ul{
@@ -96,6 +96,7 @@ nav ul li a i.rotate{
 /* CSS SIDEBAR */
 #wrapper {
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 #sidebar-wrapper {
@@ -121,6 +122,7 @@ nav ul li a i.rotate{
 
 #page-content-wrapper {
     min-width: 100vw;
+    overflow: scroll;
 }
 
 #wrapper.toggled #sidebar-wrapper {
