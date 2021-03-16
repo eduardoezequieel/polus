@@ -2,7 +2,7 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/public_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-public_Page::navbarTemplate('Polus El Salvador');
+public_Page::navbarTemplate('Polus El Salvador','.');
 ?>
 <!--Fin del navbar-->
 <link rel="stylesheet" type="text/css" href="../../resources/css/categoria_publico.css">
@@ -63,7 +63,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                                         <p class="card-text">Ropa hecha 100% en El Salvador con materiales de calidad y diseños únicos que sin duda te harán lucir.</p>
                                     </div>
                                     <div class="card-footer">
-                                        <button class="btn btn-outline-light" id="agregarFoto">Ver más</button>
+                                        <a href="producto.php" class="btn btn-outline-light" id="agregarFoto">Ver más</a>
                                         <a href="">
                                             <p class="card-text btn btn-outline-light">  Agregar al carrito</p>
                                         </a>

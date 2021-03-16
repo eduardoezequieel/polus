@@ -2,7 +2,7 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/public_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-public_Page::navbarTemplate('Polus El Salvador');
+public_Page::navbarTemplate('Polus El Salvador','.');
 ?>
 <!-- Inicio del carousel con imagenes de prueba-->
 <div class="container-fluid pb-5" style="background-color:#22242C;">

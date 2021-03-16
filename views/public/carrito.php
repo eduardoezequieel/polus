@@ -2,12 +2,12 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/public_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-public_Page::navbarTemplate('Polus El Salvador');
+public_Page::navbarTemplate('Polus El Salvador','carrito_publico.css');
 ?>
 
 <link rel="stylesheet" type="text/css" href="../../resources/css/carrito_publico.css">
 
-</head>
+
 <body style="background-color: #22242C;">
 
 <h1 class="titulos2" style="text-align: center;">Tu <span style="color: #605AC3;"><b>carrito</b></span></h1>

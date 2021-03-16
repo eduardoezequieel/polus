@@ -2,7 +2,7 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/public_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-public_Page::navbarTemplate('Polus El Salvador');
+public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
 ?>
 <!--Fin del navbar-->
 <!--Inicio del Contenedor Principal-->
