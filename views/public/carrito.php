@@ -34,8 +34,8 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
                         <td>$10.00</td>
                         <td>1</td>
 						<td>
-							<button class="btn btn-outline-light centrarImagen2">Ver</button>
-							<button class="btn btn-outline-light centrarImagen3">Cancelar</button><br><br>
+							<a href="producto.php" class="btn btn-outline-light centrarImagen2">Ver</a>
+							<a href="pagina_principal.php" class="btn btn-outline-light centrarImagen3">Cancelar</a><br><br>
 						</td>
 	                </tr>
 					<tr>
@@ -43,8 +43,8 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
                         <td>$15.00</td>
                         <td>3</td>
 						<td>
-							<button class="btn btn-outline-light centrarImagen2">Ver</button>
-							<button class="btn btn-outline-light centrarImagen3">Cancelar</button><br><br>
+							<a href="producto.php" class="btn btn-outline-light centrarImagen2">Ver</a>
+							<a href="pagina_principal.php" class="btn btn-outline-light centrarImagen3">Cancelar</a><br><br>
 						</td>
 	                </tr>
 					<tr>
@@ -52,8 +52,8 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
                         <td>$20.00</td>
                         <td>2</td>
 						<td>
-							<button class="btn btn-outline-light centrarImagen2">Ver</button>
-							<button class="btn btn-outline-light centrarImagen3">Cancelar</button><br><br>
+							<a href="producto.php" class="btn btn-outline-light centrarImagen2">Ver</a>
+							<a href="pagina_principal.php" class="btn btn-outline-light centrarImagen3">Cancelar</a><br><br>
 						</td>
 	                </tr>
                 </tbody>

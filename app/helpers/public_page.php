@@ -31,7 +31,7 @@
                 <body>
                 <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
                     <div class="container">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="../../views/public/index.php">
                         <img src="../../resources/img/p icono.png" alt="img-fluid" height="40px" width="40px">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -51,7 +51,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="../../views/public/categoria.php">Pagina X Catalogo</a></li>
                             </ul>
                         </li>
 
