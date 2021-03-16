@@ -14,7 +14,7 @@ public_Page::navbarTemplate('Polus El Salvador');
 
 	<div class="container"style="background-color: #22242C;">
 
-		
+
 		<div class="main-bar">
 			<div class="product">
                 <h3 class="titulos2">Producto</h3>
@@ -27,9 +27,9 @@ public_Page::navbarTemplate('Polus El Salvador');
 			</div>
 			<div class="clear"></div>
 		</div>
-		
 
 		
+			
 		<div class="items">
 			<div class="item1">
 				<div class="close1">
@@ -62,7 +62,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                 
 			</div>
 			<div class="checkout-btn">
-				<a href="#"><font face="calibri">Pagar</font></a>
+				<a href="pago.php"><font face="calibri">Pagar</font></a>
 			</div>
 			<div class="clear"></div>
 		</div>

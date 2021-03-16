@@ -8,7 +8,7 @@ public_Page::navbarTemplate('Polus El Salvador');
 <div class="container-fluid pb-5" style="background-color:#22242C;">
     <div class="row pt-5 justify-content-center">
         <div class="col-12 d-flex justify-content-center align-items-center">
-            <a class="btn btn-outline-light ml-4 mt-2">Carrito</a>
+            <a href="carrito.php" class="btn btn-outline-light ml-4 mt-2">Carrito</a>
         </div>
     </div>
     <div class="row pt-2 mb-5">
@@ -69,7 +69,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                         <div class="carousel-caption d-none d-md-block">
                             <h5 class="text-dark">Ropa</h5>
                             <p class="text-dark">Some representative placeholder content for the first slide.</p>
-                            <a class="btn btn-dark">Ver Más</a>
+                            <a href="categoria.php" class="btn btn-dark">Ver Más</a>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -77,7 +77,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                         <div class="carousel-caption d-none d-md-block">
                             <h5 class="text-dark">Cuidado Personal</h5>
                             <p class="text-dark">Some representative placeholder content for the second slide.</p>
-                            <a class="btn btn-dark">Ver Más</a>
+                            <a href="categoria.php"class="btn btn-dark">Ver Más</a>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -85,7 +85,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                         <div class="carousel-caption d-none d-md-block">
                             <h5 class="text-dark">Cosmeticos</h5>
                             <p class="text-dark">Some representative placeholder content for the third slide.</p>
-                            <a class="btn btn-dark">Ver Más</a>
+                            <a href="categoria.php" class="btn btn-dark">Ver Más</a>
                         </div>
                     </div>
                 </div>
