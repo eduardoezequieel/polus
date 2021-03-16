@@ -14,7 +14,7 @@
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
                     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-                <link rel="stylesheet" href="../../resources/css/index_publico_estilos.css">
+                <link rel="stylesheet" href="../../resources/css/index_publico_styles.css">
 
                 <!-- Fuentes Personalizadas -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -55,11 +55,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Acerca de Nosotros</a>
+                            <a class="nav-link" href="#AcercaNosotros">Acerca de Nosotros</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Soporte</a>
+                            <a class="nav-link" href="#Soporte">Soporte</a>
                         </li>
 
                         </ul>
@@ -76,30 +76,31 @@
 
         public static function footerTemplate(){
             print('
-                <footer>
-                <div class="container-fluid" style="background-color: #22242C; padding-top:40px; padding-bottom:30px;">
-                <div class="row">
-                    <ul id="lista">
-                        <li><a href="" style="padding-left:110px; color:#E6E6E7; font-size:14px;"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="" style="padding-left:10px; color:#E6E6E7; font-size:14px;"><i class="fab fa-facebook"></i> Facebook</a></li>
-                        <li><a href="" style="padding-left:10px; color:#E6E6E7; font-size:14px;"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                    </ul>
-                    <p style="margin-top:2E6E6E7px; padding-left:120px; font-size: 14px; color: #B5B6B8">Diseñado y creado por Eduardo Rivera, Katherine Salinas, Samuel Magaña</p>
-                    <p style="margin-top:2E6E6E7px; padding-left:120px; font-size: 14px; color: #B5B6B8">Todos los Derechos Reservados © 2020 - Polus El Salvador</p>
-                </div>
-                </div>
+            <footer>
+            <div class="container-fluid" style="background-color: #22242C; padding-top:40px; padding-bottom:30px;">
+              <div class="row">
+                <ul id="lista">
+                  <li><a href="" class="padding1Link"><i class="fab fa-instagram"></i> Instagram</a></li>
+                  <li><a href="" class="paddingLink"><i class="fab fa-facebook"></i> Facebook</a></li>
+                  <li><a href="" class="paddingLink"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                </ul>
+                <p class="textoFooter">Diseñado y creado por Eduardo Rivera, Katherine Salinas, Samuel Magaña</p>
+                <p class="textoFooter">Todos los Derechos Reservados © 2020 - Polus El Salvador</p>
+              </div>
+            </div>
             </footer>
             <!-- Option 1: Bootstrap Bundle with Popper -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+              integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+              crossorigin="anonymous">
             </script>
-            
+          
             <!-- IONICONS -->
             <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-            
-            </body>
-            
-            </html>
+          
+          </body>
+          
+          </html>
             ');
         }
 
