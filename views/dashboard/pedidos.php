@@ -2,11 +2,11 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/dashboard_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-dashboard_Page::sidebarTemplate('pedidos_privado_estilos.css', 'Polus - Dashboard');
+dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css');
 ?>
     <!--Fin del sidebar-->
     <!-- Contenido de la Pagina -->
-    <div id="page-content-wrapper">
+    <div class="page-content p-5" id="content">
         <!-- Contenedor de la barra inicial -->
         <?php
         //Se imprime la plantilla la barra inicial
