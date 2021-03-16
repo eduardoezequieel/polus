@@ -1,6 +1,6 @@
 <?php
     class public_Page{
-        public static function navbarTemplate($titulo){
+        public static function navbarTemplate($titulo, $css){
             print('
                 <!doctype html>
                 <html lang="es">
@@ -15,6 +15,7 @@
                     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
                 <link rel="stylesheet" href="../../resources/css/index_publico_styles.css">
+                <link rel="stylesheet" href="../../resources/css/'.$css.'">
 
                 <!-- Fuentes Personalizadas -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
