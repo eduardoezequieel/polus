@@ -2,7 +2,7 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/dashboard_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-dashboard_Page::sidebarTemplate('Polus - Dashboard','indexprivado_estilos.css');
+dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css');
 ?>
     <!--Fin del sidebar-->
     <!-- Contenido de la Pagina -->
@@ -24,7 +24,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','indexprivado_estilos.css');
               <p class="parrafo titleDescripcion">Administra a tus usuarios de una manera eficaz para mejorar quienes están en el sistema y
                 garantizar la integridad del mismo
               </p>
-              <button class="btn btn-outline-dark verMas">Ver más</button>
+              <a href="../../views/dashboard/administrar_usuarios.php">
+                <button class="btn btn-outline-dark verMas">Ver más</button>
+              </a>
             </div><br>
             <div class="col-lg-6">
               <img src="../../resources/img/dashboard_img/grafica1.png" class="img-fluid imagenGrafica">
@@ -32,7 +34,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','indexprivado_estilos.css');
               <p class="parrafo titleDescripcion">Revisa todo el resgistro de pedidos que han hecho tus clientes. Programar, cerrar y/o supender
                 son parte importante para tus ganancias.
               </p>
-              <button class="btn btn-outline-dark verMas">Ver más</button>
+              <a href="../../views/dashboard/pedidos.php">
+                <button class="btn btn-outline-dark verMas">Ver más</button>
+              </a>
             </div>
           </div>
         </div>
