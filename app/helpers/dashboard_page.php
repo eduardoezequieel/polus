@@ -31,7 +31,7 @@
                 <div class="vertical-nav" id="sidebar">
                     <div class="py-4 px-3 mb-2 fondoOscuro">
                         <div class="media d-flex align-items-center">
-                        <a href="../../views/dashboard/index.php"><img src="../../resources/img/polus tipografia.png" alt="" class="img-fluid" width="250px"></a>
+                        <a href="../../views/dashboard/pagina_dashboard.php"><img src="../../resources/img/polus tipografia.png" alt="" class="img-fluid" width="250px"></a>
                         
                         </div>
                     </div>
@@ -65,6 +65,7 @@
                         <li class="nav-item">
                             <a href="../../views/dashboard/pedidos.php" class="nav-link text-white "><span class="fas fa-truck lead mx-3"></span>Pedidos</a>            
                         </li>
+                        
                     </ul>
                     
                 </div>
