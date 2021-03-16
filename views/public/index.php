@@ -11,7 +11,7 @@ public_Page::navbarTemplate('Polus El Salvador');
       <div class="row" id="fila">
         <div class="col-6" id="title">
           <h1 class="titulos textoPequeño">Nunca es<br><span style="color: #605AC3;"><b>suficiente</b></span> ropa.</h1>
-          <button class="boton mt-4"><i class="fas fa-shopping-cart" id="carrito"></i>Comprar Productos</button>
+          <a href="#" class="btn boton mt-4"><i class="fas fa-shopping-cart" id="carrito"></i>Comprar Productos</a>
         </div>
 
         <div class="col-lg-6 moverTitulo" >
