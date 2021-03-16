@@ -2,72 +2,75 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/public_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-public_Page::navbarTemplate('Polus El Salvador','carrito_publico.css');
+public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
 ?>
-
-<link rel="stylesheet" type="text/css" href="../../resources/css/carrito_publico.css">
-
-
-<body style="background-color: #22242C;">
-
-<h1 class="titulos2" style="text-align: center;">Tu <span style="color: #605AC3;"><b>carrito</b></span></h1>
-
-	<div class="container"style="background-color: #22242C;">
-
-
-		<div class="main-bar">
-			<div class="product">
-                <h3 class="titulos2">Producto</h3>
+<!--Fin del navbar-->
+  <body>
+  	<link rel="stylesheet" type="text/css" href="../../resources/css/carrito_publico.css">
+    <!-- Fondo -->
+    <div id="background">
+      <!-- Caja -->
+      <div id="form" class="paddingLados">
+		<!-- Inicio del titulo -->
+        <div class="row">
+			<div class="col-12 tituloPrincipal">
+				<h2 id="tu">Tu  <span id="carro"><b>carrito</b></span></h2>
 			</div>
-			<div class="quantity">
-            <h3 class="titulos2">Cantidad</h3>
+		</div><br>
+		<!-- Inicio del tabla de datos -->
+		<div class="row">
+			<table class="table table-dark table-hover table-responsive-lg tabla1">
+                <thead class="bg-dark tabla">
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+						<th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+        	            <td>Short deportivo Caballero color negro</td>
+                        <td>$10.00</td>
+                        <td>1</td>
+						<td>
+							<button class="btn btn-outline-light centrarImagen2">Ver</button>
+							<button class="btn btn-outline-light centrarImagen3">Cancelar</button><br><br>
+						</td>
+	                </tr>
+					<tr>
+						<td>Pack de calidad de sombras para tu maquillaje.</td>
+                        <td>$15.00</td>
+                        <td>3</td>
+						<td>
+							<button class="btn btn-outline-light centrarImagen2">Ver</button>
+							<button class="btn btn-outline-light centrarImagen3">Cancelar</button><br><br>
+						</td>
+	                </tr>
+					<tr>
+						<td>Mascarilla hecha de aguacate de Suramérica.</td>
+                        <td>$20.00</td>
+                        <td>2</td>
+						<td>
+							<button class="btn btn-outline-light centrarImagen2">Ver</button>
+							<button class="btn btn-outline-light centrarImagen3">Cancelar</button><br><br>
+						</td>
+	                </tr>
+                </tbody>
+            </table> 
+		</div><br>
+		<!-- Inicio del sección de pago -->
+		<div class="row">
+			<div class="col-12 pago">
+				<p>Total: $95.00</p>
+				<button class="btn btn-outline-light centrarImagen2">Pagar</button>
 			</div>
-			<div class="price">
-            <h3 class="titulos2">Precio</h3>
-			</div>
-			<div class="clear"></div>
 		</div>
+      </div>
+    </div>
 
-		
-			
-		<div class="items">
-			<div class="item1">
-				<div class="close1">
-					<div class="image1">
-						<img src="images/item1.png" alt="imagen">
-					</div>
-					<div class="title1">
-						<p><font face="calibri" color="black">Camisa Basica</font></p>
-					</div>
-					<div class="quantity1">
-						<form action="action_page.php">
-							<input type="number" name="quantity" min="1" max="10" value="1">
-						</form>
-					</div>
-					<div class="price1">
-						<p><font face="calibri">$15</font></p>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div class="total">
-			<div class="total1"><font face="calibri" color="white">Total</font></div>
-			<div class="total2"><font face="calibri" color="white">$20</font></div>
-			<div class="clear"></div>
-		</div>
-		<div class="checkout">
-			<div class="discount">
-				<span><font face="calibri">Aplica un codigo de descuento</font></span> <input type="text">
-                
-			</div>
-			<div class="checkout-btn">
-				<a href="pago.php"><font face="calibri">Pagar</font></a>
-			</div>
-			<div class="clear"></div>
-		</div>
-	</div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
-<?php
-public_Page::footerTemplate();
-?>
+  </body>
+</html>
