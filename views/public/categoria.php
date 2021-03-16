@@ -90,7 +90,7 @@ public_Page::navbarTemplate('Polus El Salvador');
                             <!--Inicio de la tarjeta 3-->
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="card bg-dark">
-                                    <img src="../../resources/img/maquillaje.jpg" class="card-img-top imagenPrincipal" alt="...">
+                                    <img src="../../resources/img/maquillaje.jpg" class="card-img-top img-fluid imagenPrincipal" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Maquillaje</h5>
                                         <p class="card-text">Consigue el mejor maquillaje que te puedas imaginar, sombras, brochas y mucho más para lucir tu belleza.</p>
