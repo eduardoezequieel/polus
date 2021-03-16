@@ -6,16 +6,16 @@ public_Page::navbarTemplate('Polus El Salvador');
 ?>
 <!--Fin del navbar-->
 <!--Inicio del Contenedor Principal-->
-  <div class="container" id="contenedorPrincipal">
+  <div class="container mb-5" id="contenedorPrincipal">
     <header>
       <div class="row" id="fila">
-        <div class="col-lg-6" id="title">
-          <h1 class="titulos">Nunca es<br><span style="color: #605AC3;"><b>suficiente</b></span> ropa.</h1>
-          <button class="boton mt-4"><i class="fas fa-shopping-cart" id="carrito"></i>Comprar Productos</button>
+        <div class="col-6" id="title">
+          <h1 class="titulos textoPequeño">Nunca es<br><span style="color: #605AC3;"><b>suficiente</b></span> ropa.</h1>
+          <a href="#" class="btn boton mt-4"><i class="fas fa-shopping-cart" id="carrito"></i>Comprar Productos</a>
         </div>
 
-        <div class="col-lg-6" id="imagen">
-          <img src="../../resources/img/polus iconos.png" class="img-fluid">
+        <div class="col-lg-6 moverTitulo" >
+          <img src="../../resources/img/polus iconos.png" class="img-fluid ">
         </div>
       </div>
     </header>
@@ -23,10 +23,35 @@ public_Page::navbarTemplate('Polus El Salvador');
 <!--Fin del Contenedor Principal-->
 
 <!--Descripcion 1 inicio-->
+<section>
+  <div class="container-fluid" id="contenedorCategorias">
+    <div class="row" id="categoria">
+      <h1 class="titulos2" style="text-align: center;">Mira lo que tenemos <span style="color: #605AC3;"><b>para</b></span> ofrecerte.</h1>
+      <p class="parrafo mb-5 mt-5" style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui, tempora consectetur eum, quia nisi quidem ratione veniam incidunt quam earum iusto eos quisquam saepe autem non voluptatibus ducimus quae.</p>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <p class="titulos3" style="text-align: center;">Ropa</p>
+        <img src="../../resources/img/clothes.png" style="width: 250px; margin-top: 50px;" class="img-fluid centrarImagenes2">
+        <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button><br><br><br>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <p class="titulos3" style="text-align: center;">Cuidado facial</p>
+        <img src="../../resources/img/skincare.png" style="width: 290px; margin-top:40px;" class="img-fluid centrarImagenes2">
+        <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button><br><br>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <p class="titulos3" style="text-align: center;">Cosméticos</p>
+        <img src="../../resources/img/cosmetics.png" style="width: 295px; margin-top:40px;" class="img-fluid centrarImagenes2">
+        <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button><br><br><br>
+      </div>
+      <p class="titulos3 text-center" id="AcercaNosotros">Y mucho más proximamente...</p>
+    </div>
+  </div>
+  </section>
+
   <section>
-    <div class="container-fluid" style="background-color: #22242C;">
-      <div class="row">
-          <h1 class="titulos2" id="parrafo" style="background-color: #22242C;"><spanstyle="font-weight:bolder">Acerca de Nosotros</span></h1>
+    <div class="container-fluid mt-5 pt-5" id="seccionInfo">
+      <div class="row mb-5" >
+          <h1 class="titulos2" id="parrafo">Acerca de Nosotros</h1>
           <p class="parrafo" style="text-align: justify; margin-bottom: 50px;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>    
@@ -35,7 +60,7 @@ public_Page::navbarTemplate('Polus El Salvador');
 
       <div class="row">
         <div class="col-lg-6 col-sm-12 col-xs-12">
-          <h1 class="titulos2" id="parrafo" style="background-color: #22242C;"><spanstyle="font-weight:bolder">Misión</span></h1>
+          <h1 class="titulos2" id="parrafo">Misión</h1>
           <p class="parrafo" style="text-align: justify;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>
@@ -43,7 +68,7 @@ public_Page::navbarTemplate('Polus El Salvador');
         </div>
 
         <div class=" col-lg-6 col-sm-12 col-xs-12">
-          <h1 class="titulos2" id="parrafo" style="background-color: #22242C;"><spanstyle="font-weight:bolder">Visión</span></h1>
+          <h1 class="titulos2" id="parrafo">Visión</h1>
           <p class="parrafo" style="text-align: justify;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>
@@ -68,72 +93,43 @@ public_Page::navbarTemplate('Polus El Salvador');
             <div class="detalle">
 
             </div>
-            <img src="../../resources/img/modelo2.png" class="img-fluid mb-1" alt="" width="">
+            <img src="../../resources/img/modelo2.png" class="img-fluid mb-1" alt="" width="" >
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!--Inicio de Categoria-->
-  <section>
 
-    <div class="container-fluid" id="contenedorCategorias"style="background-color: #22242C;">
-      <div class="row" id="categoria">
-        <h1 class="titulos2" style="text-align: center;">Mira lo que tenemos <span style="color: #605AC3;"><b>para</b></span> ofrecerte.</h1>
-        <p class="parrafo mb-5 mt-5" style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui, tempora consectetur eum, quia nisi quidem ratione veniam incidunt quam earum iusto eos quisquam saepe autem non voluptatibus ducimus quae.</p>
-        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-          <p class="titulos3" style="text-align: center;">Ropa</p>
-          <img src="../../resources/img/clothes.png" style="width: 250px; margin-top: 50px;" class="img-fluid centrarImagenes2">
-          <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button><br><br><br>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-          <p class="titulos3" style="text-align: center;">Cuidado facial</p>
-          <img src="../../resources/img/skincare.png" style="width: 290px; margin-top:40px;" class="img-fluid centrarImagenes2">
-          <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button><br><br>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-          <p class="titulos3" style="text-align: center;">Cosméticos</p>
-          <img src="../../resources/img/cosmetics.png" style="width: 295px; margin-top:40px;" class="img-fluid centrarImagenes2">
-          <button class="btn btn-outline-light centrarImagenes2" style="margin-top:40px;">Ver más</button><br><br><br>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--Fin de Categoria-->
-
-  <section>
+  <section id="Soporte">
     <div class="container" style="margin-bottom:30px;">
       <div class="row" >
-        <h1 class="titulos2" style="text-align: center; margin-top:100px; margin-bottom:50px; padding-left:50px;">¿Tienes algún <span style="color: #605AC3;"><b>problema?</b></span> Podemos ayudarte.</h1>
+        <h1 class="titulos2 problemaTexto">¿Tienes algún <span style="color: #605AC3;"><b>problema?</b></span> Podemos ayudarte.</h1>
         <div class="col-lg-8 col-xs-12">
-          <p class="parrafo2" style="margin-top:100px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam necessitatibus, aspernatur, quia amet blanditiis, consectetur nostrum corrupti officia deserunt velit libero sed sint temporibus autem facilis reiciendis fugiat itaque! Labore.</p>
+          <p class="parrafo2 problemaParrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam necessitatibus, aspernatur, quia amet blanditiis, consectetur nostrum corrupti officia deserunt velit libero sed sint temporibus autem facilis reiciendis fugiat itaque! Labore.</p>
         </div>
         <div class="col-lg-4 col-xs-12">
           <img src="../../resources/img/mails.png" alt="" class="img-fluid centrarImagenes2 mt-5" style="width:200px;">
           <!-- Button trigger modal -->
-          <button type="button" style="margin:auto; display:block; margin-top:30px" class="boton2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <button type="button" style="margin:auto; display:block; margin-top:30px" class="boton2" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Contáctanos
           </button>
-
           <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">Contáctanos</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Contacto</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form>
-                    <label>Usuario:</label><br>
-                    <input type="text"><br><br>
-                    <label">Mensaje:</label><br>
-                    <textarea rows="4" cols="45"></textarea>
-                  </form>
+                <label for="exampleInputEmail1" class="my-2 texto">Usuario</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                <label for="exampleInputEmail1" class="my-2 texto">Mensaje</label>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-outline-light">Enviar</button>
+                  <button type="button" class="btn btn-outline-dark">Enviar</button>
                 </div>
               </div>
             </div>
@@ -145,5 +141,6 @@ public_Page::navbarTemplate('Polus El Salvador');
   </section>
 
 <?php
-public_Page::footerTemplate();
+  public_Page::footerTemplate();
 ?>
+
