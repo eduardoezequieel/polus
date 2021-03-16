@@ -144,7 +144,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                 <td>Mascarilla de aguacate</td>
                                 <td>url</td>
                                 <td>Dama</td>
-                                <td>Mascarilla hecha de aguacate de Surámerica.</td>
+                                <td>Mascarilla hecha de aguacate de Suramérica.</td>
                                 <td>Cuidado facial-Mascarilla</td>
                                 <td>$15.00</td>
                             </tr>

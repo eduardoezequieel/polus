@@ -64,7 +64,7 @@ public_Page::navbarTemplate('Polus El Salvador','.');
                                     </div>
                                     <div class="card-footer">
                                         <a href="producto.php" class="btn btn-outline-light" id="agregarFoto">Ver más</a>
-                                        <a href="">
+                                        <a href="carrito.php">
                                             <p class="card-text btn btn-outline-light">  Agregar al carrito</p>
                                         </a>
                                     </div>
@@ -80,8 +80,8 @@ public_Page::navbarTemplate('Polus El Salvador','.');
                                         
                                     </div>
                                     <div class="card-footer">
-                                        <button class="btn btn-outline-light" id="agregarFoto">Ver más</button>
-                                        <a href="">
+                                        <a href="producto.php" class="btn btn-outline-light" id="agregarFoto">Ver más</a>
+                                        <a href="carrito.php">
                                             <p class="card-text btn btn-outline-light">  Agregar al carrito</p>
                                         </a>
                                     </div>
@@ -96,8 +96,8 @@ public_Page::navbarTemplate('Polus El Salvador','.');
                                         <p class="card-text">Consigue el mejor maquillaje que te puedas imaginar, sombras, brochas y mucho más para lucir tu belleza.</p>
                                     </div>
                                     <div class="card-footer">
-                                        <button class="btn btn-outline-light" id="agregarFoto">Ver más</button>
-                                        <a href="">
+                                        <a href="producto.php" class="btn btn-outline-light" id="agregarFoto">Ver más</a>
+                                        <a href="carrito.php">
                                             <p class="card-text btn btn-outline-light">  Agregar al carrito</p>
                                         </a>
                                     </div>
