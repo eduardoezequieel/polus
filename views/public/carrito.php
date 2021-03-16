@@ -63,7 +63,7 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
 		<div class="row">
 			<div class="col-12 pago">
 				<p>Total: $95.00</p>
-				<button class="btn btn-outline-light centrarImagen2">Pagar</button>
+				<a href="pago.php" class="btn btn-outline-light centrarImagen2">Pagar</a>
 			</div>
 		</div>
       </div>

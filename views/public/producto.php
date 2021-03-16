@@ -22,7 +22,7 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
                 <h1 class="precio">$9.99<span class="disponibilidad">Disponible</span></h1>
                 <div class="row justify-content-center">
                     <div class="col-6 minimizarDiv">
-                        <a href="" class="btn boton"><span class="fas fa-money-bill-alt p-2"></span>Comprar Ya</a>
+                        <a href="pago.php" class="btn boton"><span class="fas fa-money-bill-alt p-2"></span>Comprar Ya</a>
                     </div>
                     <div class="col-6 minimizarDiv">
                         <a href="carrito.php" class="btn boton2"><span class="fas fa-cart-plus p-2"></span>Añadir al Carrito</a>
