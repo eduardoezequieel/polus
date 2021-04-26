@@ -120,19 +120,7 @@
                     <div class="col-10">
                         <button type="button" class="btn" id="sidebarCollapse"><i class="fas fa-bars lead p-2 text-black"></i></button>
                     </div>
-                    <div class="col-2">
-                        <div class="dropdown">
-                            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
-                                Usuario
-                                <img src="../../resources/img/dashboard_img/user.png" class="img-fluid imagenUsuario">   
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="../../views/dashboard/perfil_usuario.php">Perfil</a></li>
-                                <li><a class="dropdown-item" href="../../views/dashboard/index.php">Cerrar Sesión</a></li>
-                            </ul>
-                        </div>
-                        
-                    </div>
+                    
                     </div>
                 </div>'
             );
