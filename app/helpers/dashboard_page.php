@@ -117,23 +117,22 @@
             print('
                 <div class="container" id="barraInicial">
                     <div class="row justify-content-end">
-                        <div class="col-6">
+                        <div class="col-3">
                             <button type="button" class="btn" id="sidebarCollapse"><i class="fas fa-bars lead p-2 text-black"></i></button>
                         </div>
-                        <div class="col-6 d-flex justify-content-end align-items-right">
-                        <div class="dropdown">
-                            <button class="btn d-flex" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="../../resources/img/94727019_1061011630965244_4502845736055996416_o.jpg" alt="" class="img-fluid rounded-circle" width="40px">
-                                    <h5 class="text-center mx-3 paddingUsername">Eduardo Rivera</h5>
-                                    <i class="fas fa-caret-down paddingFlecha"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Mi Cuenta</a>
-                                <a class="dropdown-item" href="index.php">Cerrar Sesión</a>
-                            </div>
-                        </div>
-                            
+                        <div class="col-9 d-flex justify-content-end align-items-right">
+                            <div class="dropdown">
+                                <button class="btn d-flex" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="../../resources/img/94727019_1061011630965244_4502845736055996416_o.jpg" id="fotoPerfil" alt="" class="img-fluid rounded-circle" width="40px">
+                                        <h5 class="text-center mx-3 paddingUsername">Eduardo Rivera</h5>
+                                        <i class="fas fa-caret-down paddingFlecha"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Mi Cuenta</a>
+                                    <a class="dropdown-item" href="index.php">Cerrar Sesión</a>
+                                </div>
+                            </div>  
                         </div>
                     </div>
                 </div>'

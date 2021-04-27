@@ -144,4 +144,17 @@ td{
     margin-left: 17rem;
     /*width: calc(100% - 17rem);*/
   }
+
+  #fotoPerfil{
+    width: 35px !important; 
+    margin-right: 10px !important;
+  }
+
+  .paddingFlecha{
+    display: none;
+  }
+
+  .paddingUsername{
+    display: none !important;
+  }
 }
