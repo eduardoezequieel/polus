@@ -77,7 +77,7 @@
 
         public static function footerTemplate(){
             print('
-            <footer>
+            <footer id="piePagina">
             <div class="container-fluid" style="background-color: #22242C; padding-top:40px; padding-bottom:30px;">
               <div class="row">
                 <ul id="lista">

@@ -55,16 +55,16 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
           <p class="parrafo" style="text-align: justify; margin-bottom: 50px;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>    
-          <img src="../../resources/img/quienessomos.PNG" class="img-fluid centrarImagenes" style="width: 330px; height: 300px;">
+          <img src="../../resources/img/quienessomos2.PNG" class="img-fluid centrarImagenes" style="width: 430px; height: 400px;">
       </div>
 
-      <div class="row">
-        <div class="col-lg-6 col-sm-12 col-xs-12">
+      <div class="row mb-5">
+        <div class="col-lg-6 col-sm-12 col-xs-12 mb-5">
           <h1 class="titulos2" id="parrafo">Misión</h1>
           <p class="parrafo" style="text-align: justify;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>
-          <img src="../../resources/img/development.png" class="img-fluid centrarImagenes" style="width: 300px; height: 300px; margin-top: 100px; margin-bottom: 100px;">
+          <img src="../../resources/img/development2.png" class="img-fluid centrarImagenes mt-5" style="width: 400px; height: 400px;">
         </div>
 
         <div class=" col-lg-6 col-sm-12 col-xs-12">
@@ -72,7 +72,7 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
           <p class="parrafo" style="text-align: justify;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>
-          <img src="../../resources/img/vision.PNG" class="img-fluid centrarImagenes" style="width: 300px; height: 300px; margin-top: 100px;">
+          <img src="../../resources/img/vision2.PNG" class="img-fluid centrarImagenes mt-5" style="width: 400px; height: 400px;">
         </div>
       </div>
     </div>
