@@ -14,6 +14,13 @@ body {
     width: 230px !important;
 }
 
+.labelInformacion{
+    font-family: 'Roboto Mono', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: rgb(99, 99, 99);
+}
+
 .titulo1{
     font-family: 'Roboto Mono', monospace;
     color: white;

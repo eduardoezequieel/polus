@@ -179,6 +179,14 @@ td{
   background-color: rgb(158, 158, 158);
 }
 
+.divFotografia2{
+  content: " ";
+  width: 100px;
+  height: 100px;
+  border-radius: 150px;
+  background-color: rgb(158, 158, 158);
+}
+
 .tituloMiCuenta{
   font-family: 'Roboto Mono',sans-serif;
   font-size: 25px;
