@@ -166,7 +166,6 @@ a:hover{
 .personalizacionPolus:focus{
     background-color: #16181D;
     border: hidden;
-    color:white;
-    
+    color:white; 
 }
 
