@@ -97,6 +97,16 @@
     color: white;
 }
 
+td{
+    padding-top: 15px !important;
+}
+
+.tamanoBoton{
+    width: 12px !important;
+    height: 12px !important;
+    font-size: 15px !important;
+}
+
 @media screen and (max-width:1200px){
 
     .apartado{
