@@ -32,7 +32,6 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
             <!-- Fila de la tabla -->
             <div class="row table-responsive">
                 <!-- Columnas de tabla de datos -->
-
                 <div class="col-12">
                     <table class="table">
                         <thead class="bg-dark tabla">
@@ -56,12 +55,12 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                     <div class="row justify-c">
                                         <div class="col-12 d-flex">
                                             <!-- Button trigger modal -->
-                                            <a href="#" data-toggle="modal" data-target="#administrarUsuarios" class="btn btn-outline-success"><i
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#administrarUsuarios" class="btn btn-outline-success"><i
                                                     class="fas fa-edit tamanoBoton"></i></a>
 
                                             <h5 class="mx-1"> </h1>
 
-                                            <a href="#" data-toggle="modal" data-target="#administrarUsuarios" class="btn btn-outline-danger"><i
+                                            <a href="#" data--bs-toggle="modal" data-bs-target="#administrarUsuarios" class="btn btn-outline-danger"><i
                                                     class="fas fa-trash-alt tamanoBoton"></i></a>
                                         </div>
                                     </div>
@@ -78,7 +77,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
             <!-- Modal para Administrar Usuarios -->
             <div class="modal fade" id="administrarUsuarios" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-scrollablemodal-dialog-centered">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content justify-content-center px-3 py-2">
                         <!-- Cabecera del Modal -->
                         <div class="modal-header">
@@ -86,9 +85,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                             <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
                                     class="fas fa-info-circle mx-2"></span>Administrar Usuarios</h5>
                             <!-- Boton para Cerrar -->
-                            <button type="button" class="btn fas fa-times" data-dismiss="modal" aria-label="">
-                               
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <br>
                         <!-- Contenido del Modal -->

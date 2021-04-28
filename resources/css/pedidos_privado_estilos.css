@@ -7,7 +7,11 @@
 
 
 body {
-    overflow: scroll;
+   overflow-x: unset;
+}
+
+#cbEstadoPedido{
+    width: 230px !important;
 }
 
 .titulo1{

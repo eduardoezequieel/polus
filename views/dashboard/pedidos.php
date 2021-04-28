@@ -27,85 +27,57 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                         </form>
                     </div>
                 </div><br><br>
-                <!-- Fila de primeros tres apartados -->
-                <div class="row">
-                    <!-- Columna de opciones -->
-                    <div class="col-lg-4 col-sm-12 col-xs-12 opciones">
-                        <p class="apartado">Opciones:</p>
-                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
-                        <!-- Botones -->
-                        <div class="col-12 formulario1">
-                            <div class="mb-3">
-                                <label for="selecciona" class="form-label">Selecciona:</label><br>
-                                <button class="btn btn-outline-dark" id="selecciona">Programar</button><br><br>
-                                <button class="btn btn-outline-dark" id="selecciona">Suspender</button><br><br>
-                                <button class="btn btn-outline-dark" id="selecciona">Cancelar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8 encargo">
-                        <p class="apartado">Últimos encargos:</p>
-                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
+
+                <div class="row mb-3">
                     <div class="col-12">
-                        <table class="table table-hover table-responsive-lg">
+                        <form>
+                            <label for="cbEstadoPedido" class="form-label">Filtrar por estado:</label>
+                            <select id="cbEstadoPedido" class="form-select" aria-label="Default select example">
+                                <option selected>Seleccionar...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row table-responsive">
+                <!-- Columnas de tabla de datos -->
+                    <div class="col-12">
+                        <table class="table">
                             <thead class="bg-dark tabla">
                                 <tr>
                                     <th scope="col">Factura</th>
-                                    <th scope="col">Detalle del pedido</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Fecha del Pedido</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>515561-0</td>
-                                    <td>2 camisas</td>
+                                    <td>123456789</td>
+                                    <td>González Salinas</td>
+                                    <td>27/4/2020</td>
+                                    <td>Activo</td>
+                                   
+                                    <th scope="row">
+                                        <div class="row">
+                                            <div class="col-12 d-flex">
+                                                <!-- Button trigger modal -->
+                                                <a href="#" data-toggle="modal" data-target="#administrarUsuarios" class="btn btn-outline-primary"><i
+                                                        class="fas fa-info tamanoBoton"></i></a>
+                                            </div>
+                                        </div>
+                                    </th>
                                 </tr>
-                                    <td>65561-5</td>
-                                    <td>4 mascarillas</td>
-                                </tr>
-                                <tr>
-                                    <td>65105-7</td>
-                                    <td>1 sombra</td>
-                                </tr>
+
                             </tbody>
-                        </table> 
+                        </table>
                     </div>
-                    </div>
-                </div><br><br>
-                <!-- Fila de ultimos dos apartados -->
-                <div class="row">
-                    <!-- Columna de información del cliente -->
-                    <div class="col-lg-6 col-sm-12 col-xs-12">
-                        <p class="apartado">Información del cliente:</p>
-                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
-                            <div class="row">
-                                <!-- Formulario de contacto -->
-                                <div class="col-12 formulario">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="info" class="form-label">Información:</label>
-                                            <textarea class="form-control" id="info"></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                    </div><br>
-                    <!-- Columna de información del cliente -->
-                    <div class="col-lg-6 col-sm-12 col-xs-12">
-                        <p class="apartado">Factura del pedido seleccionado:</p>
-                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
-                            <div class="row">
-                                <!-- Formulario de contacto -->
-                                <div class="col-12 formulario">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="info" class="form-label">Información:</label>
-                                            <textarea class="form-control" id="info"></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                    </div><br>
-                </div><br><br>
+                </div>
+
                 
             </div>
         </section>
