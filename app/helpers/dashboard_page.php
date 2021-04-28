@@ -57,9 +57,6 @@
                                 <li><a href="../../views/dashboard/agregar_productos.php" class="nav-link text-white submenu">Agregar Productos</a></li>
                                 <li><a href="../../views/dashboard/administrar_productos.php" class="nav-link text-white submenu">Administrar Productos</a></li>
                                 <li><a href="../../views/dashboard/inventario.php" class="nav-link text-white submenu">Inventario</a></li>
-                                <li><a href="../../views/dashboard/administrar_imagenes.php" class="nav-link text-white submenu">Administrar Imagenes</a></li>
-                                <li><a href="../../views/dashboard/tipos_producto.php" class="nav-link text-white submenu">Tipos de Productos</a></li>
-                                <li><a href="../../views/dashboard/marca.php" class="nav-link text-white submenu">Marcas</a></li>
                             </ul>           
                         </li>
                         <li class="nav-item">

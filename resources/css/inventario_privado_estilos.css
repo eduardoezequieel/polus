@@ -61,6 +61,15 @@ body {
     margin-left: 40px;
 }
 
+#cbProducto{
+    width: 300px !important;
+}
+
+.opciones{
+   margin-bottom: 20px;
+}
+
+
 .imagenUsuario1{
     width: 120px;
     border-radius: 20%;
@@ -87,12 +96,10 @@ body {
 
 .formulario2{
     margin-left: 200px;
-   
 }
 
 #selecciona{
     width: 140px;
-    margin-left: 50px;
 }
 
 .tabla{
