@@ -53,12 +53,9 @@
     color: rgb(0, 0, 0);
     font-family: 'Quicksand', sans-serif;
     font-size: 24px;
-    margin-left: 40px;
 }
 
-.formulario{
-    margin-left: 40px;
-}
+
 
 .imagenUsuario1{
     width: 120px;
@@ -74,9 +71,8 @@
 }
 
 
-#agregarFoto{
-    margin-top: 10px;
-    margin-left: 30px;
+#btnAgregarFoto{
+    margin-left: 10px !important;
 }
 
 .formulario1{

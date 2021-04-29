@@ -16,13 +16,13 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
     <section>
         <div class="container-fluid">
             <!-- Mostrar titulo -->
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-12 title">
                     <h1>Agregar productos</h1>
                 </div>
             </div><br>
             <!-- Inicio del contenido-->
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <!-- Columna de la información del producto-->
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                     <p class="apartado">Información del producto:</p>

@@ -16,13 +16,13 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
     <section>
         <div class="container-fluid">
             <!-- Mostrar titulo -->
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-12 title">
                     <h1>Administrar productos</h1>
                 </div>
             </div><br>
             <!-- Espacio para buscar -->
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-lg-8 formulario2">
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
@@ -31,7 +31,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                 </div>
             </div><br><br>
             <!-- Fila de la tabla -->
-            <div class="row table-responsive-lg">
+            <div class="row animate__animated animate__fadeInUp animate__faster table-responsive-lg">
                 <div class="col-12">
                     <table class="table">
                         <thead class="bg-dark tabla">

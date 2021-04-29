@@ -14,13 +14,13 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
         ?>
     <!-- Section para mostrar contenido -->
     <section>
-        <div class="row">
+        <div class="row animate__animated animate__fadeInUp animate__faster">
             <div class="col-lg-12 title">
                 <h1>Tipos de productos</h1>
             </div>
         </div><br>
         <!-- Espacio para buscar -->
-        <div class="row">
+        <div class="row animate__animated animate__fadeInUp animate__faster">
             <div class="col-lg-8 formulario2">
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
@@ -30,12 +30,12 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
             <div class="col-12">
                 <br><br>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#agregarTipo" class="btn btn-outline-dark">
-                    <i class="fas fa-plus"></i> Agregar tipo de productos
+                    <i class="fas fa-plus mx-2"></i> Agregar tipo de productos
                 </a>
             </div>
         </div><br>
         <!-- Fila de la tabla -->
-        <div class="row table-responsive-lg">
+        <div class="row animate__animated animate__fadeInUp animate__faster table-responsive-lg">
             <div class="col-12">
                 <table class="table table-hover ">
                     <thead class="bg-dark tabla">

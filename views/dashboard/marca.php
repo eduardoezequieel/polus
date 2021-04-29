@@ -15,13 +15,13 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','marca_privado_estilos.css')
     <!-- Inicio del contenido -->
     <section>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-lg-12 title">
                     <h1>Marca de productos</h1>
                 </div>
             </div><br>
             <!-- Espacio para buscar -->
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-lg-8 formulario2">
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
@@ -31,12 +31,12 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','marca_privado_estilos.css')
                 <div class="col-12 formulario0">
                     <br><br>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#agregarMarca" class="btn btn-outline-dark">
-                        <i class="fas fa-plus"></i> Agregar marca
+                        <i class="fas fa-plus mx-2"></i> Agregar Marca
                     </a>
                 </div>
             </div><br>
             <!-- Fila de la tabla -->
-            <div class="row justify-content-center table-responsive">
+            <div class="animate__animated animate__fadeInUp animate__faster row justify-content-center table-responsive">
                 <div class="col-lg-8 col-sm-12 d-flex justify-content-center align-items-center">
                     <table class="table">
                         <thead class="bg-dark tabla">

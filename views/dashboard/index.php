@@ -5,8 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.gstatic.com">          
@@ -23,8 +29,8 @@
     <!-- Fondo -->
     <div id="background">
       <!-- Caja -->
-      <div id="form" class="paddingLados">
-        <div class="row">
+      <div id="form" class="paddingLados animate__animated animate__fadeInUp animate__faster">
+        <div class="row animate__animated animate__fadeInUp animate__faster">
           <!-- Columna 1 -->
             <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 paddingLados">
                 <h1 class="titulo mb-2 mt-5 pt-5">Iniciar Sesión</h1>
@@ -47,7 +53,7 @@
                     </div>
                   </form>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 animate__animated animate__fadeInUp animate__faster">
                 <img src="../../resources/img/loginfondo2.png" alt="" class="img-fluid imagenDesaparecer" width="400">
             </div>
         </div>

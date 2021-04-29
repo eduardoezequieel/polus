@@ -15,13 +15,13 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
     <!-- Inicio del contenido -->
     <section>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-lg-12 title">
                     <h1>Administrar usuarios</h1>
                 </div>
             </div><br>
             <!-- Espacio para buscar -->
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-lg-8 formulario2">
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
@@ -30,7 +30,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                 </div>
             </div><br><br>
             <!-- Fila de la tabla -->
-            <div class="row table-responsive">
+            <div class="row table-responsive animate__animated animate__fadeInUp animate__faster">
                 <!-- Columnas de tabla de datos -->
                 <div class="col-12">
                     <table class="table">
@@ -55,13 +55,17 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                     <div class="row justify-c">
                                         <div class="col-12 d-flex">
                                             <!-- Button trigger modal -->
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#administrarUsuarios" class="btn btn-outline-success"><i
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#administrarUsuarios"
+                                                class="btn btn-outline-success"><i
                                                     class="fas fa-edit tamanoBoton"></i></a>
 
-                                            <h5 class="mx-1"> </h1>
+                                            <h5 class="mx-1">
+                                                </h1>
 
-                                            <a href="#" data--bs-toggle="modal" data-bs-target="#administrarUsuarios" class="btn btn-outline-danger"><i
-                                                    class="fas fa-trash-alt tamanoBoton"></i></a>
+                                                <a href="#" data--bs-toggle="modal"
+                                                    data-bs-target="#administrarUsuarios"
+                                                    class="btn btn-outline-danger"><i
+                                                        class="fas fa-exclamation tamanoBoton"></i></a>
                                         </div>
                                     </div>
                                 </th>
@@ -72,12 +76,12 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                 </div>
             </div>
 
-            
+
 
             <!-- Modal para Administrar Usuarios -->
             <div class="modal fade" id="administrarUsuarios" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content justify-content-center px-3 py-2">
                         <!-- Cabecera del Modal -->
                         <div class="modal-header">
@@ -89,18 +93,14 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                         </div>
                         <br>
                         <!-- Contenido del Modal -->
-                        <div class="textoModal px-3 pb-4 mt-2">
-
+                        <div class="textoModal pb-4 mt-2">
                             <!-- Fila de primeros tres apartados -->
-                            <div class="row">
+                            <div class="row justify-content-center">
                                 <!-- Columna de información personal -->
                                 <div class="col-lg-4 col-sm-12 col-xs-12">
-                                    <p class="apartado">Información personal:</p>
-                                    <img src="../../resources/img/dashboard_img/separator.png"
-                                        class="img-fluid imagenSeparator">
                                     <div class="row">
-                                        <!-- Formulario del información personal -->
-                                        <div class="col-12 formulario">
+                                        <!-- Formulario del información personao -->
+                                        <div class="col-12">
                                             <form>
                                                 <div class="mb-3">
                                                     <label for="nombre" class="form-label">Nombre:</label>
@@ -113,9 +113,20 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                                 <div class="mb-3">
                                                     <label for="Fecha de nacimiento" class="form-label">Fecha de
                                                         nacimiento:</label>
-                                                    <input type="text" class="form-control" id="Fecha de nacimiento"
+                                                    <input type="date" class="form-control" id="Fecha de nacimiento"
                                                         placeholder="dd-mm-aaaa">
                                                 </div>
+
+                                                <div class="mb-3">
+                                                    <label for="Teléfono" class="form-label">Teléfono:</label>
+                                                    <input type="text" class="form-control" id="Teléfono"
+                                                        placeholder="0000-0000">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="Dirección" class="form-label">Dirección:</label>
+                                                    <textarea class="form-control" id="direccion"></textarea>
+                                                </div>
+
                                                 <div class="mb-3">
                                                     <label class="form-label">Género:</label><br>
                                                     <div class="form-check form-check-inline">
@@ -137,14 +148,17 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                 </div><br>
                                 <!-- Columna de cuenta -->
                                 <div class="col-lg-4 col-sm-12 col-xs-12">
-                                    <p class="apartado">Cuenta:</p>
-                                    <img src="../../resources/img/dashboard_img/separator.png"
-                                        class="img-fluid imagenSeparator">
                                     <div class="row">
                                         <!-- Formulario de cuenta -->
-                                        <div class="col-12 formulario">
+                                        <div class="col-12">
                                             <form>
-                                                <div class="mb-3">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="divFotografia"></div>
+                                                    <button class="btn btn-outline-dark" id="btnAgregarFoto"><span
+                                                            class="fas fa-plus"></span></button>
+
+                                                </div>
+                                                <div class="mb-3 mt-4">
                                                     <label for="Correo" class="form-label">Correo:</label>
                                                     <input type="email" class="form-control" id="Correo"
                                                         aria-describedby="emailHelp" placeholder="ejemplo@mail.com">
@@ -154,71 +168,27 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                                     <input type="text" class="form-control" id="Usuario">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="Tipo de usuario" class="form-label">Tipo de
-                                                        usuario:</label>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-dark dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton1" data-toggle="dropdown"
-                                                            aria-expanded="false">
-                                                            Tipos de usuario
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                            <li><a class="dropdown-item" href="#">Administrador</a></li>
-                                                            <li><a class="dropdown-item" href="#">Empleado</a></li>
-                                                            <li><a class="dropdown-item" href="#">Repartidor</a></li>
-                                                        </ul>
-                                                    </div>
+                                                    <label for="cbTipoUsuario" class="form-label">Tipo de
+                                                        Usuario:</label>
+                                                    <select id="cbTipoUsuario" class="form-select"
+                                                        aria-label="Default select example">
+                                                        <option selected>Seleccionar...</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="justify-content-center align-items-center d-flex flex-column mt-4">
+                                                    <button class="btn btn-outline-dark float-center"
+                                                        id="selecciona">Actualizar</button>
+
+                                                    <button class="btn btn-outline-dark mt-2 float-center"
+                                                        id="selecciona">Eliminar</button>
+
+                                                    <button class="btn btn-outline-dark mt-2 float-center"
+                                                        id="selecciona">Reiniciar</button>
                                                 </div>
                                             </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Columna de foto -->
-                                <div class="col-lg-4 foto">
-                                    <img src="../../resources/img/dashboard_img/user.png"
-                                        class="img-fluid imagenUsuario1">
-                                    <button class="btn btn-outline-dark" id="agregarFoto">Agregar foto</button>
-                                </div>
-                            </div><br><br>
-                            <!-- Fila de ultimos dos apartados -->
-                            <div class="row">
-                                <!-- Columna de contacto -->
-                                <div class="col-lg-4 col-sm-12 col-xs-12">
-                                    <p class="apartado">Contacto:</p>
-                                    <img src="../../resources/img/dashboard_img/separator.png"
-                                        class="img-fluid imagenSeparator">
-                                    <div class="row">
-                                        <!-- Formulario de contacto -->
-                                        <div class="col-12 formulario">
-                                            <form>
-                                                <div class="mb-3">
-                                                    <label for="Teléfono" class="form-label">Teléfono:</label>
-                                                    <input type="text" class="form-control" id="Teléfono"
-                                                        placeholder="0000-0000">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="Dirección" class="form-label">Dirección:</label>
-                                                    <textarea class="form-control" id="direccion"></textarea>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div><br>
-                                <!-- Columna de opciones -->
-                                <div class="col-lg-4 col-sm-12 col-xs-12">
-                                    <p class="apartado">Opciones:</p>
-                                    <img src="../../resources/img/dashboard_img/separator.png"
-                                        class="img-fluid imagenSeparator">
-                                    <!-- Botones -->
-                                    <div class="col-12 formulario1">
-                                        <div class="mb-3">
-                                            <label for="selecciona" class="form-label">Selecciona:</label><br>
-                                            <button class="btn btn-outline-dark" id="selecciona">Actualizar</button>
-                                            <button class="btn btn-outline-dark"
-                                                id="selecciona">Suspender</button><br><br>
-                                            <button class="btn btn-outline-dark" id="selecciona">Activar</button>
-                                            <button class="btn btn-outline-dark" id="selecciona">Reiniciar
-                                                cuenta</button>
                                         </div>
                                     </div>
                                 </div>

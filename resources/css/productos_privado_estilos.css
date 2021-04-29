@@ -7,7 +7,7 @@
 
 
 body {
-    overflow: scroll;
+    overflow-x: unset !important;
 }
 
 .titulo1{

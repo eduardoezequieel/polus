@@ -15,11 +15,11 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
         <!-- Inicio del contenido -->
         <section>
             <div class="container-fluid">
-                <div class="row">
+                <div class="row animate__animated animate__fadeInUp animate__faster">
                     <div class="col-lg-12 title"><h1>Pedidos</h1></div>
                 </div><br>
                  <!-- Espacio para buscar -->
-                <div class="row">
+                <div class="row animate__animated animate__fadeInUp animate__faster">
                     <div class="col-lg-8 formulario2">
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
@@ -28,7 +28,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                     </div>
                 </div><br><br>
 
-                <div class="row mb-3">
+                <div class="row mb-3 animate__animated animate__fadeInUp animate__faster">
                     <div class="col-12">
                         <form>
                             <label for="cbEstadoPedido" class="form-label">Filtrar por estado:</label>
@@ -42,7 +42,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                     </div>
                 </div>
 
-                <div class="row table-responsive">
+                <div class="row animate__animated animate__fadeInUp animate__faster table-responsive">
                 <!-- Columnas de tabla de datos -->
                     <div class="col-12">
                         <table class="table">

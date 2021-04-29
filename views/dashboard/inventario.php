@@ -15,32 +15,32 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','inventario_privado_estilos.
     <!-- Section para mostrar contenido -->
     <section>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-lg-12 title">
                     <h1>Inventario</h1>
                 </div>
             </div><br>
             <!-- Espacio para buscar -->
-            <div class="row">
+            <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-lg-8 formulario2">
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                        <button class="btn btn-dark" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark" type="submit">Buscar</button>
                     </form>
                 </div>
                 <div class="col-12 ">
                     <br><br>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#agregarInventario" class="btn btn-outline-dark opciones">
-                        <i class="fas fa-plus"></i> Agregar inventario
+                        <i class="fas fa-plus mx-2"></i> Agregar inventario
                     </a> 
-                    <a href="tipos_producto.php" class="btn btn-outline-dark  opciones"><i class="fas fa-tshirt"></i> Tipos de
+                    <a href="tipos_producto.php" class="btn btn-outline-dark  opciones"><i class="fas fa-tshirt mx-2"></i> Tipos de
                         productos
                     </a>
-                    <a href="marca.php" class="btn btn-outline-dark  opciones"><i class="fas fa-tag"></i> Marcas</a>
+                    <a href="marca.php" class="btn btn-outline-dark  opciones"><i class="fas fa-tag mx-2"></i> Marcas</a>
                 </div>
             </div>
             <!-- Fila de la tabla -->
-            <div class="row table-responsive-lg">
+            <div class="row animate__animated animate__fadeInUp animate__faster table-responsive-lg">
                 <div class="col-12">
                     <table class="table table-hover ">
                         <thead class="bg-dark tabla">
