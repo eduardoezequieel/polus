@@ -152,10 +152,11 @@ function confirmDelete(api, data) {
 *
 *   Retorno: ninguno.
 */
+
 function sweetAlert(type, text, url) {
     // Se compara el tipo de mensaje a mostrar.
     switch (type) {
-        case '1':
+        case 1:
             title = 'Éxito';
             icon = 'success';
             break;

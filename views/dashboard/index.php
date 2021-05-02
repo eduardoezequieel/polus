@@ -23,6 +23,8 @@
 
     <!-- Hoja de Estilos -->
     <link rel="stylesheet" href="../../resources/css/iniciar_sesion_privado.css">
+    <link rel="stylesheet" href="../../resources/css/sweetalert2.min.css">
+
     <title>Polus - Iniciar Sesión</title>
   </head>
   <body>

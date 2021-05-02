@@ -9,14 +9,27 @@ Class Database{
     private static $statement = null;
     private static $error = null;
 
-    //Método para hacer la conexión
-    private static function connect(){
+    //Método para hacer la conexión (Katherine)
+    /*private static function connect(){
 
         // Credenciales.
         $server = 'localhost';
         $database = 'polus';
         $username = 'postgres';
         $password = 'katflowxD03';
+        //Crear conexión.
+        self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
+
+    }*/
+
+    //Metodo para hacer la conexión (Eduardo)
+    private static function connect(){
+
+        // Credenciales.
+        $server = 'localhost';
+        $database = 'polus_db';
+        $username = 'postgres';
+        $password = 'eduardo2021';
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
