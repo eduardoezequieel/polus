@@ -98,6 +98,8 @@
         }
 
         public static function sidebarTemplateMovement(){
+
+
             print(
                 '<!-- Iconos en Movimiento -->
                 <script>
@@ -116,8 +118,32 @@
                   $(\'#sidebar, #content\').toggleClass(\'active\');
                 });
               });
-            </script>'
+            </script>
+                
+                </body>
+            </html>'
+            
             );
+        }
+
+        public static function footerTemplate($controller)
+    {
+        // Se comprueba si existe una sesión de administrador para imprimir el pie respectivo del documento.
+        if (isset($_SESSION['id_usuario'])) {
+            $scripts = '
+                <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
+            ';
+        } else {
+            $scripts = '
+
+                <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
+            ';
+        }
+        print('
+
+            ' . $scripts . '
+                    
+            ');
         }
 
         public static function barraInicial(){
