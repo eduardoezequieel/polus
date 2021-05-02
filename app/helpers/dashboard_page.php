@@ -93,15 +93,30 @@
                     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
                     crossorigin="anonymous"></script>
                
-                    '
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>    '
             );
         }
 
-        public static function sidebarTemplateMovement(){
+        public static function sidebarTemplateMovement($controller){
 
-
+            // Se comprueba si existe una sesión de administrador para imprimir el pie respectivo del documento.
+            if (isset($_SESSION['id_usuario'])) {
+                $scripts = '
+                    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+                    <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
+                ';
+            } else {
+                $scripts = '
+                    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+                    <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
+                ';
+            }
+            
             print(
-                '<!-- Iconos en Movimiento -->
+                
+                '' . $scripts . ' 
+                <!-- Iconos en Movimiento -->
+                
                 <script>
                 $(\'#usuariosbtn\').click(function(){
                     $(\'#usuarios-mostrar\').toggle();
@@ -120,6 +135,7 @@
               });
             </script>
                 
+                    
                 </body>
             </html>'
             
@@ -131,11 +147,12 @@
         // Se comprueba si existe una sesión de administrador para imprimir el pie respectivo del documento.
         if (isset($_SESSION['id_usuario'])) {
             $scripts = '
+                <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
             ';
         } else {
             $scripts = '
-
+                <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
             ';
         }

@@ -67,6 +67,5 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/dashboard_page.php');
 //Se imprime el script para el movimiento del sidebar
-dashboard_Page::footerTemplate('index.js');
-dashboard_Page::sidebarTemplateMovement();
+dashboard_Page::sidebarTemplateMovement('index.js');
 ?>
