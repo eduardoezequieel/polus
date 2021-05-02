@@ -61,6 +61,16 @@ a:hover{
     margin-top: 30px;
     color: rgb(0, 0, 0);
     text-align: center;
+    font-weight: 300;
+}
+
+.titulo2{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: 300;
 }
 
 .texto{
