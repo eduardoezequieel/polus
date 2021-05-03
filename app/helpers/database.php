@@ -51,6 +51,23 @@ Class Database{
         }
     }
 
+    /*Metodo para ejecutar operaciones SQL*/
+    public static function executeRow($query, $values)
+    {
+        try {
+            self::connect();
+            self::$statement = self::$connection->prepare($query);
+            $state = self::$statement->execute($values);
+            // Se anula la conexión con el servidor de base de datos.
+            self::$connection = null;
+            return $state;
+        } catch (PDOException $error) {
+            // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.
+            self::setException($error->getCode(), $error->getMessage());
+            return false;
+        }
+    }
+
     //Método para excepciones
     public static function setException($code, $message){
         // Establecer un error personalizado.

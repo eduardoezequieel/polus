@@ -139,7 +139,7 @@
 
       <div class="row justify-content-cente animate__animated animate__fadeInUp animate__faster m-4">
         <div class="col-12 d-flex align-items-center justify-content-center">
-          <a href="pagina_dashboard.php" class="btn boton my-2">Crear Usuario</a>
+          <a href="pagina_dashboard.php" type="submit" class="btn boton my-2">Crear Usuario</a>
         </div>
       </div>
     </div>

@@ -12,14 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción
                 if (response.status) {
-                    sweetAlert(1, 'Debe autenticarse para ingresar', 'primer_uso.php');
-                   
+                    /*sweetAlert(4, 'Debe autenticarse para ingresar', 'primer_uso.php');*/
                 } else {
                     // Se verifica si ocurrió un problema en la base de datos, de lo contrario se continua normalmente.
                     if (response.error) {
                         sweetAlert(2, response.exception, null);
                     } else {
-                        sweetAlert(3, response.exception, 'register.php');
+                        sweetAlert(3, response.exception, 'primer_uso.php');
                     }
                 }
             });
