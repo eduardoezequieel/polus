@@ -5,7 +5,7 @@ const API_USUARIOS = '../../app/api/dashboard/usuarios.php?action=';
 document.addEventListener('DOMContentLoaded', function () {
     // Se inicializa el componente Tooltip asignado al botón del formulario para que funcione la sugerencia textual.
     /*M.Tooltip.init(document.querySelectorAll('.tooltipped'));*/
-
+    
     // Petición para verificar si existen usuarios.
     fetch(API_USUARIOS + 'readAll', {
         method: 'get'
@@ -58,4 +58,14 @@ document.getElementById('form').addEventListener('submit', function (event) {
     }).catch(function (error) {
         console.log(error);
     });
+});
+
+document.getElementById('inlineRadio1').addEventListener('click', function(){
+    let txtGenero = document.getElementById('txtGenero');
+    console.log('txtGenero');
+});
+
+document.getElementById('btnCrearUsuario').addEventListener('click', function(){
+    let txtGenero = document.getElementById('txtGenero');
+    console.log('M');
 });

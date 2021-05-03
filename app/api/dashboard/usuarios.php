@@ -11,7 +11,6 @@ if(isset($_GET['action'])){
     $result= array('status'=>0, 'error'=>0, 'message'=>null,'exception'=> null);
     //Verificando si hay una sesión iniciada
     if(isset($_SESSION['id_usuario'])){
-
     } else{
          // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
          switch ($_GET['action']) {
@@ -29,7 +28,7 @@ if(isset($_GET['action'])){
                 }
                 break;
             
-            case 'register':
+            /*case 'register':
                 $_POST = $usuarios->validateForm($_POST);
                     if($usuarios->setNombres($_POST['txtNombres'])){
                         if($usuarios -> setApellidos($_POST['txtApellidos'])){
@@ -93,7 +92,7 @@ if(isset($_GET['action'])){
                     }else{
                         $result['exception'] = 'Nombres incorrectos'
                     }
-
+            break;*/
 
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';

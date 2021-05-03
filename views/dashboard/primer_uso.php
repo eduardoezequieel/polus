@@ -115,14 +115,15 @@
                 <div class="form-check form-check-inline ">
                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
                     value="option1">
-                  <label class="form-check-label texto3" for="inlineRadio1">Femenino</label>
+                  <label class="form-check-label texto3" for="inlineRadio1" id="rbFemenino">Femenino</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
                     value="option2">
-                  <label class="form-check-label texto3" for="inlineRadio2">Masculino</label>
+                  <label class="form-check-label texto3" for="inlineRadio2" id="rbMasculino">Masculino</label>
                 </div>
               </div>
+              <input type="text" id="txtGenero">
             </div>
           </form>
         </div>
@@ -139,7 +140,7 @@
 
       <div class="row justify-content-cente animate__animated animate__fadeInUp animate__faster m-4">
         <div class="col-12 d-flex align-items-center justify-content-center">
-          <a href="pagina_dashboard.php" type="submit" class="btn boton my-2">Crear Usuario</a>
+          <button href="#" type="submit" id="btnCrearUsuario" class="btn boton my-2">Crear Usuario</button>
         </div>
       </div>
     </div>
@@ -149,6 +150,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
   </script>
+  <script src="../../controllers/dashboard/primer_uso.js"></script>
   <script src="https://kit.fontawesome.com/43634cb7dc.js" crossorigin="anonymous"></script>
 
 </body>
