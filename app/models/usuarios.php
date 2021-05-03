@@ -1,7 +1,7 @@
 <?php
 
 //Clase para manejar tabla usuario
-Class Usuarios{
+Class Usuarios extends Validator{
 
     //Declarando atributos
     private $idAdmon = null;
@@ -216,7 +216,7 @@ Class Usuarios{
 
     //Métodos para obtener valores
     public function readAll(){
-        $sql = 'SELECT * FROM admon WHERE idAdmon=1';
+        $sql = 'SELECT * FROM admon WHERE idAdmon=12';
         $params = null;
         return Database::getRows($sql, $params);
     }

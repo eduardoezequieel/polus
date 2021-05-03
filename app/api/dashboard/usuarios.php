@@ -1,5 +1,6 @@
 <?php
 require_once('../../helpers/database.php');
+require_once('../../helpers/validator.php');
 require_once('../../models/usuarios.php');
 
 //Verificando si existe un acción
@@ -27,8 +28,7 @@ if(isset($_GET['action'])){
                     }
                 }
                 break;
-            
-            /*case 'register':
+            case 'register':
                 $_POST = $usuarios->validateForm($_POST);
                     if($usuarios->setNombres($_POST['txtNombres'])){
                         if($usuarios -> setApellidos($_POST['txtApellidos'])){
@@ -51,48 +51,48 @@ if(isset($_GET['action'])){
                                                                                 $result['exception'] = Database::getException();
                                                                             }
                                                                         }else{
-                                                                            $result['exception'] = 'error de tipo'
+                                                                            $result['exception'] = 'error de tipo';
                                                                         }
                                                                     }else{
-                                                                        $result['exception'] = 'error de estado'
+                                                                        $result['exception'] = 'error de estado';
                                                                     }
                                                                 }else{
-                                                                    $result['exception'] = 'Contraseñas no iguales'
+                                                                    $result['exception'] = 'Contraseñas no iguales';
                                                                 }
                                                             }else{
-                                                                $result['exception'] = 'Contraseña incorrecta'
+                                                                $result['exception'] = 'Contraseña incorrecta';
                                                             }
                                                         }else{
-                                                            $result['exception'] = 'Usuario incorrecto'
+                                                            $result['exception'] = 'Usuario incorrecto';
                                                         }
                                                     }else{
-                                                        $result['exception'] = 'Direccion incorrecta'
+                                                        $result['exception'] = 'Direccion incorrecta';
                                                     }
                                                 }else{
-                                                    $result['exception'] = 'Telefono incorrecto'
+                                                    $result['exception'] = 'Telefono incorrecto';
                                                 }
                                             }else{
-                                                $result['exception'] = 'Fecha de nacimiento faltante'
+                                                $result['exception'] = 'Fecha de nacimiento faltante';
                                             }
                                         }else{
-                                            $result['exception'] = 'Foto faltante'
+                                            $result['exception'] = 'Foto faltante';
                                         }
                                     }else{
-                                        $result['exception'] = 'Correos diferentes'
+                                        $result['exception'] = 'Correos diferentes';
                                     }
                                 }else{
-                                    $result['exception'] = 'Correo incorrecto'
+                                    $result['exception'] = 'Correo incorrecto';
                                 }
                             }else{
-                                $result['exception'] = 'Genero faltante'
+                                $result['exception'] = 'Genero faltante';
                             }
                         }else{
-                            $result['exception'] = 'Apellidos incorrectos'
+                            $result['exception'] = 'Apellidos incorrectos';
                         }
                     }else{
-                        $result['exception'] = 'Nombres incorrectos'
+                        $result['exception'] = 'Nombres incorrectos';
                     }
-            break;*/
+                break;
 
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
