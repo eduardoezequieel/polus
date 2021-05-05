@@ -131,8 +131,8 @@ Class Usuarios extends Validator{
 
     public function setIdEstadoUsuario($value)
     {
-        if ($this->validateBoolean($value)) {
-            $this->estado = $value;
+        if ($this->validateNaturalNumber($value)) {
+            $this->idEstadoUsuario = $value;
             return true;
         } else {
             return false;
@@ -141,22 +141,14 @@ Class Usuarios extends Validator{
 
     public function setIdTipoUsuario($value)
     {
-        if ($this->validateBoolean($value)) {
-            $this->estado = $value;
+        if ($this->validateNaturalNumber($value)) {
+            $this->idTipoUsuario = $value;
             return true;
         } else {
             return false;
         }
     }
-    public function setEstado($value)
-    {
-        if ($this->validateBoolean($value)) {
-            $this->estado = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
+
     //Metodos get
 
     public function getId(){

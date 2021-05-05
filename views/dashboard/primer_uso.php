@@ -114,19 +114,6 @@
                 <option value="Masculino">Masculino</option>
               </select>
             </div>
-            <div class="col s12 m6">
-                    <p>
-                        <div class="switch">
-                            <span>Estado:</span>
-                            <label>
-                                <i class="material-icons">visibility_off</i>
-                                <input id="txtFk" type="checkbox" name="txtFk" checked/>
-                                <span class="lever"></span>
-                                <i class="material-icons">visibility</i>
-                            </label>
-                        </div>
-                    </p>
-                </div>
           </div>
           <div
             class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
