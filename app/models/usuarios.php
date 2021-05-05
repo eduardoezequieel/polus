@@ -15,8 +15,9 @@ Class Usuarios extends Validator{
     private $direccion = null;
     private $usuario = null;
     private $contrasenia = null;
-    private $idEstadoUsuario = null;
+    private     $idEstadoUsuario = null;
     private $idTipoUsuario = null;
+    private $ruta = '../../../resources/img/dashboard_img/admon_fotos/';
 
     public function setId($value)
     {
@@ -50,7 +51,7 @@ Class Usuarios extends Validator{
 
     public function setGenero($value)
     {
-        if ($this->validateAlphabetic($value,1,1)) {
+        if ($this->validateAlphabetic($value,1,10)) {
             $this->genero = $value;
             return true;
         } else {
@@ -130,8 +131,8 @@ Class Usuarios extends Validator{
 
     public function setIdEstadoUsuario($value)
     {
-        if ($this->validateNaturalNumber($value)) {
-            $this->idEstadoUsuario = $value;
+        if ($this->validateBoolean($value)) {
+            $this->estado = $value;
             return true;
         } else {
             return false;
@@ -140,14 +141,22 @@ Class Usuarios extends Validator{
 
     public function setIdTipoUsuario($value)
     {
-        if ($this->validateNaturalNumber($value)) {
-            $this->idTipoUsuario = $value;
+        if ($this->validateBoolean($value)) {
+            $this->estado = $value;
             return true;
         } else {
             return false;
         }
     }
-
+    public function setEstado($value)
+    {
+        if ($this->validateBoolean($value)) {
+            $this->estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
     //Metodos get
 
     public function getId(){
@@ -172,6 +181,11 @@ Class Usuarios extends Validator{
 
     public function getFoto(){
         return $this -> foto;
+    }
+
+    public function getRuta()
+    {
+        return $this->ruta;
     }
 
     public function getNacimiento(){
@@ -204,9 +218,9 @@ Class Usuarios extends Validator{
     public function createRow()
     {
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
-        $hash = password_hash($this->clave, PASSWORD_DEFAULT);
+        $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
         $sql = 'INSERT INTO admon(nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, 
-                direccion, usuario, contrasena, idEstadoUsuario, idTipoUsuario)
+                direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
         $params = array($this->nombre, $this->apellido, $this->genero, $this->correo, $this->foto, 
                         $this->fechaNacimiento, $this->telefono, $this->direccion, $this->usuario, 
@@ -216,7 +230,7 @@ Class Usuarios extends Validator{
 
     //Métodos para obtener valores
     public function readAll(){
-        $sql = 'SELECT * FROM admon WHERE idAdmon=12';
+        $sql = 'SELECT * FROM admon WHERE idAdmon=6';
         $params = null;
         return Database::getRows($sql, $params);
     }

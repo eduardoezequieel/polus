@@ -5,7 +5,7 @@ require_once('../../models/usuarios.php');
 
 //Verificando si existe un acción
 if(isset($_GET['action'])){
-    
+    $quemado = 1;
     //Instanciando clases 
     $usuarios = new Usuarios;
     //Array para respuesta de la API
@@ -30,61 +30,67 @@ if(isset($_GET['action'])){
                 break;
             case 'register':
                 $_POST = $usuarios->validateForm($_POST);
-                    if($usuarios->setNombres($_POST['txtNombres'])){
+                    if($usuarios->setNombres($_POST['txtNombre'])){
                         if($usuarios -> setApellidos($_POST['txtApellidos'])){
-                            if($usuarios -> setGenero($_POST['txtGenero'])){
-                                if($usuarios -> setCorreo($_POST['txtEmail'])){
-                                    if($_POST['txtEmail'] == $_POST['txtConfirmarEmail']){
-                                        if($usuarios -> setFoto($_POST['txtFoto'])){
-                                            if($usuarios -> setNacimiento($_POST['txtFechaNacimiento'])){
-                                                if($usuarios -> setTelefono($_POST['txtTelefono'])){
-                                                    if($usuarios -> setDireccion($_POST['txtDireccion'])){
-                                                        if($usuarios -> setUsuario($_POST['txtUsuario'])){
-                                                            if($usuarios -> setContrasenia($_POST['txtContraseña'])){
-                                                                if($_POST['txtContraseña'] == $_POST['txtConfirmarContraseña']){
-                                                                    if($usuarios -> setIdEstadoUsuario($_POST[1])){
-                                                                        if($usuarios -> setIdTipoUsuario($_POST[1])){
-                                                                            if ($usuario->createRow()) {
+                            if(isset($_POST['txtGenero'])){
+                                if($usuarios -> setGenero($_POST['txtGenero'])){
+                                    if($usuarios -> setCorreo($_POST['txtEmail'])){
+                                        if($_POST['txtEmail'] == $_POST['txtConfirmarEmail']){
+                                            if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
+                                                if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
+                                                    if($usuarios -> setNacimiento($_POST['txtFechaNacimiento'])){
+                                                        if($usuarios -> setTelefono($_POST['txtTelefono'])){
+                                                            if($usuarios -> setDireccion($_POST['txtDireccion'])){
+                                                                if($usuarios -> setUsuario($_POST['txtUsuario'])){
+                                                                    if($usuarios -> setContrasenia($_POST['txtContraseña'])){
+                                                                        if($_POST['txtContraseña'] == $_POST['txtConfirmarContraseña']){
+                                                                            $usuarios -> setIdEstadoUsuario(1);
+                                                                            $usuarios -> setIdTipoUsuario(1);
+                                                                            if ($usuarios->createRow()) {
                                                                                 $result['status'] = 1;
-                                                                                $result['message'] = 'Usuario registrado correctamente';
+                                                                                if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                                                                                    $result['message'] = 'Usuario registrado correctamente';
+                                                                                } else {
+                                                                                    $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                                }
                                                                             } else {
-                                                                                $result['exception'] = Database::getException();
+                                                                                $result['exception'] = Database::getException();;
                                                                             }
                                                                         }else{
-                                                                            $result['exception'] = 'error de tipo';
+                                                                            $result['exception'] = 'Contraseñas no iguales';
                                                                         }
                                                                     }else{
-                                                                        $result['exception'] = 'error de estado';
+                                                                        $result['exception'] = 'Contraseña incorrecta';
                                                                     }
                                                                 }else{
-                                                                    $result['exception'] = 'Contraseñas no iguales';
+                                                                    $result['exception'] = 'Usuario incorrecto';
                                                                 }
                                                             }else{
-                                                                $result['exception'] = 'Contraseña incorrecta';
+                                                                $result['exception'] = 'Direccion incorrecta';
                                                             }
                                                         }else{
-                                                            $result['exception'] = 'Usuario incorrecto';
+                                                            $result['exception'] = 'Telefono incorrecto';
                                                         }
                                                     }else{
-                                                        $result['exception'] = 'Direccion incorrecta';
+                                                        $result['exception'] = 'Fecha de nacimiento faltante';
                                                     }
-                                                }else{
-                                                    $result['exception'] = 'Telefono incorrecto';
+                                                } else {
+                                                    $result['exception'] = $result->getImageError();
                                                 }
-                                            }else{
-                                                $result['exception'] = 'Fecha de nacimiento faltante';
-                                            }
+                                            } else {
+                                                $result['exception'] = 'Seleccione una imagen';
+                                            } 
                                         }else{
-                                            $result['exception'] = 'Foto faltante';
+                                            $result['exception'] = 'Correos diferentes';
                                         }
                                     }else{
-                                        $result['exception'] = 'Correos diferentes';
+                                        $result['exception'] = 'Correo incorrecto';
                                     }
                                 }else{
-                                    $result['exception'] = 'Correo incorrecto';
+                                    $result['exception'] = 'Genero faltante';
                                 }
-                            }else{
-                                $result['exception'] = 'Genero faltante';
+                            } else {
+                                $result['exception'] = 'Seleccione una opción';
                             }
                         }else{
                             $result['exception'] = 'Apellidos incorrectos';

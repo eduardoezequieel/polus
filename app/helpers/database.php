@@ -70,12 +70,14 @@ Class Database{
 
     //Método para excepciones
     public static function setException($code, $message){
+        self::$error = $message;
         // Establecer un error personalizado.
         switch ($code) {
             case '7':
                 self::$error = 'Existe un problema al conectar con el servidor';
                 break;
             case '42703':
+                console.log($error);
                 self::$error = 'Nombre de campo desconocido';
                 break;
             case '23505':

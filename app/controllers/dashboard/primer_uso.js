@@ -1,11 +1,8 @@
-// Constante para establecer la ruta y parámetros de comunicación con la API.
+// Constante de la API.
 const API_USUARIOS = '../../app/api/dashboard/usuarios.php?action=';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
-    // Se inicializa el componente Tooltip asignado al botón del formulario para que funcione la sugerencia textual.
-    /*M.Tooltip.init(document.querySelectorAll('.tooltipped'));*/
-    
     // Petición para verificar si existen usuarios.
     fetch(API_USUARIOS + 'readAll', {
         method: 'get'
@@ -21,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (response.error) {
                         sweetAlert(2, response.exception, null);
                     } else {
-                        sweetAlert(4, 'Debe crear un usuario para comenzar', null);
+                        /*sweetAlert(4, 'Debe crear un usuario para comenzar', null);*/
                     }
                 }
             });
@@ -31,16 +28,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }).catch(function (error) {
         console.log(error);
     });
+
 });
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de registrar.
-document.getElementById('form').addEventListener('submit', function (event) {
+document.getElementById('primerUso-form').addEventListener('submit', function (event) {
+
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
 
     fetch(API_USUARIOS + 'register', {
         method: 'post',
-        body: new FormData(document.getElementById('form'))
+        body: new FormData(document.getElementById('primerUso-form'))
     }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
         if (request.ok) {
@@ -58,14 +57,5 @@ document.getElementById('form').addEventListener('submit', function (event) {
     }).catch(function (error) {
         console.log(error);
     });
-});
 
-document.getElementById('inlineRadio1').addEventListener('click', function(){
-    let txtGenero = document.getElementById('txtGenero');
-    console.log('txtGenero');
-});
-
-document.getElementById('btnCrearUsuario').addEventListener('click', function(){
-    let txtGenero = document.getElementById('txtGenero');
-    console.log('M');
 });
