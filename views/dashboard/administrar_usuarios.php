@@ -213,7 +213,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
 <!-- Movimiento sidebar -->
 <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement();
+    dashboard_Page::sidebarTemplateMovement('administrar_usuarios.js');
     ?>
 </body>
 
