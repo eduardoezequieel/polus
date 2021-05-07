@@ -38,7 +38,7 @@
           <h1 class="titulo2 text-center m-4">Creación del Primer Usuario</h1>
         </div>
       </div>
-      <form method="post" id="primerUso-form">
+      <form method="post" id="primerUso-form" enctype="multipart/form-data">
         <div class="justify-content-center row animate__animated animate__fadeInUp animate__faster">
           <!-- Columna 1 -->
           <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center paddingLados">

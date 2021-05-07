@@ -20,15 +20,15 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                     <h1>Agregar usuarios</h1>
                 </div>
             </div><br>
-            <!-- Fila de primeros tres apartados -->
-            <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
-                <!-- Columna de información personal -->
-                <div class="col-lg-4 col-sm-12 col-xs-12">
-                   
-                    <div class="row">
-                        <!-- Formulario del información personao -->
-                        <div class="col-12 formulario">
-                            <form>
+            <form method='post' id='agregarUsuario-form'>
+                <!-- Fila de primeros tres apartados -->
+                <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
+                    <!-- Columna de información personal -->
+                    <div class="col-lg-4 col-sm-12 col-xs-12">
+
+                        <div class="row">
+                            <!-- Formulario del información personao -->
+                            <div class="col-12 formulario">
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre:</label>
                                     <input type="text" class="form-control" id="nombre">
@@ -53,34 +53,28 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Género:</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">Femenino</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio2" value="option2">
-                                        <label class="form-check-label" for="inlineRadio2">Masculino</label>
-                                    </div>
+                                    <label for="txtGenero" class="form-label">Género:</label>
+                                    <select id="txtGenero" class="form-select" aria-label="Default select example">
+                                        <option selected>Seleccionar...</option>
+                                        <option value="Femenino">Femenino</option>
+                                        <option value="Masculino">Masculino</option>
+                                    </select>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                </div><br>
-                <!-- Columna de cuenta -->
-                <div class="col-lg-4 col-sm-12 col-xs-12">
-                    
-                    <div class="row">
-                        <!-- Formulario de cuenta -->
-                        <div class="col-12 formulario">
-                            <form>
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <div class="divFotografia"></div>
-                                    <button class="btn btn-outline-dark" id="btnAgregarFoto"><span
-                                            class="fas fa-plus"></span></button>
+                    </div><br>
+                    <!-- Columna de cuenta -->
+                    <div class="col-lg-4 col-sm-12 col-xs-12">
 
+                        <div class="row">
+                            <!-- Formulario de cuenta -->
+                            <div class="col-12 formulario">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <!-- <div class="divFotografia"></div>
+                                    <button class="btn btn-outline-dark" id="btnAgregarFoto"><span
+                                            class="fas fa-plus"></span></button> -->
+                                    <div class="divFotografia"></div>
+                                    <input id="archivo_usuario" type="file" name="archivo_usuario" accept=".gif, .jpg, .png">
                                 </div>
                                 <div class="mb-3 mt-4">
                                     <label for="Correo" class="form-label">Correo:</label>
@@ -101,13 +95,14 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                     </select>
                                 </div>
                                 <div class="justify-content-center align-items-center d-flex mt-5">
-                                    <button class="btn btn-outline-dark float-center" id="selecciona">Agregar</button>
+                                    <button class="btn btn-outline-dark float-center" type='submit' id="selecciona">Agregar</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
+        </div>
     </section>
 </div>
 <!-- Bootstrap core JavaScript -->
@@ -119,8 +114,5 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
 <!-- Movimiento sidebar -->
 <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement('administrar_usuarios.js');
-    ?>
-</body>
-
-</html>
+    dashboard_Page::sidebarTemplateMovement('agregar_usuarios.js');
+?>

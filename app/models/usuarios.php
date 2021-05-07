@@ -152,7 +152,7 @@ Class Usuarios extends Validator{
     //Metodos get
 
     public function getId(){
-        return $this -> id;
+        return $this -> idAdmon;
     }
 
     public function getNombres(){
@@ -207,6 +207,58 @@ Class Usuarios extends Validator{
         return $this -> idTipoUsuario;
     }
 
+    //Métodos para administrar cuenta del usuario 
+    public function checkUser($alias)
+    {
+        $sql = 'SELECT idAdmon FROM admon WHERE usuario = ?';
+        $params = array($alias);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->idAdmon = $data['idadmon'];
+            $this->usuario = $alias;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkPassword($password)
+    {
+        $sql = 'SELECT contraseña FROM admon WHERE idAdmon = ?';
+        $params = array($this->idAdmon);
+        $data = Database::getRow($sql, $params);
+        if (password_verify($password, $data['contraseña'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function changePassword()
+    {
+        $hash = password_hash($this->clave, PASSWORD_DEFAULT);
+        $sql = 'UPDATE usuarios SET clave_usuario = ? WHERE id_usuario = ?';
+        $params = array($hash, $_SESSION['id_usuario']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readProfile()
+    {
+        $sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario
+                FROM usuarios
+                WHERE id_usuario = ?';
+        $params = array($_SESSION['id_usuario']);
+        return Database::getRow($sql, $params);
+    }
+
+    public function editProfile()
+    {
+        $sql = 'UPDATE usuarios
+                SET nombres_usuario = ?, apellidos_usuario = ?, correo_usuario = ?, alias_usuario = ?
+                WHERE id_usuario = ?';
+        $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $_SESSION['id_usuario']);
+        return Database::executeRow($sql, $params);
+    }
+
     public function createRow()
     {
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
@@ -222,7 +274,7 @@ Class Usuarios extends Validator{
 
     //Métodos para obtener valores
     public function readAll(){
-        $sql = 'SELECT * FROM admon WHERE idAdmon=6';
+        $sql = 'SELECT * FROM admon /*WHERE idAdmon=6*/';
         $params = null;
         return Database::getRows($sql, $params);
     }

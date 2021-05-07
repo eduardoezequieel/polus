@@ -30,3 +30,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+//Método botón submit
+document.getElementById('login-form').addEventListener('submit', function(event){
+
+    //Desactivar el recargar página
+    event.preventDefault();
+
+    //Capturando datos 
+    fetch(API_USUARIO + 'logIn', {
+        method: 'post',
+        body: new FormData(document.getElementById('login-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    sweetAlert(1, response.message, 'pagina_dashboard.php');
+                } else{
+                    sweetAlert(2, response.exception, clearPassword());
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+
+})
+
+//Función para limpiar contraseña
+function clearPassword(){
+    let contra = document.getElementById('txtContrasenia');
+    contra.value = '';
+}

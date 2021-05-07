@@ -34,21 +34,21 @@
           <!-- Columna 1 -->
             <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 paddingLados">
                 <h1 class="titulo mb-2 mt-5 pt-5">Iniciar Sesión</h1>
-                <form>
+                <form method = 'post' id = 'login-form'>
                   <!-- Input Correo -->
                     <div class="form-group mb-2">
-                      <label for="exampleInputEmail1" class="mb-2 texto">Ingrese su correo electrónico</label>
-                      <input type="email" class="form-control personalizacionPolus personalizacionPolusP" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ejemplo@mail.com">
+                      <label for="txtUsuario" class="mb-2 texto">Ingrese su usuario</label>
+                      <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtUsuario" name="txtUsuario" aria-describedby="emailHelp" placeholder="Usuario" Required>
                     </div>
                     <!-- Input Contraseña -->
                     <div class="form-group mb-2">
-                      <label for="exampleInputPassword1" class="mb-2 texto">Ingrese su contraseña</label>
-                      <input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="exampleInputPassword1" placeholder="Contraseña">
+                      <label for="contrasenia" class="mb-2 texto">Ingrese su contraseña</label>
+                      <input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="txtContrasenia" name="txtContrasenia" placeholder="Contraseña" Required>
                       <a href="seleccion_recuperacion.php" class="form-text">¿Hás olvidado tu contraseña?</a>
                     </div>
                     <div class="row justify-content-center">
                       <div class="col-12 d-flex justify-content-center align-items-center">
-                        <a href="pagina_dashboard.php" class="btn boton my-2">Iniciar Sesión</a>
+                        <button type="submit" class="btn boton my-2">Iniciar Sesión</button>
                       </div>
                     </div>
                   </form>
