@@ -278,6 +278,13 @@ Class Usuarios extends Validator{
         $params = null;
         return Database::getRows($sql, $params);
     }
+
+    //Métodos para obtener tipos de usuario
+    public function readAllTipos(){
+        $sql = 'SELECT * FROM tipoUsuario';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }   
 
 ?>

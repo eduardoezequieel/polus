@@ -100,7 +100,7 @@
         public static function sidebarTemplateMovement($controller){
 
             // Se comprueba si existe una sesión de administrador para imprimir el pie respectivo del documento.
-            if (isset($_SESSION['id_usuario'])) {
+            if (isset($_SESSION['idAdmon'])) {
                 $scripts = '
                     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                     <script type="text/javascript" src="../../app/helpers/components.js"></script>

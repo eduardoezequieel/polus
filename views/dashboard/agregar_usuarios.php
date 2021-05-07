@@ -20,7 +20,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                     <h1>Agregar usuarios</h1>
                 </div>
             </div><br>
-            <form method='post' id='agregarUsuario-form'>
+            <form method='post' id='agregarUsuario-form' enctype="multipart/form-data">
                 <!-- Fila de primeros tres apartados -->
                 <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
                     <!-- Columna de información personal -->
@@ -31,30 +31,30 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                             <div class="col-12 formulario">
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" id="nombre">
+                                    <input type="text" class="form-control" id="txtNombre" name="txtNombre" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Apellido" class="form-label">Apellido:</label>
-                                    <input type="text" class="form-control" id="Apellido">
+                                    <input type="text" class="form-control" id="txtApellidos" name="txtApellidos" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Fecha de nacimiento" class="form-label">Fecha de nacimiento:</label>
-                                    <input type="date" class="form-control" id="Fecha de nacimiento"
-                                        placeholder="dd/mm/aaaa">
+                                    <input type="date" class="form-control" id="txtFechaNacimiento" name="txtFechaNacimiento"
+                                        placeholder="dd/mm/aaaa" Required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="Teléfono" class="form-label">Teléfono:</label>
-                                    <input type="text" class="form-control" id="Teléfono" placeholder="0000-0000">
+                                    <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="0000-0000" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Dirección" class="form-label">Dirección:</label>
-                                    <textarea class="form-control" id="direccion"></textarea>
+                                    <textarea class="form-control" id="txtDireccion" name="txtDireccion" Required></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="txtGenero" class="form-label">Género:</label>
-                                    <select id="txtGenero" class="form-select" aria-label="Default select example">
+                                    <select id="txtGenero" name="txtGenero" class="form-select" aria-label="Default select example" Required>
                                         <option selected>Seleccionar...</option>
                                         <option value="Femenino">Femenino</option>
                                         <option value="Masculino">Masculino</option>
@@ -78,20 +78,16 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                 </div>
                                 <div class="mb-3 mt-4">
                                     <label for="Correo" class="form-label">Correo:</label>
-                                    <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp"
-                                        placeholder="ejemplo@mail.com">
+                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp"
+                                        placeholder="ejemplo@mail.com" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Usuario" class="form-label">Usuario:</label>
-                                    <input type="text" class="form-control" id="Usuario">
+                                    <input type="text" class="form-control" id="txtUsuario" name="txtUsuario" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="cbTipoUsuario" class="form-label">Tipo de Usuario:</label>
-                                    <select id="cbTipoUsuario" class="form-select" aria-label="Default select example">
-                                        <option selected>Seleccionar...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select id="cbTipoUsuario" name="cbTipoUsuario" class="form-select" aria-label="Default select example">
                                     </select>
                                 </div>
                                 <div class="justify-content-center align-items-center d-flex mt-5">

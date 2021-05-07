@@ -1,10 +1,11 @@
 //Constante para la ruta de la API
-const API_USUARIOS = '../../api/dashboard/usuarios.php?=action';
+const API_USUARIOS = '../../app/api/dashboard/usuarios.php?action=';
+const ENDPOINT_TIPOS = '../../app/api/dashboard/usuarios.php?action=readTipoUsuario';
 
 //Evento que se ejecuta cuando el dom haya cargado
 document.addEventListener('DOMContentLoaded', function(){
-
     document.getElementById('agregarUsuario-form').reset();
+    fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario', null);
 });
 
 document.getElementById('agregarUsuario-form').addEventListener('submit', function(event){
@@ -12,20 +13,29 @@ document.getElementById('agregarUsuario-form').addEventListener('submit', functi
     //función para que no recargue la pagina
     event.preventDefault();
     
-    //Obtener datos con fetch
-    fetch(API_USUARIOS + 'register')
-    .then(function(request){
-        //Verificando si la petición es correcta
+    //Capturando datos 
+    fetch(API_USUARIOS + 'create', {
+        method: 'post',
+        body: new FormData(document.getElementById('agregarUsuario-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
         if(request.ok){
             request.json().then(function(response){
+                //Verificando respuesta satisfactoria
                 if(response.status){
-                    sweetAlert(1,response.message, null);
+                    sweetAlert(1, response.message, clearForm());
                 } else{
-                    sweetAlert(2, message.exception, null)
+                    sweetAlert(4, response.exception, null);
                 }
             })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
         }
-    }).catch(function(error){
+    }).catch(function (error) {
         console.log(error);
-    })
+    });
 })
+
+function clearForm(){
+    document.getElementById('agregarUsuario-form').reset();
+}

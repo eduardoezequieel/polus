@@ -8,6 +8,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
     <!-- Contenido de la Pagina -->
     <div class="page-content p-5" id="content">
       <?php
+
       //Se imprime el script para las direcciones de Bootstrap core JavaScript
       dashboard_Page::barraInicial();
       ?>
@@ -35,7 +36,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
                 son parte importante para tus ganancias.
               </p>
               <a href="../../views/dashboard/pedidos.php">
-                <button class="btn btn-outline-dark verMas">Ver más</button>
+                <button class="btn btn-outline-dark verMas" id="boton">Ver más</button>
               </a>
             </div>
           </div>
@@ -50,7 +51,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
     <!-- Movimiento sidebar -->
     <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement('index.js');
+    dashboard_Page::sidebarTemplateMovement('pagina_dashboard.js');
     ?>
    </body>
 </html>
