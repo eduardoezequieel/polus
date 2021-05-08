@@ -16,7 +16,7 @@ if(isset($_GET['action'])){
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($usuarios->readAll()) {
+                if ($result['dataset'] = $usuarios->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existe al menos un usuario registrado';
                 } else {
@@ -108,7 +108,7 @@ if(isset($_GET['action'])){
                 break;
 
             default:
-                $result['exception'] = 'Acción no disponible fuera de la sesión';
+                $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
     } else{
          // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
