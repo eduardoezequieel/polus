@@ -69,6 +69,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                         <!-- Contenido del Modal -->
                         <div class="textoModal pb-4 mt-2">
                             <form method='post' id='administrarUsuario-form' enctype="multipart/form-data">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                <input class="visually-hidden" type="number" id="idAdmon" name="idAdmon">
                                 <!-- Fila de primeros tres apartados -->
                                 <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
                                     <!-- Columna de información personal -->
@@ -121,7 +123,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                                     <!-- <div class="divFotografia"></div>
                                                     <button class="btn btn-outline-dark" id="btnAgregarFoto"><span
                                                             class="fas fa-plus"></span></button> -->
-                                                    <div class="divFotografia"></div>
+                                                    <div class="divFotografia" id="divFoto"></div>
                                                     <input id="archivo_usuario" type="file" name="archivo_usuario" accept=".gif, .jpg, .png">
                                                 </div>
                                                 <div class="mb-3 mt-4">
@@ -139,7 +141,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                                     </select>
                                                 </div>
                                                 <div class="justify-content-center align-items-center d-flex mt-5">
-                                                    <button class="btn btn-outline-dark float-center" type='submit' id="selecciona">Agregar</button>
+                                                    <button class="btn btn-outline-dark float-center" type='submit' id="selecciona">Actualizar</button>
                                                 </div>
                                             </div>
                                         </div>

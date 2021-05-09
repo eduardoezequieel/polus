@@ -25,14 +25,14 @@ function fillTable(dataset){
                     <div class="row justify-c">
                         <div class="col-12 d-flex">
                                             
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#administrarUsuarios"
+                            <a href="#" onclick="openUpdateDialog(${row.idadmon})"data-bs-toggle="modal" data-bs-target="#administrarUsuarios"
                                 class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i>
                             </a>
 
                             <h5 class="mx-1">
                             </h1>
 
-                            <a href="#" data--bs-toggle="modal" data-bs-target="#administrarUsuarios"
+                            <a href="#" onclick="openDeleteDialog(${row.idadmon})" data--bs-toggle="modal" data-bs-target="#administrarUsuarios"
                                 class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i>
                             </a>
                         </div>
@@ -43,4 +43,46 @@ function fillTable(dataset){
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
+}
+
+function openUpdateDialog(id){
+    // Se establece el campo de archivo como obligatorio.
+     document.getElementById('archivo_usuario').required = false;
+     //Se llama el elemento select
+     fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario',null);
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idAdmon', id);
+
+    fetch(API_USUARIO + 'readOne', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('idAdmon').value = response.dataset.idadmon;
+                    document.getElementById('txtNombre').value = response.dataset.nombre;
+                    document.getElementById('txtApellidos').value = response.dataset.apellido;
+                    document.getElementById('txtEmail').value = response.dataset.correo;
+                    document.getElementById('txtGenero').value = response.dataset.genero;
+                    document.getElementById('txtDireccion').value = response.dataset.direccion;
+                    document.getElementById('txtTelefono').value = response.dataset.telefono;
+                    document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
+                    document.getElementById('txtUsuario').value = response.dataset.usuario;
+                    fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario', response.dataset.idtipousuario);
+                    
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 }

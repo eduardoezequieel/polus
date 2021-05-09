@@ -283,11 +283,32 @@ Class Usuarios extends Validator{
         return Database::getRows($sql, $params);
     }
 
+    public function readOne()
+    {
+        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
+        FROM admon
+        WHERE idAdmon = ?';
+        $params = array($this->idAdmon);
+        return Database::getRow($sql, $params);
+    }
+
     //Métodos para obtener tipos de usuario
     public function readAllTipos(){
         $sql = 'SELECT * FROM tipoUsuario';
         $params = null;
         return Database::getRows($sql, $params);
+    }
+
+    public function updateRow($current_image)
+    {
+        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+        ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
+
+        $sql = 'UPDATE admon
+                SET foto = ?, nombre = ?, apellido = ?, genero = ?, correo = ?, fechaNacimiento = ?, telefono = ?, direccion = ?, usuario = ?, idEstadoUsuario = ?, idTipoUsuario = ?
+                WHERE idAdmon = ?';
+        $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->correo, $this->fechaNacimiento, $this->telefono,$this->direccion, $this->usuario, $this->idEstadoUsuario, $this->idTipoUsuario, $this->idAdmon);
+        return Database::executeRow($sql, $params);
     }
 }   
 
