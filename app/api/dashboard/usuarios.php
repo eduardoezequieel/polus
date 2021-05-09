@@ -123,78 +123,82 @@ if(isset($_GET['action'])){
                 break;
             case 'update':
                 $_POST = $usuarios->validateForm($_POST);
-                    if($usuarios->setIdAmon($_POST['idAdmon'])){
-                        if($usuarios->readOne()){
-                            if($usuarios->setNombres($_POST['txtNombre'])){
-                                if($usuarios -> setApellidos($_POST['txtApellidos'])){
-                                    if(isset($_POST['txtGenero'])){
-                                        if($usuarios -> setGenero($_POST['txtGenero'])){
-                                            if($usuarios -> setCorreo($_POST['txtEmail'])){
-                                                if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
-                                                    if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
-                                                        if($usuarios -> setNacimiento($_POST['txtFechaNacimiento'])){
-                                                            if($usuarios -> setTelefono($_POST['txtTelefono'])){
-                                                                if($usuarios -> setDireccion($_POST['txtDireccion'])){
-                                                                    if($usuarios -> setUsuario($_POST['txtUsuario'])){
-                                                                        if(isset($_POST['cbTipoUsuario'])){
-                                                                            if($usuarios -> setIdTipoUsuario($_POST['cbTipoUsuario'])){
-                                                                                $usuarios->setIdEstadoUsuario(1);
-                                                                                if ($usuarios->createRow()) {
-                                                                                    $result['status'] = 1;
-                                                                                    if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
-                                                                                        $result['message'] = 'Usuario registrado correctamente';
-                                                                                    } else {
-                                                                                        $result['message'] = 'Usuario registrado pero no se guardó la imagen';
-                                                                                    }
+                if($usuarios->setId($_POST['idAdmon'])){
+                    if($data = $usuarios->readOne()){
+                        if($usuarios->setNombres($_POST['txtNombre'])){
+                            if($usuarios -> setApellidos($_POST['txtApellidos'])){
+                                if(isset($_POST['txtGenero'])){
+                                    if($usuarios -> setGenero($_POST['txtGenero'])){
+                                        if($usuarios -> setCorreo($_POST['txtEmail'])){
+                                            if($usuarios -> setNacimiento($_POST['txtFechaNacimiento'])){
+                                                if($usuarios -> setTelefono($_POST['txtTelefono'])){
+                                                    if($usuarios -> setDireccion($_POST['txtDireccion'])){
+                                                        if($usuarios -> setUsuario($_POST['txtUsuario'])){
+                                                            if(isset($_POST['cbTipoUsuario'])){
+                                                                if($usuarios -> setIdTipoUsuario($_POST['cbTipoUsuario'])){
+                                                                    if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
+                                                                        if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
+                                                                            if ($usuarios->updateRow($data['foto'])) {
+                                                                                $result['status'] = 1;
+                                                                                if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                                                                                    $result['message'] = 'Usuario registrado correctamente';
                                                                                 } else {
-                                                                                    $result['exception'] = Database::getException();
+                                                                                    $result['message'] = 'Usuario registrado pero no se guardó la imagen';
                                                                                 }
-                                                                            } else{
-                                                                                $result['exception'] = 'Error al seleccionar el tipo de usuario';
+                                                                            } else {
+                                                                                $result['exception'] = Database::getException();
                                                                             }
-                                                                        }else{
-                                                                            $result['exception'] = 'Seleccione un tipo de usuario';
+                                                                        } else {
+                                                                            $result['exception'] = $result->getImageError();
                                                                         }
-                                                                    }else{
-                                                                        $result['exception'] = 'Usuario incorrecto';
-                                                                    }
-                                                                }else{
-                                                                    $result['exception'] = 'Direccion incorrecta';
+                                                                    } else {
+                                                                        if ($usuarios->updateRow($data['foto'])) {
+                                                                            $result['status'] = 1;
+                                                                            $result['message'] = 'Usuario modificado correctamente';
+                                                                        } else {
+                                                                            $result['exception'] = Database::getException();
+                                                                        }
+                                                                    } 
+                                                                } else{
+                                                                    $result['exception'] = 'Error al seleccionar el tipo de usuario';
                                                                 }
                                                             }else{
-                                                                $result['exception'] = 'Telefono incorrecto';
+                                                                $result['exception'] = 'Seleccione un tipo de usuario';
                                                             }
                                                         }else{
-                                                            $result['exception'] = 'Fecha de nacimiento faltante';
+                                                            $result['exception'] = 'Usuario incorrecto';
                                                         }
-                                                    } else {
-                                                        $result['exception'] = $result->getImageError();
+                                                    }else{
+                                                        $result['exception'] = 'Dirección incorrecta';
                                                     }
-                                                } else {
-                                                    $result['exception'] = 'Seleccione una imagen';
-                                                } 
+                                                }else{
+                                                    $result['exception'] = 'Telefono incorrecto';
+                                                }
                                             }else{
-                                                $result['exception'] = 'Correo incorrecto';
+                                                $result['exception'] = 'Fecha de nacimiento faltante';
                                             }
                                         }else{
-                                            $result['exception'] = 'Seleccione un genero';
+                                            $result['exception'] = 'Correo incorrecto';
                                         }
-                                    } else {
-                                        $result['exception'] = 'Seleccione una opción';
+                                    }else{
+                                        $result['exception'] = 'Seleccione un genero';
                                     }
-                                }else{
-                                    $result['exception'] = 'Apellidos incorrectos';
+                                } else {
+                                    $result['exception'] = 'Seleccione una opción';
                                 }
                             }else{
-                                $result['exception'] = 'Nombres incorrectos';
+                                $result['exception'] = 'Apellidos incorrectos';
                             }
-                        } else{
-                            $result['exception'] = 'El usuario no existe en la base de datos';
+                        }else{
+                            $result['exception'] = 'Nombres incorrectos';
                         }
-                    }else {
-                        $result['exception'] = 'Usuario incorrecto';
+                    } else {
+                        $result['exception'] = 'Usuario no existente';
                     }
-                break;                
+                } else {
+                    $result['exception'] = 'Usuario seleccionado incorrecto';
+                }
+                break;          
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

@@ -63,7 +63,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                             <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
                                     class="fas fa-info-circle mx-2"></span>Administrar Usuarios</h5>
                             <!-- Boton para Cerrar -->
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnUsuarios"></button>
                         </div>
                         <br>
                         <!-- Contenido del Modal -->

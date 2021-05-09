@@ -86,3 +86,38 @@ function openUpdateDialog(id){
         console.log(error);
     });
 }
+
+document.getElementById('administrarUsuario-form').addEventListener('submit', function(event){
+    //Evento para prevenir recargar la pagina
+    event.preventDefault();
+
+    //Obtener datos
+    fetch(API_USUARIO + 'update', {
+        method: 'post',
+        body: new FormData(document.getElementById('administrarUsuario-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    //cargando de nuevo la tabla
+                    readRows(API_USUARIO);
+                    //Mandando mensaje de exito
+                    sweetAlert(1, response.message, closeModal());
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    })
+})
+
+function closeModal(){
+    $(document.getElementById('administrarUsuarios')).modal('hide');
+}
+

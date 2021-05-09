@@ -101,7 +101,7 @@ Class Usuarios extends Validator{
 
     public function setDireccion($value)
     {
-        if ($this->validateAlphabetic($value,1,200)) {
+        if ($this->validateString($value,1,200)) {
             $this->direccion = $value;
             return true;
         } else {
@@ -111,7 +111,7 @@ Class Usuarios extends Validator{
 
     public function setUsuario($value)
     {
-        if ($this->validateAlphabetic($value,1,25)) {
+        if ($this->validateAlphanumeric($value,1,25)) {
             $this->usuario = $value;
             return true;
         } else {
@@ -305,9 +305,9 @@ Class Usuarios extends Validator{
         ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
 
         $sql = 'UPDATE admon
-                SET foto = ?, nombre = ?, apellido = ?, genero = ?, correo = ?, fechaNacimiento = ?, telefono = ?, direccion = ?, usuario = ?, idEstadoUsuario = ?, idTipoUsuario = ?
+                SET foto = ?, nombre = ?, apellido = ?, genero = ?, correo = ?, fechaNacimiento = ?, telefono = ?, direccion = ?, usuario = ?, idTipoUsuario = ?
                 WHERE idAdmon = ?';
-        $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->correo, $this->fechaNacimiento, $this->telefono,$this->direccion, $this->usuario, $this->idEstadoUsuario, $this->idTipoUsuario, $this->idAdmon);
+        $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->correo, $this->fechaNacimiento, $this->telefono,$this->direccion, $this->usuario, $this->idTipoUsuario, $this->idAdmon);
         return Database::executeRow($sql, $params);
     }
 }   
