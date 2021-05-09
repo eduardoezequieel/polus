@@ -130,6 +130,7 @@ function confirmDelete(api, data) {
                             sweetAlert(1, response.message, null);
                         } else {
                             sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
                         }
                     });
                 } else {

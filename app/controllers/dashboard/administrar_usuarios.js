@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
     fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario',null);
 })
 
-
+//Llenado de tabla
 function fillTable(dataset){
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -32,9 +32,7 @@ function fillTable(dataset){
                             <h5 class="mx-1">
                             </h1>
 
-                            <a href="#" onclick="openDeleteDialog(${row.idadmon})" data--bs-toggle="modal" data-bs-target="#administrarUsuarios"
-                                class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i>
-                            </a>
+                            <a href="#" onclick="openDeleteDialog(${row.idadmon})" class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i></a>
                         </div>
                     </div>
                 </th>
@@ -45,6 +43,7 @@ function fillTable(dataset){
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
+//Actualizar
 function openUpdateDialog(id){
     // Se establece el campo de archivo como obligatorio.
      document.getElementById('archivo_usuario').required = false;
@@ -87,6 +86,7 @@ function openUpdateDialog(id){
     });
 }
 
+ 
 document.getElementById('administrarUsuario-form').addEventListener('submit', function(event){
     //Evento para prevenir recargar la pagina
     event.preventDefault();
@@ -121,3 +121,21 @@ function closeModal(){
     $(document.getElementById('administrarUsuarios')).modal('hide');
 }
 
+
+//Buscar
+document.getElementById('search-form').addEventListener('submit', function(event){
+
+    //Evento para que no recargue la pagina
+    event.preventDefault();
+
+    searchRows(API_USUARIO, 'search-form');
+})
+
+//Eliminar
+function openDeleteDialog(id){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idAdmon', id);
+    // Se llama a la función que elimina un registro.
+    confirmDelete(API_USUARIO, data);
+}

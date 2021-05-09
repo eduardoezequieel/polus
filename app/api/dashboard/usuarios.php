@@ -39,6 +39,28 @@ if(isset($_GET['action'])){
                     }
                 }
                 break;
+            case 'search':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($_POST['search'] != '') {
+                    if ($result['dataset'] = $usuarios->searchRows($_POST['search'])) {
+                        $result['status'] = 1;
+                        $rows = count($result['dataset']);
+                        if ($rows > 1) {
+                            $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                        } else {
+                            $result['message'] = 'Solo existe una coincidencia';
+                        }
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Ingrese un valor para buscar';
+                }
+                break;
             case 'create':
                 $_POST = $usuarios->validateForm($_POST);
                     if($usuarios->setNombres($_POST['txtNombre'])){
@@ -197,6 +219,30 @@ if(isset($_GET['action'])){
                     }
                 } else {
                     $result['exception'] = 'Usuario seleccionado incorrecto';
+                }
+                break;
+            case 'delete':
+                if ($_POST['idAdmon'] != $_SESSION['idAdmon']) {
+                    if ($usuarios->setId($_POST['idAdmon'])) {
+                        if ($data = $usuarios->readOne()) {
+                            if ($usuarios->deleteRow()) {
+                                if ($usuarios->deleteFile($usuarios->getRuta(), $data['foto'])) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Usuario eliminado correctamente';
+                                } else {
+                                    $result['message'] = 'Usuario eliminado pero no se borró la imagen';
+                                }
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Usuario inexistente';
+                        }
+                    } else {
+                        $result['exception'] = 'Usuario incorrecto';
+                    }
+                } else {
+                    $result['exception'] = 'No se puede eliminar a sí mismo';
                 }
                 break;          
             default:

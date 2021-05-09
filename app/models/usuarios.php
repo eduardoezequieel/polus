@@ -259,6 +259,19 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    //Función para buscar
+    public function searchRows($value)
+    {
+        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, estadoUsuario, tipoUsuario
+        FROM admon
+        INNER JOIN estadoUsuario ON estadoUsuario.idEstadoUsuario = admon.idEstadoUsuario
+        INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = admon.idTipoUsuario
+        WHERE apellido ILIKE ? OR nombre ILIKE ? OR usuario ILIKE ?
+        ORDER BY apellido';
+        $params = array("%$value%", "%$value%", "%$value%");
+        return Database::getRows($sql, $params);
+    }
+
     public function createRow()
     {
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
@@ -308,6 +321,12 @@ Class Usuarios extends Validator{
                 SET foto = ?, nombre = ?, apellido = ?, genero = ?, correo = ?, fechaNacimiento = ?, telefono = ?, direccion = ?, usuario = ?, idTipoUsuario = ?
                 WHERE idAdmon = ?';
         $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->correo, $this->fechaNacimiento, $this->telefono,$this->direccion, $this->usuario, $this->idTipoUsuario, $this->idAdmon);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deleteRow(){
+        $sql = 'DELETE FROM admon WHERE idAdmon = ?';
+        $params = array($this->idAdmon);
         return Database::executeRow($sql, $params);
     }
 }   
