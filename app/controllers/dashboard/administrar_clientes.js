@@ -41,14 +41,14 @@ function fillTable(dataset){
                     <div class="row justify-c">
                         <div class="col-12 d-flex">
                                             
-                            <a href="#" onclick="openUpdateDialog(${row.idadmon})"data-bs-toggle="modal" data-bs-target="#administrarClientes"
+                            <a href="#" onclick="openUpdateDialog(${row.idcliente})"data-bs-toggle="modal" data-bs-target="#administrarClientes"
                                 class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i>
                             </a>
 
                             <h5 class="mx-1">
                             </h1>
 
-                            <a href="#" onclick="openDeleteDialog(${row.idadmon})" class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i></a>
+                            <a href="#" onclick="openDeleteDialog(${row.idcliente})" class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i></a>
                         </div>
                     </div>
                 </th>
@@ -63,13 +63,11 @@ function fillTable(dataset){
 function openUpdateDialog(id){
     // Se establece el campo de archivo como obligatorio.
      document.getElementById('archivo_usuario').required = false;
-     //Se llama el elemento select
-     fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario',null);
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('idAdmon', id);
+    data.append('idCliente', id);
 
-    fetch(API_USUARIO + 'readOne', {
+    fetch(API_CLIENTE + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -79,7 +77,7 @@ function openUpdateDialog(id){
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('idAdmon').value = response.dataset.idadmon;
+                    document.getElementById('idCliente').value = response.dataset.idcliente;
                     document.getElementById('txtNombre').value = response.dataset.nombre;
                     document.getElementById('txtApellidos').value = response.dataset.apellido;
                     document.getElementById('txtEmail').value = response.dataset.correo;
@@ -88,8 +86,6 @@ function openUpdateDialog(id){
                     document.getElementById('txtTelefono').value = response.dataset.telefono;
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
                     document.getElementById('txtUsuario').value = response.dataset.usuario;
-                    fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario', response.dataset.idtipousuario);
-                    
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -100,4 +96,39 @@ function openUpdateDialog(id){
     }).catch(function (error) {
         console.log(error);
     });
+}
+
+//Método submit del botón del formulario
+document.getElementById('administrarClientes-form').addEventListener('submit',function(event){
+
+    //Evento para prevenir que recargue la página
+    event.preventDefault();
+
+    //Obtener datos
+    fetch(API_CLIENTE + 'update',{
+        method: 'post',
+        body: new FormData(document.getElementById('administrarClientes-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando si la petición fue correcta
+                if(response.status){
+                    readRows(API_CLIENTE)
+                    sweetAlert(1, response.message, closeModal())
+                } else {
+                    sweetAlert(2, response.exception, null)
+                }
+            })
+        } else {
+            console.log(request.status, ' ', request.statusText)
+        }
+    }).catch(function(error){
+        console.log(error)
+    })
+
+})
+
+function closeModal(){
+    $(document.getElementById('administrarClientes')).modal('hide');
 }

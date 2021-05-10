@@ -68,96 +68,73 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
 
                             <form method="post" id="administrarClientes-form">
                                 <!-- Fila de primeros tres apartados -->
-                                <div class="row justify-content-center">
+                                <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
                                     <!-- Columna de información personal -->
                                     <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                        <input class="visually-hidden" type="number" id="idCliente" name="idCliente">
                                         <div class="row">
                                             <!-- Formulario del información personao -->
-                                            <div class="col-12">
-                                                    <div class="mb-3">
-                                                        <label for="nombre" class="form-label">Nombre:</label>
-                                                        <input type="text" class="form-control" id="nombre">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="Apellido" class="form-label">Apellido:</label>
-                                                        <input type="text" class="form-control" id="Apellido">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="Fecha de nacimiento" class="form-label">Fecha de
-                                                            nacimiento:</label>
-                                                        <input type="date" class="form-control" id="Fecha de nacimiento"
-                                                            placeholder="dd/mm/aaaa">
-                                                    </div>
+                                            <div class="col-12 formulario">
+                                                <div class="mb-3">
+                                                    <label for="nombre" class="form-label">Nombre:</label>
+                                                    <input type="text" class="form-control" id="txtNombre" name="txtNombre" Required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="Apellido" class="form-label">Apellido:</label>
+                                                    <input type="text" class="form-control" id="txtApellidos" name="txtApellidos" Required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="Fecha de nacimiento" class="form-label">Fecha de nacimiento:</label>
+                                                    <input type="date" class="form-control" id="txtFechaNacimiento" name="txtFechaNacimiento"
+                                                        placeholder="dd/mm/aaaa" Required>
+                                                </div>
 
-                                                    <div class="mb-3">
-                                                        <label for="Teléfono" class="form-label">Teléfono:</label>
-                                                        <input type="text" class="form-control" id="Teléfono"
-                                                            placeholder="0000-0000">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="Dirección" class="form-label">Dirección:</label>
-                                                        <textarea class="form-control" id="direccion"></textarea>
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <label for="Teléfono" class="form-label">Teléfono:</label>
+                                                    <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="0000-0000" Required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="Dirección" class="form-label">Dirección:</label>
+                                                    <textarea class="form-control" id="txtDireccion" name="txtDireccion" Required></textarea>
+                                                </div>
 
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Género:</label><br>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                            <label class="form-check-label"
-                                                                for="inlineRadio1">Femenino</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                            <label class="form-check-label"
-                                                                for="inlineRadio2">Masculino</label>
-                                                        </div>
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <label for="txtGenero" class="form-label">Género:</label>
+                                                    <select id="txtGenero" name="txtGenero" class="form-select" aria-label="Default select example" Required>
+                                                        <option selected>Seleccionar...</option>
+                                                        <option value="Femenino">Femenino</option>
+                                                        <option value="Masculino">Masculino</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div><br>
                                     <!-- Columna de cuenta -->
                                     <div class="col-lg-4 col-sm-12 col-xs-12">
+
                                         <div class="row">
                                             <!-- Formulario de cuenta -->
-                                            <div class="col-12">
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        <div class="divFotografia"></div>
-                                                        <button class="btn btn-outline-dark" id="btnAgregarFoto"><span
-                                                                class="fas fa-plus"></span></button>
-
-                                                    </div>
-                                                    <div class="mb-3 mt-4">
-                                                        <label for="Correo" class="form-label">Correo:</label>
-                                                        <input type="email" class="form-control" id="Correo"
-                                                            aria-describedby="emailHelp" placeholder="ejemplo@mail.com">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="Usuario" class="form-label">Usuario:</label>
-                                                        <input type="text" class="form-control" id="Usuario">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="cbTipoUsuario" class="form-label">Tipo de
-                                                            Usuario:</label>
-                                                        <select id="cbTipoUsuario" class="form-select"
-                                                            aria-label="Default select example">
-                                                            <option selected>Seleccionar...</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="justify-content-center align-items-center d-flex flex-column mt-4">
-                                                        <button class="btn btn-outline-dark float-center"
-                                                            id="selecciona">Actualizar</button>
-
-                                                        <button class="btn btn-outline-dark mt-2 float-center"
-                                                            id="selecciona">Eliminar</button>
-
-                                                        <button class="btn btn-outline-dark mt-2 float-center"
-                                                            id="selecciona">Reiniciar</button>
-                                                    </div>
+                                            <div class="col-12 formulario">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <!-- <div class="divFotografia"></div>
+                                                    <button class="btn btn-outline-dark" id="btnAgregarFoto"><span
+                                                            class="fas fa-plus"></span></button> -->
+                                                    <div class="divFotografia" id="divFoto"></div>
+                                                    <input id="archivo_usuario" type="file" name="archivo_usuario" accept=".gif, .jpg, .png">
+                                                </div>
+                                                <div class="mb-3 mt-4">
+                                                    <label for="Correo" class="form-label">Correo:</label>
+                                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp"
+                                                        placeholder="ejemplo@mail.com" Required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="Usuario" class="form-label">Usuario:</label>
+                                                    <input type="text" class="form-control" id="txtUsuario" name="txtUsuario" Required>
+                                                </div>
+                                                <div class="justify-content-center align-items-center d-flex mt-5">
+                                                    <button class="btn btn-outline-dark float-center" type='submit' id="selecciona">Actualizar</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
