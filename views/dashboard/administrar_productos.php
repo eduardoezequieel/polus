@@ -23,9 +23,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
             </div><br>
             <!-- Espacio para buscar -->
             <div class="row animate__animated animate__fadeInUp animate__faster">
-                <div class="col-lg-8 formulario2">
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <div class="col-lg-8 formulario2" >
+                    <form class="d-flex" id="search-form">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="search" name="search">
                         <button class="btn btn-outline-dark" type="submit">Buscar</button>
                     </form>
                 </div>
@@ -38,103 +38,14 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                             <tr>
                                 <th scope="col">Foto</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Género</th>
-                                <th scope="col">Tipo de producto</th>
                                 <th scope="col">Precio</th>
+                                <th scope="col">Tipo de producto</th>
+                                <th scope="col">Marca</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <div class="row justify-c ">
-                                        <div class="col-12 d-flex">
-                                            <img src="../../resources/img/maquillaje.jpg" alt="" width=60px height=60px>
-                                        </div>
-                                    </div>
-                                </th>
-                                <td>Short deportiva</td>
-                                <td>Caballero</td>
-                                <td>Ropa-Short</td>
-                                <td>$10.00</td>
-                                <th scope="row">
-                                    <div class="row justify-c ">
-                                        <div class="col-12 d-flex">
-                                            <!-- Button trigger modal -->
-                                            <a href="#" data-toggle="modal" data-target="#administrarProductos"
-                                                class="btn btn-outline-success"><i
-                                                    class="fas fa-edit tamanoBoton"></i></a>
-
-                                            <h5 class="mx-1">
-                                                </h1>
-
-                                            <a href="#" data-toggle="modal" data-target="#administrarProductos"
-                                                class="btn btn-outline-danger"><i
-                                                class="fas fa-trash-alt tamanoBoton"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="row justify-c ">
-                                        <div class="col-12 d-flex">
-                                            <img src="../../resources/img/maquillaje.jpg" alt="" width=60px height=60px >
-                                        </div>
-                                    </div>
-                                </th>
-                                <td>Short deportiva</td>
-                                <td>Caballero</td>
-                                <td>Ropa-Short</td>
-                                <td>$10.00</td>
-                                <th scope="row">
-                                    <div class="row justify-c ">
-                                        <div class="col-12 d-flex">
-                                            <!-- Button trigger modal -->
-                                            <a href="#" data-toggle="modal" data-target="#administrarProductos"
-                                                class="btn btn-outline-success"><i
-                                                    class="fas fa-edit tamanoBoton"></i></a>
-
-                                            <h5 class="mx-1">
-                                                </h1>
-
-                                                <a href="#" data-toggle="modal" data-target="#administrarProductos"
-                                                    class="btn btn-outline-danger"><i
-                                                        class="fas fa-trash-alt tamanoBoton"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="row justify-c ">
-                                        <div class="col-12 d-flex">
-                                            <img src="../../resources/img/maquillaje.jpg" alt="" width=60px height=60px >
-                                        </div>
-                                    </div>
-                                </th>
-                                <td>Short deportiva</td>
-                                <td>Caballero</td>
-                                <td>Ropa-Short</td>
-                                <td>$10.00</td>
-                                <th scope="row">
-                                    <div class="row justify-c ">
-                                        <div class="col-12 d-flex">
-                                            <!-- Button trigger modal -->
-                                            <a href="#" data-toggle="modal" data-target="#administrarProductos"
-                                                class="btn btn-outline-success"><i
-                                                    class="fas fa-edit tamanoBoton"></i></a>
-
-                                            <h5 class="mx-1">
-                                                </h1>
-
-                                                <a href="#" data-toggle="modal" data-target="#administrarProductos"
-                                                    class="btn btn-outline-danger"><i
-                                                        class="fas fa-trash-alt tamanoBoton"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
+                        <tbody id="tbody-rows">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -151,7 +62,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                             <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
                                     class="fas fa-info-circle mx-2"></span>Administrar Productos</h5>
                             <!-- Boton para Cerrar -->
-                            <button type="button" class="btn fas fa-times" data-dismiss="modal" aria-label="">
+                            <button type="button" class="btn fas fa-times" data-bs-dismiss="modal" aria-label="">
 
                             </button>
                         </div>
@@ -159,73 +70,48 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                         <!-- Contenido del Modal -->
                         <div class="textoModal px-3 pb-4 mt-2">
 
-                            <!-- Inicio del contenido-->
-                            <div class="row">
-                                <!-- Columna de la información del producto-->
-                                <div class="col-lg-12 col-sm-12 col-xs-12">
-                                    <p class="apartado">Información del producto:</p>
-                                    <img src="../../resources/img/dashboard_img/separator.png"
-                                        class="img-fluid imagenSeparator">
-                                    <div class="row">
-                                        <!-- Columna 1 de la información del producto-->
-                                        <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 formulario">
-                                            <form>
-                                                <div class="mb-3">
-                                                    <label for="nombre" class="form-label">Nombre:</label>
-                                                    <input type="text" class="form-control" id="nombre">
-                                                </div><br>
-                                                <div class="mb-3 foto">
-                                                    <img src="../../resources/img/dashboard_img/imagen.png"
-                                                        class="img-fluid imagenUsuario1">
-                                                    <button class="btn btn-outline-dark" id="agregarFoto">Agregar
-                                                        foto</button>
-                                                </div><br>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Género:</label><br>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                        <label class="form-check-label" for="inlineRadio1">Dama</label>
+                            <form method="post" id='administrarProducto-form'>
+                                <!-- Inicio del contenido-->
+                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                <input class="visually-hidden" type="number" id="idProducto" name="idProducto">
+                                <div class="row animate__animated animate__fadeInUp animate__faster">
+                                    <!-- Columna de la información del producto-->
+                                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                                        <p class="apartado">Información del producto:</p>
+                                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
+                                        <div class="row">
+                                            <!-- Columna 1 de la información del producto-->
+                                            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 formulario">
+                                                    <div class="mb-3">
+                                                        <label for="nombre" class="form-label">Nombre:</label>
+                                                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" Required>
+                                                    </div><br>
+                                                    <div class="mb-3 foto">
+                                                        <img src="../../resources/img/dashboard_img/imagen.png"
+                                                            class="img-fluid imagenUsuario1">
+                                                        <input id="archivo_producto" type="file" name="archivo_producto" accept=".gif, .jpg, .png">
+                                                    </div><br>
+                                                    <div class="mb-3">
+                                                        <label for="cbMarca" class="form-label">Marca:</label>
+                                                        <select id="cbMarca" name="cbMarca" class="form-select" aria-label="Default select example" Required>
+                                                        </select>
                                                     </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                        <label class="form-check-label"
-                                                            for="inlineRadio2">Caballero</label>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <!-- Columna 2 de la información del producto-->
-                                        <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 formulario">
-                                            <div class="mb-3">
-                                                <label for="Descripciónn" class="form-label">Descripción:</label>
-                                                <textarea class="form-control" id="Descripción"></textarea>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="Tipo de productos" class="form-label">Tipo de
-                                                    productos:</label>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-dark dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton1" data-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                        Seleccionar...
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><a class="dropdown-item" href="#">Ropa-Short</a></li>
-                                                        <li><a class="dropdown-item" href="#">Maquillaje-Sombras</a>
-                                                        </li>
-                                                        <li><a class="dropdown-item" href="#">Cuidado
-                                                                Facial-Mascarillas</a></li>
-                                                    </ul>
+                                            <!-- Columna 2 de la información del producto-->
+                                            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 formulario">
+                                                <div class="mb-3">
+                                                    <label for="Descripciónn" class="form-label">Descripción:</label>
+                                                    <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" Required></textarea>
                                                 </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="precio" class="form-label">Precio:</label>
+                                                <div class="mb-3">
+                                                    <label for="cbSubcategoria" class="form-label">Tipo de producto:</label>
+                                                    <select id="cbSubcategoria" name="cbSubcategoria" class="form-select" aria-label="Default select example">
+                                                    </select>
+                                                </div>
+                                                <label for="precio" class="form-label">Precio:</label><br>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">$</span>
-                                                    <input type="text" class="form-control" placeholder="0.00">
-                                                </div>
+                                                    <input type="text" class="form-control" placeholder="0.00" id="txtPrecio" name="txtPrecio" Required></div><br>
                                                 <div class="row">
                                                     <!-- Columna de opciones -->
                                                     <div class="col-12">
@@ -235,14 +121,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                                         <!-- Botones -->
                                                         <div class="col-12 formulario1">
                                                             <div class="mb-3">
-                                                                <label for="selecciona"
-                                                                    class="form-label">Selecciona:</label><br>
-                                                                <button class="btn btn-outline-dark"
-                                                                    id="selecciona">Actualizar</button>
-                                                                <button class="btn btn-outline-dark"
-                                                                    id="selecciona">Supender</button><br><br>
-                                                                <button class="btn btn-outline-dark"
-                                                                    id="selecciona1">Activar</button>
+                                                                <label for="selecciona" class="form-label">Selecciona:</label><br>
+                                                                <button type="submit" class="btn btn-outline-dark active" id="selecciona">Actualizar</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -251,7 +131,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                             <!-- Fin del Contenido del Modal -->
                         </div>
                     </div>
@@ -270,8 +150,5 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
 <!-- Movimiento sidebar -->
 <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement();
+    dashboard_Page::sidebarTemplateMovement('administrar_productos.js');
     ?>
-</body>
-
-</html>
