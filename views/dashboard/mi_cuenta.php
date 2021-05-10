@@ -121,7 +121,5 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
     <!-- Movimiento sidebar -->
     <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement();
+    dashboard_Page::sidebarTemplateMovement('mi_cuenta.js');
     ?>
-   </body>
-</html>

@@ -15,6 +15,14 @@ if(isset($_GET['action'])){
     if(isset($_SESSION['idAdmon'])){
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
+            case 'logOut':
+                if (session_destroy()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Sesión eliminada correctamente';
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+                }
+                break;
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {
                     $result['status'] = 1;

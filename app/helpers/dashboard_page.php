@@ -1,6 +1,7 @@
 <?php
     class dashboard_Page{
         public static function sidebarTemplate($titulo, $css){
+            session_start();
             print('
                 
             <!DOCTYPE html>
@@ -104,12 +105,14 @@
                 $scripts = '
                     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                     <script type="text/javascript" src="../../app/helpers/components.js"></script>
+                    <script type="text/javascript" src="../../app/controllers/dashboard/mi_cuenta.js"></script>
                     <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
                 ';
             } else {
                 $scripts = '
                     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                     <script type="text/javascript" src="../../app/helpers/components.js"></script>
+                    <script type="text/javascript" src="../../app/controllers/dashboard/mi_cuenta.js"></script>
                     <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
                 ';
             }
@@ -160,7 +163,7 @@
                                 </button>
                                 <ul class="dropdown-menu  animate__animated animate__bounceIn m-5" aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="mi_cuenta.php">Mi Cuenta</a></li>
-                                    <li><a class="dropdown-item" href="index.php">Cerrar Sesión</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar Sesión</a></li>
                                 </ul>
                             </div>  
                         </div>
