@@ -132,3 +132,22 @@ document.getElementById('administrarClientes-form').addEventListener('submit',fu
 function closeModal(){
     $(document.getElementById('administrarClientes')).modal('hide');
 }
+
+//Buscar
+document.getElementById('search-form').addEventListener('submit', function(event){
+
+    //Evento para evitar que recargue la pagina
+    event.preventDefault();
+
+    searchRows(API_CLIENTE, 'search-form')
+})
+
+//Eliminar
+function openDeleteDialog(id){
+    //Se define el objeto con los datos del registro seleccionado
+    const data = new FormData();
+    data.append('idCliente', id);
+
+    //Se llama a la función para eliminar
+    confirmDelete(API_CLIENTE, data)
+}

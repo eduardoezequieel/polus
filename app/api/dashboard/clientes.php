@@ -47,6 +47,26 @@
                     }
                     break;
                 case 'search':
+                    $_POST = $clientes->validateForm($_POST);
+                    if($_POST['search'] != ''){
+                        if($result['dataset'] = $clientes->searchRows($_POST['search'])){
+                            $result['status'] = 1;
+                            $row = count($result['dataset']);
+                            if($row > 0){
+                                $result['message'] = 'Se han encontrado '.$row .' coincidencias';
+                            } else{
+                                $result['message'] = 'Se ha encontrado una coincidencia';
+                            }
+                        } else{
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No hay coincidencias';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Campo vacio';
+                    }
                     break;
                 case 'update':
                     $_POST = $clientes->validateForm($_POST);
@@ -119,6 +139,25 @@
                     }
                     break;
                 case 'delete':
+                    $_POST = $clientes->validateForm($_POST);
+                    if($clientes->setId($_POST['idCliente'])){
+                        if($data = $clientes->readOne()){
+                            if($clientes->deleteRow()){
+                                if($clientes->deleteFile($clientes->getRuta(), $data['foto'])){
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Cliente eliminado correctamente';
+                                } else{
+                                    $result['exception'] = 'Se borró el registro pero no la imagen';
+                                }
+                            } else{
+                                $result['exception'] = Database::getException();
+                            }
+                        } else{
+                            $result['exception'] = 'Cliente no existente';
+                        }
+                    } else {    
+                        $result['exception'] = 'Cliente seleccionado incorrecto';
+                    }
                     break;
                 default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
