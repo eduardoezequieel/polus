@@ -110,7 +110,7 @@ document.getElementById('administrarProducto-form').addEventListener('submit', f
                     //cargando de nuevo la tabla
                     readRows(API_PRODUCTO);
                     //Mandando mensaje de exito
-                    sweetAlert(1, response.message, closeModal());
+                    sweetAlert(1, response.message, closeModal('administrarProductos'));
                 } else{
                     sweetAlert(4, response.exception, null);
                 }
@@ -122,10 +122,6 @@ document.getElementById('administrarProducto-form').addEventListener('submit', f
         console.log(error);
     })
 })
-
-function closeModal(){
-    $(document.getElementById('administrarProductos')).modal('hide');
-}
 
 //Eliminar
 function openDeleteDialog(id){

@@ -104,7 +104,7 @@ document.getElementById('administrarUsuario-form').addEventListener('submit', fu
                     //cargando de nuevo la tabla
                     readRows(API_USUARIO);
                     //Mandando mensaje de exito
-                    sweetAlert(1, response.message, closeModal());
+                    sweetAlert(1, response.message, closeModal('administrarUsuarios'));
                 } else{
                     sweetAlert(4, response.exception, null);
                 }
@@ -117,9 +117,6 @@ document.getElementById('administrarUsuario-form').addEventListener('submit', fu
     })
 })
 
-function closeModal(){
-    $(document.getElementById('administrarUsuarios')).modal('hide');
-}
 
 
 //Buscar

@@ -5,7 +5,7 @@ const ENDPOINT_SUB = '../../app/api/dashboard/productos.php?action=readAllSub';
 
 //Evento cargada la pagina
 document.addEventListener('DOMContentLoaded', function(){
-    clearForm();
+    clearForm('agregarProducto-form');
     fillSelect(ENDPOINT_MARCA,'cbMarca',null);
     fillSelect(ENDPOINT_SUB,'cbSubcategoria',null);
 })
@@ -26,7 +26,7 @@ document.getElementById('agregarProducto-form').addEventListener('submit',functi
             request.json().then(function(response){
                 //Verificando respuesta satisfactoria
                 if(response.status){
-                    sweetAlert(1, response.message, clearForm());
+                    sweetAlert(1, response.message, clearForm('agregarProducto-form'));
                 } else{
                     sweetAlert(4, response.exception, null);
                 }
@@ -45,10 +45,5 @@ document.getElementById('limpiar').addEventListener('click', function(event){
     event.preventDefault();
     
     //Limpiando formulario
-    clearForm();
+    clearForm('agregarProducto-form');
 })
-
-
-function clearForm(){
-    document.getElementById('agregarProducto-form').reset();
-}

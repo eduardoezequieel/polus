@@ -4,7 +4,7 @@ const ENDPOINT_TIPOS = '../../app/api/dashboard/usuarios.php?action=readTipoUsua
 
 //Evento que se ejecuta cuando el dom haya cargado
 document.addEventListener('DOMContentLoaded', function(){
-    document.getElementById('agregarUsuario-form').reset();
+    clearForm('agregarUsuario-form')
     fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario', null);
 });
 
@@ -23,7 +23,7 @@ document.getElementById('agregarUsuario-form').addEventListener('submit', functi
             request.json().then(function(response){
                 //Verificando respuesta satisfactoria
                 if(response.status){
-                    sweetAlert(1, response.message, clearForm());
+                    sweetAlert(1, response.message, clearForm('agregarUsuario-form'));
                 } else{
                     sweetAlert(4, response.exception, null);
                 }
@@ -35,7 +35,3 @@ document.getElementById('agregarUsuario-form').addEventListener('submit', functi
         console.log(error);
     });
 })
-
-function clearForm(){
-    document.getElementById('agregarUsuario-form').reset();
-}

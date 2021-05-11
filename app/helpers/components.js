@@ -73,7 +73,7 @@ function searchRows(api, form) {
 *
 *   Retorno: ninguno.
 */
-function saveRow(api, action, form, modal) {
+function saveRow(api, action, form) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -85,7 +85,7 @@ function saveRow(api, action, form, modal) {
                 if (response.status) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
                     readRows(api);
-                    sweetAlert(1, response.message, null);
+                    sweetAlert(1, response.message, closeModal('inventario'));
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -365,4 +365,17 @@ function logOut() {
             sweetAlert(4, 'Puede continuar con la sesión', null);
         }
     });
+}
+
+function openModal(form){
+    $(document.getElementById(form)).modal('show');
+}
+
+
+function closeModal(form){
+    $(document.getElementById(form)).modal('hide');
+}
+
+function clearForm(form){
+    document.getElementById(form).reset();
 }

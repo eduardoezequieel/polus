@@ -115,7 +115,7 @@ document.getElementById('administrarClientes-form').addEventListener('submit',fu
                 //Verificando si la petición fue correcta
                 if(response.status){
                     readRows(API_CLIENTE)
-                    sweetAlert(1, response.message, closeModal())
+                    sweetAlert(1, response.message, closeModal('administrarClientes'))
                 } else {
                     sweetAlert(2, response.exception, null)
                 }
@@ -128,10 +128,6 @@ document.getElementById('administrarClientes-form').addEventListener('submit',fu
     })
 
 })
-
-function closeModal(){
-    $(document.getElementById('administrarClientes')).modal('hide');
-}
 
 //Buscar
 document.getElementById('search-form').addEventListener('submit', function(event){
