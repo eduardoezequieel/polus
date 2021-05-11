@@ -31,6 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+//Metodo que carga el gestor de archivos para seleccionar imagenes
+document.getElementById('btnAgregarFoto').addEventListener('click', function(event){
+    //Se evita recargar la pagina
+    event.preventDefault();
+
+    //Se hace click al input invisible
+    document.getElementById('archivo_usuario').click();
+});
+
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de registrar.
 document.getElementById('primerUso-form').addEventListener('submit', function (event) {
 
@@ -59,3 +68,4 @@ document.getElementById('primerUso-form').addEventListener('submit', function (e
     });
 
 });
+

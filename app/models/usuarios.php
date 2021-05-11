@@ -287,11 +287,11 @@ Class Usuarios extends Validator{
 
     //Métodos para obtener valores
     public function readAll(){
-        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, estadoUsuario, tipoUsuario
+        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contrasena, estadoUsuario, tipoUsuario
         FROM admon
         INNER JOIN estadoUsuario ON estadoUsuario.idEstadoUsuario = admon.idEstadoUsuario
         INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = admon.idTipoUsuario
-        ORDER BY apellido';
+        WHERE idAdmon = 1 ORDER BY apellido';
         $params = null;
         return Database::getRows($sql, $params);
     }

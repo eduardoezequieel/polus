@@ -41,7 +41,7 @@
       <form method="post" id="primerUso-form" enctype="multipart/form-data">
         <div class="justify-content-center row animate__animated animate__fadeInUp animate__faster">
           <!-- Columna 1 -->
-          <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center paddingLados">
+          <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados">
             <div class="form-group mb-2">
               <label for="txtNombre" class="mb-2 texto">Nombres:</label>
               <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtNombre"
@@ -64,8 +64,7 @@
                 id="txtContraseña" name="txtContraseña" placeholder="Contraseña">
             </div>
           </div>
-          <div
-            class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
+          <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
             <div class="form-group mb-2">
               <label for="txtApellidos" class="mb-2 texto">Apellidos:</label>
               <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtApellidos"
@@ -92,8 +91,7 @@
               </div>
             </div>
           </div>
-          <div
-            class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
+          <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
             <div class="form-group mb-2">
               <label for="txtTelefono" class="mb-2 texto">Teléfono:</label>
               <input type="text" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="txtTelefono"
@@ -115,22 +113,19 @@
               </select>
             </div>
           </div>
-          <div
-            class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
-            <!-- 
-              <div class="d-flex flex-column justify-content-center align-items-center mb-3">
-                <div class="divFotografia"></div>
-                <button class="btn btn-outline-dark" id="btnAgregarFoto"><span class="fas fa-plus"></span></button>
-              </div> -->
-            <div class="">
+          <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
+            <div class="d-flex flex-column justify-content-center align-items-center">
               <div class="divFotografia"></div>
-              <input id="archivo_usuario" type="file" name="archivo_usuario" accept=".gif, .jpg, .png">
+              <div id="btnAgregarFoto">
+                <button class="btn btn-outline-dark" id="botonFoto"><span class="fas fa-plus"></span></button>
+              </div>
+              <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario" accept=".gif, .jpg, .png">
             </div>
 
           </div>
         </div>
 
-        <div class="row justify-content-cente animate__animated animate__fadeInUp animate__faster m-4">
+        <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster m-4">
           <div class="col-12 d-flex align-items-center justify-content-center">
             <button type="submit" class="btn boton my-2">Crear Usuario</button>
           </div>
