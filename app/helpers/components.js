@@ -9,6 +9,48 @@
 *
 *   Retorno: ninguno.
 */
+
+function botonExaminar(idBoton, idInputExaminar){
+    document.getElementById(idBoton).addEventListener('click', function(event){
+        //Se evita recargar la pagina
+        event.preventDefault();
+    
+        //Se hace click al input invisible
+        document.getElementById(idInputExaminar).click();
+    });
+}
+
+function previewPicture(idInputExaminar, idDivFoto){
+    document.getElementById(idInputExaminar).onchange=function(e){
+
+        //variable creada para obtener la URL del archivo a cargar
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+    
+        //Se ejecuta al obtener una URL
+        reader.onload=function(){
+            //Parte de la pagina web en donde se incrustara la imagen
+            let preview=document.getElementById(idDivFoto);
+    
+            //Se crea el elemento IMG que contendra la preview
+            image = document.createElement('img');
+    
+            //Se le asigna la ruta al elemento creado
+            image.src = reader.result;
+    
+            //Se aplican las respectivas clases para que la preview aparezca estilizada
+            image.className = 'rounded-circle fotografiaPerfil';
+    
+            //Se quita lo que este dentro del div (en caso de que exista otra imagen)
+            preview.innerHTML = ' ';
+    
+            //Se agrega el elemento recien creado
+            preview.append(image);
+        }
+    }
+}
+
+
 function readRows(api) {
     fetch(api + 'readAll', {
         method: 'get'

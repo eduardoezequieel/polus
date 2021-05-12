@@ -115,7 +115,11 @@
           </div>
           <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
             <div class="d-flex flex-column justify-content-center align-items-center">
-              <div class="divFotografia"></div>
+              <div class="bordeDivFotografia">
+                <div class="divFotografia" id="divFoto">
+                
+                </div>
+              </div>
               <div id="btnAgregarFoto">
                 <button class="btn btn-outline-dark" id="botonFoto"><span class="fas fa-plus"></span></button>
               </div>

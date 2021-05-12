@@ -292,7 +292,7 @@ Class Usuarios extends Validator{
         FROM admon
         INNER JOIN estadoUsuario ON estadoUsuario.idEstadoUsuario = admon.idEstadoUsuario
         INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = admon.idTipoUsuario
-        ORDER BY apellido';
+        WHERE idAdmon = 1 ORDER BY apellido';
         $params = null;
         return Database::getRows($sql, $params);
     }
