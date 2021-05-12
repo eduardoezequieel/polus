@@ -210,11 +210,12 @@ Class Usuarios extends Validator{
     //Métodos para administrar cuenta del usuario 
     public function checkUser($alias)
     {
-        $sql = 'SELECT idAdmon FROM admon WHERE usuario = ?';
+        $sql = 'SELECT idAdmon,foto FROM admon WHERE usuario = ?';
         $params = array($alias);
         if ($data = Database::getRow($sql, $params)) {
             $this->idAdmon = $data['idadmon'];
             $this->usuario = $alias;
+            $this->foto= $data['foto'];
             return true;
         } else {
             return false;
@@ -287,11 +288,11 @@ Class Usuarios extends Validator{
 
     //Métodos para obtener valores
     public function readAll(){
-        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contrasena, estadoUsuario, tipoUsuario
+        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, estadoUsuario, tipoUsuario
         FROM admon
         INNER JOIN estadoUsuario ON estadoUsuario.idEstadoUsuario = admon.idEstadoUsuario
         INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = admon.idTipoUsuario
-        WHERE idAdmon = 1 ORDER BY apellido';
+        ORDER BY apellido';
         $params = null;
         return Database::getRows($sql, $params);
     }

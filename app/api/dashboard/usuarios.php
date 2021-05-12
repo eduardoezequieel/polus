@@ -351,6 +351,7 @@ if(isset($_GET['action'])){
                         $result['message'] = 'Sesión iniciada correctamente';
                         $_SESSION['idAdmon'] = $usuarios->getId();
                         $_SESSION['usuario'] = $usuarios->getUsuario();
+                        $_SESSION['foto'] = $usuarios->getFoto();
                     } else {
                         $result['exception'] = 'La contraseña es incorrecta';
                     }

@@ -157,8 +157,8 @@
                         <div class="col-9 d-flex justify-content-end align-items-right">
                             <div class="dropdown">
                                 <button class="btn d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../resources/img/94727019_1061011630965244_4502845736055996416_o.jpg" id="fotoPerfil" alt="" class="img-fluid rounded-circle" width="40px">
-                                        <h5 class="text-center mx-3 paddingUsername">Eduardo Rivera</h5>
+                                        <img src="../../resources/img/dashboard_img/admon_fotos/' . $_SESSION['foto'] . '" id="fotoPerfil" alt="" class="img-fluid rounded-circle" width="40px">
+                                        <h5 class="text-center mx-3 paddingUsername">' . $_SESSION['usuario'] . '</h5>
                                         <i class="fas fa-caret-down paddingFlecha"></i>
                                 </button>
                                 <ul class="dropdown-menu  animate__animated animate__bounceIn m-5" aria-labelledby="dropdownMenuButton1">
