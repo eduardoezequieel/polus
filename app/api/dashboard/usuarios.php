@@ -319,7 +319,7 @@ if(isset($_GET['action'])){
                                                         $result['exception'] = 'Fecha de nacimiento faltante';
                                                     }
                                                 } else {
-                                                    $result['exception'] = $result->getImageError();
+                                                    $result['exception'] = $usuarios->getImageError();
                                                 }
                                             } else {
                                                 $result['exception'] = 'Seleccione una imagen';

@@ -94,7 +94,7 @@
                                                                             $result['exception'] = Database::getException();
                                                                         }
                                                                     } else {
-                                                                        $result['exception'] = $result->getImageError();
+                                                                        $result['exception'] = $clientes->getImageError();
                                                                     }
                                                                 } else {
                                                                     if ($clientes->updateRow($data['foto'])) {

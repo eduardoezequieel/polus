@@ -112,7 +112,7 @@ if(isset($_GET['action'])){
                                                     $result['exception'] = Database::getException();
                                                 }
                                             } else {
-                                                $result['exception'] = $result->getImageError();
+                                                $result['exception'] = $productos->getImageError();
                                             }
                                         } else {
                                             $result['exception'] = 'Seleccione una imagen';
