@@ -119,12 +119,18 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                         <div class="row">
                                             <!-- Formulario de cuenta -->
                                             <div class="col-12 formulario">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <!-- <div class="divFotografia"></div>
-                                                    <button class="btn btn-outline-dark" id="btnAgregarFoto"><span
-                                                            class="fas fa-plus"></span></button> -->
-                                                    <div class="divFotografia" id="divFoto"></div>
-                                                    <input id="archivo_usuario" type="file" name="archivo_usuario" accept=".gif, .jpg, .png">
+                                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                                    <div class="bordeDivFotografia">
+                                                        <div class="divFotografia" id="divFoto">
+
+                                                        </div>
+                                                    </div>
+                                                    <div id="btnAgregarFoto" class="mt-4">
+                                                        <button class="btn btn-outline-dark" id="botonFoto"><span
+                                                                class="fas fa-plus"></span></button>
+                                                    </div>
+                                                    <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario"
+                                                        accept=".gif, .jpg, .png">
                                                 </div>
                                                 <div class="mb-3 mt-4">
                                                     <label for="Correo" class="form-label">Correo:</label>

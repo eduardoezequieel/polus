@@ -27,6 +27,7 @@
                 <link rel="stylesheet" href="../../resources/css/dashboard_page_estilos.css">
          
                 <link rel="stylesheet" href="../../resources/css/'.$css.'">
+                <script src="https://kit.fontawesome.com/43634cb7dc.js" crossorigin="anonymous"></script>
                 
             
                 

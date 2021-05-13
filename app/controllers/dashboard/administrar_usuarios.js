@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function(){
     fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario',null);
 })
 
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto', 'archivo_usuario');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPicture('archivo_usuario','divFoto');
+
 //Llenado de tabla
 function fillTable(dataset){
     let content = '';

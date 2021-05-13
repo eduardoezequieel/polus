@@ -71,7 +71,7 @@ Class Usuarios extends Validator{
 
     public function setFoto($file)
     {
-        if ($this->validateImageFile($file, 500, 500)) {
+        if ($this->validateImageFile($file, 2000, 2000)) {
             $this->foto = $this->getImageName();
             return true;
         } else {
@@ -292,7 +292,7 @@ Class Usuarios extends Validator{
         FROM admon
         INNER JOIN estadoUsuario ON estadoUsuario.idEstadoUsuario = admon.idEstadoUsuario
         INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = admon.idTipoUsuario
-        WHERE idAdmon = 1 ORDER BY apellido';
+        ORDER BY apellido';
         $params = null;
         return Database::getRows($sql, $params);
     }

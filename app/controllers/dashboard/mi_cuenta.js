@@ -33,7 +33,7 @@ function logOut() {
                 console.log(error);
             });
         } else {
-            sweetAlert(4, 'Puede continuar con la sesión', null);
+            //sweetAlert(4, 'Puede continuar con la sesión', null);
         }
     });
 }
