@@ -45,67 +45,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','marca_privado_estilos.css')
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Distribuidora los heroes </td>
-                                <th scope="row">
-                                    <div class="row justify-c ">
-                                        <div class="col-12 d-flex">
-                                            <!-- Button trigger modal -->
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#administrarMarcas"
-                                                class="btn btn-outline-success"><i
-                                                    class="fas fa-edit tamanoBoton"></i></a>
-
-                                            <h5 class="mx-1">
-                                                </h1>
-
-                                                <a href="#" data--bs-toggle="modal"
-                                                    data-bs-target="#administrarInventario"
-                                                    class="btn btn-outline-danger"><i
-                                                        class="fas fa-trash-alt tamanoBoton"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <td>Waves bracelet</td>
-                            <th scope="row">
-                                <div class="row justify-c ">
-                                    <div class="col-12 d-flex">
-                                        <!-- Button trigger modal -->
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#administrarMarcas"
-                                            class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i></a>
-
-                                        <h5 class="mx-1">
-                                            </h1>
-
-                                            <a href="#" data--bs-toggle="modal" data-bs-target="#administrarInventario"
-                                                class="btn btn-outline-danger"><i
-                                                    class="fas fa-trash-alt tamanoBoton"></i></a>
-                                    </div>
-                                </div>
-                            </th>
-                            </tr>
-                            <tr>
-                                <td>TLALI</td>
-                                <th scope="row">
-                                    <div class="row justify-c ">
-                                        <div class="col-12 d-flex">
-                                            <!-- Button trigger modal -->
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#administrarMarcas"
-                                                class="btn btn-outline-success"><i
-                                                    class="fas fa-edit tamanoBoton"></i></a>
-
-                                            <h5 class="mx-1">
-                                                </h1>
-
-                                                <a href="#" data--bs-toggle="modal"
-                                                    data-bs-target="#administrarInventario"
-                                                    class="btn btn-outline-danger"><i
-                                                        class="fas fa-trash-alt tamanoBoton"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
+                        <tbody id="tbody-rows">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -221,7 +162,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','marca_privado_estilos.css')
 <!-- Movimiento sidebar -->
 <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement();
+    dashboard_Page::sidebarTemplateMovement("marcas.js");
     ?>
 </body>
 
