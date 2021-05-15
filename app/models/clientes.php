@@ -282,7 +282,7 @@
         public function readOne()
         {
             $sql = 'SELECT idCliente, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario
-            FROM cliente
+            FROM cliente 
             WHERE idCliente = ?';
             $params = array($this->idCliente);
             return Database::getRow($sql, $params);

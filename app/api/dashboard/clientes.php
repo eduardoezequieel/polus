@@ -32,19 +32,19 @@
                     break;
                 case 'readOne':
                     $_POST = $clientes->validateForm($_POST);
-                    if($clientes->setId($_POST['idCliente'])){
-                        if($result['dataset'] = $clientes->readOne()){
-                            $result['status'] = 1;
-                        } else{
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
-                            } else {
-                                $result['exception'] = 'Cliente inexistente';
+                        if($clientes->setId($_POST['idCliente'])){
+                            if($result['dataset'] = $clientes->readOne()){
+                                $result['status'] = 1;
+                            } else{
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'Cliente inexistente';
+                                }
                             }
+                        } else{
+                            $result['exception'] = 'Cliente seleccionado incorrecto';
                         }
-                    } else{
-                        $result['exception'] = 'Cliente seleccionado incorrecto';
-                    }
                     break;
                 case 'search':
                     $_POST = $clientes->validateForm($_POST);

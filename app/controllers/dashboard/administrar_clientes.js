@@ -64,7 +64,7 @@ function openUpdateDialog(id){
     // Se establece el campo de archivo como obligatorio.
      document.getElementById('archivo_usuario').required = false;
     // Se define un objeto con los datos del registro seleccionado.
-    const data = new FormData();
+    const data = new FormData(); 
     data.append('idCliente', id);
 
     fetch(API_CLIENTE + 'readOne', {
