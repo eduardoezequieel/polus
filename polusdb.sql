@@ -143,3 +143,8 @@ UPDATE marca SET idEstadoMarca = 1
 ALTER TABLE marca ADD COLUMN idEstadoMarca INTEGER NULL REFERENCES estadoMarca(idEstadoMarca);
 ALTER TABLE admon ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);
 ALTER TABLE admon ALTER COLUMN contraseña TYPE character varying(60) USING CAST(contraseña AS character varying);
+
+--Cambios 15/5/2021
+
+UPDATE estadoPedido SET estadopedido = 'Cancelado' WHERE idestadopedido = 3;
+INSERT INTO estadoPedido(estadopedido) VALUES ('En proceso');
