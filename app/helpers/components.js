@@ -60,7 +60,7 @@ function previewSavePicture(idDivFoto, name, foto){
             ruta = '../../resources/img/dashboard_img/cliente_fotos/'
             break;
         case 3:
-            ruta = '../../resources/img/dashboard_img/productos_fotos/';
+            ruta = '../../resources/img/dashboard_img/producto_fotos/';
             break;
         default:
             break;

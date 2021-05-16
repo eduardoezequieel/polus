@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', function(){
     fillSelect(ENDPOINT_SUB,'cbSubcategoria',null);
 })
 
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto', 'archivo_producto');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPicture('archivo_producto','divFoto');
+
 //Llenado de tabla
 function fillTable(dataset){
     let content = '';
@@ -81,6 +87,7 @@ function openUpdateDialog(id){
                     document.getElementById('txtPrecio').value = response.dataset.precio;
                     fillSelect(ENDPOINT_SUB, 'cbSubcategoria', response.dataset.idsubcategoria);
                     fillSelect(ENDPOINT_MARCA, 'cbMarca', response.dataset.idmarca);
+                    previewSavePicture('divFoto', response.dataset.imagenprincipal,3);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -131,3 +138,5 @@ function openDeleteDialog(id){
     // Se llama a la función que elimina un registro.
     confirmDelete(API_PRODUCTO, data);
 }
+
+restartSearch('btnReiniciar', API_PRODUCTO);

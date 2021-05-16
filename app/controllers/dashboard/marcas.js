@@ -141,4 +141,4 @@ document.getElementById('administrarMarcas-form').addEventListener('submit', fun
         console.log(error);
     });
 });
-
+restartSearch('btnReiniciar', API_MARCAS);

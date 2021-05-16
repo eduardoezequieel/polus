@@ -26,7 +26,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                 <div class="col-lg-8 formulario2" >
                     <form class="d-flex" id="search-form">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="search" name="search">
-                        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark me-3" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                     </form>
                 </div>
             </div><br><br>
@@ -87,9 +88,17 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                                         <input type="text" class="form-control" id="txtNombre" name="txtNombre" Required>
                                                     </div><br>
                                                     <div class="mb-3 foto">
-                                                        <img src="../../resources/img/dashboard_img/imagen.png"
-                                                            class="img-fluid imagenUsuario1">
-                                                        <input id="archivo_producto" type="file" name="archivo_producto" accept=".gif, .jpg, .png">
+                                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                                            <div class="bordeDivFotografia">
+                                                                <div class="divFotografia" id="divFoto">
+
+                                                                </div>
+                                                            </div>
+                                                            <div id="btnAgregarFoto" class="mt-4">
+                                                                <button class="btn btn-outline-dark" id="botonFoto"><span class="fas fa-plus"></span></button>
+                                                            </div>
+                                                            <input id="archivo_producto" type="file" class="d-none" name="archivo_producto" accept=".gif, .jpg, .png">
+                                                        </div>
                                                     </div><br>
                                                     <div class="mb-3">
                                                         <label for="cbMarca" class="form-label">Marca:</label>

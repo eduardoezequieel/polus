@@ -79,7 +79,7 @@ function openUpdateDialog(id){
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
                     document.getElementById('txtUsuario').value = response.dataset.usuario;
                     fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario', response.dataset.idtipousuario);
-                    
+                    previewSavePicture('divFoto', response.dataset.foto,1);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -142,3 +142,5 @@ function openDeleteDialog(id){
     // Se llama a la función que elimina un registro.
     confirmDelete(API_USUARIO, data);
 }
+
+restartSearch('btnReiniciar', API_USUARIO);

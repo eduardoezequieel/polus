@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', function(){
     fillSelect(ENDPOINT_SUB,'cbSubcategoria',null);
 })
 
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto', 'archivo_producto');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPicture('archivo_producto','divFoto');
+
 document.getElementById('agregarProducto-form').addEventListener('submit',function(event){
 
     //Evento para evitar que recargue la pagina
@@ -26,6 +32,7 @@ document.getElementById('agregarProducto-form').addEventListener('submit',functi
             request.json().then(function(response){
                 //Verificando respuesta satisfactoria
                 if(response.status){
+                    previewSavePicture('divFoto', '',0);
                     sweetAlert(1, response.message, clearForm('agregarProducto-form'));
                 } else{
                     sweetAlert(4, response.exception, null);
@@ -46,4 +53,8 @@ document.getElementById('limpiar').addEventListener('click', function(event){
     
     //Limpiando formulario
     clearForm('agregarProducto-form');
+    previewSavePicture('divFoto', '',0);
 })
+
+
+   

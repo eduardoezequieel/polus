@@ -23,9 +23,10 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','marca_privado_estilos.css')
             <!-- Espacio para buscar -->
             <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
                 <div class="col-12 d-flex justify-content-center">
-                    <form class="d-flex w-50" id='search-form' name='search-form'>
+                    <form class="d-flex" id="search-form" name="search-form">
                         <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar..." aria-label="Search">
-                        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark me-3" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                     </form>
                 </div>
                 <div class="col-12 justify-content-center d-flex mt-4">

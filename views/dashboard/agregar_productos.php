@@ -36,9 +36,19 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                         <input type="text" class="form-control" id="txtNombre" name="txtNombre" Required>
                                     </div><br>
                                     <div class="mb-3 foto">
-                                        <img src="../../resources/img/dashboard_img/imagen.png"
-                                            class="img-fluid imagenUsuario1">
-                                        <input id="archivo_producto" type="file" name="archivo_producto" accept=".gif, .jpg, .png">
+                                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <div class="bordeDivFotografia">
+                                                    <div class="divFotografia" id="divFoto">
+
+                                                    </div>
+                                                </div>
+                                                <div id="btnAgregarFoto" class="mt-4">
+                                                    <button class="btn btn-outline-dark" id="botonFoto"><span class="fas fa-plus"></span></button>
+                                                </div>
+                                                <input id="archivo_producto" type="file" class="d-none" name="archivo_producto" accept=".gif, .jpg, .png">
+                                            </div>
+                                        </div>
                                     </div><br>
                                     <div class="mb-3">
                                         <label for="cbMarca" class="form-label">Marca:</label>

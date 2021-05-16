@@ -24,7 +24,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
             <div class="col-lg-8 formulario2">
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                    <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                    <button class="btn btn-outline-dark me-3" type="submit">Buscar</button>
+                    <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                 </form>
             </div>
             <div class="col-12">

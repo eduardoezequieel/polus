@@ -122,3 +122,4 @@ function openDeleteDialog(id){
     confirmDelete(API_INVENTARIO, data);
 }
 
+restartSearch('btnReiniciar', API_INVENTARIO);

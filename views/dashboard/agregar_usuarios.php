@@ -102,8 +102,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                     </select>
                                 </div>
                                 <div class="justify-content-center align-items-center d-flex mt-5">
-                                    <button class="btn btn-outline-dark float-center" type='submit'
+                                    <button class="btn btn-dark float-center me-3" type='submit'
                                         id="selecciona">Agregar</button>
+                                    <button class="btn btn-outline-dark " id="limpiar">Limpiar campos</button>
                                 </div>
                             </div>
                         </div>

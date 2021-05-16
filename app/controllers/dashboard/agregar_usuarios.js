@@ -29,6 +29,7 @@ document.getElementById('agregarUsuario-form').addEventListener('submit', functi
             request.json().then(function(response){
                 //Verificando respuesta satisfactoria
                 if(response.status){
+                    previewSavePicture('divFoto', '',0);
                     sweetAlert(1, response.message, clearForm('agregarUsuario-form'));
                 } else{
                     sweetAlert(4, response.exception, null);
@@ -40,4 +41,14 @@ document.getElementById('agregarUsuario-form').addEventListener('submit', functi
     }).catch(function (error) {
         console.log(error);
     });
+})
+
+document.getElementById('limpiar').addEventListener('click', function(event){
+
+    //función para que no recargue la pagina
+    event.preventDefault();
+    
+    //Limpiando formulario
+    clearForm('agregarUsuario-form');
+    previewSavePicture('divFoto', '',0);
 })
