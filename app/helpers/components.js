@@ -50,6 +50,13 @@ function previewPicture(idInputExaminar, idDivFoto){
     }
 }
 
+function restartSearch(btn, api){
+    document.getElementById(btn).addEventListener('click', function(event){
+        event.preventDefault();
+        readRows(api);
+    })
+}
+
 
 function readRows(api) {
     fetch(api + 'readAll', {
