@@ -76,6 +76,7 @@ function openDeleteDialog(id){
 }
 
 //Buscar
+
 document.getElementById('search-form').addEventListener('submit', function(event){
 
     //Evento para que no recargue la pagina
@@ -83,6 +84,8 @@ document.getElementById('search-form').addEventListener('submit', function(event
 
     searchRows(API_MARCAS, 'search-form');
 })
+    
+restartSearch('btnReiniciar', API_MARCAS);
 
 document.getElementById('agregarMarcas-form').addEventListener('submit', function(event){
 
@@ -141,4 +144,4 @@ document.getElementById('administrarMarcas-form').addEventListener('submit', fun
         console.log(error);
     });
 });
-restartSearch('btnReiniciar', API_MARCAS);
+
