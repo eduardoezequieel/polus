@@ -42,7 +42,7 @@ dashboard_Page::sidebarTemplate('Polus - Reseñas','index_privado_estilos.css');
                             </thead>
                             <tbody id="tbody-rows">
                             <tr>
-                                <td>Eduardo Rivera</td>
+                                <td>Eduardo River</td>
                                 <td>12-2-2021</td>
                                 <td>5 estrellas</td>
                                 <th scope="row">
