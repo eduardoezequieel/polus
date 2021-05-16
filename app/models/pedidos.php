@@ -156,7 +156,7 @@
 
     public function readOne(){
         $sql = 'SELECT idpedido, CONCAT(cliente.apellido,\'  \',cliente.nombre) 
-        AS cliente, fechaPedido, estadopedido.estadoPedido, cliente.direccion 
+        AS cliente, fechaPedido, estadopedido.estadoPedido, cliente.direccion, cliente.idcliente 
         FROM pedido 
         INNER JOIN cliente ON pedido.idcliente = cliente.idcliente 
         INNER JOIN estadoPedido on pedido.idestadopedido = estadopedido.idestadopedido 
@@ -210,6 +210,38 @@
         ORDER BY cliente ASC;';
         $params = array($this -> idEstadoPedido);
         return Database::getRows($sql, $params);
+    }
+
+    public function cancelOrder(){
+        $sql = 'UPDATE pedido SET idestadopedido = 3 WHERE idpedido = ?';
+        $params = array($this->idPedido);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deliverOrder(){
+        $sql = 'UPDATE pedido SET idestadopedido = 4 WHERE idpedido = ?';
+        $params = array($this->idPedido);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function activateOrder(){
+        $sql = 'UPDATE pedido SET idestadopedido = 1 WHERE idpedido = ?';
+        $params = array($this->idPedido);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function finishOrder(){
+        $sql = 'UPDATE pedido SET idestadopedido = 2 WHERE idpedido = ?';
+        $params = array($this->idPedido);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readClient(){
+        $sql = 'SELECT*
+        FROM cliente 
+        WHERE idCliente = ?';
+        $params = array($this->idCliente);
+        return Database::getRow($sql, $params);
     }
 
  }

@@ -138,6 +138,72 @@
                         $result['exception'] = 'Seleccione un estado.';
                     }
                     break;
+                case 'cancelOrder':
+                    $_POST = $pedidos->validateForm($_POST);
+                    if($pedidos->setIdPedido($_POST['idPedido'])){
+                        if($pedidos->cancelOrder()){
+                            $result['status'] = 1;
+                            $result['message'] = 'Pedido cancelado correctamente';
+                        } else{  
+                            $result['exception'] = Database::getException();   
+                        }
+                    } else{
+                        $result['exception'] = 'Pedido seleccionado incorrecto';
+                    }
+                    break;
+                case 'deliverOrder':
+                    $_POST = $pedidos->validateForm($_POST);
+                    if($pedidos->setIdPedido($_POST['idPedido'])){
+                        if($pedidos->deliverOrder()){
+                            $result['status'] = 1;
+                            $result['message'] = 'Pedido registrado para entrega';
+                        } else{  
+                            $result['exception'] = Database::getException();   
+                        }
+                    } else{
+                        $result['exception'] = 'Pedido seleccionado incorrecto';
+                    }
+                    break;
+                case 'activateOrder':
+                    $_POST = $pedidos->validateForm($_POST);
+                    if($pedidos->setIdPedido($_POST['idPedido'])){
+                        if($pedidos->activateOrder()){
+                            $result['status'] = 1;
+                            $result['message'] = 'Pedido activado correctamente.';
+                        } else{  
+                            $result['exception'] = Database::getException();   
+                        }
+                    } else{
+                        $result['exception'] = 'Pedido seleccionado incorrecto';
+                    }
+                    break;
+                case 'finishOrder':
+                    $_POST = $pedidos->validateForm($_POST);
+                    if($pedidos->setIdPedido($_POST['idPedido'])){
+                        if($pedidos->finishOrder()){
+                            $result['status'] = 1;
+                            $result['message'] = 'Pedido finalizado correctamente.';
+                        } else{  
+                            $result['exception'] = Database::getException();   
+                        }
+                    } else{
+                        $result['exception'] = 'Pedido seleccionado incorrecto';
+                    }
+                    break;
+                case 'readClient':
+                    $_POST = $pedidos -> validateForm($_POST);
+                    if ($pedidos->setIdCliente($_POST['idCliente'])) {
+                        if($result['dataset'] = $pedidos->readClient()){
+                            $result['status'] = 1;
+                            $result['message'] = 'Datos del cliente recuperados correctamente.';
+                        } else{  
+                            $result['exception'] = Database::getException();   
+                        }  
+                    }
+                    else{
+                        $result['exception'] = 'Pedido seleccionado incorrecto';
+                    }
+                    break;
             }
             // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
             header('content-type: application/json; charset=utf-8');

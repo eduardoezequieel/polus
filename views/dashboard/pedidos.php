@@ -82,7 +82,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                         <br>
                         <!-- Contenido del Modal -->
                         <div class="textoModal px-3 pb-4 mt-2">
-                            <form action="#" id="informacionPedido-form"></form>
+                            <form method="post" id="informacionPedido-form">
                             <div class="row">
                                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                                     <label for="detallePedido" class="form-label mt-2">Detalles del Pedido:</label>
@@ -90,14 +90,16 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
 
                                     <h5 class="text-center my-3">¿Qué desea hacer?</h5>
                                     <div class="d-flex flex-column">
-                                        <button class="btn btn-outline-dark my-1">Entregar</button>
-                                        <button class="btn btn-outline-dark my-1">Cancelar</button>
-                                        <button data-bs-toggle="modal" data-bs-target="#informacionCliente" data-bs-dismiss="modal" class="btn btn-outline-dark my-1">Contactar</button>
+                                        <button class="btn btn-outline-dark my-1" type="submit" id="btnEntregar">Entregar</button>
+                                        <button class="btn btn-outline-dark my-1" type="submit" id="btnCancelar">Cancelar</button>
+                                        <button class="btn btn-outline-dark my-1" type="submit" id="btnActivar">Activar</button>
+                                        <button data-bs-toggle="modal" id="btnContactar" data-bs-target="#informacionCliente" data-bs-dismiss="modal" class="btn btn-outline-dark my-1">Contactar</button>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column">
+                                    <input class="visually-hidden" type="number" name="idPedido" id="idPedido">
                                     <label for="#" class="form-label mt-2">Factura:</label>
-                                    <label class = "labelInformacion" id="idPedido" name="idPedido"></label>
+                                    <label class = "labelInformacion" id="txtPedido" name="txtPedido"></label>
 
                                     <label for="#" class="form-label mt-2">Cliente:</label>
                                     <label class = "labelInformacion" id="txtCliente" name="txtCliente"></label>
@@ -114,6 +116,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                                     <label for="#" class="form-label mt-2">Dirección:</label>
                                     <label class = "labelInformacion" id="txtDireccion" name="txtDireccion"></label>
                                 </div>
+                                </form>
                             </div>
                             
                         <!-- Fin del Contenido del Modal -->
@@ -140,42 +143,45 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                         <br>
                         <!-- Contenido del Modal -->
                         <div class="textoModal px-3 pb-4 mt-2">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
-                                    <label for="#" class="form-label mt-2">Nombres:</label>
-                                    <h1 class="labelInformacion" id="">Katherine Andrea</h1>
+                            <form method="post" id="informacionCliente-form">
+                                <div class="row justify-content-center">
+                                    <input class="visually-hidden" type="number" name="idCliente" id="idCliente">
+                                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+                                        <label for="#" class="form-label mt-2">Nombres:</label>
+                                        <label class="labelInformacion" id="txtNombre"></label>
 
-                                    <label for="#" class="form-label mt-2">Apellidos:</label>
-                                    <h1 class="labelInformacion">Gonzalez Salinas</h1>
+                                        <label for="#" class="form-label mt-2">Apellidos:</label>
+                                        <label class="labelInformacion" id="txtApellido"></label>
 
-                                    <label for="#" class="form-label mt-2">Fecha de Nacimiento:</label>
-                                    <h1 class = "labelInformacion">12/12/2002</h1>
+                                        <label for="#" class="form-label mt-2">Fecha de Nacimiento:</label>
+                                        <label class = "labelInformacion" id="txtFechaNacimiento"></label>
 
-                                    <label for="#" class="form-label mt-2">Teléfono:</label>
-                                    <h1 class = "labelInformacion">0000-0000</h1>
+                                        <label for="#" class="form-label mt-2">Teléfono:</label>
+                                        <label class = "labelInformacion" id="txtTelefono"></label>
 
-                                    <label for="#" class="form-label mt-2">Género:</label>
-                                    <h1 class = "labelInformacion">Femenino</h1>
-                                </div>
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
-                                    <div class="divFotografia2 mt-4 mb-4"></div>
-    
-                                    <label for="#" class="form-label mt-2">Correo Electrónico:</label>
-                                    <h1 class = "labelInformacion">kathsalinas@gmail.com</h1>
+                                        <label for="#" class="form-label mt-2">Género:</label>
+                                        <label class = "labelInformacion" id="txtGenero"></label>
+                                    </div>
+                                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+                                        <div class="divFotografia2 mt-4 mb-4"></div>
+        
+                                        <label for="#" class="form-label mt-2">Correo Electrónico:</label>
+                                        <label class = "labelInformacion" id="txtCorreo"></label>
 
-                                    <label for="#" class="form-label mt-2">Usuario:</label>
-                                    <h1 class = "labelInformacion">kathsalinas</h1>
+                                        <label for="#" class="form-label mt-2">Usuario:</label>
+                                        <label class = "labelInformacion" id="txtUsuario"></label>
 
-                                    <label for="#" class="form-label mt-2">Dirección:</label>
-                                    <h1 class = "labelInformacion">Pasaje Caoba, Las Flores, San Salvador</h1>
-                                </div>
+                                        <label for="#" class="form-label mt-2">Dirección:</label>
+                                        <label class = "labelInformacion" id="txtDireccion2"></label>
+                                    </div>
 
-                                <div class="row justify-content-end mt-3">
-                                    <div class="col-12 justify-content-end align-items-right d-flex">
-                                        <button data-bs-toggle="modal" data-bs-target="#administrarPedidos" data-bs-dismiss="modal" class="btn btn-outline-dark">Regresar</button>
+                                    <div class="row justify-content-end mt-3">
+                                        <div class="col-12 justify-content-end align-items-right d-flex">
+                                            <button data-bs-toggle="modal" data-bs-target="#administrarPedidos" data-bs-dismiss="modal" class="btn btn-outline-dark">Regresar</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         <!-- Fin del Contenido del Modal -->
                         </div>
                     </div>
