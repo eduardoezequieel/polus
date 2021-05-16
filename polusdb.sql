@@ -153,3 +153,13 @@ ALTER TABLE producto ALTER COLUMN imagenPrincipal TYPE character varying(50) USI
 --Cambios 15/5/2021
 UPDATE estadoPedido SET estadopedido = 'Cancelado' WHERE idestadopedido = 3;
 INSERT INTO estadoPedido(estadopedido) VALUES ('En proceso');
+
+--Cambios 16/5/2021
+ALTER TABLE resena ADD COLUMN respuesta VARCHAR(200) NULL;
+ALTER TABLE puntuacion ALTER COLUMN puntuacion TYPE VARCHAR(15);
+UPDATE puntuacion SET puntuacion = '1 estrella' WHERE idpuntuacion = 1;
+UPDATE puntuacion SET puntuacion = '2 estrellas' WHERE idpuntuacion = 2;
+UPDATE puntuacion SET puntuacion = '3 estrellas' WHERE idpuntuacion = 3;
+UPDATE puntuacion SET puntuacion = '4 estrellas' WHERE idpuntuacion = 4;
+UPDATE puntuacion SET puntuacion = '5 estrellas' WHERE idpuntuacion = 5;
+

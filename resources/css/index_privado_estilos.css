@@ -19,6 +19,10 @@
     text-align: center;
 }
 
+.tabla{
+    color: white;
+}
+
 .imagenUsuario{
     width: 40px;
     border-radius: 20%;
@@ -38,6 +42,23 @@ a{
     margin: auto;
     display: block;
     width: 280px;
+}
+
+#search{
+    width: 500px !important;
+}
+
+.labelInformacion{
+    font-family: 'Roboto Mono', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: rgb(99, 99, 99);
+}
+
+@media screen and (max-width:1200px) {
+    #search{
+        width: 200px !important;
+    }
 }
 
 .tituloUsuarios{
