@@ -50,28 +50,58 @@ function previewPicture(idInputExaminar, idDivFoto){
     }
 }
 
-function previewSavePicture(idDivFoto, name){
-    let ruta = '../../resources/img/dashboard_img/admon_fotos/'
-    //Parte de la pagina web en donde se incrustara la imagen
-    let preview=document.getElementById(idDivFoto);
-            
-    image = document.createElement('img');
-    //Se le asigna la ruta al elemento creado
-    image.src = ruta + name;
-            
-    //Se aplican las respectivas clases para que la preview aparezca estilizada
-    image.className = 'rounded-circle fotografiaPerfil';
-            
-    //Se quita lo que este dentro del div (en caso de que exista otra imagen)
-    preview.innerHTML = ' ';
-            
-    //Se agrega el elemento recien creado
-    preview.append(image);
+function previewSavePicture(idDivFoto, name, foto){
+    let ruta;
+    switch (foto) {
+        case 1:
+            ruta = '../../resources/img/dashboard_img/admon_fotos/';
+            break;
+        case 2:
+            ruta = '../../resources/img/dashboard_img/cliente_fotos/'
+            break;
+        case 3:
+            ruta = '../../resources/img/dashboard_img/productos_fotos/';
+            break;
+        default:
+            break;
+    }
+    if(foto == 0){
+        //Parte de la pagina web en donde se incrustara la imagen
+        let preview=document.getElementById(idDivFoto);
+                    
+        image = document.createElement('img');
+
+        //Se aplican las respectivas clases para que la preview aparezca estilizada
+        image.className = 'rounded-circle fotografiaPerfil';
+                
+        //Se quita lo que este dentro del div (en caso de que exista otra imagen)
+        preview.innerHTML = ' ';
+                
+        //Se agrega el elemento recien creado
+        preview.append(image);
+    } else{
+        //Parte de la pagina web en donde se incrustara la imagen
+        let preview=document.getElementById(idDivFoto);
+                    
+        image = document.createElement('img');
+        //Se le asigna la ruta al elemento creado
+        image.src = ruta + name;
+                
+        //Se aplican las respectivas clases para que la preview aparezca estilizada
+        image.className = 'rounded-circle fotografiaPerfil';
+                
+        //Se quita lo que este dentro del div (en caso de que exista otra imagen)
+        preview.innerHTML = ' ';
+                
+        //Se agrega el elemento recien creado
+        preview.append(image);
+    }
 }
 
 function restartSearch(btn, api){
     document.getElementById(btn).addEventListener('click', function(event){
         event.preventDefault();
+        document.getElementById('search').value='';
         readRows(api);
     })
 }
@@ -141,7 +171,7 @@ function searchRows(api, form) {
 *
 *   Retorno: ninguno.
 */
-function saveRow(api, action, form) {
+function saveRow(api, action, form, modal) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -153,7 +183,7 @@ function saveRow(api, action, form) {
                 if (response.status) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
                     readRows(api);
-                    sweetAlert(1, response.message, closeModal('inventario'));
+                    sweetAlert(1, response.message, closeModal(modal));
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

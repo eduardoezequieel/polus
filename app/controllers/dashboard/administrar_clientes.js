@@ -41,7 +41,7 @@ function fillTable(dataset){
                     <div class="row justify-c">
                         <div class="col-12 d-flex">
                                             
-                            <a href="#" onclick="openUpdateDialog(${row.idcliente})"data-bs-toggle="modal" data-bs-target="#administrarClientes"
+                            <a href="#" onclick="openUpdateDialog(${row.idcliente})"data-bs-toggle="modal"
                                 class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i>
                             </a>
 
@@ -59,10 +59,29 @@ function fillTable(dataset){
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto', 'archivo_usuario');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPicture('archivo_usuario','divFoto');
+
+// Función para preparar el formulario al momento de insertar un registro.
+function openCreateDialog() {
+    clearForm('administrarClientes-form');
+    previewSavePicture('divFoto', '',0);
+    //Abriendo modal
+    openModal('administrarClientes');
+    document.getElementById('selecciona').textContent = 'Agregar';
+}
+
 //Actualizar
 function openUpdateDialog(id){
     // Se establece el campo de archivo como obligatorio.
      document.getElementById('archivo_usuario').required = false;
+     clearForm('administrarClientes-form');
+    //Abriendo modal
+    openModal('administrarClientes');
+    document.getElementById('selecciona').textContent = 'Actualizar';
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData(); 
     data.append('idCliente', id);
@@ -86,6 +105,7 @@ function openUpdateDialog(id){
                     document.getElementById('txtTelefono').value = response.dataset.telefono;
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
                     document.getElementById('txtUsuario').value = response.dataset.usuario;
+                    previewSavePicture('divFoto', response.dataset.foto,2);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -104,28 +124,16 @@ document.getElementById('administrarClientes-form').addEventListener('submit',fu
     //Evento para prevenir que recargue la página
     event.preventDefault();
 
-    //Obtener datos
-    fetch(API_CLIENTE + 'update',{
-        method: 'post',
-        body: new FormData(document.getElementById('administrarClientes-form'))
-    }).then(function(request){
-        //Verificando si la petición fue correcta
-        if(request.ok){
-            request.json().then(function(response){
-                //Verificando si la petición fue correcta
-                if(response.status){
-                    readRows(API_CLIENTE)
-                    sweetAlert(1, response.message, closeModal('administrarClientes'))
-                } else {
-                    sweetAlert(2, response.exception, null)
-                }
-            })
-        } else {
-            console.log(request.status, ' ', request.statusText)
-        }
-    }).catch(function(error){
-        console.log(error)
-    })
+
+     // Se define una variable para establecer la acción a realizar en la API.
+     let action = '';
+     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
+     if (document.getElementById('idCliente').value) {
+         action = 'update'
+     } else {
+         action = 'create'
+     }
+     saveRow(API_CLIENTE, action, 'administrarClientes-form', 'administrarClientes');
 
 })
 
@@ -147,3 +155,5 @@ function openDeleteDialog(id){
     //Se llama a la función para eliminar
     confirmDelete(API_CLIENTE, data)
 }
+
+restartSearch('btnReiniciar', API_CLIENTE);

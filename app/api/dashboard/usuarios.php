@@ -59,7 +59,7 @@ if(isset($_GET['action'])){
                                                                 $result['exception'] = Database::getException();
                                                             }
                                                         } else {
-                                                            $result['exception'] = $result->getImageError();
+                                                            $result['exception'] = $usuarios->getImageError();
                                                         }
                                                     } else {
                                                         if ($usuarios->updateProfileInfo($data['foto'])) {
@@ -123,7 +123,7 @@ if(isset($_GET['action'])){
                                                                 $result['exception'] = Database::getException();
                                                             }
                                                         } else {
-                                                            $result['exception'] = $result->getImageError();
+                                                            $result['exception'] = $usuarios->getImageError();
                                                         }
                                                     } else {
                                                         if ($usuarios->updateProfileInfo($data['foto'])) {
@@ -282,7 +282,7 @@ if(isset($_GET['action'])){
                                                     $result['exception'] = 'Fecha de nacimiento faltante';
                                                 }
                                             } else {
-                                                $result['exception'] = $result->getImageError();
+                                                $result['exception'] = $usuarios->getImageError();
                                             }
                                         } else {
                                             $result['exception'] = 'Seleccione una imagen';
@@ -346,7 +346,7 @@ if(isset($_GET['action'])){
                                                                                 $result['exception'] = Database::getException();
                                                                             }
                                                                         } else {
-                                                                            $result['exception'] = $result->getImageError();
+                                                                            $result['exception'] = $usuarios->getImageError();
                                                                         }
                                                                     } else {
                                                                         if ($usuarios->updateRow($data['foto'])) {

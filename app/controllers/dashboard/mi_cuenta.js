@@ -30,7 +30,7 @@ function openProfileDialog() {
                     document.getElementById('txtDireccion').value = response.dataset.direccion;
                     document.getElementById('txtGenero').value = response.dataset.genero;
                     document.getElementById('txtfechaNacimiento').value = response.dataset.fechanacimiento;
-                    previewSavePicture('divFoto', response.dataset.foto);
+                    previewSavePicture('divFoto', response.dataset.foto,1);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

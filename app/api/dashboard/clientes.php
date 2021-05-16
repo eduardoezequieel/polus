@@ -68,6 +68,65 @@
                         $result['exception'] = 'Campo vacio';
                     }
                     break;
+                case 'create':
+                    $_POST = $clientes->validateForm($_POST);
+                        if($clientes->setNombres($_POST['txtNombre'])){
+                            if($clientes -> setApellidos($_POST['txtApellidos'])){
+                                if(isset($_POST['txtGenero'])){
+                                    if($clientes -> setGenero($_POST['txtGenero'])){
+                                        if($clientes -> setCorreo($_POST['txtEmail'])){
+                                            if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
+                                                if ($clientes->setFoto($_FILES['archivo_usuario'])) {
+                                                    if($clientes -> setNacimiento($_POST['txtFechaNacimiento'])){
+                                                        if($clientes -> setTelefono($_POST['txtTelefono'])){
+                                                            if($clientes -> setDireccion($_POST['txtDireccion'])){
+                                                                if($clientes -> setUsuario($_POST['txtUsuario'])){
+                                                                    $clientes->setIdEstadoUsuario(1);
+                                                                    $clientes -> setContrasenia('polus-Cliente');
+                                                                    if ($clientes->createRow()) {
+                                                                        $result['status'] = 1;
+                                                                        if ($clientes->saveFile($_FILES['archivo_usuario'], $clientes->getRuta(), $clientes->getFoto())) {
+                                                                            $result['message'] = 'Cliente registrado correctamente';
+                                                                        } else {
+                                                                            $result['message'] = 'Cliente registrado pero no se guardó la imagen';
+                                                                        }
+                                                                    } else {
+                                                                        $result['exception'] = Database::getException();
+                                                                    }
+                                                                }else{
+                                                                    $result['exception'] = 'Usuario incorrecto';
+                                                                }
+                                                            }else{
+                                                                $result['exception'] = 'Direccion incorrecta';
+                                                            }
+                                                        }else{
+                                                            $result['exception'] = 'Telefono incorrecto';
+                                                        }
+                                                    }else{
+                                                        $result['exception'] = 'Fecha de nacimiento faltante';
+                                                    }
+                                                } else {
+                                                    $result['exception'] = $clientes->getImageError();
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Seleccione una imagen';
+                                            } 
+                                        }else{
+                                            $result['exception'] = 'Correo incorrecto';
+                                        }
+                                    }else{
+                                        $result['exception'] = 'Seleccione un genero';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Seleccione una opción';
+                                }
+                            }else{
+                                $result['exception'] = 'Apellidos incorrectos';
+                            }
+                        }else{
+                            $result['exception'] = 'Nombres incorrectos';
+                        }
+                    break;
                 case 'update':
                     $_POST = $clientes->validateForm($_POST);
                     if($clientes->setId($_POST['idCliente'])){

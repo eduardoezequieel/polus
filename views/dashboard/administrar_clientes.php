@@ -25,10 +25,17 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                 <div class="col-lg-8 formulario2">
                     <form class="d-flex" id='search-form' name='search-form'>
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id='search' name='search'>
-                        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark  me-2" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                     </form>
                 </div>
-            </div><br><br>
+                <div class="col-12 ">
+                    <br><br>
+                    <a href="#" onclick="openCreateDialog()" data-bs-toggle="modal" class="btn btn-outline-dark opciones">
+                        <i class="fas fa-plus mx-2"></i> Agregar Cliente
+                    </a> 
+                </div>
+            </div><br>
             <!-- Fila de la tabla -->
             <div class="row table-responsive animate__animated animate__fadeInUp animate__faster">
                 <!-- Columnas de tabla de datos -->
@@ -117,11 +124,17 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                             <!-- Formulario de cuenta -->
                                             <div class="col-12 formulario">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <!-- <div class="divFotografia"></div>
-                                                    <button class="btn btn-outline-dark" id="btnAgregarFoto"><span
-                                                            class="fas fa-plus"></span></button> -->
-                                                    <div class="divFotografia" id="divFoto"></div>
-                                                    <input id="archivo_usuario" type="file" name="archivo_usuario" accept=".gif, .jpg, .png">
+                                                    <div class="bordeDivFotografia">
+                                                        <div class="divFotografia" id="divFoto">
+
+                                                        </div>
+                                                    </div>
+                                                    <div id="btnAgregarFoto" class="mt-4">
+                                                        <button class="btn btn-outline-dark" id="botonFoto"><span
+                                                                class="fas fa-plus"></span></button>
+                                                    </div>
+                                                    <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario"
+                                                        accept=".gif, .jpg, .png">
                                                 </div>
                                                 <div class="mb-3 mt-4">
                                                     <label for="Correo" class="form-label">Correo:</label>

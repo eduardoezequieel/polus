@@ -110,7 +110,7 @@ document.getElementById('inventario-form').addEventListener('submit', function(e
     } else {
         action = 'create'
     }
-    saveRow(API_INVENTARIO, action, 'inventario-form');
+    saveRow(API_INVENTARIO, action, 'inventario-form', 'inventario');
 })
 
 //Eliminar
