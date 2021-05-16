@@ -236,27 +236,39 @@ Class Usuarios extends Validator{
 
     public function changePassword()
     {
-        $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'UPDATE usuarios SET clave_usuario = ? WHERE id_usuario = ?';
-        $params = array($hash, $_SESSION['id_usuario']);
+        $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
+        $sql = 'UPDATE admon SET contraseña = ? WHERE idAdmon = ?';
+        $params = array($hash, $_SESSION['idAdmon']);
         return Database::executeRow($sql, $params);
     }
 
     public function readProfile()
     {
-        $sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario
-                FROM usuarios
-                WHERE id_usuario = ?';
-        $params = array($_SESSION['id_usuario']);
+        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
+        FROM admon
+        WHERE idAdmon = ?';
+        $params = array($_SESSION['idAdmon']);
         return Database::getRow($sql, $params);
     }
 
-    public function editProfile()
+    public function updateProfileInfo($current_image)
     {
-        $sql = 'UPDATE usuarios
-                SET nombres_usuario = ?, apellidos_usuario = ?, correo_usuario = ?, alias_usuario = ?
-                WHERE id_usuario = ?';
-        $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $_SESSION['id_usuario']);
+        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+        ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
+
+        $sql = 'UPDATE admon
+                SET foto = ?, nombre = ?, apellido = ?, genero = ?, fechaNacimiento = ?, telefono = ?, direccion = ?
+                WHERE idAdmon = ?';
+        $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->fechaNacimiento, $this->telefono,$this->direccion, $_SESSION['idAdmon']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updateProfileAccount()
+    {
+        $sql = 'UPDATE admon
+                SET usuario = ?, correo = ?
+                WHERE idAdmon = ?';
+        $params = array($this->usuario, $this->correo, $_SESSION['idAdmon']);
         return Database::executeRow($sql, $params);
     }
 

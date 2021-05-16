@@ -106,14 +106,12 @@
                 $scripts = '
                     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                     <script type="text/javascript" src="../../app/helpers/components.js"></script>
-                    <script type="text/javascript" src="../../app/controllers/dashboard/mi_cuenta.js"></script>
                     <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
                 ';
             } else {
                 $scripts = '
                     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                     <script type="text/javascript" src="../../app/helpers/components.js"></script>
-                    <script type="text/javascript" src="../../app/controllers/dashboard/mi_cuenta.js"></script>
                     <script type="text/javascript" src="../../app/controllers/dashboard/' . $controller . '"></script>
                 ';
             }

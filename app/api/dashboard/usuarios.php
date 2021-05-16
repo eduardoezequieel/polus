@@ -23,6 +23,173 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
+            case 'readProfile':
+                if ($result['dataset'] = $usuarios->readProfile()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Usuario inexistente';
+                    }
+                }
+                break;
+            case 'updateProfileInfo':
+                $_POST = $usuarios->validateForm($_POST);
+                if($usuarios->setId($_SESSION['idAdmon'])){
+                    if($data = $usuarios->readOne()){
+                        if($usuarios->setNombres($_POST['txtNombre'])){
+                            if($usuarios -> setApellidos($_POST['txtApellidos'])){
+                                if(isset($_POST['txtGenero'])){
+                                    if($usuarios -> setGenero($_POST['txtGenero'])){
+                                        if($usuarios -> setNacimiento($_POST['txtfechaNacimiento'])){
+                                            if($usuarios -> setTelefono($_POST['txtTelefono'])){
+                                                if($usuarios -> setDireccion($_POST['txtDireccion'])){
+                                                    if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
+                                                        if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
+                                                            if ($usuarios->updateProfileInfo($data['foto'])) {
+                                                                $result['status'] = 1;
+                                                                if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                                                                    $result['message'] = 'Usuario registrado correctamente';
+                                                                    $_SESSION['foto'] = $usuarios->getFoto();
+                                                                } else {
+                                                                    $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                }
+                                                            } else {
+                                                                $result['exception'] = Database::getException();
+                                                            }
+                                                        } else {
+                                                            $result['exception'] = $result->getImageError();
+                                                        }
+                                                    } else {
+                                                        if ($usuarios->updateProfileInfo($data['foto'])) {
+                                                            $result['status'] = 1;
+                                                            $result['message'] = 'Usuario modificado correctamente';
+                                                            $_SESSION['foto'] = $usuarios->getFoto();
+                                                        } else {
+                                                            $result['exception'] = Database::getException();
+                                                        }
+                                                    } 
+                                                }else{
+                                                    $result['exception'] = 'Dirección incorrecta';
+                                                }
+                                            }else{
+                                                $result['exception'] = 'Telefono incorrecto';
+                                            }
+                                        }else{
+                                            $result['exception'] = 'Fecha de nacimiento faltante';
+                                        }
+                                    }else{
+                                        $result['exception'] = 'Seleccione un genero';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Seleccione una opción';
+                                }
+                            }else{
+                                $result['exception'] = 'Apellidos incorrectos';
+                            }
+                        }else{
+                            $result['exception'] = 'Nombres incorrectos';
+                        }
+                    } else {
+                        $result['exception'] = 'Usuario no existente';
+                    }
+                } else {
+                    $result['exception'] = 'Usuario seleccionado incorrecto';
+                }
+                break;
+            case 'updateProfileInfo':
+                $_POST = $usuarios->validateForm($_POST);
+                if($usuarios->setId($_SESSION['idAdmon'])){
+                    if($data = $usuarios->readOne()){
+                        if($usuarios->setNombres($_POST['txtNombre'])){
+                            if($usuarios -> setApellidos($_POST['txtApellidos'])){
+                                if(isset($_POST['txtGenero'])){
+                                    if($usuarios -> setGenero($_POST['txtGenero'])){
+                                        if($usuarios -> setNacimiento($_POST['txtfechaNacimiento'])){
+                                            if($usuarios -> setTelefono($_POST['txtTelefono'])){
+                                                if($usuarios -> setDireccion($_POST['txtDireccion'])){
+                                                    if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
+                                                        if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
+                                                            if ($usuarios->updateProfileInfo($data['foto'])) {
+                                                                $result['status'] = 1;
+                                                                if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                                                                    $result['message'] = 'Usuario registrado correctamente';
+                                                                    $_SESSION['foto'] = $usuarios->getFoto();
+                                                                } else {
+                                                                    $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                }
+                                                            } else {
+                                                                $result['exception'] = Database::getException();
+                                                            }
+                                                        } else {
+                                                            $result['exception'] = $result->getImageError();
+                                                        }
+                                                    } else {
+                                                        if ($usuarios->updateProfileInfo($data['foto'])) {
+                                                            $result['status'] = 1;
+                                                            $result['message'] = 'Usuario modificado correctamente';
+                                                            $_SESSION['foto'] = $usuarios->getFoto();
+                                                        } else {
+                                                            $result['exception'] = Database::getException();
+                                                        }
+                                                    } 
+                                                }else{
+                                                    $result['exception'] = 'Dirección incorrecta';
+                                                }
+                                            }else{
+                                                $result['exception'] = 'Telefono incorrecto';
+                                            }
+                                        }else{
+                                            $result['exception'] = 'Fecha de nacimiento faltante';
+                                        }
+                                    }else{
+                                        $result['exception'] = 'Seleccione un genero';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Seleccione una opción';
+                                }
+                            }else{
+                                $result['exception'] = 'Apellidos incorrectos';
+                            }
+                        }else{
+                            $result['exception'] = 'Nombres incorrectos';
+                        }
+                    } else {
+                        $result['exception'] = 'Usuario no existente';
+                    }
+                } else {
+                    $result['exception'] = 'Usuario seleccionado incorrecto';
+                }
+                break;
+            case 'updateProfileAccount':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setUsuario($_POST['txtUsuario'])) {
+                    if ($usuarios->setCorreo($_POST['txtEmail'])) {
+                        if ($usuarios->updateProfileAccount()) {
+                            $result['status'] = 1;
+                            $_SESSION['usuario'] = $usuarios->getUsuario();
+                            $result['message'] = 'Perfil modificado correctamente';
+                            if(isset($_POST['txtContrasenia'])){
+                                if($usuarios->setContrasenia($_POST['txtContrasenia'])){
+                                    if($usuarios->changePassword()){
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Contraseña modificada correctamente';
+                                    }
+                                } else{
+                                    $result['exception'] = 'Nueva contraseña incorrecta';
+                                }
+                            } 
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Correo incorrecto';
+                    }
+                } else {
+                    $result['exception'] = 'Usuario incorrectos';
+                }
+                break;
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {
                     $result['status'] = 1;
