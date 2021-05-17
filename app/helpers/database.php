@@ -23,13 +23,26 @@ Class Database{
     }*/
     
     //Metodo para hacer la conexión (Eduardo)
-    private static function connect(){
+    /*private static function connect(){
 
         // Credenciales.
         $server = 'localhost';
         $database = 'polus_db';
         $username = 'postgres';
         $password = 'eduardo2021';
+        //Crear conexión.
+        self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
+
+    }*/
+
+    //Metodo para hacer la conexión (Samuel)
+    private static function connect(){
+
+        // Credenciales.
+        $server = 'localhost';
+        $database = 'polus_base';
+        $username = 'postgres';
+        $password = '210503';
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
