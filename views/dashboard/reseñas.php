@@ -18,15 +18,15 @@ dashboard_Page::sidebarTemplate('Polus - Reseñas','index_privado_estilos.css');
                 <div class="col-12 title"><h1>Reseñas</h1></div>
           </div>
            <!-- Espacio para buscar -->
-           <div class="row mt-4 justify-content-center animate__animated animate__fadeInUp animate__faster">
+           <div class="row mt-4 justify-content-center animate__animated animate__fadeInUp animate__faster mb-4">
                 <div class="col-12 d-flex justify-content-center">
-                    <form class="d-flex" id="search-form" name="search-form">
+                    <form method="post" class="d-flex" id="search-form" name="search-form">
                         <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar..." aria-label="Search">
-                        <button class="btn btn-outline-dark me-2" type="submit">Buscar</button>
+                        <button class="btn btn-outline-dark me-2">Buscar</button>
                     </form>
-                    <button class="btn btn-outline-dark" type="submit">Reiniciar</button>
+                    <button class="btn btn-outline-dark" type="submit" id="btnReiniciar">Reiniciar</button>
                 </div>
-            </div><br><br>
+            </div>
 
           <div class="row animate__animated animate__fadeInUp animate__faster table-responsive">
                 <!-- Columnas de tabla de datos -->
@@ -41,20 +41,7 @@ dashboard_Page::sidebarTemplate('Polus - Reseñas','index_privado_estilos.css');
                                 </tr>
                             </thead>
                             <tbody id="tbody-rows">
-                            <tr>
-                                <td>Eduardo River</td>
-                                <td>12-2-2021</td>
-                                <td>5 estrellas</td>
-                                <th scope="row">
-                                    <div class="row">
-                                        <div class="col-12 d-flex">
-                                            <!-- Button trigger modal -->
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#administrarResenas" class="btn btn-outline-primary"><i
-                                                    class="fas fa-info tamanoBoton"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
+                            
                             </tbody>
                         </table>
                     </div>
@@ -76,27 +63,27 @@ dashboard_Page::sidebarTemplate('Polus - Reseñas','index_privado_estilos.css');
             </div>
             <br>
             <!-- Contenido del Modal -->
-            <div class="textoModal px-3 pb-2 mt-2">
+            <div class="textoModal px-3 pb-3 mt-2">
                 <form method="post" id="administrarResena-form">
-                    <h5 class="text-center mb-3">Informacion de la Reseña</h5>
+                   
                     <div class="row justify-content-center">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
-                            <input class="visually-hidden" type="number" name="idResena" id="idResena">
+                            <input class="visually-hidden" type="number" name="idReseña" id="idReseña">
 
                             <div class="d-flex flex-column mx-4">
-                                <label for="#" class="form-label text-center ">Cliente: </label>
-                                <label class="labelInformacion text-center mb-3" id="txtCliente" name="txtCliente">aa</label>
+                                <label for="#" class="form-label">Cliente: </label>
+                                <label class="labelInformacion mb-3" id="txtCliente" name="txtCliente">aa</label>
 
-                                <label for="#" class="form-label text-center">Fecha: </label>
-                                <label class="labelInformacion text-center" id="txtFecha" name="txtFecha">aaa</label>
+                                <label for="#" class="form-label">Fecha: </label>
+                                <label class="labelInformacion" id="txtFecha" name="txtFecha">aaa</label>
                             </div>
 
                             <div class="d-flex flex-column mx-4">
-                                <label for="#" class="form-label text-center">Puntuacion: </label>
-                                <label class="labelInformacion text-center mb-3" id="txtPuntuacion" name="txtPuntuacion">xxx</label>
+                                <label for="#" class="form-label">Puntuación: </label>
+                                <label class="labelInformacion mb-3" id="txtPuntuacion" name="txtPuntuacion">xxx</label>
 
-                                <label for="#" class="form-label text-center">Factura: </label>
-                                <label class="labelInformacion text-center" id="txtIdPedido" name="txtIdPedido">xxxxx</label>
+                                <label for="#" class="form-label">Factura: </label>
+                                <label class="labelInformacion" id="txtIdPedido" name="txtIdPedido">xxxxx</label>
                             </div>
                             
                         </div>
@@ -106,17 +93,17 @@ dashboard_Page::sidebarTemplate('Polus - Reseñas','index_privado_estilos.css');
 
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                            <label for="detallePedido" class="form-label">Reseña:</label>
-                            <textarea class="form-control textareaMiCuenta" id="detallePedido" readonly></textarea>
+                            <label for="detallePedido" class="form-label">Comentario:</label>
+                            <textarea class="form-control textareaMiCuenta" id="txtReseña" readonly></textarea>
                             <div class="d-flex justify-content-center mt-3">
-                                <button class="btn btn-outline-dark float-right" type="submit">Ocultar</button>
+                                <button class="btn btn-outline-dark float-right" type="submit" id="btnEliminar" name="btnEliminar">Eliminar</button>
                             </div>
                         </div>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                             <label for="#" class="form-label">Respuesta:</label>
-                            <textarea class="form-control textareaMiCuenta" id="detallePedido"></textarea>
+                            <textarea class="form-control textareaMiCuenta" id="txtRespuesta" name="txtRespuesta"></textarea>
                             <div class="d-flex justify-content-center mt-3">
-                                <button class="btn btn-outline-dark float-right" type="submit">Responder</button>
+                                <button class="btn btn-outline-dark float-right" type="submit" id="btnResponder" name="btnResponder">Responder</button>
                             </div>
                         </div>
                     </div>
@@ -142,7 +129,5 @@ dashboard_Page::sidebarTemplate('Polus - Reseñas','index_privado_estilos.css');
     <!-- Movimiento sidebar -->
     <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement('pagina_dashboard.js');
+    dashboard_Page::sidebarTemplateMovement('reseñas.js');
     ?>
-   </body>
-</html>
