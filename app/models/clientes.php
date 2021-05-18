@@ -332,5 +332,17 @@
             return Database::executeRow($sql, $params);
         }
 
+        public function suspenderRow(){
+            $sql = 'UPDATE cliente SET idEstadoUsuario = 2 WHERE idCliente = ?';
+            $params = array($this->idCliente);
+            return Database::executeRow($sql, $params);
+        }
+    
+        public function activarRow(){
+            $sql = 'UPDATE cliente SET idEstadoUsuario = 1 WHERE idCliente = ?';
+            $params = array($this->idCliente);
+            return Database::executeRow($sql, $params);
+        }
+
     }
 ?>

@@ -113,6 +113,17 @@ function openUpdateDialog(id){
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
                     document.getElementById('txtUsuario').value = response.dataset.usuario;
                     previewSavePicture('divFoto', response.dataset.foto,2);
+
+                    let estadousuario = response.dataset.idestadousuario;
+
+                    if (estadousuario == 1) {
+                        document.getElementById('btnActivar').className='d-none';
+                        document.getElementById('btnCancelar').className='d-block btn btn-outline-dark my-1';
+                    }   else if(estadousuario == 2){
+                        document.getElementById('btnActivar').className='d-block btn btn-outline-dark my-1';
+                        document.getElementById('btnCancelar').className='d-none'; 
+                    }
+
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -202,5 +213,93 @@ function openInfoDialog(id){
         }
     }).catch(function (error) {
         console.log(error);
+    });
+}
+
+document.getElementById('btnCancelar').addEventListener('click',function(event){
+    //Evento para prevenir recargar la pagina
+    event.preventDefault();
+
+    //Método para suspender
+    confirmSuspender();
+})
+
+document.getElementById('btnActivar').addEventListener('click',function(event){
+    //Evento para prevenir recargar la pagina
+    event.preventDefault();
+
+    //Método para suspender
+    confirmActivar();
+})
+
+function confirmSuspender() {
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea suspender el registro?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(API_CLIENTE + 'suspender', {
+                method: 'post',
+                body: new FormData(document.getElementById('administrarClientes-form'))
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, closeModal('administrarClientes'));
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
+
+function confirmActivar() {
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea activar el registro?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(API_CLIENTE + 'activar', {
+                method: 'post',
+                body: new FormData(document.getElementById('administrarClientes-form'))
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, closeModal('administrarClientes'));
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
     });
 }

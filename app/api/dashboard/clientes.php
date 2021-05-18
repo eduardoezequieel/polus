@@ -68,6 +68,38 @@
                         $result['exception'] = 'Campo vacio';
                     }
                     break;
+                case 'suspender':
+                    if ($clientes->setId($_POST['idCliente'])) {
+                        if ($clientes->suspenderRow()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha suspendido al cliente correctamente';
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'Cliente inexistente';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Cliente incorrecto';
+                    }
+                    break;
+                case 'activar':
+                    if ($clientes->setId($_POST['idCliente'])) {
+                        if ($clientes->activarRow()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha activado al cliente correctamente';
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'Cliente inexistente';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Cliente incorrecto';
+                    }
+                    break;
                 case 'create':
                     $_POST = $clientes->validateForm($_POST);
                         if($clientes->setNombres($_POST['txtNombre'])){

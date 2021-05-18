@@ -146,7 +146,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                                     <input type="text" class="form-control" id="txtUsuario" name="txtUsuario" Required>
                                                 </div>
                                                 <div class="justify-content-center align-items-center d-flex mt-5">
-                                                    <button class="btn btn-outline-dark float-center" type='submit' id="selecciona">Actualizar</button>
+                                                    <button class="btn btn-outline-dark float-center me-1" type='submit' id="selecciona">Actualizar</button>
+                                                    <button class="btn btn-outline-dark float-center" type='submit' id="btnCancelar">Suspender</button>
+                                                    <button class="btn btn-outline-dark float-center" type='submit' id="btnActivar">Activar</button>
                                                 </div>
                                             </div>
                                         </div>

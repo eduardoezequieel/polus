@@ -342,6 +342,18 @@ Class Usuarios extends Validator{
         $params = array($this->idAdmon);
         return Database::executeRow($sql, $params);
     }
+
+    public function suspenderRow(){
+        $sql = 'UPDATE admon SET idEstadoUsuario = 2 WHERE idAdmon = ?';
+        $params = array($this->idAdmon);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function activarRow(){
+        $sql = 'UPDATE admon SET idEstadoUsuario = 1 WHERE idAdmon = ?';
+        $params = array($this->idAdmon);
+        return Database::executeRow($sql, $params);
+    }
 }   
 
 ?>

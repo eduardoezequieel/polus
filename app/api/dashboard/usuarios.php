@@ -318,6 +318,38 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
+            case 'suspender':
+                if ($usuarios->setId($_POST['idAdmon'])) {
+                    if ($usuarios->suspenderRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se ha suspendido al usuario correctamente';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Usuario inexistente';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Usuario incorrecto';
+                }
+                break;
+            case 'activar':
+                if ($usuarios->setId($_POST['idAdmon'])) {
+                    if ($usuarios->activarRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se ha activado al usuario correctamente';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Usuario inexistente';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Usuario incorrecto';
+                }
+                break;         
             case 'update':
                 $_POST = $usuarios->validateForm($_POST);
                 if($usuarios->setId($_POST['idAdmon'])){
