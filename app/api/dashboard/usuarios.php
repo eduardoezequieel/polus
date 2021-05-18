@@ -319,19 +319,23 @@ if(isset($_GET['action'])){
                 }
                 break;
             case 'suspender':
-                if ($usuarios->setId($_POST['idAdmon'])) {
-                    if ($usuarios->suspenderRow()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Se ha suspendido al usuario correctamente';
-                    } else {
-                        if (Database::getException()) {
-                            $result['exception'] = Database::getException();
+                if($_POST['idAdmon'] != $_SESSION['idAdmon']){
+                    if ($usuarios->setId($_POST['idAdmon'])) {
+                        if ($usuarios->suspenderRow()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha suspendido al usuario correctamente';
                         } else {
-                            $result['exception'] = 'Usuario inexistente';
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'Usuario inexistente';
+                            }
                         }
+                    } else {
+                        $result['exception'] = 'Usuario incorrecto';
                     }
-                } else {
-                    $result['exception'] = 'Usuario incorrecto';
+                } else{
+                    $result['exception'] = 'No se puede suspender tu propia cuenta';
                 }
                 break;
             case 'activar':
@@ -555,7 +559,7 @@ if(isset($_GET['action'])){
                         $result['exception'] = 'La contraseña es incorrecta';
                     }
                 } else{
-                    $result['exception'] = 'El usuario es incorrecto';
+                    $result['exception'] = 'El usuario es incorrecto o está suspendido';
                 }
                 break;
             default:

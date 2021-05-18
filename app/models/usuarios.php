@@ -210,7 +210,7 @@ Class Usuarios extends Validator{
     //Métodos para administrar cuenta del usuario 
     public function checkUser($alias)
     {
-        $sql = 'SELECT idAdmon,foto FROM admon WHERE usuario = ?';
+        $sql = 'SELECT idAdmon,foto FROM admon WHERE usuario = ? AND idEstadoUsuario = 1';
         $params = array($alias);
         if ($data = Database::getRow($sql, $params)) {
             $this->idAdmon = $data['idadmon'];
