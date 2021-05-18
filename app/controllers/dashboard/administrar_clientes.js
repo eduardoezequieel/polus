@@ -261,6 +261,7 @@ function confirmSuspender() {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             sweetAlert(1, response.message, closeModal('administrarClientes'));
+                            cargarTabla()
                         } else {
                             sweetAlert(2, response.exception, null);
                             console.log(response.status + ' ' + response.statusText);
@@ -297,6 +298,7 @@ function confirmActivar() {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             sweetAlert(1, response.message, closeModal('administrarClientes'));
+                            cargarTabla()
                         } else {
                             sweetAlert(2, response.exception, null);
                             console.log(response.status + ' ' + response.statusText);
