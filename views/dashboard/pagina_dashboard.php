@@ -14,16 +14,16 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
       ?>
       <div class="container-fluid">
           <!-- Mostrar titulo -->
-          <div class="row">
-            <div class="col-12 title"><h1>Inicio</h1></div>
-          </div>
+          <?php
+            dashboard_Page::mensajeBienvenida();
+          ?>
           <!-- Mostrar opciones -->
           <div class="row justify-content-center">
             <div class="col-lg-5">
               <img src="../../resources/img/dashboard_img/grafica2.png" class="img-fluid imagenGrafica">
               <p class="parrafo tituloUsuarios">Administrar Usuarios</p>
               <p class="parrafo titleDescripcion">Administra a tus usuarios de una manera eficaz para mejorar quienes están en el sistema y
-                garantizar la integridad del mismo
+                garantizar la integridad del mismo.
               </p>
               <a href="../../views/dashboard/administrar_usuarios.php">
                 <button class="btn btn-outline-dark verMas">Ver más</button>
@@ -32,11 +32,11 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
             <div class="col-lg-5">
               <img src="../../resources/img/dashboard_img/grafica1.png" class="img-fluid imagenGrafica">
               <p class="parrafo tituloUsuarios">Gestionar Pedidos</p>
-              <p class="parrafo titleDescripcion">Revisa todo el resgistro de pedidos que han hecho tus clientes. Programar, cerrar y/o supender
-                son parte importante para tus ganancias.
+              <p class="parrafo titleDescripcion">Revisa todo el resgistro de pedidos que han hecho tus clientes. Entregar, cancelar y/o finalizar
+                tus pedidos son parte importante para tus ganancias.
               </p>
               <a href="../../views/dashboard/pedidos.php">
-                <button class="btn btn-outline-dark verMas" id="boton">Ver más</button>
+                <button class="btn btn-outline-dark verMas">Ver más</button>
               </a>
             </div>
           </div>

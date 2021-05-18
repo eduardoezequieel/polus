@@ -163,7 +163,13 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                                         <label class = "labelInformacion" id="txtGenero"></label>
                                     </div>
                                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
-                                        <div class="divFotografia2 mt-4 mb-4"></div>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <div class="bordeDivFotografia">
+                                                <div class="divFotografia" id="divFoto" name="divFoto">
+
+                                                </div>
+                                            </div>
+                                        </div>
         
                                         <label for="#" class="form-label mt-2">Correo Electrónico:</label>
                                         <label class = "labelInformacion" id="txtCorreo"></label>

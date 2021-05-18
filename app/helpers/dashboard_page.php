@@ -81,6 +81,14 @@
             );
         }
 
+        public static function mensajeBienvenida(){
+            print('
+            <div class="row">
+                <div class="col-12 title my-4"><h1>¡Bienvenido ' . $_SESSION['usuario'] . '!</h1></div>
+            </div>
+          ');
+        }
+
         public static function scriptBTJS(){
             print(
                 '<script src="https://code.jquery.com/jquery-3.6.0.min.js"

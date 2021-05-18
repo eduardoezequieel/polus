@@ -185,6 +185,8 @@ function openContactDialog(id){
                     document.getElementById('txtCorreo').textContent = (response.dataset.correo);
                     document.getElementById('txtUsuario').textContent = (response.dataset.usuario);
                     document.getElementById('txtDireccion2').textContent = (response.dataset.direccion);
+                    console.log(response.dataset.foto);
+                    previewSavePicture('divFoto', response.dataset.foto,2);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
