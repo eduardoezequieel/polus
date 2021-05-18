@@ -23,7 +23,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
         <div class="row animate__animated animate__fadeInUp animate__faster">
             <div class="col-lg-8 formulario2">
                 <form class="d-flex" id="search-form" name="search-form">
-                    <input id="search" name="search" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                    <input id="search" name="search" class="form-control me-2" type="search" placeholder="Buscar... {Subcategoría, Género}" aria-label="Search">
                     <button class="btn btn-outline-dark me-3" type="submit">Buscar</button>
                     <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                 </form>

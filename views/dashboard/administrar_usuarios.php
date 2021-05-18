@@ -24,7 +24,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
             <div class="row animate__animated animate__fadeInUp animate__faster">
                 <div class="col-lg-8 formulario2">
                     <form class="d-flex" id="search-form" name="search-form">
-                        <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar..." aria-label="Search">
+                        <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar... {Apellido, Nombre, Usuario}" aria-label="Search">
                         <button class="btn btn-outline-dark me-3" type="submit">Buscar</button>
                         <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                     </form>

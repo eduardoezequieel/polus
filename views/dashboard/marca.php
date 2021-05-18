@@ -24,7 +24,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','marca_privado_estilos.css')
             <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
                 <div class="col-12 d-flex justify-content-center">
                     <form class="d-flex w-50" id="search-form" name="search-form">
-                        <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar..." aria-label="Search">
+                        <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar... {Nombre de la Marca}" aria-label="Search">
                         <button class="btn btn-outline-dark me-2" id="searchButton">Buscar</button>
                     </form>
                     <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>

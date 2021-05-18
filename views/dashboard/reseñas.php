@@ -21,7 +21,7 @@ dashboard_Page::sidebarTemplate('Polus - Reseñas','index_privado_estilos.css');
            <div class="row mt-4 justify-content-center animate__animated animate__fadeInUp animate__faster mb-4">
                 <div class="col-12 d-flex justify-content-center">
                     <form method="post" class="d-flex" id="search-form" name="search-form">
-                        <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar..." aria-label="Search">
+                        <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar... {Apellido, Nombre, Puntuación}" aria-label="Search">
                         <button class="btn btn-outline-dark me-2">Buscar</button>
                     </form>
                     <button class="btn btn-outline-dark" type="submit" id="btnReiniciar">Reiniciar</button>
