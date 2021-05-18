@@ -218,6 +218,22 @@
                         $result['exception'] = 'Cliente seleccionado incorrecto';
                     }
                     break;
+                case 'getPedido':
+                    $_POST = $clientes -> validateForm($_POST);
+                    if($clientes->setId($_POST['idCliente'])){
+                        if($result['dataset'] = $clientes->getPedido()){
+                            $result['status'] = 1;
+                        } else{
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No existen pedidos registrados';
+                            }
+                        }
+                    } else{
+                        $result['exception'] = 'Pedido incorrecto';
+                    }
+                    break;
                 default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
             }

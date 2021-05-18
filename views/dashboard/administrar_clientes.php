@@ -159,6 +159,39 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                 </div>
             </div>
             <!-- Fin del Modal -->
+            <!-- Modal para administrar pedidos -->
+            <div class="modal fade" id="administrarPedidos" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content justify-content-center px-3 py-2">
+                            <!-- Cabecera del Modal -->
+                            <div class="modal-header">
+                                <!-- Titulo -->
+                                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                                        class="fas fa-info-circle mx-2"></span>Ver Pedidos</h5>
+                                <!-- Boton para Cerrar -->
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <br>
+                            <!-- Contenido del Modal -->
+                            <div class="textoModal px-3 pb-4 mt-2">
+                                <form method="post" id="informacionPedido-form">
+                                <div class="row">
+                                    <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                    <div class="12">
+                                        <label for="detallePedido" class="form-label mt-2">Pedido:</label>
+                                        <textarea class="form-control textareaMiCuenta" id="Pedido" readonly></textarea>
+                                    </div>
+                                    </form>
+                                </div>
+                                
+                            <!-- Fin del Contenido del Modal -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin del Modal -->
             <br><br>
 
         </div>

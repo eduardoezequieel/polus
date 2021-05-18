@@ -55,7 +55,7 @@
 
         public function setImagenPrincipal($file)
         {
-            if ($this->validateImageFile($file, 500, 500)) {
+            if ($this->validateImageFile($file, 2000, 2000)) {
                 $this->imagenPrincipal = $this->getImageName();
                 return true;
             } else {

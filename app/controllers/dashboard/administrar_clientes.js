@@ -49,6 +49,13 @@ function fillTable(dataset){
                             </h1>
 
                             <a href="#" onclick="openDeleteDialog(${row.idcliente})" class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i></a>
+                            
+                            <h5 class="mx-1">
+                            </h1>
+
+                            <a href="#" data-bs-toggle="modal" onclick="openInfoDialog(${row.idcliente})" class="btn btn-outline-primary"><i
+                                    class="fas fa-info tamanoBoton"></i></a>
+
                         </div>
                     </div>
                 </th>
@@ -157,3 +164,43 @@ function openDeleteDialog(id){
 }
 
 restartSearch('btnReiniciar', API_CLIENTE);
+
+function openInfoDialog(id){
+    clearForm('administrarClientes-form');
+    //Abriendo modal
+    openModal('administrarPedidos');
+
+    const data = new FormData();
+    data.append('idCliente', id);
+
+    fetch(API_CLIENTE + 'getPedido', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    let dataPedido = response.dataset;   
+                    let content = '';     
+                    dataPedido.map(function(row){
+                    content += `
+                    Factura: ${row.idpedido} 
+                    Fecha del pedido: ${row.fechapedido} 
+                    Cliente: ${row.cliente} 
+                    Estado del pedido: ${row.estadopedido} 
+                                
+                                `; })                          
+                    document.getElementById('Pedido').value = content;                     
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}

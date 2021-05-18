@@ -5,6 +5,7 @@
 
         //Atributos de la clase
         private $idCliente = null;
+        private $idPedido = null;
         private $nombre = null;
         private $apellido = null;
         private $genero = null;
@@ -19,6 +20,16 @@
         private $ruta = '../../../resources/img/dashboard_img/cliente_fotos/';
 
         public function setId($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idCliente = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setIdPedido($value)
         {
             if ($this->validateNaturalNumber($value)) {
                 $this->idCliente = $value;
@@ -70,7 +81,7 @@
 
         public function setFoto($file)
         {
-            if ($this->validateImageFile($file, 500, 500)) {
+            if ($this->validateImageFile($file, 2000, 2000)) {
                 $this->foto = $this->getImageName();
                 return true;
             } else {
@@ -142,6 +153,10 @@
 
         public function getId(){
             return $this -> idCliente;
+        }
+
+        public function getIdPedido(){
+            return $this -> idPedido;
         }
 
         public function getNombres(){
@@ -278,6 +293,17 @@
             $params = null;
             return Database::getRows($sql, $params);
         }
+
+        //Métodos para obtener valores
+        public function getPedido(){
+            $sql = 'SELECT idPedido, fechaPedido, CONCAT(nombre,\' \', apellido) as Cliente, estadoPedido FROM pedido
+            INNER JOIN cliente ON cliente.idCliente = pedido.idCliente
+            INNER JOIN estadoPedido ON estadoPedido.idEstadoPedido = pedido.idEstadoPedido
+            WHERE cliente.idCliente = ?';
+            $params = array($this->idCliente);
+            return Database::getRows($sql, $params);
+        }
+
 
         public function readOne()
         {
