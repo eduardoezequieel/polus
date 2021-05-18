@@ -89,7 +89,7 @@ Class tipoProducto extends Validator{
     }
 
     public function createRow(){
-        $sql = 'INSERT INTO subcategoria(subcategoria,idcategoria) VALUES (?,1)';
+        $sql = 'INSERT INTO subcategoria(subcategoria,genero,idcategoria) VALUES (?,Masculino,?)';
         $params = array($this -> subcategoria);
         return Database::executeRow($sql, $params);
     }

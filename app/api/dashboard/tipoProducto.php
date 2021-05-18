@@ -65,25 +65,34 @@
 
                 case 'createRow':
                     $_POST = $tipoP -> validateForm($_POST);
-                    if ($marcas->setsubcategoria($_POST['sub'])) {
-                        if ($tipoP -> createRow()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Tipo de producto registrado correctamente.';
+                    if ($tipoP->setsubcategoria($_POST['sub'])) {
+                        if($tipoP->setgenero($_POST['txtGenero'])){
+                            if(isset($_POST['cbProducto1'])){
+                                if ($tipoP -> createRow()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Tipo de producto registrado correctamente.';
+                                }else{
+                                    $result['error'] = 1;
+                                    $result['exception'] = Database::getException();
+                                }
+                            }else{
+
+                            }
                         }else{
-                            $result['error'] = 1;
-                            $result['exception'] = Database::getException();
+
                         }
+                        
                     }else{
                         $result['exception'] = 'Escriba otro nombre para el tipo de producto.';
                     }
                     break;
                 case 'updateRow':
-                    $_POST = $marcas -> validateForm($_POST);
-                        if ($marcas -> setidSub($_POST['idcategoria'])) {
+                    $_POST = $tipoP -> validateForm($_POST);
+                        if ($tipoP -> setidSub($_POST['idcategoria'])) {
                             if ($data = $tipoP -> readOne()) {
                                 if ($tipoP->setsubcategoria($_POST['sub'])) {
-                                    if (isset($_POST['cbProducto'])) {
-                                        if ($tipoP->setidCategoria($_POST['cbProducto'])) {
+                                    if (isset($_POST['cbProducto1'])) {
+                                        if ($tipoP->setidCategoria($_POST['cbProducto1'])) {
                                             if ($tipoP->updateRow()) {
                                                 $result['status'] = 1;
                                                 $result['message'] = 'Tipo de producto actualizado correctamente.';
