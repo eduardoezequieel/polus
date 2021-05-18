@@ -10,7 +10,7 @@ Class Database{
     private static $error = null;
 
     //Método para hacer la conexión (Katherine)
-    /*private static function connect(){
+    private static function connect(){
 
         // Credenciales.
         $server = 'localhost';
@@ -20,7 +20,7 @@ Class Database{
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }*/
+    }
     
     //Metodo para hacer la conexión (Eduardo)
     /*private static function connect(){
@@ -35,7 +35,7 @@ Class Database{
 
     }*/
 
-    //Metodo para hacer la conexión (Samuel)
+    /*//Metodo para hacer la conexión (Samuel)
     private static function connect(){
 
         // Credenciales.
@@ -46,7 +46,7 @@ Class Database{
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }
+    }*/
 
     //Método para leer todos los datos
     public static function getRows($query, $values){
@@ -109,7 +109,6 @@ Class Database{
                 self::$error = 'Existe un problema al conectar con el servidor';
                 break;
             case '42703':
-                console.log($error);
                 self::$error = 'Nombre de campo desconocido';
                 break;
             case '23505':
