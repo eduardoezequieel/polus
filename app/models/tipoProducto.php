@@ -29,11 +29,10 @@ Class tipoProducto extends Validator{
     }
 
     public function setgenero($value){
-        if ($this -> validateNaturalNumber($value)) {
-            $this -> genero = $value;
+        if ($this->validateAlphabetic($value,1,10)) {
+            $this->genero = $value;
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -86,11 +85,11 @@ Class tipoProducto extends Validator{
         $sql = 'SELECT*FROM subcategoria WHERE idsubcategoria = ?';
         $params = array($this -> idSub);
         return Database::getRow($sql, $params);
-    }
+    }   
 
     public function createRow(){
-        $sql = 'INSERT INTO subcategoria(subcategoria,genero,idcategoria) VALUES (?,Masculino,?)';
-        $params = array($this -> subcategoria);
+        $sql = 'INSERT INTO subcategoria(subcategoria,genero,idcategoria) VALUES (?,?,?)';
+        $params = array($this -> subcategoria,$this -> genero,$this -> idCategoria);
         return Database::executeRow($sql, $params);
     }
 
@@ -98,10 +97,10 @@ Class tipoProducto extends Validator{
     {
         $sql = 'SELECT idsubcategoria, subcategoria, genero, categoria.categoria FROM subcategoria
         INNER JOIN categoria  on subcategoria.idcategoria = categoria.idcategoria 
-        WHERE subcategoria ILIKE ?
+        WHERE subcategoria ILIKE ? Or genero ILIKE ?
         ORDER BY idsubcategoria ASC
         ';
-        $params = array("%$value%");
+        $params = array("%$value%","%$value$%");
         return Database::getRows($sql, $params);
     }
 

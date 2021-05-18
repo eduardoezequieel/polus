@@ -23,7 +23,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
         <div class="row animate__animated animate__fadeInUp animate__faster">
             <div class="col-lg-8 formulario2">
                 <form class="d-flex" id="search-form" name="search-form">
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                    <input id="search" name="search" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
                     <button class="btn btn-outline-dark me-3" type="submit">Buscar</button>
                     <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                 </form>
@@ -72,6 +72,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                     <!-- Contenido del Modal -->
                     <div class="textoModal px-3 pb-4 mt-2">
                     <form method="post" id="administrarTipo-form">
+                    <input class="visually-hidden" type="number" id="idSubcategoria1" name="idSubcategoria1">
                         <!-- Inicio del contenido-->
                         <div class="row">
                             <!-- Columna de información -->
@@ -81,10 +82,10 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                     class="img-fluid imagenSeparator">
                                 <form class="formulario">
                                     <label for="cbProducto" class="form-label">Categoria:</label>
-                                    <select id="cbProducto" class="form-select" aria-label="Default select example">
+                                    <select id="cbProducto" name="cbProducto" class="form-select" aria-label="Default select example">
                                     </select><br>
                                     <label for="sub" class="form-label">Subcategoría:</label>
-                                    <input type="text" class="form-control" id="sub"><br>
+                                    <input type="text" class="form-control" id="sub" name="sub"><br>
                                     <div class="mb-3">
                                         <label for="txtGenero" class="form-label">Género:</label>
                                         <select id="txtGenero" name="txtGenero" class="form-select"
@@ -92,7 +93,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                             <option selected>Seleccionar...</option>
                                             <option value="Femenino">Femenino</option>
                                             <option value="Masculino">Masculino</option>
-                                            <option value="Masculino">Unisex</option>
+                                            <option value="Unisex">Unisex</option>
                                         </select>
                                     </div>
                                 </form>
@@ -106,7 +107,6 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                     <div class="mb-3">
                                         <label for="selecciona" class="form-label">Selecciona:</label><br>
                                         <button class="btn btn-outline-dark" id="selecciona">Actualizar</button>
-                                        <button class="btn btn-outline-dark" id="selecciona">Suspender</button>
                                     </div>
                                 </div>
                             </div>
@@ -147,10 +147,10 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                     class="img-fluid imagenSeparator">
                                 <form class="formulario">
                                     <label for="cbProducto1" class="form-label">Categoria:</label>
-                                    <select id="cbProducto1" class="form-select" aria-label="Default select example">
+                                    <select id="cbProducto1" name="cbProducto1" class="form-select" aria-label="Default select example">
                                     </select><br>
                                     <label for="sub" class="form-label">Subcategoría:</label>
-                                    <input type="text" class="form-control" id="sub"><br>
+                                    <input type="text" class="form-control" id="sub" name="sub"><br>
                                     <div class="mb-3">
                                         <label for="txtGenero" class="form-label">Género:</label>
                                         <select id="txtGenero" name="txtGenero" class="form-select"
@@ -158,7 +158,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                             <option selected>Seleccionar...</option>
                                             <option value="Femenino">Femenino</option>
                                             <option value="Masculino">Masculino</option>
-                                            <option value="Masculino">Unisex</option>
+                                            <option value="Unisex">Unisex</option>
+
                                         </select>
                                     </div>
                                 </form>

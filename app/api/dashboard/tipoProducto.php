@@ -33,7 +33,7 @@
                     break;
                 case 'readOne':
                     $_POST = $tipoP -> validateForm($_POST);
-                    if($tipoP->setidSub($_POST['idsubcategoria'])){
+                    if($tipoP->setidSub($_POST['sub'])){
                         if($result['dataset'] = $tipoP->readOne()){
                             $result['status'] = 1;
                         } else{
@@ -66,20 +66,28 @@
                 case 'createRow':
                     $_POST = $tipoP -> validateForm($_POST);
                     if ($tipoP->setsubcategoria($_POST['sub'])) {
-                        if($tipoP->setgenero($_POST['txtGenero'])){
-                            if(isset($_POST['cbProducto1'])){
-                                if ($tipoP -> createRow()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Tipo de producto registrado correctamente.';
+                        if(isset($_POST['txtGenero'])){
+                            if($tipoP->setgenero($_POST['txtGenero'])){
+                                if(isset($_POST['cbProducto1'])){
+                                    if($tipoP->setidCategoria($_POST['cbProducto1'])){
+                                        if($tipoP->createRow()){
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Se ha ingresado el tipos de producto.';
+                                        }else{
+                                            $result['error'] = 1;
+                                            $result['exception'] = Database::getException();
+                                        }
+                                    }else{
+                                        $result['exception'] = 'Categoria Incorrecta.';
+                                    }
                                 }else{
-                                    $result['error'] = 1;
-                                    $result['exception'] = Database::getException();
+                                    $result['exception'] = 'Categoria Incorrect.';
                                 }
                             }else{
-
+                                $result['exception'] = 'Genero Incorrecta.';
                             }
                         }else{
-
+                            $result['exception'] = 'Genero incorrecto.'; 
                         }
                         
                     }else{
@@ -88,18 +96,27 @@
                     break;
                 case 'updateRow':
                     $_POST = $tipoP -> validateForm($_POST);
-                        if ($tipoP -> setidSub($_POST['idcategoria'])) {
+                        if ($tipoP -> setidSub($_POST['idSubcategoria1'])) {
                             if ($data = $tipoP -> readOne()) {
                                 if ($tipoP->setsubcategoria($_POST['sub'])) {
-                                    if (isset($_POST['cbProducto1'])) {
-                                        if ($tipoP->setidCategoria($_POST['cbProducto1'])) {
-                                            if ($tipoP->updateRow()) {
-                                                $result['status'] = 1;
-                                                $result['message'] = 'Tipo de producto actualizado correctamente.';
-                                            }
-                                            else{
-                                                $result['error'] = 1;
-                                                $result['exception'] = Database::getException();
+                                    if (isset($_POST['cbProducto'])) {
+                                        if ($tipoP->setidCategoria($_POST['cbProducto'])) {
+                                            if(isset($_POST['txtGenero'])){
+                                                if($tipoP -> setgenero($_POST['txtGenero'])){
+                                                    if ($tipoP->updateRow()) {
+                                                        $result['status'] = 1;
+                                                        $result['message'] = 'Tipo de producto actualizado correctamente.';
+                                                    }
+                                                    else{
+                                                        $result['error'] = 1;
+                                                        $result['exception'] = Database::getException();
+                                                    }
+                                                }else{
+
+                                                }
+
+                                            }else{
+
                                             }
                                         }else{
                                             $result['exception'] = 'Categoria invalido.';
@@ -119,7 +136,7 @@
                     break;
                 case 'delete':
                     $_POST = $tipoP -> validateForm($_POST);
-                    if ($tipoP -> setidSub($_POST['idsucategoria'])) {
+                    if ($tipoP -> setidSub($_POST['idSubcategoria1'])) {
                         if ($tipoP -> deleteRow()) {
                             $result['status'] = 1;
                             $result['message'] = 'Registro eliminado correctamente';

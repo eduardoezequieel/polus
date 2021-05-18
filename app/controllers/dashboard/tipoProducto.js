@@ -35,12 +35,16 @@ function fillTable(dataset){
         `
     })
 
+
     document.getElementById('tbody-rows').innerHTML = content;
 }
-
+function prueba(id){
+    console.log(id)
+}
 function openUpdateDialog(id){
     const data = new FormData();
-    data.append('idsubcategoria', id);
+    data.append('sub', id);
+    console.log(id)
 
     fetch(API_PRODUCTO + 'readOne', {
         method: 'post',
@@ -54,7 +58,8 @@ function openUpdateDialog(id){
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('sub').value = response.dataset.subcategoria;
                     document.getElementById('txtGenero').value = response.dataset.genero;
-                    fillSelect(ENDPOINT_CAT,'cbProducto1',response.dataset.idcategoria);
+                    fillSelect(ENDPOINT_CAT,'cbProducto',response.dataset.idcategoria);
+                    document.getElementById('idSubcategoria1').value= response.dataset.idsubcategoria;
                     
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -72,7 +77,7 @@ function openUpdateDialog(id){
 function openDeleteDialog(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('idsubcategoria', id);
+    data.append('idSubcategoria1', id);
     // Se llama a la función que elimina un registro.
     confirmDelete(API_PRODUCTO, data);
 }
