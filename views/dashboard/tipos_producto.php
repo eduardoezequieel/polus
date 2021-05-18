@@ -22,7 +22,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
         <!-- Espacio para buscar -->
         <div class="row animate__animated animate__fadeInUp animate__faster">
             <div class="col-lg-8 formulario2">
-                <form class="d-flex">
+                <form class="d-flex" id="search-form" name="search-form">
                     <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
                     <button class="btn btn-outline-dark me-3" type="submit">Buscar</button>
                     <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
@@ -36,80 +36,19 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
             </div>
         </div><br>
         <!-- Fila de la tabla -->
-        <div class="row animate__animated animate__fadeInUp animate__faster table-responsive-lg">
-            <div class="col-12">
-                <table class="table table-hover ">
+        <div class="animate__animated animate__fadeInUp animate__faster row justify-content-center table-responsive">
+            <div class="col-lg-8 col-sm-12 d-flex justify-content-center align-items-center">
+                <table class="table">
                     <thead class="bg-dark tabla">
                         <tr>
-                            <th scope="col">Categoría</th>
                             <th scope="col">Subcategoría</th>
-                            <th scope="col">Género</th>
+                            <th scope="col">Genero</th>
+                            <th scope="col">Categoria</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Ropa</td>
-                            <td>Short</td>
-                            <td>Cabellero</td>
-                            <th scope="row">
-                                <div class="row justify-c ">
-                                    <div class="col-12 d-flex">
-                                        <!-- Button trigger modal -->
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#administrarTipo"
-                                            class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i></a>
+                    <tbody id="tbody-rows">
 
-                                        <h5 class="mx-1">
-                                            </h1>
-
-                                            <a href="#" data--bs-toggle="modal" data-bs-target="#administrarInventario"
-                                                class="btn btn-outline-danger"><i
-                                                    class="fas fa-trash-alt tamanoBoton"></i></a>
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-                        <td>Maquillaje</td>
-                        <td>Sombras</td>
-                        <td>Dama</td>
-                        <th scope="row">
-                            <div class="row justify-c ">
-                                <div class="col-12 d-flex">
-                                    <!-- Button trigger modal -->
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#administrarTipo"
-                                        class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i></a>
-
-                                    <h5 class="mx-1">
-                                        </h1>
-
-                                        <a href="#" data--bs-toggle="modal" data-bs-target="#administrarInventario"
-                                            class="btn btn-outline-danger"><i
-                                                class="fas fa-trash-alt tamanoBoton"></i></a>
-                                </div>
-                            </div>
-                        </th>
-                        </tr>
-                        <tr>
-                            <td>Cuidado facial</td>
-                            <td>Mascarillas</td>
-                            <td>Dama</td>
-                            <th scope="row">
-                                <div class="row justify-c ">
-                                    <div class="col-12 d-flex">
-                                        <!-- Button trigger modal -->
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#administrarTipo"
-                                            class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i></a>
-
-                                        <h5 class="mx-1">
-                                            </h1>
-
-                                            <a href="#" data--bs-toggle="modal" data-bs-target="#administrarInventario"
-                                                class="btn btn-outline-danger"><i
-                                                    class="fas fa-trash-alt tamanoBoton"></i></a>
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -132,6 +71,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                     <br>
                     <!-- Contenido del Modal -->
                     <div class="textoModal px-3 pb-4 mt-2">
+                    <form method="post" id="administrarTipo-form">
                         <!-- Inicio del contenido-->
                         <div class="row">
                             <!-- Columna de información -->
@@ -142,23 +82,18 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                 <form class="formulario">
                                     <label for="cbProducto" class="form-label">Categoria:</label>
                                     <select id="cbProducto" class="form-select" aria-label="Default select example">
-                                        <option selected>Seleccionar...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
                                     </select><br>
                                     <label for="sub" class="form-label">Subcategoría:</label>
                                     <input type="text" class="form-control" id="sub"><br>
-                                    <label class="form-label">Género:</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">Femenino</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio2" value="option2">
-                                        <label class="form-check-label" for="inlineRadio2">Masculino</label>
+                                    <div class="mb-3">
+                                        <label for="txtGenero" class="form-label">Género:</label>
+                                        <select id="txtGenero" name="txtGenero" class="form-select"
+                                            aria-label="Default select example" Required>
+                                            <option selected>Seleccionar...</option>
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Masculino">Unisex</option>
+                                        </select>
                                     </div>
                                 </form>
                             </div>
@@ -177,6 +112,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                             </div>
                         </div>
                         <!-- Fin del Contenido del Modal -->
+                        </form>
                     </div>
                 </div>
             </div>
@@ -184,14 +120,15 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
         <!-- Fin del Modal -->
 
         <!-- Modal para agregar Tipo de productos -->
-        <div class="modal fade" id="agregarTipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="agregarTipo" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-scrollablemodal-dialog-centered">
                 <div class="modal-content justify-content-center px-3 py-2">
                     <!-- Cabecera del Modal -->
                     <div class="modal-header">
                         <!-- Titulo -->
                         <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
-                                class="fas fa-info-circle mx-2"></span>Agregar tipo de producto</h5>
+                                class="fas fa-info-circle mx-2"></span>Administrar tipos de productos</h5>
                         <!-- Boton para Cerrar -->
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -200,6 +137,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                     <br>
                     <!-- Contenido del Modal -->
                     <div class="textoModal px-3 pb-4 mt-2">
+                    <form method="post" id="agregarTipo-form">
                         <!-- Inicio del contenido-->
                         <div class="row">
                             <!-- Columna de información -->
@@ -208,25 +146,20 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                 <img src="../../resources/img/dashboard_img/separator.png"
                                     class="img-fluid imagenSeparator">
                                 <form class="formulario">
-                                    <label for="cbProducto" class="form-label">Categoria:</label>
-                                    <select id="cbProducto" class="form-select" aria-label="Default select example">
-                                        <option selected>Seleccionar...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label for="cbProducto1" class="form-label">Categoria:</label>
+                                    <select id="cbProducto1" class="form-select" aria-label="Default select example">
                                     </select><br>
                                     <label for="sub" class="form-label">Subcategoría:</label>
                                     <input type="text" class="form-control" id="sub"><br>
-                                    <label class="form-label">Género:</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">Femenino</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio2" value="option2">
-                                        <label class="form-check-label" for="inlineRadio2">Masculino</label>
+                                    <div class="mb-3">
+                                        <label for="txtGenero" class="form-label">Género:</label>
+                                        <select id="txtGenero" name="txtGenero" class="form-select"
+                                            aria-label="Default select example" Required>
+                                            <option selected>Seleccionar...</option>
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Masculino">Unisex</option>
+                                        </select>
                                     </div>
                                 </form>
                             </div>
@@ -235,6 +168,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                 <img src="../../resources/img/dashboard_img/separator.png"
                                     class="img-fluid imagenSeparator">
                                 <!-- Botones -->
+
                                 <div class="col-12 selecciona8">
                                     <div class="mb-3">
                                         <label for="selecciona" class="form-label">Selecciona:</label><br>
@@ -244,10 +178,12 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                             </div>
                         </div>
                         <!-- Fin del Contenido del Modal -->
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Fin del Modal -->
     </section>
 </div>
@@ -260,7 +196,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
 <!-- Movimiento sidebar -->
 <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement();
+    dashboard_Page::sidebarTemplateMovement("tipoProducto.js");
     ?>
 </body>
 
