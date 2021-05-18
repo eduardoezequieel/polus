@@ -47,6 +47,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo</th>
                                 <th scope="col">Usuario</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>

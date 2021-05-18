@@ -18,7 +18,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
             dashboard_Page::mensajeBienvenida();
           ?>
           <!-- Mostrar opciones -->
-          <div class="row justify-content-center">
+          <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
             <div class="col-lg-5">
               <img src="../../resources/img/dashboard_img/grafica2.png" class="img-fluid imagenGrafica">
               <p class="parrafo tituloUsuarios">Administrar Usuarios</p>

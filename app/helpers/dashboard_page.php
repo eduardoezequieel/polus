@@ -84,7 +84,7 @@
         public static function mensajeBienvenida(){
             print('
             <div class="row">
-                <div class="col-12 title my-4"><h1>¡Bienvenido ' . $_SESSION['usuario'] . '!</h1></div>
+                <div class="col-12 title my-4 animate__animated animate__fadeInUp animate__faster"><h1>¡Bienvenido ' . $_SESSION['usuario'] . '!</h1></div>
             </div>
           ');
         }

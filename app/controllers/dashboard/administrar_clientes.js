@@ -3,7 +3,10 @@ const API_CLIENTE = '../../app/api/dashboard/clientes.php?action=';
 
 //Evento que se ejecuta al cargar la pagina
 document.addEventListener('DOMContentLoaded',function(){
+    cargarTabla()
+})
 
+function cargarTabla(){
     //Obtener datos
     fetch(API_CLIENTE + 'readAll')
     .then(function(request){
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded',function(){
     }).catch(function(error){
         console.log(error);
     })
-})
+}
 
 //Llenado de tabla
 function fillTable(dataset){
@@ -37,6 +40,7 @@ function fillTable(dataset){
                 <td>${row.nombre}</td>
                 <td>${row.correo}</td>
                 <td>${row.usuario}</td>
+                <td>${row.estadousuario}</td>
                 <th scope="row">
                     <div class="row justify-c">
                         <div class="col-12 d-flex">
@@ -79,6 +83,8 @@ function openCreateDialog() {
     //Abriendo modal
     openModal('administrarClientes');
     document.getElementById('selecciona').textContent = 'Agregar';
+    document.getElementById('btnCancelar').className = 'd-none';
+    document.getElementById('btnActivar').className = 'd-none';
 }
 
 //Actualizar
@@ -222,6 +228,7 @@ document.getElementById('btnCancelar').addEventListener('click',function(event){
 
     //Método para suspender
     confirmSuspender();
+    cargarTabla()
 })
 
 document.getElementById('btnActivar').addEventListener('click',function(event){
@@ -230,6 +237,7 @@ document.getElementById('btnActivar').addEventListener('click',function(event){
 
     //Método para suspender
     confirmActivar();
+    cargarTabla()
 })
 
 function confirmSuspender() {
