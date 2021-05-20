@@ -81,7 +81,7 @@
 
         public function setFoto($file)
         {
-            if ($this->validateImageFile($file, 2000, 2000)) {
+            if ($this->validateImageFile($file, 4000, 4000)) {
                 $this->foto = $this->getImageName();
                 return true;
             } else {

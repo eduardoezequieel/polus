@@ -61,7 +61,7 @@ CREATE TABLE cliente(
 	telefono char(9) not null,
 	direccion character varying(200) not null,
 	usuario character varying(25) not null,
-	contrasena character varying(40) not null,
+	contraseña character varying(40) not null,
     idEstadoUsuario integer REFERENCES estadoUsuario(idEstadoUsuario)
 );
 
@@ -131,6 +131,153 @@ CREATE TABLE precioAntiguo(
 	fecha_hora TIMESTAMP NOT NULL
 );
 
+INSERT INTO estadoUsuario(estadoUsuario) VALUES('Activo'),('Inactivo'),('Bloqueado');
+INSERT INTO estadoPedido(estadoPedido) VALUES('Activo'),('Completado'),('Suspendido');
+INSERT INTO tipoUsuario(tipoUsuario) VALUES('Administrador'),('Empleado'),('Repartidor');
+INSERT INTO puntuacion(puntuacion) VALUES('1'),('2'),('3'),('4'),('5');
+INSERT INTO categoria(categoria) VALUES('Ropa'),('Cuidado Facial'),('Maquillaje');
+INSERT INTO marca(marca) VALUES('Adidas'),('Only'),('Lola Makeup');
+INSERT INTO marca(marca) VALUES('Nike'),('Closet');
+INSERT INTO talla(talla, genero) VALUES('XS','Dama'),('XS','Caballero'),
+										('S','Dama'),('S','Caballero'),
+										('M','Dama'),('M','Caballero'),
+										('L','Dama'),('L','Caballero'),
+										('XL','Dama'),('XL','Caballero');
+INSERT INTO admon(nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario ) 
+		VALUES('Katherine Andrea','González Salinas','Femenino','katy06salinas@gmail.com','xDEADBEEF','2002-12-03','7143-4109','Panchimalco, San Salvador','Kath34','katy312',1,1),
+			  ('Eduardo Ezequiel','López Rivera','Masculino','eduardxlr@gmail.com','xDEADBEEF','2002-04-17','7146-6342','Mejicanos, San Salvador','Eduardxlr','eduardxrl04',1,1),
+			  ('Samuel Eduardo','Magaña Hernández','Masculino','magaña24@gmail.com','xDEADBEEF','2003-02-24','6143-1054','San Salvador, San Salvador','Magaña12','1234mag',1,2),
+			  ('Paola Rebeca','Morales García','Femenino','pao_garcia@gmail.com','xDEADBEEF','2000-10-15','7186-4803','San Marcos, San Salvador','Pao','pao56',1,2),
+			  ('Dennis Alexander','Caballero Castillo','Masculino','caballero@gmail.com','xDEADBEEF','2001-06-01','7341-6494','San Salvador, San Salvador','Cabelleroc','caba1203',1,3);
+			  
+INSERT INTO cliente(nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario) 
+		VALUES('Javier Antonio','Oliveira Durán','Masculino','javioliveira@gmail.com','xDEADBEEF','1996-03-21','6197-5236','Soyapango, San Salvador','javiO','oliveira3',1),
+			  ('María Jóse','Reyes Campos','Femenino','majoreyes@gmail.com','xDEADBEEF','1998-01-30','7589-4103','San Salvador, San Salvador','Majo','majo34',1),
+			  ('Rosa Guadalupe','Benitez Lorenzo','Femenino','rosalorenzo@gmail.com','xDEADBEEF','1995-05-25','7542-7363','San Salvador, San Salvador','rosa','roslorenzo',1),
+			  ('Olivia Luna','Gimenez Flores','Femenino','luna31@gmail.com','xDEADBEEF','1997-12-31','6333-6393','San Marcos, San Salvador','Luna31','luna456',1),
+			  ('Mateo Arturo','Santos Martinez','Masculino','matero@gmail.com','xDEADBEEF','2000-09-12','6412-0312','San Salvador, San Salvador','Mateo','mateo09',1) ;
+			  
+INSERT INTO pedido(fechaPedido, idEstadoPedido, idCliente) VALUES ('2021-03-21',1,3),
+																  ('2021-03-20',1,1),
+																  ('2021-03-15',3,4),
+																  ('2021-03-10',2,2),
+																  ('2021-02-28',2,5);
+
+INSERT INTO subcategoria(subcategoria, genero, idCategoria) VALUES	('Short', 'Caballero',1),
+																	('Sombra', 'Dama',3),
+																	('Mascarilla', 'Unisex',2),
+																	('Jeans', 'Caballero',1),
+																	('Labial', 'Dama',3);
+
+INSERT INTO producto(nombre, descripcion, precio, imagenPrincipal, idSubcategoria, idMarca) VALUES('Innova', 'Pack de sombras',15.50,'xDEADBEEF',2,3),
+																								  ('Stretch', 'Short color azul para caballeros',8.50,'xDEADBEEF',1,1),
+																								  ('Sweet Kisses', 'Labial rojo sweet kisses',5.25,'xDEADBEEF',5,3),
+																								  ('Care', 'Mascarilla de aguacate unisex para el cuidado de la piel',3.75,'xDEADBEEF',3,2),
+																								  ('Skinny', 'Jeans color negro modelo Skinny para caballeros',10.00,'xDEADBEEF',4,2);
+																									
+INSERT INTO imagenProducto(imagen, idProducto) VALUES('xDEADBEEF',1),('xDEADBEEF',1),('xDEADBEEF',1),
+											 ('xDEADBEEF',2),('xDEADBEEF',2),('xDEADBEEF',2),
+											 ('xDEADBEEF',3),('xDEADBEEF',3),('xDEADBEEF',3),
+											 ('xDEADBEEF',4),('xDEADBEEF',4),('xDEADBEEF',4),
+											 ('xDEADBEEF',5),('xDEADBEEF',5),('xDEADBEEF',5);
+											 
+--Las tablas detalle son: 
+--detallePedido
+--Reseña
+--Inventario
+
+INSERT INTO detallePedido(cantidad,precioProducto,idPedido,idProducto) VALUES(15,15.50,1,4);
+INSERT INTO detallePedido(cantidad,precioProducto,idPedido,idProducto) VALUES(1,12.99,1,1);
+INSERT INTO detallePedido(cantidad,precioProducto,idPedido,idProducto) VALUES(7,8.99,2,4),
+																			 (9,18.00,3,4),
+																			 (2,20.00,4,5),
+																			 (1,15.50,5,1),
+																			 (3,15.75,1,3),
+																			 (5,18.75,2,4),
+																			 (1,8.50,3,2),
+																			 (1,15.50,4,1),
+																			 (1,3.75,5,4),
+																			 (2,7.50,1,4),
+																			 (3,15.00,2,4),
+																			 (3,15.00,3,4),
+																			 (1,3.75,4,4),
+																			 (1,3.75,5,4),
+																			 (5,18.75,1,4),
+																			 (4,34.00,4,2),
+																			 (2,10.50,5,3),
+																			 (1,3.75,3,4),
+																			 (1,15.50,3,1),
+																			 (1,8.50,1,2),
+																			 (2,10.50,1,3),
+																			 (1,3.75,2,4),
+																			 (1,15.50,3,1),
+																			 (3,25.50,2,2),
+																			 (2,10.50,2,3),
+																			 (1,3.75,2,4),
+																			 (1,15.50,3,1),
+																			 (1,8.50,4,2);
+																		
+insert into resena(comentario,idpuntuacion,iddetallepedido) values ('Muy buenos productos',5,1);
+insert into resena(comentario,idpuntuacion,iddetallepedido) values ('Me encantan sus productos',5,2),
+																   ('Buena calidad',4,3),
+																   ('Me gustaron mucho',5,4),
+																   ('Me gusta',5,5),
+																   ('Excelente servicio',5,6),
+																   ('Muy buen servicio',5,7),
+																   ('Muy buenos productos',5,8),
+																   ('Excelente servicio',5,9),
+																   ('Me gustaron mucho productos',5,10),
+																   ('Buen servicio',4,11),
+																   ('Todo muy bien',4,12),
+																   ('Muy buenos productos',5,13),
+																   ('Servicio impecable',5,14),
+																   ('Muy buenos productos',5,15),
+																   ('Me encantaron los productos',5,16),
+																   ('Excelente servicio',5,17),
+																   ('Excelente servicio',5,18),
+																   ('Muy buenos productos',5,19),
+																   ('Buena calidad en los productos',5,20),
+																   ('Excelente calidad',5,21),
+																   ('Excelente calidad en los productos',5,22),
+																   ('Productos muy buenos',5,23),
+																   ('Productos de muy buena calidad',5,24),
+																   ('Calidad en el servivio',5,25),
+																   ('Muy buenos productos',5,26),
+																   ('Calidad en el producto',5,27),
+																   ('Muy buenos productos',5,28),
+																   ('Buenos productos',4,29),
+																   ('Muy buenos productos',5,30);
+																   
+insert into inventario (cantidad,idproducto,idtalla) values (12,2,3);
+insert into inventario (cantidad,idproducto,idtalla) values (15,5,4),
+															(5,2,5),
+															(7,2,6),
+															(9,2,4),
+															(20,5,4),
+															(15,5,3),
+															(30,2,5),
+															(12,5,6),
+															(19,2,7),
+															(17,2,5),
+															(13,5,4),
+															(18,5,5),
+															(20,2,6),
+															(16,2,4),
+															(11,5,5),
+															(15,2,6),
+															(18,5,7),
+															(19,2,4),
+															(21,2,5),
+															(27,5,7),
+															(15,2,9),
+															(23,5,10),
+															(22,2,4),
+															(12,5,3),
+															(22,2,2),
+															(26,2,1),
+															(29,5,3),
+															(32,5,6),
+															(31,2,5);
 --Cambios 14/5/2021
 CREATE TABLE estadoMarca(
 	idEstadoMarca SERIAL NOT NULL PRIMARY KEY,
