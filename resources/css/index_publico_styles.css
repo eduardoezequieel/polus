@@ -35,12 +35,14 @@ p{
     color: rgb(255, 255, 255);
     font-family: 'Quicksand', sans-serif;
     font-size: 60px;
+    font-weight: 300;
 }
 
 .titulos2{
     color: rgb(255, 255, 255);
     font-family: 'Quicksand', sans-serif;
     font-size: 40px;
+    font-weight: 300;
 }
 
 .titulos3{
@@ -49,13 +51,7 @@ p{
     font-size: 30px;
 }
 
-#title{
-    margin-top: 150px;
-    width: 500px;
-    /*background-color: rgb(0, 0, 0);*/
-    text-align: center;
-    
-}
+
 
 #imagen{
     margin:auto;
@@ -250,6 +246,69 @@ p{
     margin-top:100px;
 }
 
+.carousel-inner{
+    height: 350px !important;
+}
+
+.carousel-inner > .item > img {
+    object-fit: cover !important;
+  }
+
+.botonCategoria{
+    width: 200px;
+    height: 200px;
+    background-color: #22242C;
+    margin: 40px;
+    color: white;
+    border: 4px dashed transparent;
+    border-radius: 24px;
+    transition: border-radius 0.4s, background-color 0.4s, border 0.4s;
+    font-family: 'Quicksand',sans-serif;
+    font-weight: 700;
+}
+
+.botonCategoria:hover{
+    width: 200px;
+    height: 200px;
+    background-color: #16181D;
+    border: 4px dashed white;
+    border-radius: 60px;
+    margin: 40px;
+    color: white;
+}
+
+.modal-title{
+    font-family: 'Quicksand',sans-serif;
+    font-weight: 500;
+}
+
+.modal-content{
+    background-color: #16181D;
+}
+
+.modal-header {
+    border-bottom: 0 none;
+}
+
+.modal-footer {
+    border-top: 0 none;
+}
+
+td, th{
+    color: white !important;
+    text-align: center;
+}
+
+.contadorCantidad{
+    font-size: 16px !important;
+}
+
+.botonContador{
+    width: 30px;
+    height: 30px;
+    font-size: 8px;
+}
+
 #seccionInfo{
     background-color: #16181D;
 }
@@ -284,6 +343,14 @@ p{
    #title{
         width:450px;
         margin-top: 30px;
+    }
+
+    .imag1{
+        width: 330px !important; height: 300px !important;
+    }
+
+    .imag{
+        width: 300px !important; height: 300px !important;
     }
 
     .textoPequeño{
@@ -323,6 +390,10 @@ p{
 
     .problemaParrafo{
         margin-top:30px;
+    }
+
+    .carousel-inner{
+        height: 200px !important;
     }
 
 }

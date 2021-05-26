@@ -15,15 +15,16 @@
                 <meta http-equiv="Pragma" content="no-cache">
 
                 <!-- Bootstrap CSS -->
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-                    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
 
                 <link rel="stylesheet" href="../../resources/css/index_publico_styles.css">
                 <link rel="stylesheet" href="../../resources/css/'.$css.'">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
                 <!-- Fuentes Personalizadas -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
-                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
                 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
                 <!-- Font Awesome -->
@@ -68,19 +69,113 @@
                         </li>
 
                         </ul>
-                        <form class="d-flex">
-                        <a href="../../views/public/seleccion_Inicio.php" class="btn btn-outline-light botonEstilo">Iniciar Sesión</a>
-                        
+                        <form id="controlesNavbar">
+                            <a href="../../views/public/iniciar_sesion.php" class="btn btn-outline-light">Acceder</a>
+                            <a href="../../views/public/crear_cuenta.php" class="btn btn-outline-secondary">Registrarse</a>
+                            <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i>$4.99</button>
+                            
                         </form>
                     </div>
                     </div>
                 </nav>
+
+                
                 '
             );
         }
 
         public static function footerTemplate(){
             print('
+            <!-- Modal -->
+            <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-white" id="exampleModalLabel"><span class="fas fa-info-circle mx-3 text-white"></span>Carrito</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times text-white"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col">Precio</th>
+                                                <th scope="col">Cantidad</th>
+                                                <th scope="col">Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>T-SHIRT MORADA</td>
+                                                <td>$2.99</td>
+                                                <th>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-minus"></i></button>
+                                                            <div class="row mt-1">
+                                                                <div class="col-12">
+                                                                    <h1 class="text-white mx-2 contadorCantidad">2</h1>
+                                                                </div>
+                                                            </div>
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <td>$5.99</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>T-SHIRT MORADA</td>
+                                                <td>$2.99</td>
+                                                <th>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-minus"></i></button>
+                                                            <div class="row mt-1">
+                                                                <div class="col-12">
+                                                                    <h1 class="text-white mx-2 contadorCantidad">2</h1>
+                                                                </div>
+                                                            </div>
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <td>$5.99</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>T-SHIRT MORADA</td>
+                                                <td>$2.99</td>
+                                                <th>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-minus"></i></button>
+                                                            <div class="row mt-1">
+                                                                <div class="col-12">
+                                                                    <h1 class="text-white mx-2 contadorCantidad">2</h1>
+                                                                </div>
+                                                            </div>
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <td>$5.99</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-light">Finalizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <footer id="piePagina">
             <div class="container-fluid" style="background-color: #22242C; padding-top:40px; padding-bottom:30px;">
               <div class="row">
@@ -90,14 +185,17 @@
                   <li><a href="" class="paddingLink"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                 </ul>
                 <p class="textoFooter">Diseñado y creado por Eduardo Rivera, Katherine Salinas, Samuel Magaña</p>
-                <p class="textoFooter">Todos los Derechos Reservados © 2020 - Polus El Salvador</p>
+                <p class="textoFooter">Todos los Derechos Reservados © 2021 - Polus El Salvador</p>
               </div>
             </div>
             </footer>
             <!-- Option 1: Bootstrap Bundle with Popper -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-              integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-              crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+            
+            <script>
+                document.getElementById(\'controlesNavbar\').addEventListener(\'submit\',function(event){
+                    event.preventDefault();
+                });
             </script>
           
             <!-- IONICONS -->

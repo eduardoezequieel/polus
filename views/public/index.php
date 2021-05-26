@@ -8,14 +8,14 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
 <!--Inicio del Contenedor Principal-->
   <div class="container mb-5" id="contenedorPrincipal">
     <header>
-      <div class="row" id="fila">
-        <div class="col-6" id="title">
-          <h1 class="titulos textoPequeño">Nunca es<br><span style="color: #605AC3;"><b>suficiente</b></span> ropa.</h1>
+      <div class="row justify-content-center py-5 animate__animated animate__zoomIn animate__faster" id="fila">
+        <div class="col-6 d-flex justify-content-center align-items-center flex-column" id="title">
+          <h1 class="titulos textoPequeño text-center">Nunca es<br><span style="color: #605AC3;"><b>suficiente</b></span> ropa.</h1>
           <a href="pagina_principal.php" class="btn boton mt-4"><i class="fas fa-shopping-cart" id="carrito"></i>Comprar Productos</a>
         </div>
 
-        <div class="col-lg-6 moverTitulo" >
-          <img src="../../resources/img/polus iconos.png" class="img-fluid ">
+        <div class="col-lg-6 moverTitulo d-flex justify-content-center" >
+          <img src="../../resources/img/polus iconos.png" class="img-fluid w-75">
         </div>
       </div>
     </header>
@@ -24,7 +24,7 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
 
 <!--Descripcion 1 inicio-->
 <section>
-  <div class="container-fluid" id="contenedorCategorias">
+  <div class="container-fluid animate__animated animate__zoomIn animate__faster" id="contenedorCategorias">
     <div class="row" id="categoria">
       <h1 class="titulos2" style="text-align: center;">Mira lo que tenemos <span style="color: #605AC3;"><b>para</b></span> ofrecerte.</h1>
       <p class="parrafo mb-5 mt-5" style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi qui, tempora consectetur eum, quia nisi quidem ratione veniam incidunt quam earum iusto eos quisquam saepe autem non voluptatibus ducimus quae.</p>
@@ -55,7 +55,7 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
           <p class="parrafo" style="text-align: justify; margin-bottom: 50px;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>    
-          <img src="../../resources/img/quienessomos2.PNG" class="img-fluid centrarImagenes" style="width: 430px; height: 400px;">
+          <img src="../../resources/img/quienessomos2.PNG" class="img-fluid centrarImagenes imag1" style="width: 430px; height: 400px;">
       </div>
 
       <div class="row mb-5">
@@ -64,7 +64,7 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
           <p class="parrafo" style="text-align: justify;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>
-          <img src="../../resources/img/development2.png" class="img-fluid centrarImagenes mt-5" style="width: 400px; height: 400px;">
+          <img src="../../resources/img/development2.png" class="img-fluid centrarImagenes imag mt-5" style="width: 400px; height: 400px;">
         </div>
 
         <div class=" col-lg-6 col-sm-12 col-xs-12">
@@ -72,7 +72,7 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
           <p class="parrafo" style="text-align: justify;">Lorem, ipsum dolor
           sit amet consectetur adipisicing elit. Voluptatem architecto facilis est explicabo suscipit dolorem dolores
           autem delectus rem reprehenderit modi quaerat, expedita ut ipsum illo vitae neque id similique!</p>
-          <img src="../../resources/img/vision2.PNG" class="img-fluid centrarImagenes mt-5" style="width: 400px; height: 400px;">
+          <img src="../../resources/img/vision2.PNG" class="img-fluid centrarImagenes imag mt-5" style="width: 400px; height: 400px;">
         </div>
       </div>
     </div>
