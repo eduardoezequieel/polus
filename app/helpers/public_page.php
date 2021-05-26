@@ -70,9 +70,9 @@
 
                         </ul>
                         <form id="controlesNavbar">
+                            <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i>$4.99</button>
                             <a href="../../views/public/iniciar_sesion.php" class="btn btn-outline-light">Acceder</a>
                             <a href="../../views/public/crear_cuenta.php" class="btn btn-outline-secondary">Registrarse</a>
-                            <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i>$4.99</button>
                             
                         </form>
                     </div>
