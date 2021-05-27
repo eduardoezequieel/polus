@@ -277,13 +277,35 @@ p{
     color: white;
 }
 
+.texto{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300%;
+    text-align: center;
+    letter-spacing: 1px;
+    color: rgb(210, 210, 210);;
+}
+
+.personalizacionPolus{
+    background-color: #16181D;
+    border: hidden;
+    color:white;
+    border-radius: 16px;
+    padding: 10px;
+}
+
+.personalizacionPolus:focus{
+    background-color: #16181D;
+    border: hidden;
+    color:white; 
+}
+
 .modal-title{
     font-family: 'Quicksand',sans-serif;
     font-weight: 500;
 }
 
 .modal-content{
-    background-color: #16181D;
+    background-color: #22242C;
 }
 
 .modal-header {
@@ -307,6 +329,44 @@ td, th{
     width: 30px;
     height: 30px;
     font-size: 8px;
+}
+
+.accordion-item{
+    background-color: #22242C !important;
+    border-bottom: rgb(255, 255, 255) !important;
+}
+
+.tituloConfirmacion{
+    font-family: 'Quicksand',sans-serif;
+    font-weight: 500;
+    color: white;
+    font-size: 16px;
+}
+
+.tituloInformacion{
+    font-family: 'Roboto Mono',sans-serif;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+}
+
+.informacionCliente{
+    font-family: 'Nunito',sans-serif;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+}
+
+.accordion-button{
+    background-color: #16181D !important;  
+    color: white !important;
+    border: 2px dashed #16181D;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 14px !important;
+    
 }
 
 #seccionInfo{
@@ -394,6 +454,10 @@ td, th{
 
     .carousel-inner{
         height: 200px !important;
+    }
+
+    #informacionClienteContenido{
+        flex-direction: column !important;
     }
 
 }

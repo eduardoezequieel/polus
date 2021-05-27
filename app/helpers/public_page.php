@@ -26,6 +26,8 @@
                 <link rel="preconnect" href="https://fonts.gstatic.com">
                 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
                 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
 
                 <!-- Font Awesome -->
                 <script src="https://kit.fontawesome.com/43634cb7dc.js" crossorigin="anonymous"></script>
@@ -96,7 +98,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="row justify-content-center">
-                                <div class="col-12 d-flex justify-content-center">
+                                <div class="col-12 d-flex justify-content-center table-responsive">
                                     <table class="table table-borderless">
                                         <thead>
                                             <tr>
@@ -105,6 +107,7 @@
                                                 <th scope="col">Precio</th>
                                                 <th scope="col">Cantidad</th>
                                                 <th scope="col">Subtotal</th>
+                                                <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -126,6 +129,13 @@
                                                     </div>
                                                 </th>
                                                 <td>$5.99</td>
+                                                <th>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-times"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </th>
                                             </tr>
                                             <tr>
                                                 <th scope="row">1</th>
@@ -145,6 +155,13 @@
                                                     </div>
                                                 </th>
                                                 <td>$5.99</td>
+                                                <th>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-times"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </th>
                                             </tr>
                                             <tr>
                                                 <th scope="row">1</th>
@@ -164,9 +181,97 @@
                                                     </div>
                                                 </th>
                                                 <td>$5.99</td>
+                                                <th>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-times"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </th>
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-light" data-bs-target="#pedidoModal" data-bs-toggle="modal" data-bs-dismiss="modal">Siguiente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para confirmar pedido -->
+            <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-white" id="exampleModalLabel"><span
+                                    class="fas fa-info-circle mx-3 text-white"></span>Detalles</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i
+                                    class="fas fa-times text-white"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 class="tituloConfirmacion text-center">Información de Contacto</h1>
+                                    <div class="d-flex justify-content-center" id="informacionClienteContenido">
+                                        <div class="d-flex flex-column m-3">
+                                            <h1 class="tituloInformacion">NOMBRE:</h1>
+                                            <label class="informacionCliente">Eduardo Rivera</label>
+                                        </div>
+                                        <div class="d-flex flex-column m-3">
+                                            <h1 class="tituloInformacion">CORREO:</h1>
+                                            <label class="informacionCliente">riv.edu10@gmail.com</label>
+                                        </div>
+                                        <div class="d-flex flex-column m-3">
+                                            <h1 class="tituloInformacion">TELÉFONO:</h1>
+                                            <label class="informacionCliente">0000-0000</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingOne">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                    aria-expanded="false" aria-controls="flush-collapseOne">
+                                                    <span class="tituloConfirmacion">Dirección del Envio</span>
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingOne"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    <div class="form-group">
+                                                        <textarea rows=2 class="form-control personalizacionPolus"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingTwo">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                    aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                    <span class="tituloConfirmacion">Notas de Envio</span>
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                                aria-labelledby="flush-headingTwo"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    <div class="form-group">
+                                                        <textarea rows=2 class="form-control personalizacionPolus"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -176,6 +281,7 @@
                     </div>
                 </div>
             </div>
+
             <footer id="piePagina">
             <div class="container-fluid" style="background-color: #22242C; padding-top:40px; padding-bottom:30px;">
               <div class="row">
