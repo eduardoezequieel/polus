@@ -7,7 +7,7 @@ public_Page::navbarTemplate('Polus El Salvador','.');
 <!-- Inicio del carousel con imagenes de prueba-->
 <div class="container-fluid pb-5" style="background-color:#16181D;">
     <div class="row justify-content-center">
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center animate__animated animate__zoomInUp">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -46,35 +46,42 @@ public_Page::navbarTemplate('Polus El Salvador','.');
         <div class="col-12 d-flex justify-content-center">
             <div class="row d-flex justify-content-center">
                 <div class="col d-flex justify-content-center">
-                    <button class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
+                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
                         <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
                         Prueba
-                    </button>
+                    </a>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <button class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
+                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
                         <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
                         Prueba
-                    </button>
+                    </a>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <button class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
+                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
                         <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
                         Prueba
-                    </button>
+                    </a>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <button class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
+                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
                         <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
                         Prueba
-                    </button>
+                    </a>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <button class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
+                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
                         <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
                         Prueba
-                    </button>
+                    </a>
                 </div>
+                <div class="col d-flex justify-content-center">
+                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
+                        <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
+                        Prueba
+                    </a>
+                </div>
+                
             </div> 
         </div>
     </div>

@@ -8,7 +8,7 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
 <!--Inicio de X Producto-->
 <section>
     <div class="container-fluid" id="XProducto">
-        <div class="row">
+        <div class="row animate__animated animate__fadeInDown">
             <!--Imagen-->
             <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 " id="columnaImagen">
                 <img src="../../resources/img/shortsprueba.png" alt="" class="img-fluid m-auto d-block redondearImagen mt-4" width="450px">
@@ -59,6 +59,23 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
             </div>
         </div>
         
+    </div>
+</section>
+
+<section>
+    <div class="container my-5" id="comentario">
+        <form>
+            <div class="row">
+                <h1 class="titulos">¿Qué te parece este producto?</h1>
+                <h1 class="comentarioReseña text-white text-center mb-3">Puedes dejarnos un comentario acerca de tu opinión de este producto.</h1>
+                <div class="col-12 justify-content-center">
+                    <textarea class="form-control personalizacionPolus" rows="3" id="txtComentario"></textarea>
+                    <div class="d-flex justify-content-center align-items-center mt-3">
+                        <button class="btn btn-outline-light">Publicar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </section>
 

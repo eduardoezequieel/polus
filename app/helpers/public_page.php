@@ -276,6 +276,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-target="#carritoModal" data-bs-toggle="modal" data-bs-dismiss="modal">Regresar</button>
                             <button type="button" class="btn btn-outline-light">Finalizar</button>
                         </div>
                     </div>

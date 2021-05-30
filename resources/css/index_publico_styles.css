@@ -299,6 +299,23 @@ p{
     color:white; 
 }
 
+.personalizacionPolus2{
+    background-color: #22242C;
+    border: hidden;
+    color:white;
+    border-radius: 16px;
+    padding: 10px;
+    width: 240px;
+    margin-bottom: 16px;
+}
+
+.personalizacionPolus2:focus{
+    background-color: #22242C;
+    border: hidden;
+    color:white; 
+    width: 240px;
+}
+
 .modal-title{
     font-family: 'Quicksand',sans-serif;
     font-weight: 500;
