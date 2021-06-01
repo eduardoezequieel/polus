@@ -151,6 +151,70 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
     </section>
 </div>
 
+<!-- Modal para listar las reseñas de un producto -->
+<div class="modal fade" id="listaResenas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                        class="fas fa-info-circle mx-2"></span>Reseñas</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <br>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-3 mt-2">
+                <!-- Espacio para buscar -->
+                <div class="row mb-4">
+                    <div class="col-12" >
+                        <form class="d-flex" id="search-resena-form">
+                            <input class="form-control me-2" type="search" placeholder="Buscar... {Nombre, Apellido, Descripción}" aria-label="Search" id="search" name="search">
+                            <button class="btn btn-outline-dark me-2" type="submit">Buscar</button>
+                            <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Fila de la tabla -->
+                <div class="row table-responsive-lg">
+                    <div class="col-12">
+                        <table class="table">
+                            <thead class="bg-dark tabla">
+                                <tr>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Puntuación</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-rows">
+                                <tr>
+                                    <td>Katherine Gonzalez</td>
+                                    <td>1-1-2000</td>
+                                    <td>5 estrellas</td>
+                                    <th scope="row">
+                                        <div class="row">
+                                            <div class="col-12 d-flex">              
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#administrarProductos"
+                                                    class="btn btn-outline-success"><i class="fas fa-info tamanoBoton"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Fin de la tabla -->
+            </div>
+
+            <!-- Fin del Contenido del Modal -->
+        </div>
+    </div>
+</div>
+
 <!-- Modal para administrar reseñas -->
 <div class="modal fade" id="administrarResenas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

@@ -163,4 +163,8 @@ body {
         margin-left:0px;
     }
 
+    #search-resena-form{
+        flex-direction: column !important;
+    }
+
 }

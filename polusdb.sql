@@ -315,3 +315,6 @@ ALTER TABLE resena DROP COLUMN iddetallepedido;
 ALTER TABLE resena ADD COLUMN idproducto INTEGER REFERENCES producto(idProducto);
 UPDATE resena SET idproducto = 1;
 
+ALTER TABLE resena ADD COLUMN idcliente INTEGER REFERENCES cliente(idcliente);
+UPDATE resena SET idcliente = 1;
+

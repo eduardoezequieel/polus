@@ -46,7 +46,7 @@ function fillTable(dataset){
                             <h5 class="mx-1">
                             </h5>
 
-                            <a href="#" onclick="openCommentsDialog(${row.idproducto})" class="btn btn-outline-primary"><i class="fas fa-info tamanoBoton"></i></a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#listaResenas" class="btn btn-outline-primary"><i class="fas fa-comment tamanoBoton"></i></a>
 
                         </div>
                     </div>
