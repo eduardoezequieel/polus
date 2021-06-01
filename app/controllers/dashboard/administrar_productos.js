@@ -1,5 +1,6 @@
 //constante para la ruta de la API y ENDPOINTS
 const API_PRODUCTO = '../../app/api/dashboard/productos.php?action=';
+const API_RESEÑAS = '../../app/api/dashboard/reseñas.php?action=';
 const ENDPOINT_MARCA = '../../app/api/dashboard/productos.php?action=readAllMarca';
 const ENDPOINT_SUB = '../../app/api/dashboard/productos.php?action=readAllSub';
 
@@ -38,9 +39,15 @@ function fillTable(dataset){
                             </a>
 
                             <h5 class="mx-1">
-                            </h1>
+                            </h5>
 
                             <a href="#" onclick="openDeleteDialog(${row.idproducto})" class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i></a>
+
+                            <h5 class="mx-1">
+                            </h5>
+
+                            <a href="#" onclick="openCommentsDialog(${row.idproducto})" class="btn btn-outline-primary"><i class="fas fa-info tamanoBoton"></i></a>
+
                         </div>
                     </div>
                 </th>
@@ -59,6 +66,40 @@ document.getElementById('search-form').addEventListener('submit', function(event
 
     searchRows(API_PRODUCTO, 'search-form');
 })
+
+function openCommentDialog(id){
+    const data = new FormData();
+    data.append('idReseña', id);
+
+    fetch(API_RESEÑAS + 'readOne', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('idReseña').value = response.dataset.idresena;
+                    document.getElementById('txtCliente').textContent = response.dataset.cliente;
+                    document.getElementById('txtFecha').textContent = response.dataset.fechapedido;
+                    document.getElementById('txtPuntuacion').textContent = response.dataset.puntuacion;
+                    document.getElementById('txtIdPedido').textContent = response.dataset.idpedido;
+                    document.getElementById('txtReseña').value = response.dataset.comentario;
+                    document.getElementById('txtRespuesta').value = response.dataset.respuesta;
+                    
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 
 //Actualizar
 function openUpdateDialog(id){
