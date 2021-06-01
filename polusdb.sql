@@ -318,3 +318,9 @@ UPDATE resena SET idproducto = 1;
 ALTER TABLE resena ADD COLUMN idcliente INTEGER REFERENCES cliente(idcliente);
 UPDATE resena SET idcliente = 1;
 
+ALTER TABLE resena ADD COLUMN fecha DATE;
+ALTER TABLE resena ADD COLUMN hora TIME;
+
+UPDATE resena SET fecha = current_date;
+UPDATE resena SET hora = current_time;
+
