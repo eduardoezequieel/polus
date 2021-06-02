@@ -31,21 +31,21 @@
             <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center flex-column paddingLados ">
                 <h1 class="titulo2 mb-2 mt-5 pt-5">Iniciar Sesión</h1>
                 <div class="form-group">
-                <form>
+                <form id="login-form">
                   <!-- Input Correo -->
                   <div class="form-group mb-2">
-                    <label for="exampleInputEmail1" class="mb-2 texto">Ingrese su correo electrónico</label>
-                    <input type="email" class="form-control personalizacionPolus personalizacionPolusP" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ejemplo@mail.com">
+                    <label for="exampleInputEmail1" class="mb-2 texto">Ingrese su usuario</label>
+                    <input type="email" class="form-control personalizacionPolus personalizacionPolusP" id="correo" name="correo" aria-describedby="emailHelp" placeholder="ejemplo@mail.com" Required>
                   </div>
                   <!-- Input Contraseña -->
                   <div class="form-group mb-2">
                     <label for="exampleInputPassword1" class="mb-2 texto">Ingrese su contraseña</label>
-                    <input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="exampleInputPassword1" placeholder="Contraseña">
+                    <input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="contrasenia" name="contrasenia" placeholder="Contraseña" Required>
                     <a href="seleccion_recuperacion.php" class="form-text">¿Hás olvidado tu contraseña?</a>
                   </div>
                   <div class="row justify-content-center">
                     <div class="col-12 d-flex justify-content-center align-items-center">
-                      <a href="pagina_principal.php" class="btn boton my-2">Iniciar Sesión</a>
+                      <button class="btn boton my-2" type='submit' id="btnCancelar">Iniciar Sesion</button>
                     </div>
                   </div>
                 </form>
@@ -60,6 +60,6 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
-  </body>
-</html>
+    <script type="text/javascript" src="../../app/controllers/public/iniciar_sesion.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../app/helpers/components.js"></script>

@@ -1,6 +1,10 @@
 <?php
     class public_Page{
         public static function navbarTemplate($titulo, $css){
+
+            // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en las páginas web.
+            session_start();
+
             print('
                 <!doctype html>
                 <html lang="es">
@@ -34,59 +38,134 @@
 
                 <title>'.$titulo.'</title>
                 </head>
-                <!--Inicio del navbar-->
-                <body>
-                <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
-                    <div class="container">
-                    <a class="navbar-brand" href="../../views/public/index.php">
-                        <img src="../../resources/img/p icono.png" alt="img-fluid" height="40px" width="40px">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <ion-icon name="grid"></ion-icon>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Catalogo
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" id>
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../../views/public/categoria.php">Pagina X Catalogo</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#AcercaNosotros">Acerca de Nosotros</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#Soporte">Soporte</a>
-                        </li>
-
-                        </ul>
-                        <form id="controlesNavbar">
-                            <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i>$4.99</button>
-                            <a href="../../views/public/iniciar_sesion.php" class="btn btn-outline-light">Acceder</a>
-                            <a href="../../views/public/crear_cuenta.php" class="btn btn-outline-secondary">Registrarse</a>
-                            
-                        </form>
-                    </div>
-                    </div>
-                </nav>
-
-                
                 '
             );
+
+            // Se obtiene el nombre del archivo de la página web actual.
+            $filename = basename($_SERVER['PHP_SELF']);
+            // Se comprueba si existe una sesión de cliente para mostrar el menú de opciones, de lo contrario se muestra otro menú.
+            if (isset($_SESSION['idCliente'])) {
+                // Se verifica si la página web actual es diferente a login.php y register.php, de lo contrario se direcciona a index.php
+                if ($filename != 'iniciar_sesion.php' && $filename != 'crear_cuenta.php') {
+                    print('
+                        <!--Inicio del navbar-->
+                        <body>
+                        <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+                            <div class="container">
+                            <a class="navbar-brand" href="../../views/public/index.php">
+                                <img src="../../resources/img/p icono.png" alt="img-fluid" height="40px" width="40px">
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <ion-icon name="grid"></ion-icon>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Catálogo
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" id>
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="../../views/public/categoria.php">Pagina X Catálogo</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#AcercaNosotros">Acerca de Nosotros</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#Soporte">Soporte</a>
+                                </li>
+
+                                </ul>
+                                <form id="controlesNavbar">
+                                    <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i>$4.99</button>
+                                    
+                                </form>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="../../resources/img/dashboard_img/cliente_fotos/' . $_SESSION['foto'] . '" id="fotoPerfil" alt="" class="rounded-circle fotografiaPerfil2" width="40px">
+                                            <h5 class="text-center mx-3 paddingUsername">' . $_SESSION['usuario'] . '</h5>
+                                            <i class="fas fa-caret-down paddingFlecha"></i>
+                                    </button>
+                                    <ul class="dropdown-menu  animate__animated animate__bounceIn m-5" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="mi_cuenta.php">Mi Cuenta</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="logOutCliente()">Cerrar Sesión</a></li>
+                                    </ul>
+                                </div>  
+                            </div>
+                            </div>
+                        </nav>
+                    ');
+                } else {
+                    header('location: index.php');
+                }
+            } else {
+                // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a register.php (Crear primer usuario) para direccionar a index.php, de lo contrario se muestra un menú vacío.
+                if ($filename != 'producto.php') {
+                    print('
+                        
+                        <!--Inicio del navbar-->
+                        <body>
+                        <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+                            <div class="container">
+                            <a class="navbar-brand" href="../../views/public/index.php">
+                                <img src="../../resources/img/p icono.png" alt="img-fluid" height="40px" width="40px">
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <ion-icon name="grid"></ion-icon>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Catálogo
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" id>
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="../../views/public/categoria.php">Pagina X Catálogo</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#AcercaNosotros">Acerca de Nosotros</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#Soporte">Soporte</a>
+                                </li>
+
+                                </ul>
+                                <form id="controlesNavbar">
+                                    <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i>$4.99</button>
+                                    <a href="../../views/public/iniciar_sesion.php" class="btn btn-outline-light">Acceder</a>
+                                    <a href="../../views/public/crear_cuenta.php" class="btn btn-outline-secondary">Registrarse</a>
+                                    
+                                </form>
+                            </div>
+                            </div>
+                        </nav>
+                    ');
+                } else {
+                    header('location: crear_cuenta.php');
+                }
+            }
         }
 
-        public static function footerTemplate(){
+        public static function footerTemplate($controller){
             print('
             <!-- Modal -->
             <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -304,6 +383,11 @@
                     event.preventDefault();
                 });
             </script>
+
+            <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+            <script type="text/javascript" src="../../app/helpers/components.js"></script>
+            <script type="text/javascript" src="../../app/controllers/public/mi_cuenta.js"></script>
+            <script type="text/javascript" src="../../app/controllers/public/'.$controller.'"></script>
           
             <!-- IONICONS -->
             <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
