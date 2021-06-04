@@ -208,13 +208,16 @@
         }
 
         //Métodos para administrar cuenta del usuario 
-        public function checkUser($alias)
+        public function checkUser($correo)
         {
-            $sql = 'SELECT idCliente FROM cliente WHERE usuario = ?';
-            $params = array($alias);
+            $sql = 'SELECT idCliente, idEstadoUsuario, usuario, foto FROM cliente WHERE correo = ?';
+            $params = array($correo);
             if ($data = Database::getRow($sql, $params)) {
                 $this->idCliente = $data['idcliente'];
-                $this->usuario = $alias;
+                $this->correo = $correo;
+                $this->idEstadoUsuario = $data['idestadousuario'];
+                $this->usuario = $data['usuario'];
+                $this->foto= $data['foto'];
                 return true;
             } else {
                 return false;
@@ -235,18 +238,18 @@
 
         public function changePassword()
         {
-            $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-            $sql = 'UPDATE usuarios SET clave_usuario = ? WHERE id_usuario = ?';
-            $params = array($hash, $_SESSION['id_usuario']);
+            $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
+            $sql = 'UPDATE cliente SET contraseña = ? WHERE idCliente = ?';
+            $params = array($hash, $_SESSION['idCliente']);
             return Database::executeRow($sql, $params);
         }
 
         public function readProfile()
         {
-            $sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario
-                    FROM usuarios
-                    WHERE id_usuario = ?';
-            $params = array($_SESSION['id_usuario']);
+            $sql = 'SELECT idCliente, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
+            FROM cliente
+            WHERE idCliente = ?';
+            $params = array($_SESSION['idCliente']);
             return Database::getRow($sql, $params);
         }
 

@@ -310,3 +310,17 @@ UPDATE puntuacion SET puntuacion = '3 estrellas' WHERE idpuntuacion = 3;
 UPDATE puntuacion SET puntuacion = '4 estrellas' WHERE idpuntuacion = 4;
 UPDATE puntuacion SET puntuacion = '5 estrellas' WHERE idpuntuacion = 5;
 
+--Cambios 1/6/2021
+ALTER TABLE resena DROP COLUMN iddetallepedido;
+ALTER TABLE resena ADD COLUMN idproducto INTEGER REFERENCES producto(idProducto);
+UPDATE resena SET idproducto = 1;
+
+ALTER TABLE resena ADD COLUMN idcliente INTEGER REFERENCES cliente(idcliente);
+UPDATE resena SET idcliente = 1;
+
+ALTER TABLE resena ADD COLUMN fecha DATE;
+ALTER TABLE resena ADD COLUMN hora TIME;
+
+UPDATE resena SET fecha = current_date;
+UPDATE resena SET hora = current_time;
+

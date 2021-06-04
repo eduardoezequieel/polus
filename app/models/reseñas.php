@@ -89,9 +89,8 @@ Class Resenas extends Validator{
         puntuacion.puntuacion 
         FROM resena 
         INNER JOIN puntuacion ON resena.idpuntuacion = puntuacion.idpuntuacion 
-        INNER JOIN detallepedido on resena.iddetallepedido = detallepedido.iddetallepedido 
-        INNER JOIN pedido ON detallepedido.idpedido = pedido.idpedido 
         INNER JOIN cliente ON pedido.idcliente = cliente.idcliente
+        WHERE idproducto = ?
         ';
         $params=null;
         return Database::getRows($sql, $params);

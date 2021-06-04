@@ -141,6 +141,6 @@ public_Page::navbarTemplate('Polus El Salvador','index_publico_styles.css');
   </section>
 
 <?php
-  public_Page::footerTemplate();
+  public_Page::footerTemplate('index.js');
 ?>
 
