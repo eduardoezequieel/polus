@@ -79,15 +79,15 @@ Class Usuarios extends Validator{
         }
     }
 
-    public function setNacimiento($value)
-    {
-        if ($this->validateDate($value)) {
-            $this->fechaNacimiento = $value;
-            return true;
-        } else {
-            return false;
+        public function setNacimiento($value)
+        {
+            if ($this->validateDate($value)) {
+                $this->fechaNacimiento = $value;
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
 
     public function setTelefono($value)
     {

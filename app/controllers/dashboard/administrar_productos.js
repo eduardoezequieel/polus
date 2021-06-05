@@ -1,6 +1,7 @@
 //constante para la ruta de la API y ENDPOINTS
 const API_PRODUCTO = '../../app/api/dashboard/productos.php?action=';
 const API_RESEÑAS = '../../app/api/dashboard/reseñas.php?action=';
+const ENDPOINT_COMMENTS = '../../app/api/dashboard/reseñas.php?action=readAllStates';
 const ENDPOINT_MARCA = '../../app/api/dashboard/productos.php?action=readAllMarca';
 const ENDPOINT_SUB = '../../app/api/dashboard/productos.php?action=readAllSub';
 
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
     readRows(API_PRODUCTO);
     fillSelect(ENDPOINT_MARCA,'cbMarca',null);
     fillSelect(ENDPOINT_SUB,'cbSubcategoria',null);
+    fillSelect(ENDPOINT_COMMENTS,'txtEstadoResena',null);
 })
 
 //Metodo para usar un boton diferente de examinar
@@ -46,7 +48,7 @@ function fillTable(dataset){
                             <h5 class="mx-1">
                             </h5>
 
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#listaResenas" class="btn btn-outline-primary"><i class="fas fa-comment tamanoBoton"></i></a>
+                            <a href="#" onclick="openCommentsDialog(${row.idproducto})" data-bs-toggle="modal" data-bs-target="#listaResenas" class="btn btn-outline-primary"><i class="fas fa-comment tamanoBoton"></i></a>
 
                         </div>
                     </div>
@@ -58,6 +60,35 @@ function fillTable(dataset){
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
+//Llenado de tabla de reseñas
+function fillTableReseñas(dataset){
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <tr>
+            <td>${row.cliente}</td>
+            <td>${row.fecha}</td>
+            <td>${row.hora.substring(0,8)}</td>
+            <td>${row.puntuacion}</td>
+            <td>${row.estadoresena}</td>
+            <th scope="row">
+                <div class="row">
+                    <div class="col-12 d-flex">              
+                        <button href="#" onclick="openEditDialog(${row.idresena})" data-bs-toggle="modal" data-bs-target="#administrarResenas" data-bs-dismiss="modal"
+                            class="btn btn-outline-success"><i class="fas fa-info tamanoBoton"></i>
+                        </button>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        `;
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-rows-reseñas').innerHTML = content;
+}
+
 //Buscar
 document.getElementById('search-form').addEventListener('submit', function(event){
 
@@ -67,7 +98,101 @@ document.getElementById('search-form').addEventListener('submit', function(event
     searchRows(API_PRODUCTO, 'search-form');
 })
 
-function openCommentDialog(id){
+//Buscar reseñas
+
+document.getElementById('search-resena-form').addEventListener('submit', function(event){
+
+    //Evento para que no recargue la pagina
+    event.preventDefault();
+
+    searchRowsReseña(API_RESEÑAS, 'search-resena-form');
+})
+
+document.getElementById('state-form').addEventListener('submit',function(event){
+    event.preventDefault();
+
+   
+
+    fetch(API_RESEÑAS + 'searchByState', {
+        method: 'post',
+        body: new FormData(document.getElementById('state-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillTableReseñas(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+})
+
+document.getElementById('date-form').addEventListener('submit', function(event){
+    event.preventDefault();
+
+    fetch(API_RESEÑAS + 'searchByDate', {
+        method: 'post',
+        body: new FormData(document.getElementById('date-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillTableReseñas(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+function searchRowsReseña(api, form) {
+    fetch(api + 'search', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillTableReseñas(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function openEditDialog(id){
     const data = new FormData();
     data.append('idReseña', id);
 
@@ -80,15 +205,102 @@ function openCommentDialog(id){
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    console.log(response.dataset.precio);
                     document.getElementById('idReseña').value = response.dataset.idresena;
+                    document.getElementById('lblHora').textContent = response.dataset.hora.substring(0,8);
                     document.getElementById('txtCliente').textContent = response.dataset.cliente;
-                    document.getElementById('txtFecha').textContent = response.dataset.fechapedido;
+                    document.getElementById('txtFecha').textContent = response.dataset.fecha;
                     document.getElementById('txtPuntuacion').textContent = response.dataset.puntuacion;
-                    document.getElementById('txtIdPedido').textContent = response.dataset.idpedido;
+                    document.getElementById('txtProducto').textContent = response.dataset.nombre;
+                    document.getElementById('lblPrecio').textContent = '$' + response.dataset.precio;
                     document.getElementById('txtReseña').value = response.dataset.comentario;
                     document.getElementById('txtRespuesta').value = response.dataset.respuesta;
-                    
+
+                    if (response.dataset.idestadoresena == 1) {
+                        document.getElementById('btnOcultar').className = ('btn btn-outline-dark float-right mx-1');
+                        document.getElementById('btnMostrar').className = ('d-none');
+                    }
+                    else if (response.dataset.idestadoresena == 2) {
+                        document.getElementById('btnMostrar').className = ('btn btn-outline-dark float-right mx-1');
+                        document.getElementById('btnOcultar').className = ('d-none');
+                    }
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Actualizar
+document.getElementById('btnResponder').addEventListener('click',function(){
+    console.log('hola');
+    document.getElementById('administrarResena-form').addEventListener('submit', function(event){
+
+        event.preventDefault();
+    
+        fetch(API_RESEÑAS + 'createOrUpdateAnswer', {
+            method: 'post',
+            body: new FormData(document.getElementById('administrarResena-form'))
+        }).then(function(request){
+            //Verificando si la petición fue correcta
+            if(request.ok){
+                request.json().then(function(response){
+                    //Verificando respuesta satisfactoria
+                    if(response.status){
+                        //Mandando mensaje de exito
+                        sweetAlert(1, response.message, closeModal('administrarResenas'));
+                    } else{
+                        sweetAlert(4, response.exception, null);
+                    }
+                })
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function(error){
+            console.log(error);
+        });
+    });
+});
+
+function openCommentsDialog(id){
+    
+    const data = new FormData();
+    data.append('idProducto', id);
+
+    fetch(API_RESEÑAS + 'readAll', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillTableReseñas(data);
+                document.getElementById('idProducto2').value = id;
+                document.getElementById('idProducto3').value = id;
+                document.getElementById('idProducto4').value = id;
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -168,8 +380,131 @@ document.getElementById('administrarProducto-form').addEventListener('submit', f
         }
     }).catch(function(error){
         console.log(error);
-    })
+    })  
 })
+
+//Eliminar
+document.getElementById('btnEliminar').addEventListener('click',function(){
+    document.getElementById('administrarResena-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        swal({
+            title: 'Advertencia',
+            text: '¿Desea eliminar el comentario?',
+            icon: 'warning',
+            buttons: ['No', 'Sí'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        }).then(function (value) {
+            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                fetch(API_RESEÑAS + 'deleteComment', {
+                    method: 'post',
+                    body: new FormData(document.getElementById('administrarResena-form'))
+                }).then(function (request) {
+                    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                    if (request.ok) {
+                        request.json().then(function (response) {
+                            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                            if (response.status) {
+                                // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                                sweetAlert(1, response.message, closeModal('administrarResenas'));
+                            } else {
+                                sweetAlert(2, response.exception, null);
+                                console.log(response.status + ' ' + response.statusText);
+                            }
+                        });
+                    } else {
+                        console.log(request.status + ' ' + request.statusText);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        });
+    });
+});
+
+//Ocultar
+document.getElementById('btnOcultar').addEventListener('click',function(){
+    document.getElementById('administrarResena-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        swal({
+            title: 'Advertencia',
+            text: '¿Desea ocultar el comentario?',
+            icon: 'warning',
+            buttons: ['No', 'Sí'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        }).then(function (value) {
+            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                fetch(API_RESEÑAS + 'hideComment', {
+                    method: 'post',
+                    body: new FormData(document.getElementById('administrarResena-form'))
+                }).then(function (request) {
+                    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                    if (request.ok) {
+                        request.json().then(function (response) {
+                            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                            if (response.status) {
+                                // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                                sweetAlert(1, response.message, closeModal('administrarResenas'));
+                            } else {
+                                sweetAlert(2, response.exception, null);
+                                console.log(response.status + ' ' + response.statusText);
+                            }
+                        });
+                    } else {
+                        console.log(request.status + ' ' + request.statusText);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        });
+    });
+});
+
+//Mostrar
+document.getElementById('btnMostrar').addEventListener('click',function(){
+    document.getElementById('administrarResena-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        swal({
+            title: 'Advertencia',
+            text: '¿Desea mostrar nuevamente el comentario?',
+            icon: 'warning',
+            buttons: ['No', 'Sí'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        }).then(function (value) {
+            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                fetch(API_RESEÑAS + 'showComment', {
+                    method: 'post',
+                    body: new FormData(document.getElementById('administrarResena-form'))
+                }).then(function (request) {
+                    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                    if (request.ok) {
+                        request.json().then(function (response) {
+                            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                            if (response.status) {
+                                // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                                sweetAlert(1, response.message, closeModal('administrarResenas'));
+                            } else {
+                                sweetAlert(2, response.exception, null);
+                                console.log(response.status + ' ' + response.statusText);
+                            }
+                        });
+                    } else {
+                        console.log(request.status + ' ' + request.statusText);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        });
+    });
+});
 
 //Eliminar
 function openDeleteDialog(id){

@@ -153,7 +153,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
 
 <!-- Modal para listar las reseñas de un producto -->
 <div class="modal fade" id="listaResenas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content justify-content-center px-3 py-2">
             <!-- Cabecera del Modal -->
             <div class="modal-header">
@@ -169,11 +169,38 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                 <!-- Espacio para buscar -->
                 <div class="row mb-4">
                     <div class="col-12" >
-                        <form class="d-flex" id="search-resena-form">
-                            <input class="form-control me-2" type="search" placeholder="Buscar... {Nombre, Apellido, Descripción}" aria-label="Search" id="search" name="search">
-                            <button class="btn btn-outline-dark me-2" type="submit">Buscar</button>
-                            <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
-                        </form>
+                        <div>
+                            <label for="#">Escriba lo que desea buscar:</label>
+                            <form class="d-flex" id="search-resena-form">
+                                <input class="visually-hidden" type="number" id="idProducto2" name="idProducto2">
+                                <input class="form-control me-2" type="search" placeholder="Buscar... {Nombre, Apellido, Puntuación}" aria-label="Search" id="searchReseña" name="searchReseña">
+                                <div class="d-flex justify-content-center margen">
+                                    <button class="btn btn-outline-dark me-2" type="submit">Buscar</button>
+                                    <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-12 d-flex" id="filtrosBusqueda">
+                        <div>
+                            <label for="#">Filtrado por fecha:</label>
+                            <form class="d-flex" method="post" id="date-form" name="date-form">
+                                <input class="visually-hidden" type="number" id="idProducto3" name="idProducto3">
+                                <input class="form-control me-2" type="date" aria-label="Search" id="txtFechaReseña" name="txtFechaReseña">
+                                <button class="btn btn-outline-dark me-2" type="submit">Filtrar</button>
+                            </form>
+                        </div>
+                        <div>
+                            <label for="#">Filtrado por estado:</label>
+                            <form class="d-flex" method="post" id="state-form" name="state-form">
+                                <input class="visually-hidden" type="number" id="idProducto4" name="idProducto4">
+                                <select id="txtEstadoResena" name="txtEstadoResena" class="form-select me-2" aria-label="Default select example" Required>
+                                </select>
+                                <button class="btn btn-outline-dark me-2" type="submit">Filtrar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <!-- Fila de la tabla -->
@@ -184,25 +211,14 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                 <tr>
                                     <th scope="col">Cliente</th>
                                     <th scope="col">Fecha</th>
+                                    <th scope="col">Hora</th>
                                     <th scope="col">Puntuación</th>
+                                    <th scope="col">Estado</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody id="tbody-rows">
-                                <tr>
-                                    <td>Katherine Gonzalez</td>
-                                    <td>1-1-2000</td>
-                                    <td>5 estrellas</td>
-                                    <th scope="row">
-                                        <div class="row">
-                                            <div class="col-12 d-flex">              
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#administrarProductos"
-                                                    class="btn btn-outline-success"><i class="fas fa-info tamanoBoton"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
+                            <tbody id="tbody-rows-reseñas">
+                                
                             </tbody>
                         </table>
                     </div>
@@ -217,11 +233,12 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
 
 <!-- Modal para administrar reseñas -->
 <div class="modal fade" id="administrarResenas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
         <div class="modal-content justify-content-center px-3 py-2">
             <!-- Cabecera del Modal -->
             <div class="modal-header">
                 <!-- Titulo -->
+                <button class="btn btn-outline-dark" data-bs-target="#listaResenas" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="fas fa-chevron-left"></span></button>
                 <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
                         class="fas fa-info-circle mx-2"></span>Administrar Reseña</h5>
                 <!-- Boton para Cerrar -->
@@ -237,19 +254,28 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                             <input class="visually-hidden" type="number" name="idReseña" id="idReseña">
 
                             <div class="d-flex flex-column mx-4">
-                                <label for="#" class="form-label">Cliente: </label>
-                                <label class="labelInformacion mb-3" id="txtCliente" name="txtCliente">aa</label>
+                                <label for="#" class="form-label">Hora: </label>
+                                <label class="labelInformacion mb-3" id="lblHora" name="lblHora">aa</label>
 
                                 <label for="#" class="form-label">Fecha: </label>
                                 <label class="labelInformacion" id="txtFecha" name="txtFecha">aaa</label>
+
                             </div>
 
                             <div class="d-flex flex-column mx-4">
                                 <label for="#" class="form-label">Puntuación: </label>
                                 <label class="labelInformacion mb-3" id="txtPuntuacion" name="txtPuntuacion">xxx</label>
 
-                                <label for="#" class="form-label">Factura: </label>
-                                <label class="labelInformacion" id="txtIdPedido" name="txtIdPedido">xxxxx</label>
+                                <label for="#" class="form-label">Producto: </label>
+                                <label class="labelInformacion" id="txtProducto" name="txtProducto">xxxxx</label>
+                            </div>
+
+                            <div class="d-flex flex-column mx-4">
+                                <label for="#" class="form-label">Precio: </label>
+                                <label class="labelInformacion mb-3" id="lblPrecio" name="lblPrecio">aaa</label>
+
+                                <label for="#" class="form-label">Cliente: </label>
+                                <label class="labelInformacion" id="txtCliente" name="txtCliente">aa</label>
                             </div>
                             
                         </div>
@@ -262,7 +288,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                             <label for="detallePedido" class="form-label">Comentario:</label>
                             <textarea class="form-control textareaMiCuenta" id="txtReseña" readonly></textarea>
                             <div class="d-flex justify-content-center mt-3">
-                                <button class="btn btn-outline-dark float-right" type="submit" id="btnEliminar" name="btnEliminar">Eliminar</button>
+                                <button class="btn btn-outline-dark float-right mx-1" type="submit" id="btnEliminar" name="btnEliminar">Eliminar</button>
+                                <button class="#" type="submit" id="btnOcultar" name="btnOcultar">Ocultar</button>
+                                <button class="#" type="submit" id="btnMostrar" name="btnMostrar">Mostrar</button>
                             </div>
                         </div>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">

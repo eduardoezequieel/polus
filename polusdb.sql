@@ -330,3 +330,25 @@ alter table admon add constraint UQ_admon_correo unique (correo);
 alter table cliente add constraint UQ_cliente_usuario unique (usuario);
 alter table admon add constraint UQ_admon_usuario unique (usuario);
 
+--Cambios 5/6/2021
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 1;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 2;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 3;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 4;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 5;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 6;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 7;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 8;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 9;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 10;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 11;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 12;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 13;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 14;
+UPDATE resena SET fecha = '2021-06-02' WHERE idresena = 15;
+
+UPDATE resena SET idproducto = 2 WHERE idresena = 1;
+UPDATE resena SET idproducto = 2 WHERE idresena = 2;
+UPDATE resena SET idproducto = 2 WHERE idresena = 3;
+UPDATE resena SET idproducto = 2 WHERE idresena = 4;
+UPDATE resena SET idproducto = 2 WHERE idresena = 5;

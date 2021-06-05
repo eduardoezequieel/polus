@@ -167,4 +167,16 @@ body {
         flex-direction: column !important;
     }
 
+    .margen{
+        margin-top: 10px !important;
+    }
+
+    #filtrosBusqueda{
+        flex-direction: column !important;
+    }
+
 }
+
+.modal {
+    overflow-y:auto !important;
+  }
