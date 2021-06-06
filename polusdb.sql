@@ -352,3 +352,6 @@ UPDATE resena SET idproducto = 2 WHERE idresena = 2;
 UPDATE resena SET idproducto = 2 WHERE idresena = 3;
 UPDATE resena SET idproducto = 2 WHERE idresena = 4;
 UPDATE resena SET idproducto = 2 WHERE idresena = 5;
+
+--Cambios 6/6/2021
+ALTER TABLE categoria ADD COLUMN imagen VARCHAR(50) NULL;
