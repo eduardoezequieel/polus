@@ -6,6 +6,19 @@ const ENDPOINT_TIPOS = '../../app/api/dashboard/usuarios.php?action=readTipoUsua
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_USUARIO);
     fillSelect(ENDPOINT_TIPOS, 'cbTipoUsuario',null);
+    let today = new Date();
+    // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
+    let day = ('0' + today.getDate()).slice(-2);
+    // Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    // Se declara e inicializa una variable para guardar el año con la mayoría de edad.
+    let year = today.getFullYear() - 18;
+    // Se declara e inicializa una variable para establecer el formato de la fecha.
+    let date = `${year}-${month}-${day}`;
+    // Se asigna la fecha como valor máximo en el campo del formulario.
+    document.getElementById('txtFechaNacimiento').setAttribute('max', date);
+
+    //console.log(formulario);
 })
 
 //Metodo para usar un boton diferente de examinar
@@ -242,4 +255,43 @@ function confirmActivar() {
             });
         }
     });
+}
+
+const formulario = document.getElementsByTagName('input');
+const direccion = document.getElementById('txtDireccion')
+
+
+//Creación de los eventos change para cada uno de los input
+formulario[2].addEventListener('change', function(){
+    checkInputLetras(2);
+});
+
+formulario[3].addEventListener('change', function(){
+    checkInputLetras(3)
+});
+
+formulario[5].addEventListener('change', function(){
+    checkTelefono(5);
+});
+
+formulario[7].addEventListener('change', function(){
+    checkCorreo(7);
+});
+
+formulario[8].addEventListener('change', function(){
+    checkInput(8);
+});
+
+direccion.addEventListener('change', function(){
+    checkDireccion();
+});
+
+function clearValidate(){
+    for (let index = 0; index < 9; index++) {
+        formulario[index].classList.remove('success');
+        formulario[index].classList.remove('error');
+    }
+
+    direccion.classList.remove('success');
+    direccion.classList.remove('error');
 }

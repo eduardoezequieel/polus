@@ -5,6 +5,22 @@
     box-sizing: border-box;
 }
 
+input.error{
+    border: 1px solid red;
+}
+
+input.success{
+    border: 1px solid green;
+}
+
+#txtDireccion.error{
+    border: 1px solid red;
+}
+
+#txtDireccion.success{
+    border: 1px solid green;
+}
+
 
 
 .titulo1{
@@ -126,5 +142,6 @@ td{
         margin-left: 0px;
        
     }
+
 
 }

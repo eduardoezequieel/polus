@@ -4,6 +4,8 @@ include('../../app/helpers/dashboard_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
 dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.css');
 ?>
+<!-- Hoja de estilos -->
+<link rel="stylesheet" href="../../resources/css/usuarios_privado_estilos.css">
     <!--Fin del sidebar-->
     <!-- Contenido de la Pagina -->
     <div class="page-content p-5" id="content">

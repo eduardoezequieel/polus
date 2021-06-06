@@ -7,6 +7,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
 <!--Fin del sidebar-->
 <!-- Contenido de la Pagina -->
 <div class="page-content p-5" id="content">
+<!-- Hoja de estilos -->
+<link rel="stylesheet" href="../../resources/css/usuarios_privado_estilos.css">
     <!-- Contenedor de la barra inicial -->
     <?php
         //Se imprime la plantilla la barra inicial
@@ -31,33 +33,33 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                             <div class="col-12 formulario">
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" id="txtNombre" name="txtNombre" Required>
+                                    <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtNombre" name="txtNombre" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Apellido" class="form-label">Apellido:</label>
-                                    <input type="text" class="form-control" id="txtApellidos" name="txtApellidos"
+                                    <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtApellidos" name="txtApellidos"
                                         Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Fecha de nacimiento" class="form-label">Fecha de nacimiento:</label>
-                                    <input type="date" class="form-control" id="txtFechaNacimiento"
+                                    <input type="date" class="form-control personalizacionPolus personalizacionPolusP" id="txtFechaNacimiento"
                                         name="txtFechaNacimiento" placeholder="dd/mm/aaaa" Required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="Teléfono" class="form-label">Teléfono:</label>
-                                    <input type="text" class="form-control" id="txtTelefono" name="txtTelefono"
+                                    <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtTelefono" name="txtTelefono"
                                         placeholder="0000-0000" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Dirección" class="form-label">Dirección:</label>
-                                    <textarea class="form-control" id="txtDireccion" name="txtDireccion"
+                                    <textarea class="form-control personalizacionPolus personalizacionPolusP" id="txtDireccion" name="txtDireccion"
                                         Required></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="txtGenero" class="form-label">Género:</label>
-                                    <select id="txtGenero" name="txtGenero" class="form-select"
+                                    <select id="txtGenero" name="txtGenero" class="form-select personalizacionPolus personalizacionPolusP"
                                         aria-label="Default select example" Required>
                                         <option selected>Seleccionar...</option>
                                         <option value="Femenino">Femenino</option>
@@ -88,16 +90,16 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                                 </div>
                                 <div class="mb-3 mt-4">
                                     <label for="Correo" class="form-label">Correo:</label>
-                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail"
+                                    <input type="email" class="form-control personalizacionPolus personalizacionPolusP" id="txtEmail" name="txtEmail"
                                         aria-describedby="emailHelp" placeholder="ejemplo@mail.com" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Usuario" class="form-label">Usuario:</label>
-                                    <input type="text" class="form-control" id="txtUsuario" name="txtUsuario" Required>
+                                    <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtUsuario" name="txtUsuario" Required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="cbTipoUsuario" class="form-label">Tipo de Usuario:</label>
-                                    <select id="cbTipoUsuario" name="cbTipoUsuario" class="form-select"
+                                    <select id="cbTipoUsuario" name="cbTipoUsuario" class="form-select personalizacionPolus personalizacionPolusP"
                                         aria-label="Default select example">
                                     </select>
                                 </div>
@@ -114,6 +116,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
         </div>
     </section>
 </div>
+
+
 <!-- Bootstrap core JavaScript -->
 <?php
     //Se imprime el script para las direcciones de Bootstrap core JavaScript
@@ -125,3 +129,4 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
     //Se imprime el script para el movimiento del sidebar
     dashboard_Page::sidebarTemplateMovement('agregar_usuarios.js');
 ?>
+ <!-- Option 1: Bootstrap Bundle with Popper -->

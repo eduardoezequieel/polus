@@ -7,6 +7,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
 <!--Fin del sidebar-->
 <!-- Contenido de la Pagina -->
 <div class="page-content p-5" id="content">
+    <!-- Hoja de estilos -->
+<link rel="stylesheet" href="../../resources/css/usuarios_privado_estilos.css">
     <!-- Contenedor de la barra inicial -->
     <?php
         //Se imprime la plantilla la barra inicial

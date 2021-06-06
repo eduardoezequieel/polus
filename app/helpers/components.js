@@ -489,7 +489,7 @@ function checkInputLetras(i){
         formulario[i].classList.remove("error");
         formulario[i].classList.add("success");
 
-        if(/^[A-Za-z\s]+$/.test(formulario[i].value)){
+        if(/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/.test(formulario[i].value)){
             formulario[i].classList.remove("error");
             formulario[i].classList.add("success");
             

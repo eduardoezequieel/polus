@@ -4,6 +4,19 @@ const API_CLIENTE = '../../app/api/dashboard/clientes.php?action=';
 //Evento que se ejecuta al cargar la pagina
 document.addEventListener('DOMContentLoaded',function(){
     cargarTabla()
+    let today = new Date();
+    // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
+    let day = ('0' + today.getDate()).slice(-2);
+    // Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    // Se declara e inicializa una variable para guardar el año con la mayoría de edad.
+    let year = today.getFullYear() - 18;
+    // Se declara e inicializa una variable para establecer el formato de la fecha.
+    let date = `${year}-${month}-${day}`;
+    // Se asigna la fecha como valor máximo en el campo del formulario.
+    document.getElementById('txtFechaNacimiento').setAttribute('max', date);
+
+    console.log(formulario);
 })
 
 function cargarTabla(){
@@ -312,4 +325,41 @@ function confirmActivar() {
             });
         }
     });
+}
+
+const formulario = document.getElementsByTagName('input');
+const direccion = document.getElementById('txtDireccion')
+
+formulario[2].addEventListener('change', function(){
+    checkInputLetras(2);
+});
+
+formulario[3].addEventListener('change', function(){
+    checkInputLetras(3)
+});
+
+formulario[5].addEventListener('change', function(){
+    checkTelefono(5);
+});
+
+formulario[7].addEventListener('change', function(){
+    checkCorreo(7);
+});
+
+formulario[8].addEventListener('change', function(){
+    checkInput(8);
+});
+
+direccion.addEventListener('change', function(){
+    checkDireccion();
+});
+
+function clearValidate(){
+    for (let index = 0; index < 9; index++) {
+        formulario[index].classList.remove('success');
+        formulario[index].classList.remove('error');
+    }
+
+    direccion.classList.remove('success');
+    direccion.classList.remove('error');
 }
