@@ -34,9 +34,8 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','inventario_privado_estilos.
                     <a href="#" onclick="openCreateDialog()" data-bs-toggle="modal" class="btn btn-outline-dark opciones">
                         <i class="fas fa-plus mx-2"></i> Agregar inventario
                     </a> 
-                    <a href="tipos_producto.php" class="btn btn-outline-dark  opciones"><i class="fas fa-tshirt mx-2"></i> Tipos de
-                        productos
-                    </a>
+                    <a href="categoria.php" class="btn btn-outline-dark  opciones"><i class="fas fa-bookmark mx-2"></i>Categorías</a>
+                    <a href="subcategoria.php" class="btn btn-outline-dark  opciones"><i class="fas fa-tshirt mx-2"></i>Subcategorias</a>
                     <a href="marca.php" class="btn btn-outline-dark  opciones"><i class="fas fa-tag mx-2"></i> Marcas</a>
                 </div>
             </div>

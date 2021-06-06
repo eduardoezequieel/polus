@@ -16,7 +16,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
     <section>
         <div class="row animate__animated animate__fadeInUp animate__faster">
             <div class="col-lg-12 title">
-                <h1>Tipos de productos</h1>
+                <h1>Subcategorías</h1>
             </div>
         </div><br>
         <!-- Espacio para buscar -->
@@ -31,7 +31,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
             <div class="col-12">
                 <br><br>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#agregarTipo" class="btn btn-outline-dark">
-                    <i class="fas fa-plus mx-2"></i> Agregar tipo de productos
+                    <i class="fas fa-plus mx-2"></i> Agregar subcategoría
                 </a>
             </div>
         </div><br>
@@ -197,7 +197,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
 <!-- Movimiento sidebar -->
 <?php
     //Se imprime el script para el movimiento del sidebar
-    dashboard_Page::sidebarTemplateMovement("tipoProducto.js");
+    dashboard_Page::sidebarTemplateMovement("subcategoria.js");
     ?>
 </body>
 
