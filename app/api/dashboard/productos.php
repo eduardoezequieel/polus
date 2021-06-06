@@ -92,18 +92,18 @@ if(isset($_GET['action'])){
             break;
         case 'create':
             $_POST = $productos->validateForm($_POST);
-            if($productos->setNombre($_POST['txtNombre'])){
-                if($productos->setDescripcion($_POST['txtDescripcion'])){
-                    if($productos->setPrecio($_POST['txtPrecio'])){
-                        if(isset($_POST['cbMarca'])){
-                            if($productos->setMarca($_POST['cbMarca'])){
-                                if(isset($_POST['cbSubcategoria'])){
-                                    if($productos->setSubcategoria($_POST['cbSubcategoria'])){
-                                        if (is_uploaded_file($_FILES['archivo_producto']['tmp_name'])) {
-                                            if ($productos->setImagenPrincipal($_FILES['archivo_producto'])) {
+            if($productos->setNombre($_POST['txtNombre1'])){
+                if($productos->setDescripcion($_POST['txtDescripcion1'])){
+                    if($productos->setPrecio($_POST['txtPrecio1'])){
+                        if(isset($_POST['cbMarca1'])){
+                            if($productos->setMarca($_POST['cbMarca1'])){
+                                if(isset($_POST['cbSubcategoria1'])){
+                                    if($productos->setSubcategoria($_POST['cbSubcategoria1'])){
+                                        if (is_uploaded_file($_FILES['archivo_producto1']['tmp_name'])) {
+                                            if ($productos->setImagenPrincipal($_FILES['archivo_producto1'])) {
                                                 if ($productos->createRow()) {
                                                     $result['status'] = 1;
-                                                    if ($productos->saveFile($_FILES['archivo_producto'], $productos->getRuta(), $productos->getImagenPrincipal())) {
+                                                    if ($productos->saveFile($_FILES['archivo_producto1'], $productos->getRuta(), $productos->getImagenPrincipal())) {
                                                         $result['message'] = 'Producto registrado correctamente';
                                                     } else {
                                                         $result['message'] = 'Producto registrado pero no se guardó la imagen';
@@ -163,7 +163,7 @@ if(isset($_GET['action'])){
                                                             $result['exception'] = Database::getException();
                                                         }
                                                     } else {
-                                                        $result['exception'] = $result->getImageError();
+                                                        $result['exception'] = $productos->getImageError();
                                                     }
                                                 } else {
                                                     if ($productos->updateRow($data['imagenprincipal'])) {
@@ -206,6 +206,7 @@ if(isset($_GET['action'])){
                 $result['exception'] = 'Producto seleccionado incorrecto';
             }
             break;
+        //Elimina el registro
         case 'delete':
             $_POST = $productos->validateForm($_POST);
             if($productos->setId($_POST['idProducto'])){
@@ -230,6 +231,37 @@ if(isset($_GET['action'])){
                 }
             } else{
                 $result['exception'] = 'Producto seleccionado incorrecto';
+            }
+            break;
+        //Permite guardar las fotos multiples
+        case 'saveFoto':
+            $_POST = $productos->validateForm($_POST);
+            if($productos->setId($_POST['idProducto2'])){
+                if ($productos->setImagenPrincipal($_FILES['archivo_producto2'])) {
+                    if ($productos->createRowImagen()) {
+                        $result['status'] = 1;
+                        if ($productos->saveFile($_FILES['archivo_producto2'], $productos->getRuta(), $productos->getImagenPrincipal())) {
+                            $result['message'] = 'Imagen registrado correctamente';
+                        } else {
+                            $result['message'] = 'Imagen registrado pero no se guardó la imagen';
+                        }
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = $productos->getImageError();
+                }
+            } else {
+                $result['exception'] = 'Id de usuario incorrecto';
+            }
+            break;
+        //Agarra el id del ultimo registro agregado
+        case 'ultimoID':
+            if($result['dataset'] = $productos->readMax()){
+                $result['status'] = 1;
+                $result['message'] = 'Se ha agregado el producto correctamente zzzz';
+            } else{
+                $result['exception'] = 'No se encontró ningún resgistro';
             }
             break;
         default: 

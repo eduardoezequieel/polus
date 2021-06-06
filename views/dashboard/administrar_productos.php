@@ -30,6 +30,12 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                         <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                     </form>
                 </div>
+                <div class="col-12 ">
+                    <br><br>
+                    <a href="#" onclick="openCreateDialog()" data-bs-toggle="modal" data-bs-target="#agregarProductos" class="btn btn-outline-dark opciones">
+                        <i class="fas fa-plus mx-2"></i> Agregar producto
+                    </a> 
+                </div>
             </div><br><br>
             <!-- Fila de la tabla -->
             <div class="row animate__animated animate__fadeInUp animate__faster table-responsive-lg">
@@ -149,6 +155,153 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
             <!-- Fin del Modal -->
         </div>
     </section>
+</div>
+            <!-- Modal para Agregar Productos -->
+            <div class="modal fade" id="agregarProductos" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-scrollablemodal-dialog-centered">
+                    <div class="modal-content justify-content-center px-3 py-2">
+                        <!-- Cabecera del Modal -->
+                        <div class="modal-header">
+                            <!-- Titulo -->
+                            <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                                    class="fas fa-info-circle mx-2"></span>Agregar Productos</h5>
+                            <!-- Boton para Cerrar -->
+                            <button type="button" class="btn fas fa-times" data-bs-dismiss="modal" aria-label="">
+
+                            </button>
+                        </div>
+                        <br>
+                        <!-- Contenido del Modal -->
+                        <div class="textoModal px-3 pb-4 mt-2">
+
+                            <!-- Mostrar titulo -->
+                            <div class="row animate__animated animate__fadeInUp animate__faster">
+                                <div class="col-12 title">
+                                    <h1>Agregar productos</h1>
+                                </div>
+                            </div><br>
+                            <form method="post" id='agregarProducto-form'>
+                                <!-- Inicio del contenido-->
+                                <div class="row animate__animated animate__fadeInUp animate__faster">
+                                    <!-- Columna de la información del producto-->
+                                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                                        <p class="apartado">Información del producto:</p>
+                                        <img src="../../resources/img/dashboard_img/separator.png" class="img-fluid imagenSeparator">
+                                        <div class="row">
+                                            <!-- Columna 1 de la información del producto-->
+                                            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 formulario">
+                                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                                <input class="visually-hidden" type="number" id="idProducto1" name="idProducto1">
+                                                    <div class="mb-3">
+                                                        <label for="nombre" class="form-label">Nombre:</label>
+                                                        <input type="text" class="form-control" id="txtNombre" name="txtNombre1" Required>
+                                                    </div><br>
+                                                    <div class="mb-3 foto">
+                                                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                                <div class="bordeDivFotografia">
+                                                                    <div class="divFotografia" id="divFoto1">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div id="btnAgregarFoto1" class="mt-4">
+                                                                    <button class="btn btn-outline-dark" id="botonFoto1"><span class="fas fa-plus"></span></button>
+                                                                </div>
+                                                                <div class="mt-4"> 
+                                                                    <button class="btn btn-outline-dark" id="idAlbum"  data-bs-toggle="modal" data-bs-target="#administrarImagenes"><span class="fas fa-images me-2"></span>Albúm de Fotos</button>
+                                                                </div>
+                                                                <input id="archivo_producto1" type="file" class="d-none" name="archivo_producto1" accept=".gif, .jpg, .png">
+                                                            </div>
+                                                        </div>
+                                                    </div><br>
+                                                    <div class="mb-3">
+                                                        <label for="cbMarca" class="form-label">Marca:</label>
+                                                        <select id="cbMarca1" name="cbMarca1" class="form-select" aria-label="Default select example" Required>
+                                                        </select>
+                                                    </div>
+                                            </div>
+                                            <!-- Columna 2 de la información del producto-->
+                                            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 formulario">
+                                                <div class="mb-3">
+                                                    <label for="Descripciónn" class="form-label">Descripción:</label>
+                                                    <textarea class="form-control" id="txtDescripcion" name="txtDescripcion1" Required></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="cbSubcategoria" class="form-label">Tipo de producto:</label>
+                                                    <select id="cbSubcategoria1" name="cbSubcategoria1" class="form-select" aria-label="Default select example">
+                                                    </select>
+                                                </div>
+                                                <label for="precio" class="form-label">Precio:</label><br>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">$</span>
+                                                    <input type="text" class="form-control" placeholder="0.00" id="txtPrecio" name="txtPrecio1" Required></div><br>
+                                                <div class="row">
+                                                    <!-- Columna de opciones -->
+                                                    <div class="col-12">
+                                                        <p class="apartado1">Opciones:</p>
+                                                        <img src="../../resources/img/dashboard_img/separator.png"
+                                                            class="img-fluid imagenSeparator1">
+                                                        <!-- Botones -->
+                                                        <div class="col-12 formulario1">
+                                                            <div class="mb-3">
+                                                                <label for="selecciona" class="form-label">Selecciona:</label><br>
+                                                                <button type="submit" class="btn btn-outline-dark active" id="selecciona">Agregar</button>
+                                                                <button class="btn btn-outline-dark " id="limpiar">Limpiar campos</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Fin del Contenido del Modal -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- Modal para administrar imagenes -->
+<div class="modal fade" id="administrarImagenes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <button class="btn btn-outline-dark" data-bs-target="#administrarImagenes" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="fas fa-chevron-left"></span></button>
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                        class="fas fa-info-circle mx-2"></span>Administrar imagenes</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <br>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-3 mt-2">
+                <p class="apartado">Agregar imagenes secundarias:</p>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="">
+                        <div class="divFotografia" id="divFoto2">
+
+                        </div>
+                    </div>
+                    <div id="btnAgregarFoto2" class="mt-4">
+                        <button class="btn btn-outline-dark" id="botonFoto2"><span class="fas fa-plus"></span></button>
+                    </div>
+                    <div class="mt-4"> 
+                                                                        
+                    </div>
+                    <input id="archivo_producto2" type="file" class="d-none" name="archivo_producto2" accept=".gif, .jpg, .png" multiple>
+                    <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                    <input class="visually-hidden" type="number" id="idProducto2" name="idProducto2">
+                    <button class="btn btn-outline-dark" id="botonFoto3"><span class="fas fa-plus"></span>Confirmación</button>
+                </div>
+            </div>
+
+            <!-- Fin del Contenido del Modal -->
+        </div>
+    </div>
 </div>
 
 <!-- Modal para listar las reseñas de un producto -->

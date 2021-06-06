@@ -151,6 +151,13 @@
             $params = null;
             return Database::getRows($sql, $params);
         }
+        
+        public function readMax()
+        {
+            $sql = 'SELECT MAX(idProducto) as idproducto From producto';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
 
         //Leer solo un registro
         public function readOne()
@@ -182,6 +189,15 @@
                     VALUES(?,?,?,?,?,?)';
             $params = array($this->nombre, $this->descripcion, $this->precio, $this->imagenPrincipal, $this->idSubcategoria, 
                             $this->idMarca);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Método para crear
+        public function createRowImagen()
+        {
+            $sql = 'INSERT INTO imagenProducto(imagen, idProducto) 
+                    VALUES(?,?)';
+            $params = array($this->imagenPrincipal, $this->idProducto);
             return Database::executeRow($sql, $params);
         }
 

@@ -5,12 +5,17 @@ const ENDPOINT_COMMENTS = '../../app/api/dashboard/reseñas.php?action=readAllSt
 const ENDPOINT_MARCA = '../../app/api/dashboard/productos.php?action=readAllMarca';
 const ENDPOINT_SUB = '../../app/api/dashboard/productos.php?action=readAllSub';
 
+//Constante para agarrar el album
+const idAlbum = document.getElementById('idAlbum')
+idAlbum.style.visibility = 'hidden';
+
 //Evento cargada la pagina
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_PRODUCTO);
     fillSelect(ENDPOINT_MARCA,'cbMarca',null);
     fillSelect(ENDPOINT_SUB,'cbSubcategoria',null);
     fillSelect(ENDPOINT_COMMENTS,'txtEstadoResena',null);
+    
 })
 
 //Metodo para usar un boton diferente de examinar
@@ -18,6 +23,18 @@ botonExaminar('btnAgregarFoto', 'archivo_producto');
 
 //Metodo para crear una previsualizacion del archivo a cargar en la base de datos
 previewPicture('archivo_producto','divFoto');
+
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto1', 'archivo_producto1');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPicture('archivo_producto1','divFoto1');
+
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto2', 'archivo_producto2');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPictureMultiple('archivo_producto2','divFoto2');
 
 //Llenado de tabla
 function fillTable(dataset){
@@ -244,9 +261,128 @@ function openEditDialog(id){
     });
 }
 
+function openCreateDialog(){
+    fillSelect(ENDPOINT_MARCA,'cbMarca1',null);
+    fillSelect(ENDPOINT_SUB,'cbSubcategoria1',null);
+
+}
+
+//Constante para agarrar el id
+const idPro = document.getElementById('idProducto1')
+const idPro1 = document.getElementById('idProducto2')
+
+
+document.getElementById('agregarProducto-form').addEventListener('submit',function(event){
+
+    //Evento para evitar que recargue la pagina
+    event.preventDefault();
+    //Se establece el campo de archivo como obligatorio.
+    document.getElementById('archivo_producto1').required = true;
+    //Obtener datos
+    fetch(API_PRODUCTO + 'create',{
+        method: 'post',
+        body: new FormData(document.getElementById('agregarProducto-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    //previewSavePicture('divFoto1', '',0);
+                    
+                    readRows(API_PRODUCTO);
+
+                    //Obtener datos
+                    fetch(API_PRODUCTO + 'ultimoID',{
+                        method: 'post',
+                        body: new FormData(document.getElementById('agregarProducto-form'))
+                    }).then(function(request){
+                        //Verificando si la petición fue correcta
+                        if(request.ok){
+                            request.json().then(function(response){
+                                //Verificando respuesta satisfactoria
+                                if(response.status){
+                                    //previewSavePicture('divFoto1', '',0);
+                                    mostrarImagenes()
+                                    let data = []
+                                    data = response.dataset;
+                                    data.map(function (row){
+                                        idPro.value = row.idproducto;
+                                        idPro1.value = row.idproducto;
+                                        console.log(row.idproducto)
+                                    })
+                                    
+
+                                } else{
+                                    sweetAlert(4, response.exception, null);
+                                }
+                            })
+                        }else{
+                            console.log(request.status + ' ' + request.statusText);
+                        }
+                    }).catch(function(error){
+                        console.log(error);
+                    })
+
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    })
+})
+
+document.getElementById('limpiar').addEventListener('click', function(event){
+
+    //función para que no recargue la pagina
+    event.preventDefault();
+    
+    //Limpiando formulario
+    clearForm('agregarProducto-form');
+    previewSavePicture('divFoto1', '',0);
+})
+
+document.getElementById('idAlbum').addEventListener('click', function(event){
+
+    //función para que no recargue la pagina
+    event.preventDefault();
+    
+})
+
+//Función para comprobar si el usuario quiere o no agregar imagenes secuandarias
+function mostrarImagenes(){
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea agregar imagenes secundarias?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+
+            //Abriendo modal de imagenes
+            openModal('administrarImagenes')
+            //Cerrando modal de agregar producto
+            closeModal('agregarProducto')
+
+        } else{
+            sweetAlert(1, 'Se ha agregado el producto correctamente', null);
+            clearForm('agregarProducto-form')
+            closeModal('agregarProductos')
+            previewSavePicture('divFoto1', '',0)
+        }
+    });
+}
+
 //Actualizar
 document.getElementById('btnResponder').addEventListener('click',function(){
-    console.log('hola');
+    
     document.getElementById('administrarResena-form').addEventListener('submit', function(event){
 
         event.preventDefault();
@@ -516,3 +652,113 @@ function openDeleteDialog(id){
 }
 
 restartSearch('btnReiniciar', API_PRODUCTO);
+
+//Imagenes multiples 
+let img = [];
+let error = 0;
+
+function previewPictureMultiple(idInputExaminar, idDivFoto){
+    document.getElementById(idInputExaminar).onchange=function(e){
+
+        var files = this.files;
+        var element;
+        var supportedImages = ["image/jpeg", "image/png", "image/gif"];
+        var seEncontraronElementoNoValidos = false;
+
+        for (var i = 0; i < files.length; i++) {
+            element = files[i];
+
+            if (supportedImages.indexOf(element.type) != -1) {
+                createPreview(element);
+            }
+            else {
+                seEncontraronElementoNoValidos = true;
+            }
+        }
+
+        if (seEncontraronElementoNoValidos) {
+            console.log("Se encontraron archivos no validos.");
+        }
+        else {
+            console.log("Todos los archivos se subieron correctamente.");
+            //console.log(archivo_producto2.files)
+            img.push(this.files);
+
+            const data = new FormData();
+            data.append('archivo_producto2', archivo_producto2.files[0]);
+            data.append('idProducto2', idPro1.value)
+            //Capturando datos 
+            fetch(API_PRODUCTO + 'saveFoto', {
+                method: 'post',
+                body: data
+            }).then(function(request){
+                //Verificando si la petición fue correcta
+                if(request.ok){
+                    request.json().then(function(response){
+                        //Verificando respuesta satisfactoria
+                        if(response.status){
+                            //sweetAlert(1, response.message, null);
+                            error = 0;
+                        } else{
+                            sweetAlert(4, response.exception, null);
+                            error = 1;
+                            console.log(error);
+                        }
+                    })
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+}
+
+function createPreview(file) {
+    var imgCodified = URL.createObjectURL(file);
+    //var img = $('<div class="d-flex flex-column justify-content-center align-items-center"><div class="divFotografia"> <figure> <img src="' + imgCodified + '" alt="Foto del usuario"> <figcaption> <i class="icon-cross"></i> </figcaption> </figure> </div></div>');
+    //Parte de la pagina web en donde se incrustara la imagen
+    let preview=document.getElementById('divFoto2');
+    
+    //Se crea el elemento IMG que contendra la preview
+    image = document.createElement('img');
+
+    //Se le asigna la ruta al elemento creado
+    image.src = imgCodified;
+
+    //Se aplican las respectivas clases para que la preview aparezca estilizada
+    image.className = 'rounded-circle fotografiaPerfil';
+
+    //Se quita lo que este dentro del div (en caso de que exista otra imagen)
+    preview.innerHTML = ' ';
+
+    //Se agrega el elemento recien creado
+    preview.append(image);
+    $(image).insertBefore("#divFoto2");
+
+    if(error === 1){
+        previewSavePicture('divFoto2', '',0);
+    }
+} 
+
+document.getElementById('botonFoto3').addEventListener('click', function(){
+    guardarImagenes();
+})
+
+let imagenesg = document.getElementById('txtImg')
+
+function guardarImagenes(){
+    if(error === 1){
+        sweetAlert(4, 'Hubo problemas al subir algunas fotos', null);
+    } else{
+        
+        sweetAlert(1, 'Todas las imagenes se agregaron correctamente', location.reload());
+        /*clearForm('agregarProducto-form')
+        closeModal('agregarProductos')
+        closeModal('administrarImagenes')
+        previewSavePicture('divFoto2', '',0);
+        previewSavePicture('divFoto1', '',0);*/
+        
+    }
+}
