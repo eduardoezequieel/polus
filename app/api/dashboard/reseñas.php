@@ -17,18 +17,20 @@
         if (isset($_SESSION['idAdmon'])) {
             switch($_GET['action']){
                 case 'readAll':
-                    if ($result['dataset'] = $reseñas -> readAll()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Se ha encontrado registros de reseñas.';
-                    }
-                    else{
-                        if (Database::getException()) {
-                            $result['error'] = 1;
-                            $result['exception'] = Database::getException();
+                    $_POST = $reseñas -> validateForm($_POST);
+                    if($reseñas->setIdProducto($_POST['idProducto'])){
+                        if($result['dataset'] = $reseñas->readAll()){
+                            $result['status'] = 1;
+                            $result['message'] = 'Existe al menos un registro';
+                        } else{
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'Reseña inexistente';
+                            }
                         }
-                        else{
-                            $result['exception'] = 'No se han encontrado registros de reseñas.';
-                        }
+                    } else{
+                        $result['exception'] = 'Reseña seleccionado incorrecto';
                     }
                     break;
                 case 'readOne':
@@ -49,24 +51,95 @@
                     break;
                 case 'search':
                     $_POST = $reseñas->validateForm($_POST);
-                    if ($_POST['search'] != '') {
-                        if ($result['dataset'] = $reseñas->searchRows($_POST['search'])) {
-                            $result['status'] = 1;
-                            $rows = count($result['dataset']);
-                            if ($rows > 1) {
-                                $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                    if ($reseñas->setIdProducto($_POST['idProducto2'])) {
+                        if ($_POST['searchReseña'] != '') {
+                            if ($result['dataset'] = $reseñas->searchRows($_POST['searchReseña'])) {
+                                $result['status'] = 1;
+                                $rows = count($result['dataset']);
+                                if ($rows > 1) {
+                                    $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                                } else {
+                                    $result['message'] = 'Solo existe una coincidencia';
+                                }
                             } else {
-                                $result['message'] = 'Solo existe una coincidencia';
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No hay coincidencias';
+                                }
                             }
                         } else {
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
-                            } else {
-                                $result['exception'] = 'No hay coincidencias';
-                            }
+                            $result['exception'] = 'Ingrese un valor para buscar';
                         }
+                    }else{
+                        $result['exception'] = 'Id Faltante';
+                    }
+                    break;
+                case 'readAllStates':
+                    if ($result['dataset'] = $reseñas->readAllStates()) {
+                        $result['status'] = 1;
                     } else {
-                        $result['exception'] = 'Ingrese un valor para buscar';
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay categorías registradas';
+                        }
+                    }
+                    break;
+                case 'searchByState':
+                    $_POST = $reseñas->validateForm($_POST);
+                    if ($reseñas->setIdProducto($_POST['idProducto4'])) {
+                        if (isset($_POST['txtEstadoResena'])) {
+                            if ($reseñas->setIdEstadoResena($_POST['txtEstadoResena'])) {
+                                if ($result['dataset'] = $reseñas->searchRowsState()) {
+                                    $result['status'] = 1;
+                                    $rows = count($result['dataset']);
+                                    if ($rows > 1) {
+                                        $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                                    } else {
+                                        $result['message'] = 'Solo existe una coincidencia';
+                                    }
+                                } else {
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'No hay coincidencias';
+                                    }
+                                }
+                            }else{
+                                $result['exception'] = 'Id incorrecta';
+                            }
+                        }else{
+                            $result['exception'] = 'Id incorrecta';
+                        }
+                    }else{
+                        $result['exception'] = 'Id Faltante';  
+                    }
+                    break;
+                case 'searchByDate':
+                    $_POST = $reseñas->validateForm($_POST);
+                    if ($reseñas->setIdProducto($_POST['idProducto3'])) {
+                        if ($reseñas->setFecha($_POST['txtFechaReseña'])) {
+                            if ($result['dataset'] = $reseñas->searchRowsDate()) {
+                                $result['status'] = 1;
+                                $rows = count($result['dataset']);
+                                if ($rows > 1) {
+                                    $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                                } else {
+                                    $result['message'] = 'Solo existe una coincidencia';
+                                }
+                            } else {
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No hay coincidencias';
+                                }
+                            }
+                        }else{
+                            $result['exception'] = 'Fecha incorrecta';
+                        }
+                    }else{
+                        $result['exception'] = 'Id Faltante';  
                     }
                     break;
                 case 'createOrUpdateAnswer':
@@ -92,6 +165,34 @@
                         if ($reseñas -> deleteComment()) {
                             $result['status'] = 1;
                             $result['message'] = 'Comentario eliminado exitosamente.';
+                        }
+                        else{
+                            $result['exception'] = Database::getException();
+                        }
+                    }else{
+                        $result['exception'] = 'id incorrecto';
+                    }
+                    break;
+                case 'hideComment':
+                    $_POST = $reseñas->validateForm($_POST);
+                    if ($reseñas -> setIdResena($_POST['idReseña'])) {
+                        if ($reseñas -> hideComment()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Comentario ocultado exitosamente.';
+                        }
+                        else{
+                            $result['exception'] = Database::getException();
+                        }
+                    }else{
+                        $result['exception'] = 'id incorrecto';
+                    }
+                    break;
+                case 'showComment':
+                    $_POST = $reseñas->validateForm($_POST);
+                    if ($reseñas -> setIdResena($_POST['idReseña'])) {
+                        if ($reseñas -> showComment()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Comentario ocultado exitosamente.';
                         }
                         else{
                             $result['exception'] = Database::getException();

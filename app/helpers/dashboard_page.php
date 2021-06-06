@@ -70,9 +70,7 @@
                         <li class="nav-item">
                             <a href="../../views/dashboard/pedidos.php" class="nav-link text-white "><span class="fas fa-truck lead mx-3"></span>Pedidos</a>            
                         </li>
-                        <li class="nav-item">
-                            <a href="../../views/dashboard/reseñas.php" class="nav-link text-white "><span class="fas fa-comments lead mx-3"></span>Reseñas</a>            
-                        </li>
+                        
                         
                     </ul>
                     

@@ -170,6 +170,23 @@ a:hover{
     height: min-content;
 }
 
+input.error{
+    border: 1px solid red;
+}
+
+input.success{
+    border: 1px solid green;
+}
+
+#txtDireccion.error{
+    border: 1px solid red;
+}
+
+#txtDireccion.success{
+    border: 1px solid green;
+}
+
+
 @media screen and (max-width:1200px){
   
     .imagenDesaparecer{

@@ -28,3 +28,17 @@ document.getElementById('login-form').addEventListener('submit', function (event
         console.log(error);
     });
 });
+
+//*****Validaciones del lado del cliente******//
+
+//Obtener los elementos de la vista
+const formulario = document.getElementsByTagName('input');
+
+//Creación de los eventos change para cada uno de los input
+formulario[0].addEventListener('change', function(){
+    checkCorreo(0);
+});
+
+formulario[1].addEventListener('change', function(){
+    checkInput(1);
+});

@@ -22,8 +22,8 @@ Class Database{
 
     }
     
-    /*//Metodo para hacer la conexión (Eduardo)
-    private static function connect(){
+    //Metodo para hacer la conexión (Eduardo)
+    /*private static function connect(){
 
         // Credenciales.
         $server = 'localhost';
