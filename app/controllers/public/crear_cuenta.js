@@ -49,7 +49,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
                 //Verificando respuesta satisfactoria
                 if(response.status){
                     previewSavePicture('divFoto', '',0);
-                    sweetAlert(1, response.message, 'index.php');
+                    sweetAlert(1, response.message, 'iniciar_sesion.php');
                     clearForm('register-form')
                     clearValidate();
                     
