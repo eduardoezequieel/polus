@@ -46,6 +46,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                                 <div id="btnAgregarFoto" class="mt-4">
                                                     <button class="btn btn-outline-dark" id="botonFoto"><span class="fas fa-plus"></span></button>
                                                 </div>
+                                                <div class="mt-4"> 
+                                                    <button class="btn btn-outline-dark" id="#"><span class="fas fa-images me-2"></span>Album de Fotos</button>
+                                                </div>
                                                 <input id="archivo_producto" type="file" class="d-none" name="archivo_producto" accept=".gif, .jpg, .png">
                                             </div>
                                         </div>
