@@ -325,7 +325,7 @@ Class Usuarios extends Validator{
         return Database::getRows($sql, $params);
     }
 
-    public function updateRow('''''''$current_image''''''')
+    public function updateRow($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
         ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;

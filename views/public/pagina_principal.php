@@ -44,43 +44,7 @@ public_Page::navbarTemplate('Polus El Salvador','.');
     </div>
     <div class="row justify-content-center">
         <div class="col-12 d-flex justify-content-center">
-            <div class="row d-flex justify-content-center">
-                <div class="col d-flex justify-content-center">
-                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
-                        <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
-                        Prueba
-                    </a>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
-                        <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
-                        Prueba
-                    </a>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
-                        <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
-                        Prueba
-                    </a>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
-                        <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
-                        Prueba
-                    </a>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
-                        <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
-                        Prueba
-                    </a>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
-                        <img src="../../resources/img/tshirt.png" alt="#" class="img-fluid w-25 mb-2"> 
-                        Prueba
-                    </a>
-                </div>
+            <div class="row d-flex justify-content-center" id="categories-body">
                 
             </div> 
         </div>
@@ -92,5 +56,5 @@ public_Page::navbarTemplate('Polus El Salvador','.');
 
 
 <?php
-public_Page::footerTemplate();
+public_Page::footerTemplate('categoria.js');
 ?>

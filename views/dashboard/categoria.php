@@ -77,8 +77,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                 <!-- Columna de información -->
                                 <div class="col-12">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <label for="#" class="mb-4">Recomendamos que utilices un icono en tonos claros para que pueda verse correctamente en el sitio publico.</label>
                                         <div class="bordeDivFotografia">
-                                            <div class="divFotografia" id="divFoto">
+                                            <div class="divFotografia bg-dark" id="divFoto">
 
                                             </div>
                                         </div>
@@ -131,8 +132,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                 <!-- Columna de información -->
                                 <div class="col-12">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <label for="#" class="mb-4">Recomendamos que utilices un icono en tonos claros para que pueda verse correctamente en el sitio publico.</label>
                                         <div class="bordeDivFotografia">
-                                            <div class="divFotografia" id="divFoto1">
+                                            <div class="divFotografia bg-dark"" id="divFoto1">
 
                                             </div>
                                         </div>
