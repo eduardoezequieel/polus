@@ -479,3 +479,86 @@ function logOut() {
         }
     });
 }
+
+function checkInputLetras(i){
+
+    if(formulario[i].value.trim() === ""){
+        formulario[i].classList.remove("success");
+        formulario[i].classList.add("error");
+    } else{
+        formulario[i].classList.remove("error");
+        formulario[i].classList.add("success");
+
+        if(/^[A-Za-z\s]+$/.test(formulario[i].value)){
+            formulario[i].classList.remove("error");
+            formulario[i].classList.add("success");
+            
+        } else{
+            formulario[i].classList.remove("success");
+            formulario[i].classList.add("error");
+        }    
+    }
+    
+}
+
+function checkCorreo(i){
+    if(formulario[i].value.trim() === ""){
+        formulario[i].classList.remove("success");
+        formulario[i].classList.add("error");
+    } else{
+        formulario[i].classList.remove("error");
+        formulario[i].classList.add("success");
+
+        if(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(formulario[i].value)){
+            formulario[i].classList.remove("error");
+            formulario[i].classList.add("success");
+        } else{
+            formulario[i].classList.remove("success");
+            formulario[i].classList.add("error");
+        }    
+    }
+}
+
+function checkInput(i){
+
+    if(formulario[i].value.trim() === ""){
+        formulario[i].classList.remove("success");
+        formulario[i].classList.add("error");
+    } else{
+        formulario[i].classList.remove("error");
+        formulario[i].classList.add("success");   
+    }
+    
+}
+
+function checkTelefono(i){
+
+    if(formulario[i].value.trim() === ""){
+        formulario[i].classList.remove("success");
+        formulario[i].classList.add("error");
+    } else{
+        formulario[i].classList.remove("error");
+        formulario[i].classList.add("success");   
+
+        if(/[0-9-]+$/i.test(formulario[i].value)){
+            formulario[i].classList.remove("error");
+            formulario[i].classList.add("success");
+        } else{
+            formulario[i].classList.remove("success");
+            formulario[i].classList.add("error");
+        }
+    }
+    
+}
+
+function checkDireccion(){
+    direccion.classList.add("error");
+    if(direccion.value.trim() === ""){
+        direccion.classList.remove("success");
+        direccion.classList.add("error");
+    } else{
+        direccion.classList.remove("error");
+        direccion.classList.add("success");   
+    }
+    
+}

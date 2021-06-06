@@ -38,52 +38,54 @@
           <h1 class="titulo2 text-center m-4">Registro</h1>
         </div>
       </div>
-      <form>
+      <form method="post" id="register-form">
+        <!-- Campo oculto para asignar el token del reCAPTCHA -->
+        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
         <div class="justify-content-center row animate__animated animate__fadeInUp animate__faster">
           <!-- Columna 1 -->
           <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados">
             <div class="form-group mb-2">
               <label for="txtNombre" class="mb-2 texto">Nombres:</label>
               <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtNombre"
-              name="txtNombre" placeholder="Juan Armando" >
+              name="txtNombre" placeholder="Juan Armando" Required>
             </div>
             <div class="form-group mb-2">
               <label for="txtEmail" class="mb-2 texto">Correo:</label>
               <input type="email" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="txtEmail"
-              name="txtEmail" placeholder="ejemplo@mail.com">
+              name="txtEmail" placeholder="ejemplo@mail.com" Required>
             </div>
             <div class="form-group mb-2">
               <label for="txtUsuario" class="mb-2 texto">Usuario</label>
               <input type="text" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="txtUsuario"
-              name="txtUsuario"placeholder="usuario123">
+              name="txtUsuario"placeholder="usuario123" Required>
             </div>
 
             <div class="form-group mb-2">
               <label for="txtContraseña" class="mb-2 texto">Contraseña:</label>
               <input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1"
-                id="txtContraseña" name="txtContraseña" placeholder="Contraseña">
+                id="txtContraseña" name="txtContraseña" placeholder="Contraseña" Required>
             </div>
           </div>
           <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center paddingLados animate__animated animate__fadeInUp animate__faster">
             <div class="form-group mb-2">
               <label for="txtApellidos" class="mb-2 texto">Apellidos:</label>
               <input type="text" class="form-control personalizacionPolus personalizacionPolusP" id="txtApellidos"
-              name="txtApellidos"aria-describedby="emailHelp" placeholder="Hernández Perez">
+              name="txtApellidos"aria-describedby="emailHelp" placeholder="Hernández Perez" Required>
             </div>
             <div class="form-group mb-2">
               <label for="txtEmail" class="mb-2 texto">Confirmar Correo:</label>
               <input type="email" class="form-control personalizacionPolus personalizacionPolusP mb-1"
-                id="txtConfirmarEmail" name="txtConfirmarEmail" placeholder="ejemplo@mail.com">
+                id="txtConfirmarEmail" name="txtConfirmarEmail" placeholder="ejemplo@mail.com" Required>
             </div>
             <div class="form-group mb-2">
               <label for="txtFechaNacimiento" class="mb-2 texto">Fecha de Nacimiento:</label>
               <input type="date" class="form-control personalizacionPolus personalizacionPolusP mb-1"
-                id="txtFechaNacimiento" name="txtFechaNacimiento" placeholder="dd/mm/aaaa" >
+                id="txtFechaNacimiento" name="txtFechaNacimiento" placeholder="dd/mm/aaaa" Required>
             </div>
             <div class="form-group mb-2">
               <label for="txtConfirmarContraseña" class="mb-2 texto">Confirmar Contraseña:</label>
               <input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1"
-                id="txtConfirmarContraseña" name="txtConfirmarContraseña" placeholder="Confirmar Contraseña" >
+                id="txtConfirmarContraseña" name="txtConfirmarContraseña" placeholder="Confirmar Contraseña" Required>
             </div>
             <div class="row justify-content-center">
               <div class="col-12 d-flex justify-content-center align-items-center">
@@ -95,13 +97,13 @@
             <div class="form-group mb-2">
               <label for="txtTelefono" class="mb-2 texto">Teléfono:</label>
               <input type="text" class="form-control personalizacionPolus personalizacionPolusP mb-1" id="txtTelefono"
-              name="txtTelefono" placeholder="0000-0000" >
+              name="txtTelefono" placeholder="0000-0000" Required>
             </div>
 
             <div class="form-group mb-2">
               <label for="txtDireccion" class="mb-2 texto">Dirección:</label>
               <textarea class="form-control personalizacionPolus personalizacionPolusP mb-1" rows=4
-                id="txtDireccion" name="txtDireccion"></textarea>
+                id="txtDireccion" name="txtDireccion" Required></textarea>
             </div>
 
             <div class="mb-3">
@@ -143,7 +145,14 @@
     integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
   </script>
   <script src="https://kit.fontawesome.com/43634cb7dc.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../../app/controllers/public/crear_cuenta.js"></script>
+  <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+  <script type="text/javascript" src="../../app/helpers/components.js"></script>
+
+  <!-- Importación del archivo para que funcione el reCAPTCHA. Para más información https://developers.google.com/recaptcha/docs/v3
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6LdBzLQUAAAAAJvH-aCUUJgliLOjLcmrHN06RFXT"></script> -->
+
 
 </body>
-
+  
 </html>
