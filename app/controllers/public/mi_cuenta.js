@@ -137,7 +137,7 @@ function readOrderDetail() {
                     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                     document.getElementById('tbodyCart-rows').innerHTML = content;
                     // Se muestra el total a pagar con dos decimales.
-                    //document.getElementById('pago').textContent = total.toFixed(2);
+                    document.getElementById('pago').textContent = total.toFixed(2);
                 } else {
                     sweetAlert(4, response.exception, 'index.php');
                 }
@@ -188,6 +188,43 @@ function openDeleteDialogCart(id) {
             }).catch(function (error) {
                 console.log(error);
             });
+        }
+    });
+}
+
+// Función para mostrar un mensaje de confirmación al momento de finalizar el pedido.
+function finishOrderCart() {
+    swal({
+        title: 'Aviso',
+        text: '¿Está seguro de finalizar el pedido?',
+        icon: 'info',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para realizar la petición respectiva, de lo contrario se muestra un mensaje.
+        if (value) {
+            fetch(API_PEDIDO + 'finishOrder', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, 'index.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        } else {
+            sweetAlert(4, 'Puede seguir comprando', null);
         }
     });
 }

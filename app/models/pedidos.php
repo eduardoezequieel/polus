@@ -307,5 +307,19 @@
         }
     }
 
+        // Método para finalizar un pedido por parte del cliente.
+        public function finishOrderCart()
+        {
+            // Se establece la zona horaria local para obtener la fecha del servidor.
+            date_default_timezone_set('America/El_Salvador');
+            $date = date('Y-m-d');
+            $this->estado = 4;
+            $sql = 'UPDATE pedido
+                    SET idEstadoPedido = ?, fechaPedido = ?
+                    WHERE idPedido = ?';
+            $params = array($this->estado, $date, $_SESSION['idPedido']);
+            return Database::executeRow($sql, $params);
+        }
+
  }
 ?>

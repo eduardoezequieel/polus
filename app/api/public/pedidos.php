@@ -95,6 +95,15 @@
                         $result['exception'] = 'Detalle incorrecto';
                     }
                     break;
+                //Finalizar pedido
+                case 'finishOrder':
+                    if ($pedidos->finishOrderCart()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Pedido finalizado correctamente';
+                    } else {
+                        $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
+                    }
+                    break;
                 default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
             }

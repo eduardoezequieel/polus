@@ -188,7 +188,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-light" data-bs-target="#pedidoModal" data-bs-toggle="modal" data-bs-dismiss="modal">Siguiente</button>
+                            <p>TOTAL A PAGAR (US$) <b id="pago"></b></p>
+                            <button type="button" class="btn btn-outline-light" onclick="finishOrderCart()"><i class="fas fa-shipping-fast"></i> Finalizar</button>
                         </div>
                     </div>
                 </div>
