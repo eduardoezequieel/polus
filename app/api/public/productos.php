@@ -28,6 +28,22 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'No existen productos para mostrar';
             }
             break;
+        case 'readOne':
+            $_POST = $producto->validateForm($_POST);
+            if ($producto->setId($_POST['idProducto'])) {
+                if ($result['dataset'] = $producto->readOne()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Producto inexistente';
+                    }
+                }
+            }else{
+                $result['exception'] = 'Id incorrecto';
+            }
+            break;
         default:
             $result['exception'] = 'Acción no disponible';
     }

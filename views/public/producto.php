@@ -10,16 +10,15 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
     <div class="container-fluid" id="XProducto">
         <div class="row animate__animated animate__fadeInDown">
             <!--Imagen-->
-            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 " id="columnaImagen">
-                <img src="../../resources/img/shortsprueba.png" alt="" class="img-fluid m-auto d-block redondearImagen mt-4" width="450px">
-                
+            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center" id="columnaImagen">
+
             </div>
             <!--Información-->
             <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12" id="columnaInformacion">
-                <h1 class="titulos">Short 100% Algodon</h1>
-                <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sequi quod et ducimus repellat, earum ad unde doloremque veritatis reprehenderit molestias ea incidunt perferendis a dignissimos eveniet suscipit vel. Eveniet!</p>
+                <h1 class="titulos" id="tituloProducto">Short 100% Algodon</h1>
+                <p class="parrafo" id="descripcionProducto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sequi quod et ducimus repellat, earum ad unde doloremque veritatis reprehenderit molestias ea incidunt perferendis a dignissimos eveniet suscipit vel. Eveniet!</p>
                 <p class="estrellas">★★★★★<span class="reseña">441 reseñas.</span></p>
-                <h1 class="precio">$9.99<span class="disponibilidad">Disponible</span></h1>
+                <h1 class="precio" id="precioProducto">$9.99<span class="disponibilidad">Disponible</span></h1>
                 <div class="row justify-content-center">
                     <div class="col-6 minimizarDiv">
                         <a href="pago.php" class="btn boton"><span class="fas fa-money-bill-alt p-2"></span>Comprar Ya</a>
@@ -30,34 +29,7 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
                 </div>
             </div>
         </div>
-        <!--Sugerencias-->
-        <div class="row mt-5 pt-5">
-            <h1 class="lead text-white text-center mb-5 pb-4">Tambien podrian gustarte:</h1>
-            <div class="col-xl-2 col-md-2 col-sm-12 col-xs-12">
-                <img src="../../resources/img/preview1.PNG" alt="" class="img-fluid m-auto d-block preview redondearImagen">
-                <h1 class="titulos2">Shorts</h1>
-            </div>
-            <div class="col-xl-2 col-md-2 col-sm-12 col-xs-12">
-                <img src="../../resources/img/preview2.PNG" alt="" class="img-fluid m-auto d-block preview redondearImagen">
-                <h1 class="titulos2">Shorts</h1>
-            </div>
-            <div class="col-xl-2 col-md-2 col-sm-12 col-xs-12">
-                <img src="../../resources/img/preview3.PNG" alt="" class="img-fluid m-auto d-block preview redondearImagen">
-                <h1 class="titulos2">Shorts</h1>
-            </div>
-            <div class="col-xl-2 col-md-2 col-sm-12 col-xs-12">
-                <img src="../../resources/img/preview4.PNG" alt="" class="img-fluid m-auto d-block preview redondearImagen">
-                <h1 class="titulos2">Shorts</h1>
-            </div>
-            <div class="col-xl-2 col-md-2 col-sm-12 col-xs-12">
-                <img src="../../resources/img/preview4.PNG" alt="" class="img-fluid m-auto d-block preview redondearImagen">
-                <h1 class="titulos2">Shorts</h1>
-            </div>
-            <div class="col-xl-2 col-md-2 col-sm-12 col-xs-12">
-                <img src="../../resources/img/preview4.PNG" alt="" class="img-fluid m-auto d-block preview redondearImagen">
-                <h1 class="titulos2">Shorts</h1>
-            </div>
-        </div>
+        
         
     </div>
 </section>

@@ -63,6 +63,7 @@ function readProducts(id, name) {
                     document.getElementById('products-body').innerHTML = content;
 
                     document.getElementById('titulo').textContent = name;
+                    
                    
                 } else {
                     // Se presenta un mensaje de error cuando no existen datos para mostrar.
