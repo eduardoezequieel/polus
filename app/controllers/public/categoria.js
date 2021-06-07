@@ -11,7 +11,7 @@ function fillCategories(dataset){
     let content = ' ';
 
     dataset.map(function(row){
-        url = `categoria.php?id=${row.idcategoria}`;
+        url = `categoria.php?id=${row.idcategoria}&name=${row.categoria}`;
 
         content += `
         <div class="col d-flex justify-content-center">

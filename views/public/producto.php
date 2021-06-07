@@ -141,5 +141,5 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
 
 <?php
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-public_Page::footerTemplate();
+public_Page::footerTemplate('detalle_producto.js');
 ?>

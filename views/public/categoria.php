@@ -51,7 +51,7 @@ public_Page::navbarTemplate('Polus El Salvador','.');
         <div class="col-lg-9 col-md-12">
             <div class="row">
                 <div class="col-12 animate__animated animate__bounceInDown">
-                    <h1>Productos</h1>
+                    <h1 id="titulo">Productos</h1>
                 </div>
             </div>
             <div class="row">
