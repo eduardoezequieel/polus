@@ -131,6 +131,26 @@ Class Database{
     {
         return self::$error;
     }
+
+    public static function getLastRow($query, $values)
+    {
+        try {
+            self::connect();
+            self::$statement = self::$connection->prepare($query);
+            if (self::$statement->execute($values)) {
+                $id = self::$connection->lastInsertId();
+            } else {
+                $id = 0;
+            }
+            // Se anula la conexión con el servidor de base de datos.
+            self::$connection = null;
+            return $id;
+        } catch (PDOException $error) {
+            // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.
+            self::setException($error->getCode(), $error->getMessage());
+            return 0;
+        }
+    }
 }
 
 ?>

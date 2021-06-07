@@ -41,6 +41,29 @@
                         $result['exception'] = 'Producto seleccionado incorrecto';
                     }
                     break;
+
+                //Caso para crear el pedido y detalle
+                case 'createDetail':
+                    if ($pedidos->startOrder()) {
+                        $_POST = $pedidos->validateForm($_POST);
+                        if ($pedidos->setIdProducto($_POST['idProducto2'])) {
+                            if ($pedidos->setCantidad($_POST['txtCantidad'])) {
+                                if ($pedidos->createDetail()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Producto agregado correctamente';
+                                } else {
+                                    $result['exception'] = 'Ocurrió un problema al agregar el producto';
+                                }
+                            } else {
+                                $result['exception'] = 'Cantidad incorrecta';
+                            }
+                        } else {
+                            $result['exception'] = 'Producto incorrecto';
+                        }
+                    } else {
+                        $result['exception'] = 'Ocurrió un problema al obtener el pedido';
+                    }
+                    break;
                 default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
             }

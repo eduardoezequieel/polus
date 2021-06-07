@@ -254,5 +254,39 @@
         return Database::getRows($sql, $params);
     }
 
+     // Método para agregar un producto al carrito de compras.
+     public function createDetail()
+     {
+         // Se realiza una subconsulta para obtener el precio del producto.
+         $sql = 'INSERT INTO detallePedido(cantidad, precioProducto, idPedido, idProducto)
+                 VALUES(?, (SELECT precio FROM producto WHERE idProducto = ?), ?, ?)';
+         $params = array($this->cantidad, $this->idProducto, $this->idPedido, $this->idProducto);
+         return Database::executeRow($sql, $params);
+     }
+
+    public function startOrder()
+    {
+        $this->estado = 1;
+
+        $sql = 'SELECT idPedido
+                FROM pedido
+                WHERE idEstadoPedido = ? AND idCliente = ?';
+        $params = array($this->estado, $_SESSION['idCliente']);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->idPedido = $data['idpedido'];
+            return true;
+        } else {
+            $sql = 'INSERT INTO pedido(fechaPedido, idEstadoPedido, idCliente)
+                    VALUES(current_date,?, ?)';
+            $params = array($this->estado, $_SESSION['idCliente']);
+            // Se obtiene el ultimo valor insertado en la llave primaria de la tabla pedidos.
+            if ($this->idPedido = Database::getLastRow($sql, $params)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
  }
 ?>

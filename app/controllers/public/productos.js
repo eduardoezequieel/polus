@@ -108,7 +108,27 @@ document.getElementById('agregarCart').addEventListener('click', function(){
                         if(row.resta < 1){
                             sweetAlert(3, 'No hay unidades suficientes en stock', null);
                         } else{
-                            
+                            //Obtener datos
+                            fetch(API_PEDIDO + 'createDetail',{
+                                method: 'post',
+                                body: new FormData(document.getElementById('cantidad-form'))
+                                }).then(function(request){
+                                    //Verificando si la petición fue correcta
+                                    if(request.ok){
+                                        request.json().then(function(response){
+                                            //Verificando respuesta satisfactoria
+                                            if(response.status){
+                                                sweetAlert(1, response.message , null);
+                                            } else{
+                                                sweetAlert(4, response.exception, null);
+                                            }
+                                        })
+                                    }else{
+                                        console.log(request.status + ' ' + request.statusText);
+                                    }
+                                }).catch(function(error){
+                                    console.log(error);
+                                })
                         }
                     })
                     
