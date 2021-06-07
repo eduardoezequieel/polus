@@ -1,13 +1,13 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_CATALOGO = '../../app/api/public/productos.php?action=';
 const ENDPOINT_SUBCATEGORIA = '../../app/api/public/productos.php?action=readSubcategorias';
-const API_PEDIDO = '../../app/api/public/pedidos.php?action=';
 
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     fillSelectProducts(ENDPOINT_SUBCATEGORIA, 'cbSubcategorias', null);
-    console.log('hola');
+    
+    readOrderDetail()
     // Se busca en la URL las variables (parámetros) disponibles.
     let params = new URLSearchParams(location.search);
     // Se obtienen los datos localizados por medio de las variables.
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
    
     // Se llama a la función que muestra los productos de la categoría seleccionada previamente.
     readProducts(id, name);
+
 });
 
 document.getElementById('search-subcategoria').addEventListener('submit', function(event){
@@ -170,7 +171,7 @@ function fillProducts(dataset, name){
                 </div>
             </button>
             <ul class="dropdown-menu dropdown-menu-dark animate__animated animate__bounceIn mx-5" aria-labelledby="dropdownMenuButton2">
-                <li><a class="dropdown-item" href="#"><span class="fas fa-cart-plus me-2"></span>Agregar al carrito</a></li>
+                <li><a class="dropdown-item" href="#" onclick="openCantidadDialog(${row.idproducto})" data-bs-toggle="modal" data-bs-target="#cantidadModal"><span class="fas fa-cart-plus me-2"></span>Agregar al carrito</a></li>
                 <li><a class="dropdown-item" href="${url}"><span class="fas fa-info-circle me-2"></span>Ver detalles</a></li>
             </ul>
         </div>
@@ -220,6 +221,7 @@ document.getElementById('agregarCart').addEventListener('click', function(){
                                             //Verificando respuesta satisfactoria
                                             if(response.status){
                                                 sweetAlert(1, response.message , null);
+                                                readOrderDetail()
                                             } else{
                                                 sweetAlert(4, response.exception, null);
                                             }

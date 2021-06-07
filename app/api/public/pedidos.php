@@ -64,6 +64,37 @@
                         $result['exception'] = 'Ocurrió un problema al obtener el pedido';
                     }
                     break;
+                
+                //Leer los datos de la tabla de detalle pedido
+                case 'readOrderDetail':
+                    if ($pedidos->startOrder()) {
+                        if ($result['dataset'] = $pedidos->readOrderDetail()) {
+                            $result['status'] = 1;
+                            $_SESSION['idPedido'] = $pedidos->getIdPedido();
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No tiene productos en el carrito';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Debe agregar un producto al carrito';
+                    }
+                    break;
+                //Eliminar detalle
+                case 'deleteDetail':
+                    if ($pedidos->setIdDetallePedido($_POST['id_detalle'])) {
+                        if ($pedidos->deleteDetail()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Producto removido correctamente';
+                        } else {
+                            $result['exception'] = 'Ocurrió un problema al remover el producto';
+                        }
+                    } else {
+                        $result['exception'] = 'Detalle incorrecto';
+                    }
+                    break;
                 default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
             }

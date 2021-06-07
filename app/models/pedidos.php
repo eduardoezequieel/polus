@@ -263,6 +263,25 @@
          $params = array($this->cantidad, $this->idProducto, $this->idPedido, $this->idProducto);
          return Database::executeRow($sql, $params);
      }
+    
+     // Método para obtener los productos que se encuentran en el carrito de compras.
+    public function readOrderDetail()
+    {
+        $sql = 'SELECT idDetallePedido, nombre, detallePedido.precioProducto, detallePedido.cantidad
+                FROM pedido INNER JOIN detallePedido USING(idPedido) INNER JOIN producto USING(idProducto)
+                WHERE idPedido = ?';
+        $params = array($this->idPedido);
+        return Database::getRows($sql, $params);
+    }
+
+    // Método para eliminar un producto que se encuentra en el carrito de compras.
+    public function deleteDetail()
+    {
+        $sql = 'DELETE FROM detallePedido
+                WHERE idDetallePedido = ? AND idPedido = ?';
+        $params = array($this->idDetallePedido, $_SESSION['idPedido']);
+        return Database::executeRow($sql, $params);
+    }
 
     public function startOrder()
     {

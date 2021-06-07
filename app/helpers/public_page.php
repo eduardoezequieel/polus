@@ -81,7 +81,7 @@
 
                                 </ul>
                                 <form id="controlesNavbar">
-                                    <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i>$4.99</button>
+                                    <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i></button>
                                     
                                 </form>
                                 <div class="dropdown">
@@ -140,7 +140,7 @@
 
                                 </ul>
                                 <form id="controlesNavbar">
-                                    <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i>$4.99</button>
+                                    
                                     <a href="../../views/public/iniciar_sesion.php" class="btn btn-outline-light">Acceder</a>
                                     <a href="../../views/public/crear_cuenta.php" class="btn btn-outline-secondary">Registrarse</a>
                                     
@@ -159,7 +159,7 @@
             print('
             <!-- Modal -->
             <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title text-white" id="exampleModalLabel"><span class="fas fa-info-circle mx-3 text-white"></span>Carrito</h5>
@@ -167,11 +167,12 @@
                         </div>
                         <div class="modal-body">
                             <div class="row justify-content-center">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input class="visually-hidden" type="number" id="id_detalle" name="id_detalle">
                                 <div class="col-12 d-flex justify-content-center table-responsive">
                                     <table class="table table-borderless">
                                         <thead>
                                             <tr>
-                                                <th scope="col">#</th>
                                                 <th scope="col">Producto</th>
                                                 <th scope="col">Precio</th>
                                                 <th scope="col">Cantidad</th>
@@ -179,85 +180,8 @@
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>T-SHIRT MORADA</td>
-                                                <td>$2.99</td>
-                                                <th>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-12 d-flex justify-content-center">
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-minus"></i></button>
-                                                            <div class="row mt-1">
-                                                                <div class="col-12">
-                                                                    <h1 class="text-white mx-2 contadorCantidad">2</h1>
-                                                                </div>
-                                                            </div>
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-plus"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </th>
-                                                <td>$5.99</td>
-                                                <th>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-12 d-flex justify-content-center">
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-times"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>T-SHIRT MORADA</td>
-                                                <td>$2.99</td>
-                                                <th>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-12 d-flex justify-content-center">
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-minus"></i></button>
-                                                            <div class="row mt-1">
-                                                                <div class="col-12">
-                                                                    <h1 class="text-white mx-2 contadorCantidad">2</h1>
-                                                                </div>
-                                                            </div>
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-plus"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </th>
-                                                <td>$5.99</td>
-                                                <th>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-12 d-flex justify-content-center">
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-times"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>T-SHIRT MORADA</td>
-                                                <td>$2.99</td>
-                                                <th>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-12 d-flex justify-content-center">
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-minus"></i></button>
-                                                            <div class="row mt-1">
-                                                                <div class="col-12">
-                                                                    <h1 class="text-white mx-2 contadorCantidad">2</h1>
-                                                                </div>
-                                                            </div>
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-plus"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </th>
-                                                <td>$5.99</td>
-                                                <th>
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-12 d-flex justify-content-center">
-                                                            <button class="btn botonContador btn-outline-light text-center"><i class="fas fa-times"></i></button>
-                                                        </div>
-                                                    </div>
-                                                </th>
-                                            </tr>
+                                        <tbody id="tbodyCart-rows">
+
                                         </tbody>
                                     </table>
                                 </div>
