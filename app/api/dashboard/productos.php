@@ -264,6 +264,52 @@ if(isset($_GET['action'])){
                 $result['exception'] = 'No se encontró ningún resgistro';
             }
             break;
+        //Leer imagenes secundarias
+        case 'readImg':
+            $_POST = $productos->validateForm($_POST);
+            if($productos->setId($_POST['idProducto6'])){
+                if($result['dataset'] = $productos->readImg()){
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha encontrado';
+                } else{
+                    if(Database::getException()){
+                        $result['error'] = 1;
+                        $result['exception'] = Database::getException();
+                    } else{
+                        $result['exception'] = 'No hay imagenes secundarias para este producto';
+                    }
+                }
+            } else{
+                $result['exception'] = 'Producto seleccionado incorrecto';
+            }
+            break;
+        //Eliminar imagenes secundarias
+        case 'deleteImg':
+            $_POST = $productos->validateForm($_POST);
+            if($productos->setId($_POST['idProducto6'])){
+                if($data = $productos->readOne()){
+                    if ($productos->deleteRowImg()) {
+                        if ($productos->deleteFile($productos->getRuta(), $data['imagenprincipal'])) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Producto eliminado correctamente';
+                        } else {
+                            $result['message'] = 'Producto eliminado pero no se borró la imagen';
+                        }
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else{
+                    if(Database::getException()){
+                        $result['error'] = 1;
+                        $result['exception'] = Database::getException();
+                    } else{
+                        $result['exception'] = 'El producto seleccionado no existe';
+                    }
+                }
+            } else{
+                $result['exception'] = 'Producto seleccionado incorrecto';
+            }
+            break;
         default: 
             $result['exception'] = 'No existe la acción solicitada';
     }

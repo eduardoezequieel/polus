@@ -4,14 +4,18 @@ const API_RESEÑAS = '../../app/api/dashboard/reseñas.php?action=';
 const ENDPOINT_COMMENTS = '../../app/api/dashboard/reseñas.php?action=readAllStates';
 const ENDPOINT_MARCA = '../../app/api/dashboard/productos.php?action=readAllMarca';
 const ENDPOINT_SUB = '../../app/api/dashboard/productos.php?action=readAllSub';
+const ENDPOINT_IMG= '../../app/api/dashboard/productos.php?action=readImg';
 
 //Constante para agarrar el album
 const idAlbum = document.getElementById('idAlbum')
 idAlbum.style.visibility = 'hidden';
+const idproducto6 = document.getElementById('idProducto6')
+const imagenTabla = document.getElementById('imagen6')
 
 //Evento cargada la pagina
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_PRODUCTO);
+    
     fillSelect(ENDPOINT_MARCA,'cbMarca',null);
     fillSelect(ENDPOINT_SUB,'cbSubcategoria',null);
     fillSelect(ENDPOINT_COMMENTS,'txtEstadoResena',null);
@@ -71,7 +75,7 @@ function fillTable(dataset){
                     </div>
                 </th>
             </tr>
-        `;
+        `; 
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
@@ -456,6 +460,8 @@ function openUpdateDialog(id){
      //Se llama el elemento select
     fillSelect(ENDPOINT_MARCA,'cbMarca',null);
     fillSelect(ENDPOINT_SUB,'cbSubcategoria',null);
+    idproducto6.value = id;
+    console.log(idproducto6.value)
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idProducto', id);
@@ -651,6 +657,50 @@ function openDeleteDialog(id){
     confirmDelete(API_PRODUCTO, data);
 }
 
+//Eliminar
+function openDeleteDialogImg(id, imagen){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idProducto6', id);
+    data.append('imagen6', imagen);
+    // Se llama a la función que elimina un registro.
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea eliminar el registro?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(API_PRODUCTO + 'deleteImg', {
+                method: 'post',
+                body: data
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                            readRowsImg(ENDPOINT_IMG);
+                            sweetAlert(1, response.message, null);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
+
 restartSearch('btnReiniciar', API_PRODUCTO);
 
 //Imagenes multiples 
@@ -762,3 +812,71 @@ function guardarImagenes(){
         
     }
 }
+
+//Evento para abrir modal de album
+document.getElementById('album').addEventListener('click', function(event){
+    event.preventDefault();
+    closeModal('administrarProductos')
+    readRowsImg()
+})
+
+
+function readRowsImg() {
+    
+    const data = new FormData();
+    data.append('idProducto6', idproducto6.value);
+    fetch(ENDPOINT_IMG, {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    let content = '';
+                    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+                        content += `
+                            <tr>
+                                <td><img src="../../resources/img/dashboard_img/producto_fotos/${row.imagen}" height="120"></td>
+                                <td>${row.nombre}</td>
+                                <th scope="row">
+                                    <div class="row justify-c">
+                                        <div class="col-12 d-flex">
+                                                            
+                                            <a href="#" onclick="openUpdateDialog(${row.idproducto})"data-bs-toggle="modal" data-bs-target="#administrarProductos"
+                                                class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i>
+                                            </a>
+
+                                            <h5 class="mx-1">
+                                            </h5>
+
+                                            <a href="#" onclick="openDeleteDialogImg(${row.idproducto})" class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i></a>
+
+                                            <h5 class="mx-1">
+                                            </h5>
+
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        `; 
+                    });
+                    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+                    document.getElementById('tbodyImg-rows').innerHTML = content
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+
+

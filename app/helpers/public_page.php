@@ -160,7 +160,7 @@
                         </nav>
                     ');
                 } else {
-                    header('location: crear_cuenta.php');
+                    //header('location: crear_cuenta.php');
                 }
             }
         }

@@ -104,6 +104,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                                                                 <button class="btn btn-outline-dark" id="botonFoto"><span class="fas fa-plus"></span></button>
                                                             </div>
                                                             <input id="archivo_producto" type="file" class="d-none" name="archivo_producto" accept=".gif, .jpg, .png">
+                                                            <!--<div class="mt-4"> 
+                                                                    <button class="btn btn-outline-dark" id="album"  data-bs-toggle="modal" data-bs-target="#administrarImagenes2"><span class="fas fa-images me-2"></span>Albúm de Fotos</button>
+                                                            </div>-->
                                                         </div>
                                                     </div><br>
                                                     <div class="mb-3">
@@ -296,6 +299,48 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                     <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                     <input class="visually-hidden" type="number" id="idProducto2" name="idProducto2">
                     <button class="btn btn-outline-dark" id="botonFoto3"><span class="fas fa-plus"></span>Confirmación</button>
+                </div>
+            </div>
+
+            <!-- Fin del Contenido del Modal -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal para administrar imagenes -->
+<div class="modal fade" id="administrarImagenes2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <button class="btn btn-outline-dark" data-bs-target="#administrarProductos" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="fas fa-chevron-left"></span></button>
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                        class="fas fa-info-circle mx-2"></span>Administrar imagenes</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <br>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-3 mt-2">
+                <p class="apartado">Administrar imagenes secundarias:</p>
+                <input class="visually-hidden" type="number" id="idProducto6" name="idProducto6">
+                <input type="number" id="imagen6" name="imagen6">
+                <div class="row animate__animated animate__fadeInUp animate__faster table-responsive-lg">
+                    <div class="col-12">
+                        <table class="table">
+                            <thead class="bg-dark tabla">
+                                <tr>
+                                    <th scope="col">Foto</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyImg-rows">
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

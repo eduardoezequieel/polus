@@ -249,5 +249,23 @@
             $params = array($this->idProducto);
             return Database::executeRow($sql, $params);
         }
+
+        //Método para eliminar
+        public function deleteRowImg(){
+            $sql = 'DELETE FROM imagenProducto WHERE idProducto = ? AND imagenProducto = ?';
+            $params = array($this->idProducto, $this->imagenPrincipal);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Leer las imagenes secundarias
+        public function readImg()
+        {
+            $sql = 'SELECT producto.idProducto, nombre, imagen FROM producto 
+                    INNER JOIN imagenProducto ON producto.idProducto = imagenProducto.idProducto 
+                    WHERE producto.idProducto = ?';
+            $params = array($this->idProducto);
+            return Database::getRows($sql, $params);
+        }
+
     }
 ?>
