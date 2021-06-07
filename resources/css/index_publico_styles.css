@@ -250,6 +250,12 @@ p{
     height: 350px !important;
 }
 
+.fotografiaPerfil2{
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+  }
+
 .carousel-inner > .item > img {
     object-fit: cover !important;
   }
@@ -390,12 +396,34 @@ td, th{
     background-color: #16181D;
 }
 
+.paddingUsername{
+    padding-top: 7px !important;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: white !important;
+  }
+
+  .paddingFlecha{
+    padding-top: 11px !important;
+  }
+
 @media screen and (max-width:999px){
 
     #fila{
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    #fotoPerfil{
+        width: 35px !important; 
+        margin-right: 10px !important;
+      }
+
+    .paddingFlecha{
+        display: none;
     }
 
     #title{

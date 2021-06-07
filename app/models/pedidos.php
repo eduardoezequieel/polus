@@ -158,6 +158,14 @@
         return Database::getRows($sql,$params);
     }
 
+    public function readClientsRecord(){
+        $sql = 'SELECT idpedido, fechapedido, estadopedido.estadopedido FROM pedido 
+        INNER JOIN estadopedido ON pedido.idestadopedido = estadopedido.idestadopedido
+        WHERE idcliente = ?';
+        $params = array($this->idCliente);
+        return Database::getRows($sql, $params);
+    }
+
     public function readOne(){
         $sql = 'SELECT idpedido, CONCAT(cliente.apellido,\'  \',cliente.nombre) 
         AS cliente, fechaPedido, estadopedido.estadoPedido, cliente.direccion, cliente.idcliente 

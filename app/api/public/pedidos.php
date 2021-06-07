@@ -104,6 +104,26 @@
                         $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
                     }
                     break;
+                case 'readClientRecord':
+                    if ($pedidos->setIdCliente(isset($_SESSION['idCliente']))) {
+                        if ($pedidos->readClientsRecord()) {
+                            if ($result['dataset'] = $pedidos->readOrderDetail()) {
+                                $result['status'] = 1;
+                                $_SESSION['idPedido'] = $pedidos->getIdPedido();
+                            } else {
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No posee pedidos registrados a su nombre.';
+                                }
+                            }
+                        } else {
+                            $result['exception'] = 'Error';
+                        }
+                    }else{
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
                 default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
             }
