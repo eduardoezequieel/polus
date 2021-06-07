@@ -1,5 +1,7 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_CATALOGO = '../../app/api/public/productos.php?action=';
+const ENDPOINT_SUBCATEGORIA = '../../app/api/public/categoria.php?action=readSubcategoria';
+
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
@@ -8,9 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se obtienen los datos localizados por medio de las variables.
     const id = params.get('id');
     const name = params.get('name');
-    console.log(id);
     // Se llama a la función que muestra los productos de la categoría seleccionada previamente.
     readProducts(id, name);
+    fillSelect(ENDPOINT_SUBCATEGORIA, 'cbSubcategorias', null);
+    console.log('hola');
 });
 
 // Función para obtener y mostrar los productos de acuerdo a la categoría seleccionada.
