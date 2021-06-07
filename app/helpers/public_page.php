@@ -61,27 +61,22 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown" id="dropdownCategorias">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    Catálogo
+                                    Categorías
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" id>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="../../views/public/categoria.php">Pagina X Catálogo</a></li>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" id="dropdownCategories-body">
+                                    
                                     </ul>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#AcercaNosotros">Acerca de Nosotros</a>
+                                    <a class="nav-link" href="index.php#AcercaNosotros">Acerca de Nosotros</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#Soporte">Soporte</a>
+                                    <a class="nav-link" href="index.php#Soporte">Soporte</a>
                                 </li>
 
                                 </ul>
@@ -125,27 +120,22 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown" id="dropdownCategorias">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    Catálogo
+                                    Categorías
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" id>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="../../views/public/categoria.php">Pagina X Catálogo</a></li>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown" id="dropdownCategories-body">
+
                                     </ul>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#AcercaNosotros">Acerca de Nosotros</a>
+                                    <a class="nav-link" href="index.php#AcercaNosotros">Acerca de Nosotros</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#Soporte">Soporte</a>
+                                    <a class="nav-link" href="index.php#Soporte">Soporte</a>
                                 </li>
 
                                 </ul>

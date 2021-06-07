@@ -44,6 +44,77 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Id incorrecto';
             }
             break;
+        case 'readSubcategorias':
+            $_POST = $producto->validateForm($_POST);
+            if ($producto->setIdCategoria($_POST['idCategoria'])) {
+                if ($result['dataset'] = $producto->readSubcategoria()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No existen categorías para mostrar';
+                    }
+                }
+            }else{
+                $result['exception'] = 'Id incorrecto';
+            }
+            break;
+        case 'searchBySubcategory':
+            $_POST = $producto->validateForm($_POST);
+            if ($producto->setIdCategoria($_POST['idCategoria'])) {
+                if (isset($_POST['cbSubcategorias'])) {
+                    if ($producto->setSubcategoria($_POST['cbSubcategorias'])) {
+                        if ($result['dataset'] = $producto->searchBySubcategory()) {
+                            $result['status'] = 1;
+                            $rows = count($result['dataset']);
+                            if ($rows > 1) {
+                                $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                            } else {
+                                $result['message'] = 'Solo existe una coincidencia';
+                            }
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No hay coincidencias';
+                            }
+                        }
+                    }else{
+                        
+                    }
+                }else{
+
+                }
+            }else{
+                $result['exception'] = 'Id incorrecto';
+            }
+            break;
+        case 'search':
+            if ($producto->setIdCategoria($_POST['idCategoria'])) {
+                if ($_POST['search'] != '') {
+                    if ($result['dataset'] = $producto->searchByNameProduct($_POST['search'])) {
+                        $result['status'] = 1;
+                        $rows = count($result['dataset']);
+                        if ($rows > 1) {
+                            $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                        } else {
+                            $result['message'] = 'Solo existe una coincidencia';
+                        }
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Ingrese un valor para buscar';
+                }
+            }else{
+                $result['exception'] = 'Id incorrecto';
+            }
+            break;
         default:
             $result['exception'] = 'Acción no disponible';
     }

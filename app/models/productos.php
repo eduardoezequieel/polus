@@ -164,6 +164,38 @@
             return Database::getRows($sql, $params);
         }
 
+        public function searchBySubcategory(){
+            $sql = 'SELECT idProducto, imagenPrincipal, nombre, descripcion, precio, subcategoria.idsubcategoria, marca
+            FROM producto
+            INNER JOIN subcategoria ON subcategoria.idSubcategoria = producto.idSubcategoria
+            INNER JOIN marca ON marca.idMarca = producto.idMarca
+            INNER JOIN categoria ON subcategoria.idcategoria = categoria.idcategoria
+            WHERE categoria.idcategoria = ? AND
+            subcategoria.idsubcategoria = ?
+            ORDER BY nombre;';
+            $params = array($this -> idCategoria, $this -> idSubcategoria);
+            return Database::getRows($sql, $params);
+        }
+
+        public function searchByNameProduct($value){
+            $sql = 'SELECT idProducto, imagenPrincipal, nombre, descripcion, precio, subcategoria.idsubcategoria, marca
+            FROM producto
+            INNER JOIN subcategoria ON subcategoria.idSubcategoria = producto.idSubcategoria
+            INNER JOIN marca ON marca.idMarca = producto.idMarca
+            INNER JOIN categoria ON subcategoria.idcategoria = categoria.idcategoria
+            WHERE categoria.idcategoria = ? AND
+            nombre ILIKE ?
+            ORDER BY nombre;';
+            $params = array($this -> idCategoria, "%$value%");
+            return Database::getRows($sql, $params);
+        }
+
+        public function readSubcategoria(){
+            $sql = 'SELECT idsubcategoria, subcategoria FROM subcategoria WHERE idcategoria = ?';
+            $params = array($this->idCategoria);
+            return Database::getRows($sql, $params);
+        }
+
         //Métodos para llenar combobox
         public function readAllSubcategorias()
         {

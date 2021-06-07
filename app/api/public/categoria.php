@@ -23,17 +23,7 @@ if (isset($_GET['action'])) {
                 }
             }
             break;
-        case 'readSubcategorias':
-            if ($result['dataset'] = $categoria->readSubcategoria()) {
-                $result['status'] = 1;
-            } else {
-                if (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No existen categorías para mostrar';
-                }
-            }
-            break;
+        
         default:
             $result['exception'] = 'Acción no disponible';
     }

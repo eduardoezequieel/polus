@@ -64,12 +64,6 @@ Class categoria extends Validator{
         return Database::getRow($sql, $params);
     }
 
-    public function readSubcategoria(){
-        $sql = 'SELECT idsubcategoria, subcategoria FROM subcategoria';
-        $params = null;
-        return Database::getRows($sql, $params);
-    }
-
     public function createRow(){
         $sql = 'INSERT INTO categoria(categoria, imagen) VALUES (?,?)';
         $params = array($this -> categoria, $this -> imagen);
