@@ -12,6 +12,58 @@ document.getElementById('dropdownCategorias').addEventListener('click', function
     console.log('hola')
 })
 
+document.getElementById('btnMisPedidos').addEventListener('click',function(){
+    readClientRecord();
+})
+
+// Función para obtener el registro de pedidos del cliente..
+function readClientRecord() {
+    fetch(API_PEDIDO + 'readClientRecord', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+                        content += `
+                            <tr>
+                                <td>${row.idpedido}</td>
+                                <td>${row.fechapedido}</td>
+                                <td>${row.estadopedido}</td>
+                                <th scope="row">
+                                    <div class="row justify-c">
+                                        <div class="col-12 d-flex">
+                                                            
+                                            <a href="#"
+                                                class="btn btn-outline-secondary"><i class="fas fa-window-close tamanoBoton"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        `;
+                    });
+                    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+                    document.getElementById('tbodyPedidos-rows').innerHTML = content;
+                    // Se muestra el total a pagar con dos decimales.
+                    document.getElementById('pago').textContent = total.toFixed(2);
+                } else {
+                    //sweetAlert(4, response.exception, 'index.php');
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
 //Funcion para el llenado de tablas.
 function fillCategories(dataset){
     let content = ' ';

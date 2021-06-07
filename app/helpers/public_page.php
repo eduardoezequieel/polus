@@ -85,13 +85,13 @@
                                     
                                 </form>
                                 <div class="dropdown">
-                                    <button class="btn btn-outline-secondary d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                             <img src="../../resources/img/dashboard_img/cliente_fotos/' . $_SESSION['foto'] . '" id="fotoPerfil" alt="" class="rounded-circle fotografiaPerfil2" width="40px">
                                             <h5 class="text-center mx-3 paddingUsername">' . $_SESSION['usuario'] . '</h5>
                                             <i class="fas fa-caret-down paddingFlecha"></i>
                                     </button>
-                                    <ul class="dropdown-menu  animate__animated animate__bounceIn m-5" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="mi_cuenta.php">Mi Cuenta</a></li>
+                                    <ul class="dropdown-menu dropdown-menu-dark  animate__animated animate__bounceIn" aria-labelledby="dropdownMenuButton1">
+                                        <li><a id="btnMisPedidos" onclick="readClientRecord()" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#pedidosClienteModal" href="#">Mis Pedidos</a></li>
                                         <li><a class="dropdown-item" href="#" onclick="logOutCliente()">Cerrar Sesión</a></li>
                                     </ul>
                                 </div>  
@@ -152,6 +152,40 @@
 
         public static function footerTemplate($controller){
             print('
+            <!-- Modal para ver pedidos del cliente -->
+            <div class="modal fade" id="pedidosClienteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-white" id="exampleModalLabel"><span class="fas fa-info-circle mx-3 text-white"></span>Pedidos</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times text-white"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-12 d-flex justify-content-center table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Fecha del Pedido</th>
+                                                <th scope="col">Estado</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyPedidos-rows">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Modal -->
             <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
