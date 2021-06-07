@@ -104,9 +104,7 @@
                 }
             } else {
                 // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a register.php (Crear primer usuario) para direccionar a index.php, de lo contrario se muestra un menú vacío.
-                if ($filename != 'producto.php') {
-                    print('
-                        
+                print('
                         <!--Inicio del navbar-->
                         <body>
                         <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
@@ -149,9 +147,6 @@
                             </div>
                         </nav>
                     ');
-                } else {
-                    //header('location: crear_cuenta.php');
-                }
             }
         }
 

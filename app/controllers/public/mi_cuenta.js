@@ -139,7 +139,7 @@ function readOrderDetail() {
                     // Se muestra el total a pagar con dos decimales.
                     document.getElementById('pago').textContent = total.toFixed(2);
                 } else {
-                    sweetAlert(4, response.exception, 'index.php');
+                    //sweetAlert(4, response.exception, 'index.php');
                 }
             });
         } else {
