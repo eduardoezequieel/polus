@@ -1,6 +1,6 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_CATALOGO = '../../app/api/public/productos.php?action=';
-const ENDPOINT_CAT = '../../app/api/dashboard/productos.php?action=readpuntuacion';
+const ENDPOINT_CA = '../../app/api/public/productos.php?action=readpuntuacion';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
     readProduct(id);
 
     //readRows(API_CATALOGO);
-    fillSelectdetalle(ENDPOINT_CAT,'cbPuntuacion',null);
+    fillSelectdetalle(ENDPOINT_CA,'cbPuntuacion',null);
+
+    document.getElementById('idProduc').value = id;
 });
 
 function fillSelectdetalle(endpoint, select, selected) {

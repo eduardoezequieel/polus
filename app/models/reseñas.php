@@ -228,5 +228,11 @@ Class Resenas extends Validator{
         $params = null;
         return Database::getRows($sql, $params);
     }
+
+    public function createRow(){
+        $sql = 'INSERT INTO resena(comentario,idpuntuacion,idproducto,idcliente,fecha,hora) VALUES (?,?,?,?,current_date,current_time)';
+        $params = array($this -> subcategoria,$this -> genero,$this -> idCategoria);
+        return Database::executeRow($sql, $params);
+    }
 }
 ?>

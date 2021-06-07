@@ -132,6 +132,23 @@ if (isset($_GET['action'])) {
                     }
                 }
             break;
+            case 'createRow':
+                $_POST = $resenas -> validateForm($_POST);
+                if ($resenas->setComentario($_POST['txtComentario'])) {
+                    if($resenas->setIdCliente(isset($_SESSION['idCliente']))){
+                        if($resenas->setIdProducto($_POST['idProduc'])){
+
+                        }else{
+                            $result['exception'] = 'No es posible obtener el producto.';
+                        }
+                    } else {
+                        $result['exception'] = 'No es posible obtener el cliente.';
+                    }
+                    
+                }else{
+                    $result['exception'] = 'Escriba su comentario.';
+                }
+                break;
         default:
             $result['exception'] = 'Acción no disponible';
     }
