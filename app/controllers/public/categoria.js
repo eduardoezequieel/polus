@@ -11,9 +11,11 @@ function fillCategories(dataset){
     let content = ' ';
 
     dataset.map(function(row){
+        url = `categoria.php?id=${row.idcategoria}`;
+
         content += `
         <div class="col d-flex justify-content-center">
-            <a href="categoria.php" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
+            <a href="${url}" class="btn botonCategoria animate__animated animate__fadeInDown d-flex flex-column justify-content-center align-items-center">
                 <img src="../../resources/img/dashboard_img/admon_fotos/${row.imagen}" alt="#" class="img-fluid w-25 mb-2"> 
                 ${row.categoria}
             </a>
@@ -40,6 +42,7 @@ function readCategories(api) {
                 }
                 // Se envían los datos a la función del controlador para que llenen las categorias en la vista.
                 fillCategories(data);
+                console.log(data);
             });
         } else {
             console.log(request.status + ' ' + request.statusText);

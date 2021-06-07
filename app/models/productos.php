@@ -11,6 +11,7 @@
         private $idSubcategoria = null;
         private $idMarca = null;
         private $ruta = '../../../resources/img/dashboard_img/producto_fotos/';
+        private $idCategoria = null;
 
         //Métodos set
         public function setId($value)
@@ -55,7 +56,7 @@
 
         public function setImagenPrincipal($file)
         {
-            if ($this->validateImageFile($file, 2000, 2000)) {
+            if ($this->validateImageFile($file, 4000, 4000)) {
                 $this->imagenPrincipal = $this->getImageName();
                 return true;
             } else {
@@ -77,6 +78,16 @@
         {
             if ($this->validateBoolean($value)) {
                 $this->idMarca = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setIdCategoria($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idCategoria = $value;
                 return true;
             } else {
                 return false;
@@ -124,6 +135,11 @@
             return $this->ruta;
         }
 
+        public function getIdCategoria()
+        {
+            return $this->idCategoria;
+        }
+
         //Método para leer todo
         public function readAll()
         {
@@ -133,6 +149,18 @@
                     INNER JOIN marca ON marca.idMarca = producto.idMarca
                     ORDER BY nombre';
             $params = null;
+            return Database::getRows($sql, $params);
+        }
+
+        public function readAllPublic(){
+            $sql = 'SELECT idProducto, imagenPrincipal, nombre, descripcion, precio, subcategoria, marca
+            FROM producto
+            INNER JOIN subcategoria ON subcategoria.idSubcategoria = producto.idSubcategoria
+            INNER JOIN marca ON marca.idMarca = producto.idMarca
+            INNER JOIN categoria ON subcategoria.idcategoria = categoria.idcategoria
+            WHERE categoria.idcategoria = ?
+            ORDER BY nombre';
+            $params = array($this -> idCategoria);
             return Database::getRows($sql, $params);
         }
 
