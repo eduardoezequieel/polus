@@ -1,5 +1,5 @@
 //Constante para la ruta de la API
-const API_CATEGORIA = '../../app/api/public/categoria.php?action=';
+const API_CATEGORIA2 = '../../app/api/public/categoria.php?action=';
 const API_PEDIDO = '../../app/api/public/pedidos.php?action=';
 
 //Cuando se carga la pagina web
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 document.getElementById('dropdownCategorias').addEventListener('click', function(){
-    readCategoriesDropdown(API_CATEGORIA);
+    readCategoriesDropdown(API_CATEGORIA2);
     console.log('hola')
 })
 
