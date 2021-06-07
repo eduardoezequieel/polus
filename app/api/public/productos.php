@@ -2,12 +2,14 @@
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/productos.php');
+require_once('../../models/reseñas.php');
 
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se instancian las clases correspondientes.
-    $producto = new Productos;
+    $producto = new Productos();
+    $resenas = new Resenas();
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se compara la acción a realizar según la petición del controlador.
@@ -115,6 +117,21 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Id incorrecto';
             }
             break;
+        case 'readpuntuacion':
+                if ($result['dataset'] = $resenas -> readpuntuacion()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha encontrado puntuaciones.';
+                }
+                else{
+                    if (Database::getException()) {
+                        $result['error'] = 1;
+                        $result['exception'] = Database::getException();
+                    }
+                    else{
+                        $result['exception'] = 'No se han encontrado puntuaciones.';
+                    }
+                }
+            break;
         default:
             $result['exception'] = 'Acción no disponible';
     }
@@ -125,3 +142,5 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
+
+?>

@@ -222,5 +222,11 @@ Class Resenas extends Validator{
         $params = null;
         return Database::getRows($sql, $params);
     }
+
+    public function readpuntuacion(){
+        $sql = 'SELECT*FROM puntuacion';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }
 ?>
