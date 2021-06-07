@@ -186,6 +186,29 @@
                 </div>
             </div>
 
+            <!-- Modal para ver productos del pedido -->
+            <div class="modal fade" id="productosPedidoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#pedidosClienteModal"><span class="fas fa-chevron-left"></span></button>
+                            <h5 class="modal-title text-white" id="exampleModalLabel"><span class="fas fa-info-circle mx-3 text-white"></span>Pedidos</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times text-white"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <textarea name="txtProductos" class="form-control personalizacionPolus" id="txtProductos" rows="5" readonly></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Modal -->
             <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">

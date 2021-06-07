@@ -299,6 +299,14 @@ p{
     padding: 10px;
 }
 
+.form-control[readonly].no-gray {
+    background-color:rgb(0, 0, 0) !important;
+  }
+
+  .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: rgb(0, 0, 0) !important;
+ }
+
 .personalizacionPolus:focus{
     background-color: #16181D;
     border: hidden;

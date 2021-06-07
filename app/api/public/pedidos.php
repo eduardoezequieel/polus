@@ -105,23 +105,28 @@
                     }
                     break;
                 case 'readClientRecord':
-                    if ($pedidos->setIdCliente(isset($_SESSION['idCliente']))) {
-                        if ($pedidos->readClientsRecord()) {
-                            if ($result['dataset'] = $pedidos->readOrderDetail()) {
-                                $result['status'] = 1;
-                                $_SESSION['idPedido'] = $pedidos->getIdPedido();
-                            } else {
-                                if (Database::getException()) {
-                                    $result['exception'] = Database::getException();
-                                } else {
-                                    $result['exception'] = 'No posee pedidos registrados a su nombre.';
-                                }
-                            }
+                    if ($result['dataset'] = $pedidos->readClientsRecord()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
                         } else {
-                            $result['exception'] = 'Error';
+                            $result['exception'] = 'No posee pedidos registrados a su nombre.';
                         }
-                    }else{
-                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'getProducts':
+                    $_POST = $pedidos->validateForm($_POST);
+                    if ($pedidos->setIdPedido($_POST['idPedido'])) {
+                        if ($result['dataset'] = $pedidos->getProducts()) {
+                            $result['status'] = 1;
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No posee pedidos registrados a su nombre.';
+                            }
+                        }  
                     }
                     break;
                 default:

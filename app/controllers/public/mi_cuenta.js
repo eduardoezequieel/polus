@@ -10,14 +10,11 @@ document.addEventListener('DOMContentLoaded', function(){
 document.getElementById('dropdownCategorias').addEventListener('click', function(){
     readCategoriesDropdown(API_CATEGORIA2);
     console.log('hola')
-})
-
-document.getElementById('btnMisPedidos').addEventListener('click',function(){
-    readClientRecord();
-})
+}) 
 
 // Función para obtener el registro de pedidos del cliente..
 function readClientRecord() {
+    console.log('hola')
     fetch(API_PEDIDO + 'readClientRecord', {
         method: 'get'
     }).then(function (request) {
@@ -26,6 +23,7 @@ function readClientRecord() {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
+                    let content = ''
                     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
                     response.dataset.map(function (row) {
                         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
@@ -39,21 +37,52 @@ function readClientRecord() {
                                         <div class="col-12 d-flex">
                                                             
                                             <a href="#"
-                                                class="btn btn-outline-secondary"><i class="fas fa-window-close tamanoBoton"></i>
+                                                class="btn btn-outline-primary" onclick="getProducts(${row.idpedido})" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#productosPedidoModal"><i class="fas fa-info"></i>
                                             </a>
 
                                         </div>
                                     </div>
                                 </th>
                             </tr>
+                            
                         `;
                     });
                     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                     document.getElementById('tbodyPedidos-rows').innerHTML = content;
                     // Se muestra el total a pagar con dos decimales.
-                    document.getElementById('pago').textContent = total.toFixed(2);
+                    //document.getElementById('pago1').textContent = total.toFixed(2);
                 } else {
                     //sweetAlert(4, response.exception, 'index.php');
+                    console.log(response.exception);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function getProducts(id){
+    const data = new FormData();
+    data.append('idPedido', id);
+
+    fetch(API_PEDIDO + 'getProducts', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) { 
+                    console.log(response.dataset); 
+                    let data = response.dataset;   
+                    let content = '';     
+                    data.map(function(row){
+                        content += `${row.nombre}: ${row.cantidad}
+                        `;
+                    })                          
+                    document.getElementById('txtProductos').value = content;
                 }
             });
         } else {
