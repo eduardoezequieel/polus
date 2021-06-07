@@ -42,6 +42,10 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
                 <h1 class="comentarioReseña text-white text-center mb-3">Puedes dejarnos un comentario acerca de tu opinión de este producto.</h1>
                 <div class="col-12 justify-content-center">
                     <textarea class="form-control personalizacionPolus" rows="3" id="txtComentario"></textarea>
+                    <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                        <label for="#" class="my-2 text-white">Puntuacion: </label>
+                        <select id="cbPuntuacion" name="cbPuntuacion" class="form-select personalizacionPolus2" aria-label="Default select example"></select>                        
+                    </div>
                     <div class="d-flex justify-content-center align-items-center mt-3">
                         <button class="btn btn-outline-light">Publicar</button>
                     </div>

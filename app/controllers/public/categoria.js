@@ -1,9 +1,11 @@
 //Constante para la ruta de la API
 const API_CATEGORIA = '../../app/api/public/categoria.php?action=';
+const ENDPOINT_SUBCATEGORIA = '../../app/api/public/categoria.php?action=readSubcategoria';
 
 //Cuando se carga la pagina web
 document.addEventListener('DOMContentLoaded', function(){
     readCategories(API_CATEGORIA);
+    fillSelect(ENDPOINT_SUBCATEGORIA, 'cbSubcategorias', null);
 });
 
 //Funcion para el llenado de tablas.
