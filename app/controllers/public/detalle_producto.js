@@ -97,3 +97,29 @@ function readProduct(id) {
         console.log(error);
     });
 }
+document.getElementById("ingresar").addEventListener("submit",function(event){
+    event.preventDefault()
+    fetch(API_CATALOGO + 'createRow', {
+        method: 'post',
+        body: new FormData(document.getElementById('ingresar'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    //cargando de nuevo la tabla
+                    //readRows(API_CATALOGO);
+                    //Mandando mensaje de exito
+                    sweetAlert(1, response.message, null);
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+})

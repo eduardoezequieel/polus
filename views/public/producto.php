@@ -24,7 +24,7 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
                         <a href="pago.php" class="btn boton"><span class="fas fa-money-bill-alt p-2"></span>Comprar Ya</a>
                     </div>
                     <div class="col-6 minimizarDiv">
-                        <a href="carrito.php" class="btn boton2"><span class="fas fa-cart-plus p-2"></span>Añadir al Carrito</a>
+                        <!--<a href="carrito.php" class="btn boton2"><span class="fas fa-cart-plus p-2"></span>Añadir al Carrito</a>--->
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
 
 <section>
     <div class="container my-5" id="comentario">
-        <form>
+        <form id="ingresar" name="ingresar">
             <div class="row">
                 <h1 class="titulos">¿Qué te parece este producto?</h1>
                 <h1 class="comentarioReseña text-white text-center mb-3">Puedes dejarnos un comentario acerca de tu opinión de este producto.</h1>
@@ -48,7 +48,7 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
                         <select id="cbPuntuacion" name="cbPuntuacion" class="form-select personalizacionPolus2" aria-label="Default select example"></select>                        
                     </div>
                     <div class="d-flex justify-content-center align-items-center mt-3">
-                        <button class="btn btn-outline-light">Publicar</button>
+                        <button id="btnPublicar" type="submit"name="btnPublicar" class="btn btn-outline-light">Publicar</button>
                     </div>
                 </div>
             </div>

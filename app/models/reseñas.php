@@ -231,7 +231,7 @@ Class Resenas extends Validator{
 
     public function createRow(){
         $sql = 'INSERT INTO resena(comentario,idpuntuacion,idproducto,idcliente,fecha,hora) VALUES (?,?,?,?,current_date,current_time)';
-        $params = array($this -> subcategoria,$this -> genero,$this -> idCategoria);
+        $params = array($this -> comentario,$this -> idPuntuacion,$this -> idProducto, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 }

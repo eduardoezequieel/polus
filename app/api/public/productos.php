@@ -7,6 +7,8 @@ require_once('../../models/reseñas.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
+
+    session_start();
     // Se instancian las clases correspondientes.
     $producto = new Productos();
     $resenas = new Resenas();
@@ -19,6 +21,7 @@ if (isset($_GET['action'])) {
             if ($producto->setIdCategoria($_POST['idCategoria'])) {
                 if ($result['dataset'] = $producto->readAllPublic()) {
                     $result['status'] = 1;
+                    $result['message'] = 'Se ha agregado su reseña correctamente';
                 } else {
                     if (Database::getException()) {
                         $result['exception'] = Database::getException();
@@ -134,19 +137,34 @@ if (isset($_GET['action'])) {
             break;
             case 'createRow':
                 $_POST = $resenas -> validateForm($_POST);
-                if ($resenas->setComentario($_POST['txtComentario'])) {
-                    if($resenas->setIdCliente(isset($_SESSION['idCliente']))){
-                        if($resenas->setIdProducto($_POST['idProduc'])){
-
+                if(isset($_POST['cbPuntuacion'])){
+                    if($resenas->setIdPuntuacion($_POST['cbPuntuacion'])){
+                        if ($resenas->setComentario($_POST['txtComentario'])) {
+                            if($resenas->setIdProducto($_POST['idProduc'])){
+                                if($resenas->createRow()){
+                                    $result['status'] = 1;
+                                } else{
+                                    if (Database::getException()) {
+                                        $result['error'] = 1;
+                                        $result['exception'] = Database::getException();
+                                    }
+                                    else{
+                                        $result['exception'] = 'No se ha agregado la reseña';
+                                    }
+                                }
+                            }else{
+                                $result['exception'] = 'No es posible obtener el producto.';
+                            }
+                            
                         }else{
-                            $result['exception'] = 'No es posible obtener el producto.';
+                            $result['exception'] = 'Escriba su comentario.';
                         }
-                    } else {
-                        $result['exception'] = 'No es posible obtener el cliente.';
+                    } else{
+                        $result['exception'] = 'Error al seleccionar ountuacion.';
                     }
-                    
-                }else{
-                    $result['exception'] = 'Escriba su comentario.';
+
+                } else{
+                    $result['exception'] = 'Selecciona una puntuacion.';
                 }
                 break;
         default:
