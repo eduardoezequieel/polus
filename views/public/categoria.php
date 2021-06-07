@@ -76,6 +76,34 @@ public_Page::navbarTemplate('Polus El Salvador','.');
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="cantidadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-white" id="exampleModalLabel"><span class="fas fa-info-circle mx-3 text-white"></span>Cantidad de unidades</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times text-white"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <form id="cantidad-form" method="post">
+                                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                    <input class="visually-hidden" type="number" id="idProducto2" name="idProducto2">
+                                    <label for="precio" class="form-label">Cantidad:</label><br>
+                                    <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">uds</span>
+                                    <input type="number" class="form-control" placeholder="cantidad" id="txtCantidad" name="txtCantidad" Required></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-light" id="agregarCart">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </div>
 <?php
 public_Page::footerTemplate('productos.js');

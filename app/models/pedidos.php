@@ -86,8 +86,12 @@
 
     public function setCantidad($value){
         if ($this -> validateNaturalNumber($value)) {
-            $this -> cantidad = $value;
-            return true;
+            if($value > 0){
+                $this -> cantidad = $value;
+                return true;
+            } else{
+                return false;
+            }
         }
         else{
             return false;
@@ -242,6 +246,12 @@
         WHERE idCliente = ?';
         $params = array($this->idCliente);
         return Database::getRow($sql, $params);
+    }
+
+    public function checkInventario(){
+        $sql = 'SELECT cantidad - ? as resta FROM inventario WHERE idProducto = ?';
+        $params = array($this->cantidad, $this->idProducto);
+        return Database::getRows($sql, $params);
     }
 
  }

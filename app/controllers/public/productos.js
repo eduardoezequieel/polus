@@ -1,6 +1,7 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_CATALOGO = '../../app/api/public/productos.php?action=';
 const ENDPOINT_SUBCATEGORIA = '../../app/api/public/categoria.php?action=readSubcategoria';
+const API_PEDIDO = '../../app/api/public/pedidos.php?action=';
 
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
@@ -54,7 +55,7 @@ function readProducts(id, name) {
                                 </div>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark animate__animated animate__bounceIn mx-5" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item" href="#"><span class="fas fa-cart-plus me-2"></span>Agregar al carrito</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="openCantidadDialog(${row.idproducto})" data-bs-target="#cantidadModal" data-bs-toggle="modal" ><span class="fas fa-cart-plus me-2"></span>Agregar al carrito</a></li>
                                 <li><a class="dropdown-item" href="${url}"><span class="fas fa-info-circle me-2"></span>Ver detalles</a></li>
                             </ul>
                         </div>
@@ -81,3 +82,45 @@ function readProducts(id, name) {
         console.log(error);
     });
 }
+
+function openCantidadDialog(id){
+    console.log(id)
+
+    document.getElementById('idProducto2').value = id;
+
+}
+
+document.getElementById('agregarCart').addEventListener('click', function(){
+  //Obtener datos
+  fetch(API_PEDIDO + 'checkStock',{
+    method: 'post',
+    body: new FormData(document.getElementById('cantidad-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    let data = []
+                    data = response.dataset;
+                    data.map(function (row){
+                        console.log(row.resta)
+                        if(row.resta < 1){
+                            sweetAlert(3, 'No hay unidades suficientes en stock', null);
+                        } else{
+                            
+                        }
+                    })
+                    
+
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        }else{
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    })
+})
