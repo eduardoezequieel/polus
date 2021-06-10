@@ -1,6 +1,7 @@
 <?php
 //Clase para manejar tabla 
-Class Resenas extends Validator{
+Class Resenas extends Validator
+{
     private $idResena = null;
     private $comentario = null;
     private $idPuntuacion = null;
@@ -13,12 +14,12 @@ Class Resenas extends Validator{
 
     //Metodos set de la tabla marcas
 
-    public function setIdResena($value){
-        if ($this -> validateNaturalNumber($value)) {
+    public function setIdResena($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
             $this -> idResena = $value;
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -230,9 +231,20 @@ Class Resenas extends Validator{
     }
 
     public function createRow(){
-        $sql = 'INSERT INTO resena(comentario,idpuntuacion,idproducto,idcliente,fecha,hora) VALUES (?,?,?,?,current_date,current_time)';
+        $sql = 'INSERT INTO resena(comentario,idpuntuacion,idproducto,idcliente,fecha,hora, idestadoresena) VALUES (?,?,?,?,current_date,current_time, 1)';
         $params = array($this -> comentario,$this -> idPuntuacion,$this -> idProducto, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
+    
+    }
+
+    public function readComments(){
+        $sql = 'SELECT CONCAT(cliente.nombre,\'  \', cliente.apellido) AS cliente, comentario 
+        FROM resena 
+        INNER JOIN cliente ON resena.idcliente = cliente.idcliente 
+        WHERE idproducto = ? AND
+        idestadoresena = 1';
+        $params = array($this->idProducto);
+        return Database::getRows($sql, $params);
     }
 }
 ?>

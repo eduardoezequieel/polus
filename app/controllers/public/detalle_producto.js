@@ -16,7 +16,62 @@ document.addEventListener('DOMContentLoaded', function () {
     fillSelectdetalle(ENDPOINT_CA,'cbPuntuacion',null);
 
     document.getElementById('idProduc').value = id;
+
+    showComments(id);
 });
+
+function showComments(id){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idProducto', id);
+
+    fetch(API_CATALOGO + 'showComments', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    fillComments(response.dataset)
+                
+                } else {
+                    // Se presenta un mensaje de error cuando no existen datos para mostrar.
+                    //document.getElementById('title').innerHTML = `<i class="material-icons small">cloud_off</i><span class="red-text">${response.exception}</span>`;
+                    console.log(response.exception);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function fillComments(dataset){
+    let content = '';
+        dataset.map(function (row) {
+    
+            content += `
+            <div class="row pl-5 fondoComentario mx-1">
+                <div class="col-2">
+                    <img src="../../resources/img/astronauta.PNG" alt="" class="img-fluid d-block m-auto">
+                </div>
+                <div class="col-10">
+                    <h1 class="usuarioReseña text-white">${row.cliente}</h1>
+                    <p class="comentarioReseña">${row.comentario}</p>
+                </div>
+            </div>
+            `;
+        });
+        // Se asigna como título la categoría de los productos.
+        //document.getElementById('title').textContent = 'Categoría: ' + categoria;
+        // Se agregan las tarjetas a la etiqueta div mediante su id para mostrar los productos.
+        document.getElementById('bodyComments').innerHTML = content;
+    
+}
 
 function fillSelectdetalle(endpoint, select, selected) {
     fetch(endpoint, {
@@ -98,6 +153,10 @@ function readProduct(id) {
     });
 }
 document.getElementById("ingresar").addEventListener("submit",function(event){
+    // Se busca en la URL las variables (parámetros) disponibles.
+    let params = new URLSearchParams(location.search);
+    // Se obtienen los datos localizados por medio de las variables.
+    const id = params.get('id'); 
     event.preventDefault()
     fetch(API_CATALOGO + 'createRow', {
         method: 'post',
@@ -112,6 +171,7 @@ document.getElementById("ingresar").addEventListener("submit",function(event){
                     //readRows(API_CATALOGO);
                     //Mandando mensaje de exito
                     sweetAlert(1, response.message, null);
+                    showComments(id)
                 } else{
                     sweetAlert(4, response.exception, null);
                 }

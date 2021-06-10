@@ -62,55 +62,8 @@ public_Page::navbarTemplate('Polus El Salvador','producto_estilos.css');
         <div class="row mt-5">
             <!--Primera Columna-->
             <h1 class="titulos">Reseñas</h1>
-            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                
-                <!--Reseña 1-->
-                <div class="row pl-5 fondoComentario mx-1">
-                    <div class="col-2">
-                        <img src="../../resources/img/astronauta.PNG" alt="" class="img-fluid d-block m-auto">
-                    </div>
-                    <div class="col-10">
-                        <h1 class="usuarioReseña text-white">Eduardo Rivera</h1>
-                        <p class="comentarioReseña">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam cum commodi quo rem ducimus.</p>
-                    </div>
-                </div>
-
-                <!--Reseña 2-->
-                <div class="row pl-5 fondoComentario mx-1">
-                    <div class="col-2">
-                        <img src="../../resources/img/astronauta.PNG" alt="" class="img-fluid d-block m-auto">
-                    </div>
-                    <div class="col-10">
-                        <h1 class="usuarioReseña text-white">Katherine González</h1>
-                        <p class="comentarioReseña">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam cum commodi quo rem ducimus.</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <!--Segunda Columna-->
-            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                <!--Reseña 3-->
-                <div class="row pl-5 fondoComentario mx-1">
-                    <div class="col-2">
-                        <img src="../../resources/img/astronauta.PNG" alt="" class="img-fluid d-block m-auto">
-                    </div>
-                    <div class="col-10">
-                        <h1 class="usuarioReseña text-white">Samuel Magaña</h1>
-                        <p class="comentarioReseña">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam cum commodi quo rem ducimus.</p>
-                    </div>
-                </div>
-
-                <!--Reseña 4-->
-                <div class="row pl-5 fondoComentario mx-1">
-                    <div class="col-2">
-                        <img src="../../resources/img/astronauta.PNG" alt="" class="img-fluid d-block m-auto">
-                    </div>
-                    <div class="col-10">
-                        <h1 class="usuarioReseña text-white">Licenciado Jeffrey</h1>
-                        <p class="comentarioReseña">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam cum commodi quo rem ducimus.</p>
-                    </div>
-                </div>
+            <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12" id="bodyComments">
+        
             </div>
         </div>
     </div>

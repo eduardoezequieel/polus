@@ -210,7 +210,7 @@
         //Métodos para administrar cuenta del usuario 
         public function checkUser($correo)
         {
-            $sql = 'SELECT idCliente, idEstadoUsuario, usuario, foto FROM cliente WHERE correo = ?';
+            $sql = 'SELECT idCliente, idEstadoUsuario, usuario, foto FROM cliente WHERE correo = ? ';
             $params = array($correo);
             if ($data = Database::getRow($sql, $params)) {
                 $this->idCliente = $data['idcliente'];

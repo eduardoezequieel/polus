@@ -167,6 +167,27 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Selecciona una puntuacion.';
                 }
                 break;
+        case 'showComments':
+            $_POST = $resenas -> validateForm($_POST);
+            if ($resenas->setIdProducto($_POST['idProducto'])) {
+                if ($result['dataset'] = $resenas -> readComments()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se han encontrado comentarios.';
+                }
+                else{
+                    if (Database::getException()) {
+                        $result['error'] = 1;
+                        $result['exception'] = Database::getException();
+                    }
+                    else{
+                        $result['exception'] = 'No se han encontrado comentarios.';
+                    }
+                }
+            }else{
+                $result['exception'] = 'Id incorrecto.';
+
+            }
+            break;
         default:
             $result['exception'] = 'Acción no disponible';
     }
