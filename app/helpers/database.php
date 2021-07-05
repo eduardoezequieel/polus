@@ -107,7 +107,7 @@ Class Database{
         // Establecer un error personalizado.
         switch ($code) {
             case '7':
-                self::$error = 'Existe un problema al conectar con el servidor';
+                self::$error = $message;
                 break;
             case '42703':
                 self::$error = 'Nombre de campo desconocido';
