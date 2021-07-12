@@ -78,25 +78,49 @@ public_Page::navbarTemplate('Polus El Salvador','.');
     </div>
     <!-- Modal -->
     <div class="modal fade" id="cantidadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title text-white" id="exampleModalLabel"><span class="fas fa-info-circle mx-3 text-white"></span>Cantidad</h5>
                             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times text-white"></i></button>
                         </div>
                         <div class="modal-body">
-                            <div class="row justify-content-center">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <form id="cantidad-form" method="post">
-                                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                                    <input class="visually-hidden" type="number" id="idProducto2" name="idProducto2">
-                                    <label for="precio" class="form-label text-white">¿Cuanto desea adquirir de este producto?:</label><br>
-                                    <div class="input-group mb-3">
-                                    <span class="input-group-text personalizacionPolus text-white" id="basic-addon1">uds</span>
-                                    <input type="number" class="form-control personalizacionPolus" placeholder="cantidad" id="txtCantidad" name="txtCantidad" Required></div>
-                                    </form>
+                            <form id="cantidad-form" method="post">
+                                <div class="row">
+                                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                        
+                                    </div>
+                                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group d-flex">
+                                            <h1 class="tituloProducto">BLUSA</h1>
+                                        </div>
+                                        <div class="form-group d-flex">
+                                            <h1 class="tituloProducto">En Stock: <span class="textoProducto">12</span></h1>
+                                        </div>
+                                        <div class="form-group d-flex">
+                                            <h1 class="tituloProducto">Precio: <span class="textoProducto">$2.99</span></h1>
+                                        </div>
+                                        <div class="form-group d-flex">
+                                            <h1 class="tituloProducto">Marca: <span class="textoProducto">Adidas</span></h1>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <h1 class="tituloProducto">Talla:</h1>
+                                            <select id="txtGenero" name="txtGenero" class="form-select personalizacionPolus personalizacionPolusP" aria-label="Default select example">
+                                                <option selected>Seleccionar...</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Masculino">Masculino</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group d-flex mt-3 justify-content-center">
+                                            <button class="btn btn-outline-light"><span class="fas fa-minus"></span></button>
+                                            <h1 class="cantidadProducto mt-2 mx-4">1</h1>
+                                            <button class="btn btn-outline-light"><span class="fas fa-plus"></span></button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-light" id="agregarCart">Agregar</button>

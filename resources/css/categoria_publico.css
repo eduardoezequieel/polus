@@ -87,6 +87,18 @@ h4{
     letter-spacing: 1px;
     font-size: 12px;
     padding-top: 5px;
+    text-align: start;
+}
+
+.textoProducto{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 12px;
+    text-align: center;
+}
+
+.cantidadProducto{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 22px;
     text-align: center;
 }
 
