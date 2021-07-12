@@ -286,7 +286,7 @@ CREATE TABLE estadoMarca(
 
 INSERT INTO estadoMarca(estadoMarca) VALUES ('Disponible'),('No disponible');
 ALTER TABLE marca ADD COLUMN idEstadoMarca INTEGER NULL REFERENCES estadoMarca(idEstadoMarca);
-UPDATE marca SET idEstadoMarca = 1
+UPDATE marca SET idEstadoMarca = 1;
 
 --Cambios (Hechos por Katherine)
 ALTER TABLE admon ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);
