@@ -248,12 +248,23 @@
         return Database::executeRow($sql, $params);
     }
 
+    //Método para leer todo lo del cliente
     public function readClient(){
         $sql = 'SELECT*
         FROM cliente 
         WHERE idCliente = ?';
         $params = array($this->idCliente);
         return Database::getRow($sql, $params);
+    }
+
+    //Método para verificar si el cliente tiene algún pedido activo
+    public function checkClientePedido()
+    {
+        $sql = 'SELECT idpedido
+                FROM pedido
+                WHERE idcliente = 1 AND idestadopedido = 1';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRow($sql,$params);
     }
 
     public function checkInventario(){

@@ -51,7 +51,6 @@ function readProducts(id, name) {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    console.log(response.dataset);
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                     fillProducts(response.dataset, name);
                 } else {
@@ -90,7 +89,6 @@ function searchProducts(api, form, action) {
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
-                    console.log("error");
                 }
             });
         } else {
@@ -186,64 +184,6 @@ function fillProducts(dataset, name){
 }
 
 function openCantidadDialog(id){
-    console.log(id)
-
     document.getElementById('idProducto2').value = id;
-
 }
 
-document.getElementById('agregarCart').addEventListener('click', function(){
-  //Obtener datos
-  fetch(API_PEDIDO + 'checkStock',{
-    method: 'post',
-    body: new FormData(document.getElementById('cantidad-form'))
-    }).then(function(request){
-        //Verificando si la petición fue correcta
-        if(request.ok){
-            request.json().then(function(response){
-                //Verificando respuesta satisfactoria
-                if(response.status){
-                    let data = []
-                    data = response.dataset;
-                    data.map(function (row){
-                        console.log(row.resta)
-                        if(row.resta < 1){
-                            sweetAlert(3, 'No hay unidades suficientes en stock', null);
-                        } else{
-                            //Obtener datos
-                            fetch(API_PEDIDO + 'createDetail',{
-                                method: 'post',
-                                body: new FormData(document.getElementById('cantidad-form'))
-                                }).then(function(request){
-                                    //Verificando si la petición fue correcta
-                                    if(request.ok){
-                                        request.json().then(function(response){
-                                            //Verificando respuesta satisfactoria
-                                            if(response.status){
-                                                sweetAlert(1, response.message , null);
-                                                readOrderDetail()
-                                            } else{
-                                                sweetAlert(4, response.exception, null);
-                                            }
-                                        })
-                                    }else{
-                                        console.log(request.status + ' ' + request.statusText);
-                                    }
-                                }).catch(function(error){
-                                    console.log(error);
-                                })
-                        }
-                    })
-                    
-
-                } else{
-                    sweetAlert(4, response.exception, null);
-                }
-            })
-        }else{
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function(error){
-        console.log(error);
-    })
-})

@@ -62,7 +62,7 @@
                         <li class="nav-item">
                             <a href="#" id="productosbtn" class="nav-link text-white "><span class="fas fa-store-alt lead mx-3"></span>Productos<i class="fas fa-caret-down padding2"></i></a>
                             <ul class="ocultar animate__animated animate__fadeInLeft animate__faster animate__delay-0s" id="productos-mostrar">
-                                <li><a href="../../views/dashboard/agregar_productos.php" class="nav-link text-white submenu">Agregar Productos</a></li>
+                                
                                 <li><a href="../../views/dashboard/administrar_productos.php" class="nav-link text-white submenu">Administrar Productos</a></li>
                                 <li><a href="../../views/dashboard/inventario.php" class="nav-link text-white submenu">Inventario</a></li>
                             </ul>           
