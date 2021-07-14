@@ -20,17 +20,23 @@ function fillTable(dataset){
                 <td>${row.talla}</td>
                 <td>${row.cantidad}</td>
                 <th scope="row">
-                    <div class="row justify-c">
-                        <div class="col-12 d-flex">
+                    <div class="row justify-content-end">
+                        <div class="col-12 d-flex justify-content-end align-items-end">
                                             
                             <a href="#" onclick="openUpdateDialog(${row.idinventario})"
                                 class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i>
                             </a>
 
-                            <h5 class="mx-1">
-                            </h1>
+                            <h5 class="mx-1"></h5>
 
-                            <a href="#" onclick="openDeleteDialog(${row.idinventario})" class="btn btn-outline-danger"><i class="fas fa-exclamation tamanoBoton"></i></a>
+                            <a href="#" onclick="openDeleteDialog(${row.idinventario})" class="btn btn-outline-danger">
+                                <i class="fas fa-trash-alt tamanoBoton"></i>
+                            </a>
+
+                            <h5 class="mx-1"></h5>
+
+                            <a href="#" onclick="changeAmount(${row.idinventario},'${row.nombre}','${row.talla}', ${row.cantidad})" class="btn btn-outline-primary"><i class="fas fa-plus tamanoBoton"></i></a>
+
                         </div>
                     </div>
                 </th>
@@ -48,6 +54,84 @@ document.getElementById('search-form').addEventListener('submit', function(event
     event.preventDefault();
 
     searchRows(API_INVENTARIO, 'search-form');
+})
+
+//Se ejecuta al abrir el modal 'sumarCantidad';
+function changeAmount(id, nombre, talla, cantidad) {
+    openModal('sumarCantidad');
+
+    //se asignan los respectivos datos.
+    document.getElementById('lblNombreProducto').textContent = nombre + ' ' + talla;
+    document.getElementById('stockActual').value = cantidad;
+    document.getElementById('idProductoInventario').value = id;
+}
+
+//Se ejecuta al presionar el btnMinus
+document.getElementById('btnMinus').addEventListener('click',function(event){
+    event.preventDefault();
+    
+    //Se resta una unidad para bajar el contador
+    var cantidad = document.getElementById('lblContador').textContent;
+    cantidad--;
+
+    //Se valida que el numero no sea negativo o 0.
+    if (cantidad == 0) {
+        sweetAlert(2, 'No se pueden agregar cantidades nulas.',null);
+        document.getElementById('lblContador').textContent = 1;
+        document.getElementById('txtContador').value = 1;
+    } else {
+        document.getElementById('lblContador').textContent = cantidad;
+        document.getElementById('txtContador').value = cantidad;
+    }
+});
+
+// Se ejecuta al presionar el boton btnPlus
+document.getElementById('btnPlus').addEventListener('click',function(event){
+    event.preventDefault();
+
+    //Captura la cantidad actual y la incrementa en uno cada vez que se presiona el boton.
+    var cantidad = document.getElementById('lblContador').textContent;
+    cantidad++;
+
+    //Se asigna a un input invisible y al contador visible.
+    document.getElementById('lblContador').textContent = cantidad;
+    document.getElementById('txtContador').value = cantidad;
+})
+
+//Metodo submit del formulario para sumar stock en el inventario.
+document.getElementById('sumarCantidad-form').addEventListener('submit',function(event){
+    event.preventDefault();
+
+    //Convertimos los valores a integer para hacer una suma.
+    var stockActual = parseInt(document.getElementById('stockActual').value);
+    var contador = parseInt(document.getElementById('txtContador').value);
+    //Suma
+    var resultado = stockActual + contador;
+    //Le damos el resultado a un input invisible
+    document.getElementById('stockNuevo').value = resultado;
+
+    //Capturando datos 
+    fetch(API_INVENTARIO + 'updateStock', {
+        method: 'post',
+        body: new FormData(document.getElementById('sumarCantidad-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    sweetAlert(1, response.message, closeModal('sumarCantidad'));
+                    readRows(API_INVENTARIO);
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 })
 
 // Función para preparar el formulario al momento de insertar un registro.

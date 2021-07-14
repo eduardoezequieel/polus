@@ -14,6 +14,10 @@ body {
   padding-left: 95px;
 }
 
+.formMiCuenta{
+  width: 300px !important;
+}
+
 .titulosSidebar{
   font-family: 'Roboto Mono', monospace;
   font-size: 14px;
@@ -222,5 +226,5 @@ td{
 }
 
 .textareaMiCuenta{
-  height: 180px !important;
+  height: 190px !important;
 }

@@ -92,6 +92,26 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Ingrese un valor para buscar';
                 }
                 break;
+            //Caso para actualizar el stock en base al actual.
+            case 'updateStock':
+                $_POST = $inventario->validateForm($_POST);
+                if ($inventario->setCantidad($_POST['stockNuevo'])) {
+                    if ($inventario->setId($_POST['idProductoInventario'])) {
+                        if ($inventario->updateStock()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Stock actualizado correctamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    
+                } else {
+                    $result['exception'] = 'Stock incorrecto';
+                }   
+                break;
             case 'create':
                 $_POST = $inventario->validateForm($_POST);
                 if($inventario->setCantidad($_POST['Cantidad'])){

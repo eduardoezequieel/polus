@@ -91,6 +91,14 @@
             return Database::getRows($sql, $params);
         }
 
+        //Actualizar stock
+        public function updateStock()
+        {
+            $sql = 'UPDATE inventario SET cantidad = ? WHERE idinventario = ?';
+            $params = array($this->cantidad, $this->idInventario);
+            return Database::executeRow($sql, $params);
+        }
+
         public function readAllTalla()
         {
             $sql = 'SELECT idTalla, CONCAT(talla,\' - \', genero) as talla FROM talla';
