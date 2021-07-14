@@ -1,6 +1,8 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_CATALOGO = '../../app/api/public/productos.php?action=';
 const ENDPOINT_SUBCATEGORIA = '../../app/api/public/productos.php?action=readSubcategorias';
+const API_PEDIDOS = '../../app/api/public/pedidos.php?action=';
+const ENDPOINT_TALLA = '../../app/api/public/pedidos.php?action=readTallaProducto';
 
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
@@ -183,7 +185,143 @@ function fillProducts(dataset, name){
     document.getElementById('titulo').textContent = name;
 }
 
+//Función para llenar las tablas
+function fillSelectTallas(endpoint, select, selected) {
+    fetch(endpoint, {
+        method: 'post',
+        body: new FormData(document.getElementById('cantidad-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let content = '';
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
+                    if (!selected) {
+                        content += '<option disabled selected>Seleccione una opción</option>';
+                    }
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
+                        value = Object.values(row)[0];
+                        // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
+                        text = Object.values(row)[1];
+                        // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+                        if (value != selected) {
+                            content += `<option value="${value}">${text}</option>`;
+                        } else {
+                            content += `<option value="${value}" selected>${text}</option>`;
+                        }
+                    });
+                } else {
+                    content += '<option>No hay opciones disponibles</option>';
+                }
+                // Se agregan las opciones a la etiqueta select mediante su id.
+                document.getElementById(select).innerHTML = content;
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Función para abrir el modal de entrar al carrito
 function openCantidadDialog(id){
     document.getElementById('idProducto2').value = id;
+
+    //Fetch para verificar si el producto seleccionado es de tipo ropa
+    fetch(API_PEDIDOS + 'checkClothes', {
+        method: 'post',
+        body: new FormData(document.getElementById('cantidad-form'))
+    }).then(request => {
+        //Se verifica si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Se verifica la respuesta de la api
+                if(response.status) {
+                    readClothesDetail();
+                    fillSelectTallas(ENDPOINT_TALLA, 'cbTalla', null);
+                } else if (response.error){
+                    sweetAlert(2, response.exception,null);
+                } else {
+                    readNoClothesDetail();
+                }
+            })
+        } else {
+            console.log(request.status + ' '+ request.statusText)
+        }
+    }).catch(error => console.log(error));
+}
+
+//Función para leer los datos del producto si es de tipo ropa
+function readClothesDetail() {
+    //Fetch para leer los datos del producto
+    fetch(API_PEDIDOS + 'readClothesDetail', {
+        method: 'post',
+        body: new FormData(document.getElementById('cantidad-form'))
+    }).then(request => {
+        //Se verifica si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Se verifica la respuesta de la api
+                if(response.status) {
+                    let foto = '';
+                    foto = `
+                        <img src="../../resources/img/dashboard_img/producto_fotos/${response.dataset.imagenprincipal}" class="imagenProducto5 mt-4">
+                        `;
+                    document.getElementById('columnaFoto').innerHTML = foto;
+                    console.log(response.dataset.imagenprincipal);
+                    document.getElementById('nombre').textContent = response.dataset.nombre.toUpperCase();
+                    document.getElementById('stock').textContent = 'En Stock: Seleccione una talla';
+                    document.getElementById('precio').textContent = 'Precio: $' + response.dataset.precio;
+                    document.getElementById('marca').textContent = 'Marca: ' + response.dataset.marca;
+                } else {
+                    sweetAlert(2, response.exception,null);
+                }
+            })
+        } else {
+            console.log(request.status + ' '+ request.statusText)
+        }
+    }).catch(error => console.log(error));
+}
+
+//Función para leer los datos del producto si no es de tipo ropa
+function readNoClothesDetail() {
+    document.getElementById('cbTalla').className = 'd-none';
+    document.getElementById('labelTalla').className = 'd-none';
+    //Fetch para leer los datos del producto
+    fetch(API_PEDIDOS + 'readNoClothesDetail', {
+        method: 'post',
+        body: new FormData(document.getElementById('cantidad-form'))
+    }).then(request => {
+        //Se verifica si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Se verifica la respuesta de la api
+                if(response.status) {
+                    let foto = '';
+                    foto = `
+                        <img src="../../resources/img/dashboard_img/producto_fotos/${response.dataset.imagenprincipal}" class="imagenProducto5 mt-4">
+                        `;
+                    document.getElementById('columnaFoto').innerHTML = foto;
+                    console.log(response.dataset.imagenprincipal);
+                    document.getElementById('nombre').textContent = response.dataset.nombre.toUpperCase();
+                    document.getElementById('stock').textContent = 'En Stock: Seleccione una talla';
+                    document.getElementById('precio').textContent = 'Precio: $' + response.dataset.precio;
+                    document.getElementById('marca').textContent = 'Marca: ' + response.dataset.marca;
+                } else {
+                    sweetAlert(2, response.exception,null);
+                    document.getElementById('nombre').textContent = 'Información no disponible';
+                    document.getElementById('columnaCantidad').className = 'd-none';
+                    document.getElementById('agregarCart').className = 'd-none';
+                }
+            })
+        } else {
+            console.log(request.status + ' '+ request.statusText)
+        }
+    }).catch(error => console.log(error));
 }
 

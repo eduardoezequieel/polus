@@ -86,33 +86,35 @@ public_Page::navbarTemplate('Polus El Salvador','.');
                         </div>
                         <div class="modal-body">
                             <form id="cantidad-form" method="post">
+                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                <input class="visually-hidden" type="number" id="idProducto2" name="idProducto2">
                                 <div class="row">
-                                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12" id="columnaFoto">
                                         
                                     </div>
                                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group d-flex">
-                                            <h1 class="tituloProducto">BLUSA</h1>
+                                            <h1 class="tituloProducto" id="nombre"></h1>
                                         </div>
                                         <div class="form-group d-flex">
-                                            <h1 class="tituloProducto">En Stock: <span class="textoProducto">12</span></h1>
+                                            <h1 class="tituloProducto" id="stock"><span class="textoProducto"></span></h1>
                                         </div>
                                         <div class="form-group d-flex">
-                                            <h1 class="tituloProducto">Precio: <span class="textoProducto">$2.99</span></h1>
+                                            <h1 class="tituloProducto" id="precio"><span class="textoProducto"></span></h1>
                                         </div>
                                         <div class="form-group d-flex">
-                                            <h1 class="tituloProducto">Marca: <span class="textoProducto">Adidas</span></h1>
+                                            <h1 class="tituloProducto" id="marca"><span class="textoProducto"></span></h1>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <h1 class="tituloProducto">Talla:</h1>
-                                            <select id="txtGenero" name="txtGenero" class="form-select personalizacionPolus personalizacionPolusP" aria-label="Default select example">
+                                            <h1 class="tituloProducto" id="labelTalla">Talla:</h1>
+                                            <select id="cbTalla" name="cbTalla" class="form-select personalizacionPolus personalizacionPolusP" aria-label="Default select example">
                                                 <option selected>Seleccionar...</option>
                                                 <option value="Femenino">Femenino</option>
                                                 <option value="Masculino">Masculino</option>
                                             </select>
                                         </div>
-                                        <div class="form-group d-flex mt-3 justify-content-center">
+                                        <div class="form-group d-flex mt-3 justify-content-center" id="columnaCantidad">
                                             <button class="btn btn-outline-light"><span class="fas fa-minus"></span></button>
                                             <h1 class="cantidadProducto mt-2 mx-4">1</h1>
                                             <button class="btn btn-outline-light"><span class="fas fa-plus"></span></button>

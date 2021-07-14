@@ -13,6 +13,14 @@
     box-shadow: 0 8px 6px -6px black;
 }
 
+.imagenProducto5{
+    width: 225px !important;
+    height: 225px !important;
+    object-fit:cover !important;
+    display: block;
+    border-radius: 15px;
+}
+
 
 
 h3{

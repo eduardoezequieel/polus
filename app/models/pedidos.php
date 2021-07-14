@@ -14,9 +14,15 @@
     private $idFKPedido = null;
     private $idProducto = null;
 
+    //Campos de la tabla inventario
+    private $idInventario = null;
+    private $idTalla = null;
+
+
     //Metodos get y set de la tabla pedido
 
-    public function setIdPedido($value){
+    public function setIdPedido($value)
+    {
         if ($this -> validateNaturalNumber($value)) {
             $this -> idPedido = $value;
             return true;
@@ -36,7 +42,8 @@
         }
     }
 
-    public function setIdEstadoPedido($value){
+    public function setIdEstadoPedido($value)
+    {
         if ($this -> validateNaturalNumber($value)) {
             $this -> idEstadoPedido = $value;
             return true;
@@ -46,7 +53,8 @@
         }
     }
 
-    public function setIdCliente($value){
+    public function setIdCliente($value)
+    {
         if ($this -> validateNaturalNumber($value)) {
             $this -> idCliente = $value;
             return true;
@@ -56,25 +64,30 @@
         }
     }
 
-    public function getIdPedido(){
+    public function getIdPedido()
+    {
         return $this -> idPedido;
     }
 
-    public function getFechaPedido(){
+    public function getFechaPedido()
+    {
         return $this -> fechaPedido;
     }
 
-    public function getIdEstadoPedido(){
+    public function getIdEstadoPedido()
+    {
         return $this -> idEstadoPedido;
     }
 
-    public function getIdCliente(){
+    public function getIdCliente()
+    {
         return $this -> idCliente;
     }
 
     //Metodos get y set de la tabla detallePedido
 
-    public function setIdDetallePedido($value){
+    public function setIdDetallePedido($value)
+    {
         if ($this -> validateNaturalNumber($value)) {
             $this -> idDetallePedido = $value;
             return true;
@@ -84,7 +97,8 @@
         }
     }
 
-    public function setCantidad($value){
+    public function setCantidad($value)
+    {
         if ($this -> validateNaturalNumber($value)) {
             if($value > 0){
                 $this -> cantidad = $value;
@@ -98,7 +112,8 @@
         }
     }
 
-    public function setPrecioProducto($value){
+    public function setPrecioProducto($value)
+    {
         if ($this -> validateNaturalNumber($value)) {
             $this -> precioProducto = $value;
             return true;
@@ -108,7 +123,8 @@
         }
     }
 
-    public function setIdFKPedido($value){
+    public function setIdFKPedido($value)
+    {
         if ($this -> validateNaturalNumber($value)) {
             $this -> idFKPedido = $value;
             return true;
@@ -118,7 +134,8 @@
         }
     }
 
-    public function setIdProducto($value){
+    public function setIdProducto($value)
+    {
         if ($this -> validateNaturalNumber($value)) {
             $this -> idProducto = $value;
             return true;
@@ -128,27 +145,67 @@
         }
     }
 
-    public function getIdDetallePedido(){
+    public function getIdDetallePedido()
+    {
         return $this -> idDetallePedido;
     }
 
-    public function getCantidad(){
+    public function getCantidad()
+    {
         return $this -> cantidad;
     }
 
-    public function getPrecioProducto(){
+    public function getPrecioProducto()
+    {
         return $this -> precioProducto;
     }
 
-    public function getIdFKPedido(){
+    public function getIdFKPedido()
+    {
         return $this -> idFKPedido;
     }
 
-    public function getIdProducto(){
+    public function getIdProducto()
+    {
         return $this -> idProducto;
     }
 
-    public function readAll(){
+    //Métodos get y set de la tabla inventario
+    public function setIdInventario($value)
+    {
+        if ($this -> validateNaturalNumber($value)) {
+            $this -> idInventario = $value;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function setIdTalla($value)
+    {
+        if ($this -> validateNaturalNumber($value)) {
+            $this -> idTalla = $value;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function getIdInventario()
+    {
+        return $this -> idInventario;
+    }
+
+    public function getIdTalla()
+    {
+        return $this -> idTalla;
+    }
+
+    //Método para leer todos la tabla de la tabla pedido
+    public function readAll()
+    {
         $sql = 'SELECT idpedido, CONCAT(cliente.apellido,\'  \',cliente.nombre) AS cliente, fechaPedido, estadopedido.estadoPedido 
         FROM pedido 
         INNER JOIN cliente ON pedido.idcliente = cliente.idcliente 
@@ -158,7 +215,9 @@
         return Database::getRows($sql,$params);
     }
 
-    public function readClientsRecord(){
+    //Función para leer todos los pedidos que ha hecho el cliente
+    public function readClientsRecord()
+    {
         $sql = 'SELECT idpedido, fechapedido, estadopedido.estadopedido FROM pedido 
         INNER JOIN estadopedido ON pedido.idestadopedido = estadopedido.idestadopedido
         WHERE idcliente = ?';
@@ -166,7 +225,9 @@
         return Database::getRows($sql, $params);
     }
 
-    public function readOne(){
+    //Función para leer solo un registro 
+    public function readOne()
+    {
         $sql = 'SELECT idpedido, CONCAT(cliente.apellido,\'  \',cliente.nombre) 
         AS cliente, fechaPedido, estadopedido.estadoPedido, cliente.direccion, cliente.idcliente 
         FROM pedido 
@@ -177,7 +238,9 @@
         return Database::getRow($sql, $params);
     }
 
-    public function getProducts(){
+    //Función para leer el detalle de los pedidos
+    public function getProducts()
+    {
         $sql = 'SELECT producto.nombre, cantidad FROM detallePedido 
         INNER JOIN producto ON producto.idproducto = detallePedido.idproducto 
         WHERE idpedido = ?;';
@@ -185,7 +248,9 @@
         return Database::getRows($sql, $params);
     }
 
-    public function getTotalPrice(){
+    //Función para crear el precio total del pedido
+    public function getTotalPrice()
+    {
         $sql= 'SELECT sum(precioproducto) as TotalPedido 
         FROM detallePedido 
         WHERE idpedido = ?';
@@ -193,12 +258,15 @@
         return Database::getRow($sql, $params);
     }
 
-    public function readAllEstadoPedido(){
+    //Función para llenar combobox de estado pedido
+    public function readAllEstadoPedido()
+    {
         $sql = 'SELECT*FROM estadoPedido';
         $params = null;
         return Database::getRows($sql,$params);
     }
 
+    //Función para buscar pedidos por el nombre y apellido del cliente
     public function searchRows($value)
     {
         $sql = 'SELECT idpedido, CONCAT(cliente.apellido,\'  \',cliente.nombre) AS cliente, fechaPedido, estadopedido.estadoPedido 
@@ -212,6 +280,7 @@
         return Database::getRows($sql, $params);
     }
 
+    //Función para buscar pedidos por su estado
     public function searchRowsEstadoPedido()
     {
         $sql = 'SELECT idpedido, CONCAT(cliente.apellido,\'  \',cliente.nombre) AS cliente, fechaPedido, estadopedido.estadoPedido 
@@ -224,32 +293,41 @@
         return Database::getRows($sql, $params);
     }
 
-    public function cancelOrder(){
+    //Función para cancelar una orden
+    public function cancelOrder()
+    {
         $sql = 'UPDATE pedido SET idestadopedido = 3 WHERE idpedido = ?';
         $params = array($this->idPedido);
         return Database::executeRow($sql, $params);
     }
 
-    public function deliverOrder(){
+    //Función para entregar una orden
+    public function deliverOrder()
+    {
         $sql = 'UPDATE pedido SET idestadopedido = 4 WHERE idpedido = ?';
         $params = array($this->idPedido);
         return Database::executeRow($sql, $params);
     }
 
-    public function activateOrder(){
+    //Función para activar una orden
+    public function activateOrder()
+    {
         $sql = 'UPDATE pedido SET idestadopedido = 1 WHERE idpedido = ?';
         $params = array($this->idPedido);
         return Database::executeRow($sql, $params);
     }
 
-    public function finishOrder(){
+    //Función para finalizar una orden
+    public function finishOrder()
+    {
         $sql = 'UPDATE pedido SET idestadopedido = 2 WHERE idpedido = ?';
         $params = array($this->idPedido);
         return Database::executeRow($sql, $params);
     }
 
     //Método para leer todo lo del cliente
-    public function readClient(){
+    public function readClient()
+    {
         $sql = 'SELECT*
         FROM cliente 
         WHERE idCliente = ?';
@@ -258,15 +336,70 @@
     }
 
     //Método para verificar si el cliente tiene algún pedido activo
-    public function checkClientePedido()
+    public function checkClientePedidoActivo()
     {
         $sql = 'SELECT idpedido
                 FROM pedido
-                WHERE idcliente = 1 AND idestadopedido = 1';
+                WHERE idcliente = ? AND idestadopedido = 1';
         $params = array($_SESSION['idCliente']);
         return Database::getRow($sql,$params);
     }
 
+    //Método para leer el detalle de producto
+    public function checkClothes() 
+    {
+        $sql = 'SELECT nombre, subcategoria, categoria FROM producto
+                INNER JOIN subcategoria ON subcategoria.idsubcategoria = producto.idsubcategoria
+                INNER JOIN categoria ON categoria.idcategoria = subcategoria.idcategoria
+                WHERE idproducto = ? AND categoria = \'Ropa\'';
+        $params = array($this->idProducto);
+        return Database::getRow($sql,$params);
+    }
+
+    //Función para leer las tallas registradas en el inventario de un producto
+    public function readTallaProducto() 
+    {
+        $sql = 'SELECT talla.idtalla, CONCAT(talla, \' - \', genero) FROM producto
+                INNER JOIN inventario ON inventario.idproducto = producto.idproducto
+                INNER JOIN talla ON talla.idtalla = inventario.idtalla
+                WHERE producto.idproducto = ? GROUP BY talla.idtalla';
+         $params = array($this->idProducto);
+         return Database::getRows($sql,$params);
+    }
+
+     //Método para leer el producto que no sea ropa
+     public function readClothesDetail() 
+     {
+         $sql = 'SELECT nombre, precio, marca, imagenprincipal FROM producto
+                 INNER JOIN marca ON marca.idmarca = producto.idmarca
+                 WHERE producto.idproducto = ?';
+          $params = array($this->idProducto);
+          return Database::getRow($sql,$params);
+     }
+
+    //Método para leer la cantidad en stock según la talla
+    public function showClothesStock() 
+    {
+        $sql = 'SELECT cantidad FROM producto
+                INNER JOIN inventario ON inventario.idproducto = producto.idproducto
+                INNER JOIN talla ON talla.idtalla = inventario.idtalla
+                WHERE producto.idproducto = ? AND inventario.idtalla = ?';
+         $params = array($this->idProducto, $this->idTalla);
+         return Database::getRow($sql,$params);
+    }
+
+    //Método para leer el producto que no sea ropa
+    public function readNoClothesDetail() 
+    {
+        $sql = 'SELECT nombre, cantidad, precio, marca, imagenprincipal FROM producto
+                INNER JOIN marca ON marca.idmarca = producto.idmarca
+                INNER JOIN inventario ON inventario.idproducto = producto.idproducto
+                WHERE producto.idproducto = ?';
+         $params = array($this->idProducto);
+         return Database::getRow($sql,$params);
+    }
+
+    //Función para checkear cantidad de producto en stock
     public function checkInventario(){
         $sql = 'SELECT cantidad - ? as resta FROM inventario WHERE idProducto = ?';
         $params = array($this->cantidad, $this->idProducto);
