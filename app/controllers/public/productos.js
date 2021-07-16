@@ -4,6 +4,8 @@ const ENDPOINT_SUBCATEGORIA = '../../app/api/public/productos.php?action=readSub
 const API_PEDIDOS = '../../app/api/public/pedidos.php?action=';
 const ENDPOINT_TALLA = '../../app/api/public/pedidos.php?action=readTallaProducto';
 
+//Variable para controlar el stock
+var stock;
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
@@ -267,17 +269,17 @@ function readClothesDetail() {
         if (request.ok) {
             request.json().then(response => {
                 //Se verifica la respuesta de la api
-                if(response.status) {
+                if (response.status) {
                     let foto = '';
                     foto = `
                         <img src="../../resources/img/dashboard_img/producto_fotos/${response.dataset.imagenprincipal}" class="imagenProducto5 mt-4">
                         `;
                     document.getElementById('columnaFoto').innerHTML = foto;
-                    console.log(response.dataset.imagenprincipal);
                     document.getElementById('nombre').textContent = response.dataset.nombre.toUpperCase();
                     document.getElementById('stock').textContent = 'En Stock: Seleccione una talla';
                     document.getElementById('precio').textContent = 'Precio: $' + response.dataset.precio;
                     document.getElementById('marca').textContent = 'Marca: ' + response.dataset.marca;
+                    document.getElementById('tipo').value = 'ropa';
                 } else {
                     sweetAlert(2, response.exception,null);
                 }
@@ -301,7 +303,7 @@ function readNoClothesDetail() {
         if (request.ok) {
             request.json().then(response => {
                 //Se verifica la respuesta de la api
-                if(response.status) {
+                if (response.status) {
                     let foto = '';
                     foto = `
                         <img src="../../resources/img/dashboard_img/producto_fotos/${response.dataset.imagenprincipal}" class="imagenProducto5 mt-4">
@@ -309,11 +311,13 @@ function readNoClothesDetail() {
                     document.getElementById('columnaFoto').innerHTML = foto;
                     console.log(response.dataset.imagenprincipal);
                     document.getElementById('nombre').textContent = response.dataset.nombre.toUpperCase();
-                    document.getElementById('stock').textContent = 'En Stock: Seleccione una talla';
+                    document.getElementById('stock').textContent = 'En Stock: ' + response.dataset.cantidad;
                     document.getElementById('precio').textContent = 'Precio: $' + response.dataset.precio;
                     document.getElementById('marca').textContent = 'Marca: ' + response.dataset.marca;
+                    document.getElementById('tipo').value = 'no_ropa';
+                    stock = response.dataset.cantidad;
                 } else {
-                    sweetAlert(2, response.exception,null);
+                    sweetAlert(3, response.exception,null);
                     document.getElementById('nombre').textContent = 'Información no disponible';
                     document.getElementById('columnaCantidad').className = 'd-none';
                     document.getElementById('agregarCart').className = 'd-none';
@@ -325,3 +329,99 @@ function readNoClothesDetail() {
     }).catch(error => console.log(error));
 }
 
+//Método para cambiar la cantidad en stock dependiendo de la talla seleccionada
+function showClothesStock() {
+    //Fecth para capturar el stock para productos de tipo ropa
+    fetch(API_PEDIDOS + 'showClothesStock', {
+        method: 'post',
+        body: new FormData(document.getElementById('cantidad-form'))
+    }).then(request => {
+        //Verificamos si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Verificamos la respuesta de la api
+                if (response.status) {
+                    document.getElementById('stock').textContent = 'Stock: ' + response.dataset.cantidad;
+                    stock = response.dataset.cantidad;
+                } else {
+                    sweetAlert(2,response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error))
+}
+
+document.getElementById('minus').addEventListener('click', function (event) {
+    event.preventDefault();
+    //Guardo input de tipo
+    var tipo = document.getElementById('tipo').value;
+    //Guardando la cantidad seleccionada en una variable
+    var cantidad =  document.getElementById('cantidad').textContent;
+
+    //Verificando si es ropa 
+    if (tipo == 'ropa') {
+        //Verificando si ya fue seleccionada una talla
+        if (document.getElementById('stock').textContent != 'En Stock: Seleccione una talla') {
+            cantidad--;
+            //Verificando que la cantidad seleccionada sea mayor a 1
+            if (cantidad >= 1) { 
+                document.getElementById('cantidad').textContent = cantidad;
+                document.getElementById('txtCantidad').value = cantidad;
+            } else {
+                sweetAlert(3, 'La cantidad de productos no puede ser menor a 1.',null)
+            }
+        } else {
+            sweetAlert(4, 'Seleccione una talla.',null);
+        }
+    } else {
+        cantidad--;
+        //Verificando que la cantidad seleccionada sea mayor a 1
+        if (cantidad >= 1) { 
+            document.getElementById('cantidad').textContent = cantidad;
+            document.getElementById('txtCantidad').value = cantidad;
+        } else {
+            sweetAlert(3, 'La cantidad de productos no puede ser menor a 1.',null);
+        }
+    }
+})
+
+//Función para limitar la cantidad ingresada por el cliente cuando aumenta
+document.getElementById('plus').addEventListener('click', function (event) {
+    event.preventDefault();
+    //Guardo input de tipo
+    var tipo = document.getElementById('tipo').value;
+    //Guardando la cantidad seleccionada en una variable
+    var cantidad =  document.getElementById('cantidad').textContent;
+
+    //Verificando si es ropa 
+    if (tipo == 'ropa') {
+        //Verificando si ya fue seleccionada una talla
+        if (document.getElementById('stock').textContent != 'En Stock: Seleccione una talla') {
+            //Verificando que la cantidad seleccionada sea mayor a 1
+            if (cantidad == stock) { 
+                document.getElementById('cantidad').textContent = cantidad;
+                document.getElementById('txtCantidad').value = cantidad;
+                sweetAlert(3, 'Has llegado al limite de stock disponible.',null);
+            } else {
+                cantidad++;
+                document.getElementById('cantidad').textContent = cantidad;
+                document.getElementById('txtCantidad').value = cantidad;
+            }
+        } else {
+            sweetAlert(4, 'Seleccione una talla.',null);
+        }
+    } else {
+        //Verificando que la cantidad seleccionada sea mayor a 1
+        if (cantidad == stock) { 
+            document.getElementById('cantidad').textContent = cantidad;
+            document.getElementById('txtCantidad').value = cantidad;
+            sweetAlert(3, 'Has llegado al limite de stock disponible.',null);
+        } else {
+            cantidad++;
+            document.getElementById('cantidad').textContent = cantidad;
+            document.getElementById('txtCantidad').value = cantidad;
+        }
+    }
+})

@@ -64,20 +64,24 @@ if(isset($_GET['action'])){
                 $_POST = $pedidos->validateForm($_POST);
                 if ($pedidos->setIdProducto($_POST['idProducto2'])) {
                     if (isset($_POST['cbTalla'])) {
-                        if ($result['dataset'] = $pedidos->showClothesStock()) {
-                            $result['status'] = 1;
-                        } else {
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
+                        if ($pedidos->setIdTalla($_POST['cbTalla'])) {
+                            if ($result['dataset'] = $pedidos->showClothesStock()) {
+                                $result['status'] = 1;
                             } else {
-                                $result['exception'] = 'No se pudo mostrar los detalles del producto seleccionado.';
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No se pudo mostrar los detalles del producto seleccionado.';
+                                }
                             }
+                        } else {
+                            $result['exception'] = 'Hubo un error al selccionar la talla.';
                         }
                     } else {
-                        $result['exception'] = 'Seleccione una talla';
+                        $result['exception'] = 'Seleccione una talla.';
                     }
                 } else {
-                    $result['exception'] = 'Hubo un error al seleccionar el producto';
+                    $result['exception'] = 'Hubo un error al seleccionar el producto.';
                 }
                 break;
             //Caso para leer el producto seleccionado de tipo ropa
@@ -90,15 +94,15 @@ if(isset($_GET['action'])){
                         if (Database::getException()) {
                             $result['exception'] = Database::getException();
                         } else {
-                            $result['exception'] = 'No se pudo mostrar los detalles del producto seleccionado.';
+                            $result['exception'] = 'No hay registros en stock para el producto seleccionado.';
                         }
                     }
                 } else {
                     $result['exception'] = 'Hubo un error al seleccionar el producto';
                 }
                 break;
-                //Caso para leer el producto seleccionado de tipo diferente a ropa
-                case 'readNoClothesDetail':
+            //Caso para leer el producto seleccionado de tipo diferente a ropa
+            case 'readNoClothesDetail':
                 $_POST = $pedidos->validateForm($_POST);
                 if ($pedidos->setIdProducto($_POST['idProducto2'])) {
                     if ($result['dataset'] = $pedidos->readNoClothesDetail()) {
@@ -111,7 +115,7 @@ if(isset($_GET['action'])){
                         }
                     }
                 } else {
-                    $result['exception'] = 'Hubo un error al seleccionar el producto';
+                    $result['exception'] = 'Hubo un error al seleccionar el producto.';
                 }
                 break;
             //Caso para leer datos del producto que no sea ropa o que no se haya seleccionado la talla

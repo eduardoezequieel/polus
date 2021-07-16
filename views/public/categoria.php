@@ -88,6 +88,8 @@ public_Page::navbarTemplate('Polus El Salvador','.');
                             <form id="cantidad-form" method="post">
                                 <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                                 <input class="visually-hidden" type="number" id="idProducto2" name="idProducto2">
+                                <input class="visually-hidden" type="text" id="tipo" name="tipo">
+                                <input class="visually-hidden" type="number" id="txtCantidad" name="txtCantidad">
                                 <div class="row">
                                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12" id="columnaFoto">
                                         
@@ -108,16 +110,16 @@ public_Page::navbarTemplate('Polus El Salvador','.');
                                         
                                         <div class="form-group">
                                             <h1 class="tituloProducto" id="labelTalla">Talla:</h1>
-                                            <select id="cbTalla" name="cbTalla" class="form-select personalizacionPolus personalizacionPolusP" aria-label="Default select example">
+                                            <select id="cbTalla" name="cbTalla" class="form-select personalizacionPolus personalizacionPolusP" aria-label="Default select example" onchange="showClothesStock()">
                                                 <option selected>Seleccionar...</option>
                                                 <option value="Femenino">Femenino</option>
                                                 <option value="Masculino">Masculino</option>
                                             </select>
                                         </div>
                                         <div class="form-group d-flex mt-3 justify-content-center" id="columnaCantidad">
-                                            <button class="btn btn-outline-light"><span class="fas fa-minus"></span></button>
-                                            <h1 class="cantidadProducto mt-2 mx-4">1</h1>
-                                            <button class="btn btn-outline-light"><span class="fas fa-plus"></span></button>
+                                            <button class="btn btn-outline-light" id="minus"><span class="fas fa-minus"></span></button>
+                                            <h1 class="cantidadProducto mt-2 mx-4" id="cantidad">1</h1>
+                                            <button class="btn btn-outline-light" id="plus"><span class="fas fa-plus"></span></button>
                                         </div>
                                     </div>
                                 </div>
