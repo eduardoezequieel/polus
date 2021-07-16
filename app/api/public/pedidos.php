@@ -17,14 +17,6 @@ if(isset($_GET['action'])){
     if(isset($_SESSION['idCliente'])){
         //Verificando acción
         switch($_GET['action']){
-            //Caso para verificar si el cliente ya tiene un pedido registrado
-            case 'checkClientPedido':
-                if ($result['dataset'] = $pedidos->checkClientePedidoActivo()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                }
-                break;
             //Caso para leer si el producto es ropa
             case 'checkClothes':
                 $_POST = $pedidos->validateForm($_POST);
@@ -116,6 +108,66 @@ if(isset($_GET['action'])){
                     }
                 } else {
                     $result['exception'] = 'Hubo un error al seleccionar el producto.';
+                }
+                break;
+            //Caso para verificar si hay pedidos activos para el cliente logeado, si no se agrega uno
+            case 'startOrder':
+                $_POST = $pedidos->validateForm($_POST);
+                if ($pedidos->startOrder()) {
+                    if ($pedidos->setCantidad($_POST['txtCantidad'])) {
+                        if ($pedidos->setIdProducto($_POST['idProducto2'])) {
+                            if ($pedidos->createDetail()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'El producto se ha agregado al carrito correctamente.';
+                            } else {
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'El producto no se ha agregado al carrito correctamente.';
+                                }
+                            }
+                        } else {
+                            $result['exception'] = 'Hubo un error al seleccionar el producto.';
+                        }
+                    } else {
+                        $result['exception'] = 'Hubo un error al seleccionar la cantidad.';
+                    }
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No se encontrado ni agregado el pedido.';
+                    }
+                }
+                break;
+            //Caso para mostrar los datos del carrito
+            case 'readOrderDetail':
+                if ($pedidos->checkClientePedidoActivo()) {
+                    if ($result['dataset'] = $pedidos->readOrderDetail()) {
+                        $result['status'] = 1;
+                        $_SESSION['idPedido'] = $pedidos->getIdPedido();
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Hubo un error al obtener el detalle del carrito.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Actualmente no tienes pedidos activos.';
+                }
+                break;
+            //Caso para eliminar un registro del pedido
+            case 'deleteDetail':
+                if ($pedidos->setIdDetallePedido($_POST['id_detalle'])) {
+                    if ($pedidos->deleteDetail()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Producto removido correctamente.';
+                    } else {
+                        $result['exception'] = 'Ocurrió un problema al remover el producto.';
+                    }
+                } else {
+                    $result['exception'] = 'Detalle incorrecto.';
                 }
                 break;
             //Caso para leer datos del producto que no sea ropa o que no se haya seleccionado la talla

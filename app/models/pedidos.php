@@ -342,7 +342,12 @@
                 FROM pedido
                 WHERE idcliente = ? AND idestadopedido = 1';
         $params = array($_SESSION['idCliente']);
-        return Database::getRow($sql,$params);
+        if ($data = Database::getRow($sql,$params)) {
+            $this->idPedido = $data['idpedido'];
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //Método para leer el detalle de producto
@@ -415,7 +420,7 @@
          $params = array($this->cantidad, $this->idProducto, $this->idPedido, $this->idProducto);
          return Database::executeRow($sql, $params);
      }
-    
+     
      // Método para obtener los productos que se encuentran en el carrito de compras.
     public function readOrderDetail()
     {

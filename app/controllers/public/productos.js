@@ -280,6 +280,7 @@ function readClothesDetail() {
                     document.getElementById('precio').textContent = 'Precio: $' + response.dataset.precio;
                     document.getElementById('marca').textContent = 'Marca: ' + response.dataset.marca;
                     document.getElementById('tipo').value = 'ropa';
+                    document.getElementById('agregarCart').disabled = true;
                 } else {
                     sweetAlert(2, response.exception,null);
                 }
@@ -309,7 +310,6 @@ function readNoClothesDetail() {
                         <img src="../../resources/img/dashboard_img/producto_fotos/${response.dataset.imagenprincipal}" class="imagenProducto5 mt-4">
                         `;
                     document.getElementById('columnaFoto').innerHTML = foto;
-                    console.log(response.dataset.imagenprincipal);
                     document.getElementById('nombre').textContent = response.dataset.nombre.toUpperCase();
                     document.getElementById('stock').textContent = 'En Stock: ' + response.dataset.cantidad;
                     document.getElementById('precio').textContent = 'Precio: $' + response.dataset.precio;
@@ -343,6 +343,7 @@ function showClothesStock() {
                 if (response.status) {
                     document.getElementById('stock').textContent = 'Stock: ' + response.dataset.cantidad;
                     stock = response.dataset.cantidad;
+                    document.getElementById('agregarCart').disabled = false;
                 } else {
                     sweetAlert(2,response.exception, null);
                 }
@@ -424,4 +425,29 @@ document.getElementById('plus').addEventListener('click', function (event) {
             document.getElementById('txtCantidad').value = cantidad;
         }
     }
+})
+
+//Agregando el pedido
+document.getElementById('agregarCart').addEventListener('click', function (event) {
+    //Evento para evitar que recargue la pagina
+    event.preventDefault();
+    //Fetch para buscar si el cliente tiene algún pedido pendiente, caso contrario agregara uno nuevo
+    fetch(API_PEDIDOS + 'startOrder', {
+        method: 'post',
+        body: new FormData(document.getElementById('cantidad-form'))
+    }).then(request => {
+        //Verificamos si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Verificamos la respuesta de a la api
+                if (response.status) {
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error))
 })

@@ -81,7 +81,7 @@
 
                                 </ul>
                                 <form id="controlesNavbar">
-                                    <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white"><i class="fas fa-shopping-cart mx-2"></i></button>
+                                    <button id="btnCarrito" data-bs-toggle="modal" data-bs-target="#carritoModal" class="btn text-white" onclick="readOrderDetail()"><i class="fas fa-shopping-cart mx-2"></i></button>
                                     
                                 </form>
                                 <div class="dropdown">
@@ -322,7 +322,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-target="#carritoModal" data-bs-toggle="modal" data-bs-dismiss="modal">Regresar</button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-target="#carritoModal" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="readOrderDetail()">Regresar</button>
                             <button type="button" class="btn btn-outline-light">Finalizar</button>
                         </div>
                     </div>
