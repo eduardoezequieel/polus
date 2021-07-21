@@ -204,6 +204,10 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Detalle incorrecto.';
                 }
                 break;
+            //Caso para checkear el inventario
+            case 'checkStock':
+                
+                break;
             //Caso para leer datos del producto que no sea ropa o que no se haya seleccionado la talla
             default:
                 $result['error'] = 1;

@@ -317,6 +317,10 @@ function readNoClothesDetail() {
                     document.getElementById('marca').textContent = 'Marca: ' + response.dataset.marca;
                     document.getElementById('tipo').value = 'no_ropa';
                     stock = response.dataset.cantidad;
+                    if (stock == 0) {
+                        document.getElementById('columnaCantidad').className = 'd-none';
+                        document.getElementById('agregarCart').className = 'd-none';
+                    }
                 } else {
                     sweetAlert(3, response.exception,null);
                     document.getElementById('nombre').textContent = 'Información no disponible';
@@ -344,6 +348,10 @@ function showClothesStock() {
                 if (response.status) {
                     document.getElementById('stock').textContent = 'Stock: ' + response.dataset.cantidad;
                     stock = response.dataset.cantidad;
+                    if (stock == 0) {
+                        document.getElementById('columnaCantidad').className = 'd-none';
+                        document.getElementById('agregarCart').className = 'd-none';
+                    }
                     document.getElementById('agregarCart').disabled = false;
                 } else {
                     sweetAlert(2,response.exception, null);
