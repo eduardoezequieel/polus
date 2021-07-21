@@ -133,6 +133,38 @@ public_Page::navbarTemplate('Polus El Salvador','.');
                 </div>
             </div>
 </div>
+    <!-- Modal -->
+    <div class="modal fade" id="actualizarCantidades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-white" id="exampleModalLabel"><span class="fas fa-info-circle mx-3 text-white"></span>Cambiar Cantidad</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times text-white"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="cantidad-form" method="post">
+                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                <input class="visually-hidden" type="number" id="idProducto3" name="idProducto3">
+                                <input class="visually-hidden" type="text" id="tipo2" name="tipo2">
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div>
+                                            <h1 class="tituloProducto" id="stock"><span class="textoProducto3">En Stock: 56</span></h1>
+                                            <label for="#" class="text-white text-center my-2">Cantidad:</label><br>
+                                            <input type="number" min="1" step="any" class="form-control personalizacionPolus3" name="txtCantidad2" id="txtCantidad2">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-light" id="agregarCart">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
 <?php
 public_Page::footerTemplate('productos.js');
 ?>

@@ -104,6 +104,12 @@ h4{
     text-align: center;
 }
 
+.textoProducto3{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
 .cantidadProducto{
     font-family: 'Nunito Sans', sans-serif;
     font-size: 22px;
@@ -131,6 +137,23 @@ a{
 .imagenPrincipal{
     height: 270px;
     width: 100%;
+}
+
+.personalizacionPolus3{
+    background-color: #16181D;
+    border: hidden;
+    color:white;
+    border-radius: 16px;
+    padding: 10px;
+    width: 240px;
+    margin-bottom: 16px;
+}
+
+.personalizacionPolus3:focus{
+    background-color: #16181D;
+    border: hidden;
+    color:white; 
+    width: 240px;
 }
 
 @media screen and (max-width:999px){
