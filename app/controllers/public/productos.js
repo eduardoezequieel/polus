@@ -293,6 +293,7 @@ function readClothesDetail() {
 
 //Función para leer los datos del producto si no es de tipo ropa
 function readNoClothesDetail() {
+    fillSelectTallas(ENDPOINT_TALLA, 'cbTalla', null);
     document.getElementById('cbTalla').className = 'd-none';
     document.getElementById('labelTalla').className = 'd-none';
     //Fetch para leer los datos del producto
@@ -441,7 +442,7 @@ document.getElementById('agregarCart').addEventListener('click', function (event
             request.json().then(response => {
                 //Verificamos la respuesta de a la api
                 if (response.status) {
-                    sweetAlert(1, response.message, null);
+                    sweetAlert(1, response.message,null);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

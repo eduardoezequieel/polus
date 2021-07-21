@@ -356,3 +356,6 @@ UPDATE resena SET idproducto = 2 WHERE idresena = 5;
 --Cambios 6/6/2021
 ALTER TABLE categoria ADD COLUMN imagen VARCHAR(50) NULL;
 ALTER TABLE imagenProducto ALTER COLUMN imagen TYPE character varying(50) USING CAST(imagen AS bytea);
+
+--Cambios 20/07/2021
+INSERT INTO talla VALUES(DEFAULT, 'N/A','N/A');

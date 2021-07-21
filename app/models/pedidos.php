@@ -406,7 +406,9 @@
 
     //Función para checkear cantidad de producto en stock
     public function checkInventario(){
-        $sql = 'SELECT cantidad - ? as resta FROM inventario WHERE idProducto = ?';
+        $sql = 'SELECT cantidad - ? as resta 
+                FROM inventario 
+                WHERE idProducto = ? AND idtalla = ?';
         $params = array($this->cantidad, $this->idProducto);
         return Database::getRows($sql, $params);
     }
@@ -464,19 +466,31 @@
         }
     }
 
-        // Método para finalizar un pedido por parte del cliente.
-        public function finishOrderCart()
-        {
-            // Se establece la zona horaria local para obtener la fecha del servidor.
-            date_default_timezone_set('America/El_Salvador');
-            $date = date('Y-m-d');
-            $this->estado = 1;
-            $sql = 'UPDATE pedido
-                    SET idEstadoPedido = ?, fechaPedido = ?
-                    WHERE idPedido = ?';
-            $params = array($this->estado, $date, $_SESSION['idPedido']);
-            return Database::executeRow($sql, $params);
-        }
+    // Método para finalizar un pedido por parte del cliente.
+    public function finishOrderCart()
+    {
+        // Se establece la zona horaria local para obtener la fecha del servidor.
+        date_default_timezone_set('America/El_Salvador');
+        $date = date('Y-m-d');
+        $this->estado = 1;
+        $sql = 'UPDATE pedido
+                SET idEstadoPedido = ?, fechaPedido = ?
+                WHERE idPedido = ?';
+        $params = array($this->estado, $date, $_SESSION['idPedido']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para restar la cantidad adquirida en el pedido 
+    public function minusStock() 
+    {
+        $sql = 'UPDATE inventario SET cantidad =((SELECT cantidad FROM producto
+                INNER JOIN inventario ON inventario.idproducto = producto.idproducto
+                INNER JOIN talla ON talla.idtalla = inventario.idtalla
+                WHERE producto.idproducto = ? AND inventario.idtalla = ?) - ?)
+                WHERE idproducto = ? AND idtalla = ?';
+        $params = array($this->idProducto, $this->idTalla,$this->cantidad,$this->idProducto,$this->idTalla);
+        return Database::executeRow($sql,$params);
+    }
 
  }
 ?>

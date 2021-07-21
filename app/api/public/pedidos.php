@@ -116,14 +116,48 @@ if(isset($_GET['action'])){
                 if ($pedidos->startOrder()) {
                     if ($pedidos->setCantidad($_POST['txtCantidad'])) {
                         if ($pedidos->setIdProducto($_POST['idProducto2'])) {
-                            if ($pedidos->createDetail()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'El producto se ha agregado al carrito correctamente.';
-                            } else {
-                                if (Database::getException()) {
-                                    $result['exception'] = Database::getException();
+                            if (isset($_POST['cbTalla'])) {
+                                if ($pedidos->setIdTalla($_POST['cbTalla'])) {
+                                    if ($pedidos->createDetail()) {
+                                        $result['status'] = 1;
+                                        if ($pedidos->minusStock()) {
+                                            $result['message'] = 'El producto se ha agregado al carrito correctamente.';
+                                        } else {
+                                            if (Database::getException()) {
+                                                $result['exception'] = Database::getException();
+                                            } 
+                                            $result['message'] = 'El producto se ha agregado al carrito correctamente 
+                                                                    pero el inventario no fue afectado.';
+                                        } 
+                                    } else {
+                                        if (Database::getException()) {
+                                            $result['exception'] = Database::getException();
+                                        } else {
+                                            $result['exception'] = 'El producto no se ha agregado al carrito correctamente.';
+                                        }
+                                    }
                                 } else {
-                                    $result['exception'] = 'El producto no se ha agregado al carrito correctamente.';
+                                    $result['exception'] = 'Hubo un error al seleccionar la talla.';
+                                }
+                            } else {
+                                $pedidos->setIdTalla(11);
+                                if ($pedidos->createDetail()) {
+                                    $result['status'] = 1;
+                                    if ($pedidos->minusStock()) {
+                                        $result['message'] = 'El producto se ha agregado al carrito correctamente.';
+                                    } else {
+                                        if (Database::getException()) {
+                                            $result['exception'] = Database::getException();
+                                        } 
+                                        $result['message'] = 'El producto se ha agregado al carrito correctamente 
+                                                                pero el inventario no fue afectado.';
+                                    } 
+                                } else {
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'El producto no se ha agregado al carrito correctamente.';
+                                    }
                                 }
                             }
                         } else {

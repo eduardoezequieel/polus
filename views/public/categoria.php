@@ -89,7 +89,7 @@ public_Page::navbarTemplate('Polus El Salvador','.');
                                 <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                                 <input class="visually-hidden" type="number" id="idProducto2" name="idProducto2">
                                 <input class="visually-hidden" type="text" id="tipo" name="tipo">
-                                <input class="visually-hidden" type="number" id="txtCantidad" name="txtCantidad">
+                                <input class="visually-hidden" type="number" id="txtCantidad" name="txtCantidad" value="1">
                                 <div class="row">
                                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12" id="columnaFoto">
                                         
