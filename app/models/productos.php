@@ -140,6 +140,16 @@
             return $this->idCategoria;
         }
 
+        //Metodo para cargar productos en el dashboard
+        public function readOnDashboard()
+        {
+            $sql = 'SELECT nombre, marca.marca 
+                    FROM producto 
+                    INNER JOIN marca ON producto.idmarca = marca.idmarca';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
+
         //Método para leer todo
         public function readAll()
         {

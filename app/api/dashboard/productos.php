@@ -27,6 +27,19 @@ if(isset($_GET['action'])){
                 }
             }
             break;
+        case 'readAllOnDashboard':
+            if($result['dataset'] = $productos->readOnDashboard()){
+                $result['status'] = 1;
+                $result['message'] = 'Existe al menos un registro';
+            } else{
+                if(Database::getException()){
+                    $result['error'] = 1;
+                    $result['exception'] = Database::getException();
+                } else{
+                    $result['exception'] = 'No hay productos registrados';
+                }
+            }
+            break;
         case 'readAllSub':
             if($result['dataset'] = $productos->readAllSubcategorias()){
                 $result['status'] = 1;

@@ -359,3 +359,26 @@ ALTER TABLE imagenProducto ALTER COLUMN imagen TYPE character varying(50) USING 
 
 --Cambios 20/07/2021
 INSERT INTO talla VALUES(DEFAULT, 'N/A','N/A');
+
+
+--Trigger para guardar precios de un producto durante el tiempo
+CREATE TABLE historialPrecio(
+	idHistorialPrecio SERIAL NOT NULL PRIMARY KEY,
+	idProducto INTEGER NOT NULL, 
+	precio NUMERIC NOT NULL,
+	fecha DATE NOT NULL
+);
+
+CREATE FUNCTION SP_historialPrecio() RETURNS TRIGGER 
+AS
+$$
+BEGIN
+INSERT INTO historialPrecio(idProducto, precio, fecha) VALUES(old.idProducto, old.precio, current_date);
+RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_historialPrecio BEFORE UPDATE ON producto 
+FOR EACH ROW
+EXECUTE PROCEDURE SP_historialPrecio();

@@ -4,54 +4,97 @@ include('../../app/helpers/dashboard_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
 dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css');
 ?>
-    <!--Fin del sidebar-->
-    <!-- Contenido de la Pagina -->
-    <div class="page-content p-5" id="content">
-      <?php
+<!--Fin del sidebar-->
+<!-- Contenido de la Pagina -->
+<div class="page-content p-5" id="content">
+	<?php
 
       //Se imprime el script para las direcciones de Bootstrap core JavaScript
       dashboard_Page::barraInicial();
       ?>
-      <div class="container-fluid">
-          <!-- Mostrar titulo -->
-          <?php
+	<div class="container-fluid">
+		<!-- Mostrar titulo -->
+		<?php
             dashboard_Page::mensajeBienvenida();
           ?>
-          <!-- Mostrar opciones -->
-          <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
-            <div class="col-lg-5">
-              <img src="../../resources/img/dashboard_img/grafica2.png" class="img-fluid imagenGrafica">
-              <p class="parrafo tituloUsuarios">Administrar Usuarios</p>
-              <p class="parrafo titleDescripcion">Administra a tus usuarios de una manera eficaz para mejorar quienes están en el sistema y
-                garantizar la integridad del mismo.
-              </p>
-              <a href="../../views/dashboard/administrar_usuarios.php">
-                <button class="btn btn-outline-dark verMas">Ver más</button>
-              </a>
-            </div><br>
-            <div class="col-lg-5">
-              <img src="../../resources/img/dashboard_img/grafica1.png" class="img-fluid imagenGrafica">
-              <p class="parrafo tituloUsuarios">Gestionar Pedidos</p>
-              <p class="parrafo titleDescripcion">Revisa todo el resgistro de pedidos que han hecho tus clientes. Entregar, cancelar y/o finalizar
-                tus pedidos son parte importante para tus ganancias.
-              </p>
-              <a href="../../views/dashboard/pedidos.php">
-                <button class="btn btn-outline-dark verMas">Ver más</button>
-              </a>
-            </div>
-          </div>
-        </div>
-    </div>
-    <!-- Bootstrap core JavaScript -->
-    <?php
+		<!-- Mostrar opciones -->
+		<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
+			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<h4 class="text-center">Historial de Precios por Producto</h4>
+					<div class="d-flex flex-column justify-content-start align-items-start">
+						<h5 class="mt-2">Producto seleccionado: <span>asd</span></h5>
+						<button id="btnHistorialPrecio" data-bs-toggle="modal" data-bs-target="#seleccionarProductoPrecio" class="btn btn-outline-dark" data-toggle="#seleccionarProductoPrecio">Seleccionar...</button>
+					</div>
+					<canvas id="historialPrecio" width="400" height="250"></canvas>
+				</div>
+			</div>
+			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal para seleccionar un producto para la grafica -->
+<div class="modal fade" id="seleccionarProductoPrecio" tabindex="-1" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content justify-content-center px-3 py-2">
+				<!-- Cabecera del Modal -->
+				<div class="modal-header">
+					<!-- Titulo -->
+					<h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+							class="fas fa-info-circle mx-2"></span>Seleccionar Producto</h5>
+					<!-- Boton para Cerrar -->
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<br>
+				<!-- Contenido del Modal -->
+				<div class="textoModal px-3 pb-4 mt-2">
+					<div class="row">
+						<div class="col-12 d-flex flex-column">
+							<form class="d-flex mb-3" id='search-historialPrecio' name='search-historialPrecio'>
+								<input class="form-control me-2 w-50" type="search" placeholder="Buscar... {Nombre del Producto}" aria-label="Search" id='search' name='search'>
+								<button class="btn btn-outline-dark  me-2" type="submit">Buscar</button>
+								<button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
+							</form>
+						</div>
+					</div>
+					<div class="row table-responsive">
+						<!-- Columnas de tabla de datos -->
+						<div class="col-12">
+							<table class="table">
+								<thead class="bg-dark tabla">
+									<tr>
+										<th scope="col">Producto</th>
+										<th scope="col">Marca</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody id='tbody-historialPrecio'>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				<!-- Fin del Contenido del Modal -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin del Modal -->
+<!-- Bootstrap core JavaScript -->
+<?php
     //Se imprime el script para las direcciones de Bootstrap core JavaScript
     dashboard_Page::scriptBTJS();
     ?>
 
-    <!-- Movimiento sidebar -->
-    <?php
+<!-- Movimiento sidebar -->
+<?php
     //Se imprime el script para el movimiento del sidebar
     dashboard_Page::sidebarTemplateMovement('pagina_dashboard.js');
     ?>
-   </body>
+</body>
+
 </html>
