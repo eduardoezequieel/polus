@@ -176,6 +176,7 @@ function logOutCliente() {
 
 // Función para obtener el detalle del pedido (carrito de compras).
 function readOrderDetail() {
+    document.getElementById('finish').disabled = true;
     fetch(API_PEDIDO + 'readOrderDetail', {
         method: 'get'
     }).then(function (request) {
@@ -184,6 +185,7 @@ function readOrderDetail() {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
+                    document.getElementById('finish').disabled = false;
                     // Se declara e inicializa una variable para concatenar las filas de la tabla en la vista.
                     let content = '';
                     // Se declara e inicializa una variable para calcular el importe por cada producto.

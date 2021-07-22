@@ -477,7 +477,7 @@
     {
         $sql = 'SELECT idDetallePedido, nombre, detallePedido.precioProducto, detallePedido.cantidad,detallePedido.idproducto
                 FROM pedido INNER JOIN detallePedido USING(idPedido) INNER JOIN producto USING(idProducto)
-                WHERE idPedido = ?';
+                WHERE idPedido = ? AND idestadopedido = 1';
         $params = array($this->idPedido);
         return Database::getRows($sql, $params);
     }
@@ -521,7 +521,7 @@
         // Se establece la zona horaria local para obtener la fecha del servidor.
         date_default_timezone_set('America/El_Salvador');
         $date = date('Y-m-d');
-        $this->estado = 1;
+        $this->estado = 4;
         $sql = 'UPDATE pedido
                 SET idEstadoPedido = ?, fechaPedido = ?
                 WHERE idPedido = ?';

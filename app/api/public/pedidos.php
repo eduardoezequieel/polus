@@ -386,6 +386,15 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Hubo un error al seleccionar la cantidad.';
                 }
                 break;
+            //Caso para finalizar la orden
+            case 'finishOrder':
+                if ($pedidos->finishOrderCart()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Pedido finalizado correctamente';
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
+                }
+                break;
             //Caso para leer datos del producto que no sea ropa o que no se haya seleccionado la talla
             default:
                 $result['error'] = 1;
