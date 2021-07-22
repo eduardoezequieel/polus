@@ -247,6 +247,50 @@
                 </div>
             </div>
 
+            <!-- Modal -->
+            <div class="modal fade" id="actualizarCantidades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-white" id="exampleModalLabel"><span class="fas fa-info-circle mx-3 text-white"></span>Cambiar Cantidad</h5>
+                                    <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times text-white"></i></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="cantidadUpdate-form" method="post">
+                                        <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                        <input class="visually-hidden" type="number" id="idProducto3" name="idProducto3">
+                                        <input class="visually-hidden" type="number" id="idDetalle" name="idDetalle">
+                                        <input class="visually-hidden" type="number" id="cantidadCart" name="cantidadCart">
+                                        <input class="visually-hidden" type="number" id="stockReal" name="stockReal">
+                                        <input class="visually-hidden" type="text" id="tipo2" name="tipo2">
+                                        <input class="visually-hidden" type="text" id="txtCantidad4" name="txtCantidad4">
+                                        <div class="row">
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <div>
+                                                    <h1 class="tituloProducto" id="stock2"><span class="textoProducto3"></span></h1>
+                                                    <label for="#" id="labelTalla2" class="text-white text-center my-2">Confirme la talla:</label>
+                                                    <select id="cbTallas" name="cbTallas" class="form-select personalizacionPolus3" aria-label="Default select example"
+                                                    onchange="showClothesStockCart()"></select>                        
+                                                    <label for="#" class="text-white text-center my-2">Cantidad:</label><br>
+                                                    <div class="form-group d-flex mt-3 justify-content-center" id="columnaCantidad2">
+                                                        <button class="btn btn-outline-light" id="btnminus"><span class="fas fa-minus"></span></button>
+                                                        <h1 class="cantidadProducto mt-2 mx-4" id="cantidad2">1</h1>
+                                                        <button class="btn btn-outline-light" id="btnplus"><span class="fas fa-plus"></span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-light" id="updateCart">Actualizar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
             <!-- Modal para confirmar pedido -->
             <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">

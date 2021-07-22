@@ -73,7 +73,7 @@ if(isset($_GET['action'])){
                         $result['exception'] = 'Seleccione una talla.';
                     }
                 } else {
-                    $result['exception'] = 'Hubo un error al seleccionar el producto.';
+                    $result['exception'] = 'Hubo un error al seleccionar el producto xx.';
                 }
                 break;
             //Caso para leer el producto seleccionado de tipo ropa
@@ -90,7 +90,7 @@ if(isset($_GET['action'])){
                         }
                     }
                 } else {
-                    $result['exception'] = 'Hubo un error al seleccionar el producto';
+                    $result['exception'] = 'Hubo un error al seleccionar el producto fd';
                 }
                 break;
             //Caso para leer el producto seleccionado de tipo diferente a ropa
@@ -204,9 +204,187 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Detalle incorrecto.';
                 }
                 break;
+            //Caso para leer si el producto en el carrito es ropa
+             case 'checkClothesCart':
+                $_POST = $pedidos->validateForm($_POST);
+                if ($pedidos->setIdProducto($_POST['idProducto3'])) {
+                    if ($pedidos->checkClothes()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['error'] = 1;
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No es ropa';
+                    }
+                } else {
+                    $result['error'] = 1;
+                    $result['exception'] = 'Hubo un error al seleccionar el producto del carrito.';
+                }
+                break;
+             //Caso para leer los datos del producto en el carrito que es ropa
+             case 'showClothesStockCart':
+                $_POST = $pedidos->validateForm($_POST);
+                if ($pedidos->setIdProducto($_POST['idProducto3'])) {
+                    if (isset($_POST['cbTallas'])) {
+                        if ($pedidos->setIdTalla($_POST['cbTallas'])) {
+                            if ($pedidos->setCantidad($_POST['cantidadCart'])) {
+                                if ($result['dataset'] = $pedidos->showClothesStockCart()) {
+                                    $result['status'] = 1;
+                                } else {
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'No se pudo mostrar los detalles del producto seleccionado.';
+                                    }
+                                }
+                            } else {
+                                $result['exception'] = 'Hubo un error al selccionar la cantidad.';
+                            }
+                        } else {
+                            $result['exception'] = 'Hubo un error al selccionar la talla.';
+                        }
+                    } else {
+                        $result['exception'] = 'Seleccione una talla.';
+                    }
+                } else {
+                    $result['exception'] = 'Hubo un error al seleccionar el producto del carrito.';
+                }
+                break;
+            //Caso para leer el producto seleccionado en el carrito de tipo ropa
+            case 'readClothesDetailCart':
+                $_POST = $pedidos->validateForm($_POST);
+                if ($pedidos->setIdProducto($_POST['idProducto3'])) {
+                    if ($result['dataset'] = $pedidos->readClothesDetail()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay registros en stock para el producto seleccionado.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Hubo un error al seleccionar el producto del carrito.';
+                }
+                break;
+            //Caso para leer el producto seleccionado en el carrito de tipo diferente a ropa
+            case 'readNoClothesDetailCart':
+                $_POST = $pedidos->validateForm($_POST);
+                if ($pedidos->setIdProducto($_POST['idProducto3'])) {
+                    if ($pedidos->setCantidad($_POST['cantidadCart'])) {
+                        if ($result['dataset'] = $pedidos->readNoClothesDetailCart()) {
+                            $result['status'] = 1;
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No hay registros en stock para el producto seleccionado.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Hubo un error al seleccionar la cantidad del carrito.';
+                    }
+                } else {
+                    $result['exception'] = 'Hubo un error al seleccionar el producto del carrito.';
+                }
+                break;
+            //Caso para llenar el combobox de tallas en el carrito si el producto es ropa
+            case 'readTallaProductoCart':
+                $_POST = $pedidos->validateForm($_POST);
+                if ($pedidos->setIdProducto($_POST['idProducto3'])) {
+                    if ($result['dataset'] = $pedidos->readTallaProducto()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay tallas registradas para este producto';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Hubo un error al seleccionar el producto en el carrito';
+                }
+                break;
             //Caso para checkear el inventario
-            case 'checkStock':
-                
+            case 'checkStockCart':
+                if ($pedidos->setStockReal($_POST['cantidadCart'])) {
+                    if ($pedidos->setCantidad($_POST['txtCantidad4'])) {
+                        if ($pedidos->setIdProducto($_POST['idProducto3'])) {
+                            if ($pedidos->setIdDetallePedido($_POST['idDetalle'])) {
+                                if (isset($_POST['cbTallas'])) {
+                                    if ($pedidos->setIdTalla($_POST['cbTallas'])) {
+                                        if ($pedidos->plusStock()) {
+                                            if ($pedidos->minusStock()) {
+                                                if ($pedidos->updateDetalle()) {
+                                                    $result['status'] = 1;
+                                                    $result['message'] = 'Se actualizó la cantidad correctamente.';
+                                                } else {
+                                                    if (Database::getException()) {
+                                                        $result['exception'] = Database::getException();
+                                                    } else {
+                                                        $result['exception'] = 'No se pudo actualizar correctamente.';
+                                                    }
+                                                }
+                                            } else {
+                                                if (Database::getException()) {
+                                                    $result['exception'] = Database::getException();
+                                                } else {
+                                                    $result['exception'] = 'No se pudo disminuir el stock correctamente.';
+                                                }
+                                               
+                                            }
+                                        } else {
+                                            if (Database::getException()) {
+                                                $result['exception'] = Database::getException();
+                                            } else {
+                                                $result['exception'] = 'No se pudo aumentar correctamente.';
+                                            }
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Hubo un error al seleccionar la talla.';
+                                    }
+                                } else {
+                                    $pedidos->setIdTalla(11);
+                                    if ($pedidos->plusStock()) {
+                                        if ($pedidos->minusStock()) {
+                                            if ($pedidos->updateDetalle()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Se actualizó la cantidad correctamente.';
+                                            } else {
+                                                if (Database::getException()) {
+                                                    $result['exception'] = Database::getException();
+                                                } else {
+                                                    $result['exception'] = 'No se pudo actualizar correctamente.';
+                                                }
+                                            }
+                                        } else {
+                                            if (Database::getException()) {
+                                                $result['exception'] = Database::getException();
+                                            } else {
+                                                $result['exception'] = 'No se pudo disminuir el stock correctamente.';
+                                            }
+                                           
+                                        }
+                                    } else {
+                                        if (Database::getException()) {
+                                            $result['exception'] = Database::getException();
+                                        } else {
+                                            $result['exception'] = 'No se pudo aumentar correctamente.';
+                                        }
+                                    }
+                                }
+                            } else {
+                                $result['exception'] = 'Hubo un error al seleccionar el detalle.';
+                            }
+                        } else {
+                            $result['exception'] = 'Hubo un error al seleccionar el producto.';
+                        }
+                    } else {
+                        $result['exception'] = 'Hubo un error al seleccionar la cantidad nueva.';
+                    }
+                } else {
+                    $result['exception'] = 'Hubo un error al seleccionar la cantidad.';
+                }
                 break;
             //Caso para leer datos del producto que no sea ropa o que no se haya seleccionado la talla
             default:

@@ -173,7 +173,7 @@ function fillProducts(dataset, name){
                 </div>
             </button>
             <ul class="dropdown-menu dropdown-menu-dark animate__animated animate__bounceIn mx-5" aria-labelledby="dropdownMenuButton2">
-                <li><a class="dropdown-item" href="#" onclick="openCantidadDialog(${row.idproducto})" data-bs-toggle="modal" data-bs-target="#actualizarCantidades"><span class="fas fa-cart-plus me-2"></span>Agregar al carrito</a></li>
+                <li><a class="dropdown-item" href="#" onclick="openCantidadDialog(${row.idproducto})" data-bs-toggle="modal" data-bs-target="#cantidadModal"><span class="fas fa-cart-plus me-2"></span>Agregar al carrito</a></li>
                 <li><a class="dropdown-item" href="${url}"><span class="fas fa-info-circle me-2"></span>Ver detalles</a></li>
             </ul>
         </div>

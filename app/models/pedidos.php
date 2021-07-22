@@ -18,6 +18,8 @@
     private $idInventario = null;
     private $idTalla = null;
 
+    private $stockReal = null;
+
 
     //Metodos get y set de la tabla pedido
 
@@ -112,6 +114,21 @@
         }
     }
 
+    public function setStockReal($value)
+    {
+        if ($this -> validateNaturalNumber($value)) {
+            if($value > 0){
+                $this -> stockReal = $value;
+                return true;
+            } else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
     public function setPrecioProducto($value)
     {
         if ($this -> validateNaturalNumber($value)) {
@@ -154,6 +171,12 @@
     {
         return $this -> cantidad;
     }
+
+    public function getStockReal()
+    {
+        return $this -> stockReal;
+    }
+
 
     public function getPrecioProducto()
     {
@@ -393,6 +416,17 @@
          return Database::getRow($sql,$params);
     }
 
+    //Método para leer la cantidad en stock según la talla en el carrito
+    public function showClothesStockCart() 
+    {
+        $sql = 'SELECT cantidad + ? AS cantidad FROM producto
+                INNER JOIN inventario ON inventario.idproducto = producto.idproducto
+                INNER JOIN talla ON talla.idtalla = inventario.idtalla
+                WHERE producto.idproducto = ? AND inventario.idtalla = ?';
+         $params = array($this->cantidad,$this->idProducto, $this->idTalla);
+         return Database::getRow($sql,$params);
+    }
+
     //Método para leer el producto que no sea ropa
     public function readNoClothesDetail() 
     {
@@ -404,13 +438,28 @@
          return Database::getRow($sql,$params);
     }
 
+    //Método para leer el producto que no sea ropa en el carrito
+    public function readNoClothesDetailCart() 
+    {
+        $sql = 'SELECT nombre, cantidad + ? AS cantidad, precio, marca, imagenprincipal FROM producto
+                INNER JOIN marca ON marca.idmarca = producto.idmarca
+                INNER JOIN inventario ON inventario.idproducto = producto.idproducto
+                WHERE producto.idproducto = ?';
+         $params = array($this->cantidad, $this->idProducto);
+         return Database::getRow($sql,$params);
+    }
+
     //Función para checkear cantidad de producto en stock
-    public function checkInventario(){
-        $sql = 'SELECT cantidad - ? as resta 
+    public function checkStock(){
+        $sql = 'SELECT cantidad + ? as stockreal 
                 FROM inventario 
                 WHERE idProducto = ? AND idtalla = ?';
         $params = array($this->cantidad, $this->idProducto);
-        return Database::getRows($sql, $params);
+        if ($this->stockReal = Database::getRows($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
      // Método para agregar un producto al carrito de compras.
@@ -426,7 +475,7 @@
      // Método para obtener los productos que se encuentran en el carrito de compras.
     public function readOrderDetail()
     {
-        $sql = 'SELECT idDetallePedido, nombre, detallePedido.precioProducto, detallePedido.cantidad
+        $sql = 'SELECT idDetallePedido, nombre, detallePedido.precioProducto, detallePedido.cantidad,detallePedido.idproducto
                 FROM pedido INNER JOIN detallePedido USING(idPedido) INNER JOIN producto USING(idProducto)
                 WHERE idPedido = ?';
         $params = array($this->idPedido);
@@ -489,6 +538,27 @@
                 WHERE producto.idproducto = ? AND inventario.idtalla = ?) - ?)
                 WHERE idproducto = ? AND idtalla = ?';
         $params = array($this->idProducto, $this->idTalla,$this->cantidad,$this->idProducto,$this->idTalla);
+        return Database::executeRow($sql,$params);
+    }
+
+    //Función para restar la cantidad adquirida en el pedido 
+    public function plusStock() 
+    {
+        $sql = 'UPDATE inventario SET cantidad =((SELECT cantidad FROM producto
+                INNER JOIN inventario ON inventario.idproducto = producto.idproducto
+                INNER JOIN talla ON talla.idtalla = inventario.idtalla
+                WHERE producto.idproducto = ? AND inventario.idtalla = ?) + ?)
+                WHERE idproducto = ? AND idtalla = ?';
+        $params = array($this->idProducto, $this->idTalla,$this->stockReal,$this->idProducto,$this->idTalla);
+        return Database::executeRow($sql,$params);
+    }
+
+    //Función para restar la cantidad adquirida en el pedido 
+    public function updateDetalle() 
+    {
+        $sql = 'UPDATE detallepedido SET cantidad = ?
+                WHERE iddetallepedido = ?';
+        $params = array($this->cantidad,$this->idDetallePedido);
         return Database::executeRow($sql,$params);
     }
 

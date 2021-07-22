@@ -11,6 +11,44 @@ a{
 body, nav{
     background-color: #16181D;   
 }
+.tituloProducto{
+    font-family: 'Roboto Mono', sans-serif;
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding-top: 5px;
+    text-align: start;
+    color: white;
+}
+
+.personalizacionPolus3{
+    background-color: #16181D;
+    border: hidden;
+    color:white;
+    border-radius: 16px;
+    padding: 10px;
+    width: 240px;
+    margin-bottom: 16px;
+}
+
+.cantidadProducto{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 22px;
+    text-align: center;
+    color:white;
+}
+
+.personalizacionPolus3:focus{
+    background-color: #16181D;
+    border: hidden;
+    color:white; 
+    width: 240px;
+}
+
+.textoProducto3{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
 
 .navbar{
     background-color: #16181D;
@@ -299,6 +337,7 @@ p{
     padding: 10px;
 }
 
+
 .form-control[readonly].no-gray {
     background-color:rgb(0, 0, 0) !important;
   }
@@ -306,6 +345,7 @@ p{
   .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
     background-color: rgb(0, 0, 0) !important;
  }
+ 
 
 .personalizacionPolus:focus{
     background-color: #16181D;
