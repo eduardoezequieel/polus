@@ -35,6 +35,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                     <a href="#" onclick="openCreateDialog()" data-bs-toggle="modal" data-bs-target="#agregarProductos" class="btn btn-outline-dark opciones">
                         <i class="fas fa-plus mx-2"></i> Agregar producto
                     </a> 
+                    <a href="../../app/reports/dashboard/productos.php" target="_blank" data-tooltip="Reporte de productos por categoría"
+                        class="btn btn-outline-dark opciones"><i class="fas fa-book mx-2"></i> Generar reporte
+                    </a> 
                 </div>
             </div><br><br>
             <!-- Fila de la tabla -->
