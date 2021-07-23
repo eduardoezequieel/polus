@@ -72,6 +72,12 @@ function fillTable(dataset){
 
                             <a href="#" data-bs-toggle="modal" onclick="openInfoDialog(${row.idcliente})" class="btn btn-outline-primary"><i
                                     class="fas fa-info tamanoBoton"></i></a>
+                            
+                                    <h5 class="mx-1">
+                            </h1>
+
+                            <a href="../../app/reports/dashboard/comentarios_cliente.php?id=${row.idcliente}" target="_blank" data-tooltip="Reporte de comentarios por cliente"
+                                class="btn btn-outline-dark"><i class="fas fa-book tamanoBoton"></i></a>
 
                         </div>
                     </div>

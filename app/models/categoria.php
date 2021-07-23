@@ -149,7 +149,7 @@ Class categoria extends Validator
     //Función para generar reporte productos por categoria
     public function readProductosCategoria()
     {
-        $sql = 'SELECT nombre, subcategoria, categoria, precio
+        $sql = 'SELECT nombre, precio
                 FROM producto 
                 INNER JOIN subcategoria USING(idsubcategoria)
                 INNER JOIN categoria USING(idcategoria)
