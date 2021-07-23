@@ -40,6 +40,46 @@ if(isset($_GET['action'])){
                 }
             }
             break;
+        case 'priceHistory':
+            if ($productos->setId($_POST['id_producto'])) {
+                if ($result['dataset'] = $productos->priceHistory()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Datos obtenidos';
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'El producto no posee un historial de precios.';
+                    }
+                }
+            } else {
+                $result['exception'] = 'Id incorrecto';
+            }
+
+            break;
+        case 'searchOnDashboard':
+            $_POST = $productos->validateForm($_POST);
+            if($_POST['searchOnDashboard'] != ''){
+                if($result['dataset'] = $productos->searchByNameProductOnDashboard($_POST['searchOnDashboard'])){
+                    $result['status'] = 1;
+                    $row = count($result['dataset']);
+                    if($row > 1){
+                        $result['message'] = 'Se han encontrado '.$row.' coincidencias';
+                    }else{
+                        $result['message'] = 'Se ha encontrado una coincidencia';
+                    }
+                } else{
+                    if(Database::getException()){
+                        $result['error'] = 1;
+                        $result['exception'] = Database::getException();
+                    } else{
+                        $result['exception'] = 'No hay coincidencias';
+                    }
+                }
+            } else{
+                $result['exception'] = 'Ingrese un valor para buscar';
+            }
+            break;
         case 'readAllSub':
             if($result['dataset'] = $productos->readAllSubcategorias()){
                 $result['status'] = 1;
@@ -333,4 +373,3 @@ if(isset($_GET['action'])){
 } else{ 
     print(json_encode('Recurso no disponible'));
 }
-?>

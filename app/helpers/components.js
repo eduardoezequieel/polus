@@ -650,3 +650,24 @@ function pieGraph(canvas, legends, values, title) {
         }
     });
 }
+
+
+function lineGraph(id, xAxis, yAxis, titulo){
+    var ctx = document.getElementById(id).getContext('2d');
+    var lineChart = new Chart(ctx);
+    lineChart.destroy();
+    var mylineChart = new Chart (ctx, {
+        type: 'line',
+        data: data = {
+            labels: xAxis,
+            datasets: [{
+                label: titulo,
+                data: yAxis,
+                fill: false,
+                borderColor: 'rgb(0, 0, 0)',
+                tension: 0.1
+              }]
+        }
+    });
+    
+}

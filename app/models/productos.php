@@ -143,10 +143,31 @@
         //Metodo para cargar productos en el dashboard
         public function readOnDashboard()
         {
-            $sql = 'SELECT nombre, marca.marca 
+            $sql = 'SELECT idproducto, nombre, marca.marca 
                     FROM producto 
                     INNER JOIN marca ON producto.idmarca = marca.idmarca';
             $params = null;
+            return Database::getRows($sql, $params);
+        }
+
+        //Metodo para buscar productos en el dashboard
+        public function searchByNameProductOnDashboard($value){
+            $sql = 'SELECT idproducto, nombre, marca.marca 
+                    FROM producto 
+                    INNER JOIN marca ON producto.idmarca = marca.idmarca
+                    WHERE nombre ILIKE ?';
+            $params = array("%$value%");
+            return Database::getRows($sql, $params);
+        }
+
+        //Metodo para ver historial de precios de un producto
+        public function priceHistory()
+        {
+            $sql = 'SELECT producto.nombre, historialprecio.precio, fecha FROM historialPrecio 
+                    INNER JOIN producto USING(idproducto)
+                    WHERE idproducto = ?
+                    LIMIT 5';
+            $params = array($this->idProducto);
             return Database::getRows($sql, $params);
         }
 

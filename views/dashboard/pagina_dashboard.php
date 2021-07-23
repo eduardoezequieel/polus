@@ -20,13 +20,16 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 		<!-- Mostrar opciones -->
 		<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
 			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<h4 class="text-center">Historial de Precios por Producto</h4>
-					<div class="d-flex flex-column justify-content-start align-items-start">
-						<h5 class="mt-2">Producto seleccionado: <span>asd</span></h5>
-						<button id="btnHistorialPrecio" data-bs-toggle="modal" data-bs-target="#seleccionarProductoPrecio" class="btn btn-outline-dark" data-toggle="#seleccionarProductoPrecio">Seleccionar...</button>
-					</div>
+				<div class="form-group" id="priceHistorydiv">
+					<form method="post" id="priceHistory-form">
+						<input class="d-none" type="text" id="id_producto" name="id_producto" value="1">
+						<button id="btnPriceHistory" class="d-none" type="submit">Enviar</button>
+					</form>
+					<h4 class="text-center lead">Historial de Precios por Producto</h4>
 					<canvas id="historialPrecio" width="400" height="250"></canvas>
+					<div class="d-flex flex-column justify-content-center align-items-center">
+						<button id="btnHistorialPrecio" data-bs-toggle="modal" data-bs-target="#seleccionarProductoPrecio" class="btn btn-outline-dark btn-sm" data-toggle="#seleccionarProductoPrecio">Seleccionar...</button>
+					</div>
 				</div>
 			</div>
 			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
@@ -55,9 +58,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 					<div class="row">
 						<div class="col-12 d-flex flex-column">
 							<form class="d-flex mb-3" id='search-historialPrecio' name='search-historialPrecio'>
-								<input class="form-control me-2 w-50" type="search" placeholder="Buscar... {Nombre del Producto}" aria-label="Search" id='search' name='search'>
+								<input class="form-control me-2 w-50" type="search" placeholder="Buscar... {Nombre del Producto}" aria-label="Search" id='searchOnDashboard' name='searchOnDashboard'>
 								<button class="btn btn-outline-dark  me-2" type="submit">Buscar</button>
-								<button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
+								<button class="btn btn-outline-dark" id="btnReiniciarProductos">Reiniciar</button>
 							</form>
 						</div>
 					</div>

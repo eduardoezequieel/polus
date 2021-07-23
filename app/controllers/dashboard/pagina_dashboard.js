@@ -1,18 +1,21 @@
 //Constante de la ruta de la API
-const API_USUARIOS = '../../api/dashboard/usuario.php?=action';
-const API_PRODUCTOS2 = '../../api/dashboard/productos.php?=action';
+const API_PRODUCTOS2 = '../../app/api/dashboard/productos.php?action=';
 
 //Método que se ejecuta cuando carga la página
 document.addEventListener('DOMContentLoaded', function(){
-    //let imageName = '60948d8a0ef5f.jpg';
-    //document.getElementById('boton').textContent = imageName;
-    lineGraph();
+    //Se carga la grafica con un valor predeterminado
+    priceHistory();
 });
 
 //Funcion que se ejecuta para cargar la tabla de productos en el dashboard
 document.getElementById('btnHistorialPrecio').addEventListener('click',function(event){
     event.preventDefault();
+    //Ejecutamos la funcion
+    readProductsOnDashboard();
+});
 
+//Funcion que carga los productos en el dashboard
+function readProductsOnDashboard(){
     fetch(API_PRODUCTOS2 + 'readAllOnDashboard', {
         method: 'get'
     }).then(function (request) {
@@ -35,8 +38,7 @@ document.getElementById('btnHistorialPrecio').addEventListener('click',function(
     }).catch(function (error) {
         console.log(error);
     });
-
-});
+}
 
 function fillProductos(dataset){
     let content = '';
@@ -49,9 +51,9 @@ function fillProductos(dataset){
                 <td>${row.marca}</td>
 
                 <th scope="row">
-                    <div class="row justify-c">
-                        <div class="col-12 d-flex">               
-                            <a href="#" onclick="" class="btn btn-outline-success"><i class="fas fa-edit tamanoBoton"></i></a>
+                    <div class="row justify-content-end">
+                        <div class="col-12 d-flex justify-content-end">               
+                            <a href="#" onclick="setProductOnGraph(${row.idproducto})" class="btn btn-outline-primary"><i class="fas fa-plus tamanoBoton"></i></a>
                         </div>
                     </div>
                 </th>
@@ -62,20 +64,111 @@ function fillProductos(dataset){
     document.getElementById('tbody-historialPrecio').innerHTML = content;
 }
 
-function lineGraph(){
-    var ctx = document.getElementById('historialPrecio').getContext('2d');
-    let lineChart = new Chart(ctx, {
-        type: 'line',
-        data: data = {
-            labels: ["January","February","March","April","May"],
-            datasets: [{
-                label: 'Precio del producto',
-                data: [65, 59, 100, 20, 30],
-                fill: false,
-                borderColor: 'rgb(0, 0, 0)',
-                tension: 0.1
-              }]
+//Se ejecuta al presionar el boton del formulario
+document.getElementById('priceHistory-form').addEventListener('submit',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+    //Se ejecuta la función con la petición
+    priceHistory();
+})
+
+//Funcion que se ejecuta al hacer click en un registro
+function setProductOnGraph(id){
+    //Se asigna el id del producto seleccionado al input invisible
+    document.getElementById('id_producto').value = id;
+    //Se hace click al input invisible para accionar el metodo submit del form
+    document.getElementById('btnPriceHistory').click();
+    //Se cierra el modal
+    closeModal('seleccionarProductoPrecio');
+}
+
+//Petición para obtener información y setearla a la funcion lineGraph ubicada en components.js
+function priceHistory(){
+    fetch(API_PRODUCTOS2 + 'priceHistory', {
+        method: 'post',
+        body: new FormData(document.getElementById('priceHistory-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    // Se declaran los arreglos para guardar los datos por gráficar.
+                    let fechas = [];
+                    let precio = [];
+                    let titulo = [];    
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se asignan los datos a los arreglos.
+                        titulo.push(row.nombre);
+                        precio.push(row.precio);
+                        fechas.push(row.fecha);
+                    });
+                    //Se destruye el grafico actual para poder crear otro;
+                    document.getElementById('priceHistorydiv').removeChild(document.getElementById('historialPrecio'));
+                    //Creamos un nuevo canvas
+                    var graph = document.createElement('canvas');
+                    //Asignamos el mismo id
+                    graph.id = 'historialPrecio';
+                    //Aplicamos tamaños
+                    graph.width = '400';
+                    graph.height = '250';
+                    //Añadimos el elemento al div
+                    document.getElementById('priceHistorydiv').appendChild(graph);
+                    //lineGraph
+                    lineGraph('historialPrecio',fechas, precio, titulo[1]+' ($)');
+                } else{
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
         }
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+//Funcion que se ejecuta en el evento submit del formulario de busqueda
+document.getElementById('search-historialPrecio').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault()
+    //Mandamos a llamar a la función
+    searchRowsOnDashboard();
+})
+
+//Funcion que reinicia la busqueda al presionar el boton btnReiniciarProductos
+document.getElementById('btnReiniciarProductos').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Cargamos la funcion
+    readProductsOnDashboard();
+})
+
+//Funcion para realizar busquedas de productos
+function searchRowsOnDashboard() {
+    fetch(API_PRODUCTOS2 + 'searchOnDashboard', {
+        method: 'post',
+        body: new FormData(document.getElementById('search-historialPrecio'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillProductos(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
     });
 }
 
