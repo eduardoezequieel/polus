@@ -574,5 +574,20 @@
         return Database::getRows($sql, $params);
     }
 
+    //Función para generar reporte productos más vendidos
+    public function readProductsSold()
+    {
+        $sql = 'SELECT nombre, COUNT(idproducto) AS totalvendidos, precio
+                FROM detallepedido
+                INNER JOIN pedido USING(idpedido)
+                INNER JOIN producto USING(idproducto) 
+                WHERE idestadopedido = 2
+                GROUP BY nombre, precio
+                ORDER BY totalvendidos DESC
+                LIMIT 10';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
  }
 ?>
