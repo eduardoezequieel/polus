@@ -20,15 +20,16 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                 </div><br>
                  <!-- Espacio para buscar -->
                 <div class="row animate__animated animate__fadeInUp animate__faster">
-                    <div class="col-12">
-                        <form class="d-flex" id="search-form" name="search-form">
-                            <input class="form-control me-2" type="search" id="search" name="search" placeholder="Buscar..." aria-label="Search">
-                            <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                    <div class="col-lg-8 formulario2">
+                        <form class="d-flex" id="search-form">
+                            <input class="form-control me-2" type="search" placeholder="Buscar... {Cliente}" aria-label="Search" id="search" name="search">
+                            <button class="btn btn-outline-dark me-3" type="submit">Buscar</button>
+                            <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
                         </form>
                     </div>
                 </div><br><br>
 
-                <div class="row mb-3 animate__animated animate__fadeInUp animate__faster">
+                <div class="row mb-3 animate__animated animate__fadeInUp animate__faster" id="filtro">
                     <div class="col-12">
                         <label for="cbEstadoPedido" class="form-label">Filtrar por estado:</label>
                         <form class="d-flex" id="search-form-estado" name="search-form-estado">
@@ -36,11 +37,14 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','pedidos_privado_estilos.css
                                 
                             </select>
                             <button class="btn btn-outline-dark me-2" id="btnFiltrar">Filtrar</button>
-                            <button class="btn btn-outline-dark" id="btnReiniciar">Reiniciar</button>
+                           <button class="btn btn-outline-dark" id="btnReiniciar1">Reiniciar</button>
                         </form>
                         
                     </div>
                 </div>
+
+                <a class="btn btn-outline-dark opciones" href="../../app/reports/dashboard/pedidos_estados.php" target="_blank" data-tooltip="Reporte de productos por categoría">
+                    <i class="fas fa-book mx-2"></i> Generar reporte</a><br><br>
 
                 <div class="row animate__animated animate__fadeInUp animate__faster table-responsive">
                 <!-- Columnas de tabla de datos -->

@@ -562,5 +562,17 @@
         return Database::executeRow($sql,$params);
     }
 
+    //Función para generar reporte productos por marca
+    public function readPedidosEstado()
+    {
+        $sql = 'SELECT CONCAT(apellido, \', \', nombre) AS cliente, fechapedido
+                FROM pedido
+                INNER JOIN estadopedido USING(idestadopedido)
+                INNER JOIN cliente USING(idcliente)
+                WHERE idestadopedido = ?';
+        $params = array($this->idEstadoPedido);
+        return Database::getRows($sql, $params);
+    }
+
  }
 ?>

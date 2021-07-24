@@ -41,9 +41,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                             Generar Reportes
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../../app/reports/dashboard/productos_categoria.php" target="_blank" data-tooltip="Reporte de productos por categoría">
+                            <li><a class="dropdown-item" href="../../app/reports/dashboard/productos_categorias.php" target="_blank" data-tooltip="Reporte de productos por categoría">
                                 Productos por categoría</a></li>
-                                <li><a class="dropdown-item" href="../../app/reports/dashboard/productos_marca.php" target="_blank" data-tooltip="Reporte de productos por categoría">
+                                <li><a class="dropdown-item" href="../../app/reports/dashboard/productos_marcas.php" target="_blank" data-tooltip="Reporte de productos por categoría">
                                 Productos por marca</a></li>
                         </ul>
                     </div>

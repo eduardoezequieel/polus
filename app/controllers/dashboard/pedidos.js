@@ -4,6 +4,7 @@ const ENDPOINT_ESTADOPEDIDO = '../../app/api/dashboard/pedidos.php?action=readAl
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_PEDIDOS);
     fillSelect(ENDPOINT_ESTADOPEDIDO,'cbEstadoPedidoSearch',null);
+    document.getElementById('filtro').className= 'd-none';
 });
 
 //Funcion para el llenado de tablas.
