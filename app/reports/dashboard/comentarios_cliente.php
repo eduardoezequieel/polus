@@ -38,17 +38,15 @@ if (isset($_GET['id'])) {
                             // Se establece la fuente para los encabezados.
                             $pdf->SetFont('Times', 'B', 11);
                             // Se imprimen las celdas con los encabezados.
-                            $pdf->Cell(85, 10, utf8_decode('Comentario'), 1, 0, 'C', 1);
-                            $pdf->Cell(55, 10, utf8_decode('Respuesta'), 1, 0, 'C', 1);
+                            $pdf->Cell(140, 10, utf8_decode('Comentario'), 1, 0, 'C', 1);
                             $pdf->Cell(46, 10, utf8_decode('Producto'), 1, 1, 'C', 1);
                             // Se establece la fuente para los datos de los comentario.
                             $pdf->SetFont('Times', '', 11);
                             // Se recorren los registros ($dataComments) fila por fila ($rowComment).
                             foreach ($dataComments as $rowComment) {
-                                // Se imprimen las celdas con los datos de los comentarios
-                                $pdf->Cell(85, 10, utf8_decode($rowComment['comentario']), 1, 0, 'C');
-                                $pdf->Cell(55, 10, $rowComment['respuesta'], 1, 0, 'C');
-                                $pdf->Cell(46, 10, $rowComment['producto'], 1, 1, 'C');
+                                //Se imprimen las celdas
+                                $pdf->Cell(140, 10, $rowComment['comentario'], 1, 0);
+                                $pdf->Cell(46, 10, $rowComment['producto'], 1, 1);
                             }
                         } else {
                             $pdf->Cell(0, 10, utf8_decode('No hay comentarios para está puntuación.'), 1, 1);

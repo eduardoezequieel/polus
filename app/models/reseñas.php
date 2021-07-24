@@ -301,7 +301,7 @@ Class Resenas extends Validator
     //Función para generar reporte de comentarios por cliente
     public function readCommentsClient()
     {
-        $sql = 'SELECT comentario, respuesta, producto.nombre AS producto
+        $sql = 'SELECT comentario, producto.nombre AS producto
                 FROM resena
                 INNER JOIN puntuacion USING(idpuntuacion)
                 INNER JOIN cliente USING(idcliente)

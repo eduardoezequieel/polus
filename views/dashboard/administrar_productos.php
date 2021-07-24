@@ -35,9 +35,18 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','productos_privado_estilos.c
                     <a href="#" onclick="openCreateDialog()" data-bs-toggle="modal" data-bs-target="#agregarProductos" class="btn btn-outline-dark opciones">
                         <i class="fas fa-plus mx-2"></i> Agregar producto
                     </a> 
-                    <a href="../../app/reports/dashboard/productos.php" target="_blank" data-tooltip="Reporte de productos por categoría"
-                        class="btn btn-outline-dark opciones"><i class="fas fa-book mx-2"></i> Generar reporte
-                    </a> 
+                    <!-- Default dropup button -->
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-book mx-2"></i> 
+                            Generar Reportes
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../../app/reports/dashboard/productos_categoria.php" target="_blank" data-tooltip="Reporte de productos por categoría">
+                                Productos por categoría</a></li>
+                                <li><a class="dropdown-item" href="../../app/reports/dashboard/productos_marca.php" target="_blank" data-tooltip="Reporte de productos por categoría">
+                                Productos por marca</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div><br><br>
             <!-- Fila de la tabla -->
