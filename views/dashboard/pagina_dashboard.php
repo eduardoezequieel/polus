@@ -33,7 +33,10 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 				</div>
 			</div>
 			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-
+				<div class="form-group">
+					<h4 class="text-center lead">Productos Mejores Puntuados</h4>
+					<canvas id="mejorPuntuados" width="400" height="250"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>

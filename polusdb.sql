@@ -385,3 +385,18 @@ EXECUTE PROCEDURE SP_historialPrecio();
 
 --Cambios 24/07/2021
 ALTER TABLE resena ALTER COLUMN comentario TYPE CHARACTER VARYING(80) USING CAST(comentario AS CHARACTER VARYING(200));
+
+--Tabla faltante
+CREATE TABLE estadoResena(
+	idEstadoResena SERIAL NOT NULL PRIMARY KEY,
+	estadoResena VARCHAR(20) NOT NULL
+);
+
+ALTER TABLE resena ADD COLUMN idestadoresena INTEGER NOT NULL REFERENCES estadoResena(idestadoresena);
+
+INSERT INTO estadoResena(estadoResena) VALUES('Visible'),('Oculto');
+
+SELECT avg(idpuntuacion) as Promedio, count(idpuntuacion) as Puntuaciones, producto.nombre FROM resena 
+INNER JOIN producto USING (idproducto)
+GROUP BY producto.idproducto
+ORDER BY promedio DESC
