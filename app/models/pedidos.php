@@ -592,18 +592,13 @@
     //Función para generar reporte productos por marca
     public function readPercentPedidosEstado()
     {
-        $sql = 'SELECT COUNT(idpedido) FROM pedido';
+        $sql = 'SELECT estadopedido, (COUNT(idpedido) * 100) / (SELECT COUNT(idpedido) FROM pedido) 
+                AS porcentajestados
+                FROM pedido
+                INNER JOIN estadopedido USING(idestadopedido)
+                GROUP BY estadopedido';
         $params = null;
-        if ($this->idPedido = Database::getRow($sql, $params)) {
-            $sql = 'SELECT estadopedido, (COUNT(idpedido) * 100) / ? AS porcentajestados
-                    FROM pedido
-                    INNER JOIN estadopedido USING(idestadopedido)
-                    GROUP BY estadopedido';
-            $params = array($this->idPedido);
-            return Database::getRows($sql, $params);
-        } else {
-            return false;
-        }
+        return Database::getRows($sql, $params);
     }
 
  }
