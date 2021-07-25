@@ -1,18 +1,22 @@
 //Constante de la ruta de la API
 const API_PRODUCTOS2 = '../../app/api/dashboard/productos.php?action=';
+const API_RESEÑAS2 = '../../app/api/dashboard/reseñas.php?action=';
 
 //Método que se ejecuta cuando carga la página
 document.addEventListener('DOMContentLoaded', function(){
     //Se carga la grafica con un valor predeterminado
     priceHistory();
+    bestScore();
 });
 
 //Funcion que se ejecuta para cargar la tabla de productos en el dashboard
 document.getElementById('btnHistorialPrecio').addEventListener('click',function(event){
     event.preventDefault();
     //Ejecutamos la funcion
-    readProductsOnDashboard();
+    readProductsOnDashboard();    
 });
+
+
 
 //Funcion que carga los productos en el dashboard
 function readProductsOnDashboard(){
@@ -111,12 +115,60 @@ function priceHistory(){
                     //Asignamos el mismo id
                     graph.id = 'historialPrecio';
                     //Aplicamos tamaños
-                    graph.width = '400';
-                    graph.height = '250';
+                    graph.width = '20';
+                    graph.height = '20';
                     //Añadimos el elemento al div
                     document.getElementById('priceHistorydiv').appendChild(graph);
                     //lineGraph
                     lineGraph('historialPrecio',fechas, precio, titulo[1]+' ($)');
+                } else{
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+//Función que obtiene los datos de los productos mejor puntuados
+function bestScore(){
+    fetch(API_RESEÑAS2 + 'bestScore', {
+        method: 'get'    
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    // Se declaran los arreglos para guardar los datos por gráficar.
+                    let productos = [];
+                    let promedios = [];
+                    let cantidad = [];
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se asignan los datos a los arreglos.
+                        productos.push(row.nombre);
+                        promedios.push(row.promedio);
+                        cantidad.push(row.puntuaciones);
+                    });
+
+                    //Hacemos un substring al arreglo para eliminar todos los 0
+                    for (let index = 0; index < promedios.length; index++) {
+                        promedios[index] = promedios[index].substring(0,3);
+                    }
+
+                    let datos = [];
+                    for (let index = 0; index < cantidad.length; index++) {
+                        productos[index] = productos[index] + ', Opiniones: ' + cantidad[index];
+                    }
+
+                    console.log(productos);
+                    console.log(promedios);
+
+                    pieGraph(promedios, 'mejorPuntuados', productos);
                 } else{
                     sweetAlert(2, response.exception, null);
                 }

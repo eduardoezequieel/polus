@@ -26,7 +26,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 						<button id="btnPriceHistory" class="d-none" type="submit">Enviar</button>
 					</form>
 					<h4 class="text-center lead">Historial de Precios por Producto</h4>
-					<canvas id="historialPrecio" width="400" height="250"></canvas>
+					<canvas id="historialPrecio" width="100" height="100"></canvas>
 					<div class="d-flex flex-column justify-content-center align-items-center">
 						<button id="btnHistorialPrecio" data-bs-toggle="modal" data-bs-target="#seleccionarProductoPrecio" class="btn btn-outline-dark btn-sm" data-toggle="#seleccionarProductoPrecio">Seleccionar...</button>
 					</div>
@@ -35,7 +35,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
 				<div class="form-group">
 					<h4 class="text-center lead">Productos Mejores Puntuados</h4>
-					<canvas id="mejorPuntuados" width="400" height="250"></canvas>
+					<canvas id="mejorPuntuados" width="100" height="100"></canvas>
 				</div>
 			</div>
 		</div>

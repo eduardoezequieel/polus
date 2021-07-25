@@ -161,6 +161,17 @@ Class Resenas extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Funcion para obtener el promedio de los productos con mejor puntuación
+    public function bestScore()
+    {
+        $sql = 'SELECT avg(idpuntuacion) as Promedio, count(idpuntuacion) as Puntuaciones, producto.nombre FROM resena 
+                INNER JOIN producto USING (idproducto)
+                GROUP BY producto.idproducto
+                ORDER BY promedio DESC';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     //Función para buscar registros en la tabla reseña
     public function searchRows($value)
     {

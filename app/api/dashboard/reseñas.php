@@ -49,6 +49,18 @@
                         $result['exception'] = 'Reseña seleccionado incorrecto';
                     }
                     break;
+                case 'bestScore':
+                    if ($result['dataset'] = $reseñas->bestScore()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Promedios obtenidos';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay promedios.';
+                        }
+                    }
+                    break;
                 case 'search':
                     $_POST = $reseñas->validateForm($_POST);
                     if ($reseñas->setIdProducto($_POST['idProducto2'])) {
