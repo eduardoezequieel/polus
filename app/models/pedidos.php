@@ -590,7 +590,7 @@
     }
 
     //Función para generar reporte productos por marca
-    public function readPercentPedidosEstado()
+    public function orderPercentages()
     {
         $sql = 'SELECT estadopedido, (COUNT(idpedido) * 100) / (SELECT COUNT(idpedido) FROM pedido) 
                 AS porcentajestados

@@ -536,37 +536,45 @@ function checkDireccion(){
 *
 *   Retorno: ninguno.
 */
-function barGraph(canvas, xAxis, yAxis, legend, title) {
-    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
-    const context = document.getElementById(canvas).getContext('2d');
-    // Se crea una instancia para generar la gráfica con los datos recibidos.
-    const chart = new Chart(context, {
+//Funcion para hacer un grafico de barras.
+function barGraph(datos, id, variables, titulo){
+    //Arreglo que almacena colores de forma aleatoria
+    let colors = [];
+    let values = [];
+    //Arreglo que guarda los valores
+    values = datos;
+    // Se declara e inicializa una variable para sumar los valores a graficar.
+    let total = 0;
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se van acumulando los valores.
+    for (i = 0; i < values.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+        total += values[i];
+    }
+
+    //Se crea una variable con el id y el contexto
+    var ctx = document.getElementById(id).getContext('2d');
+    //Chart
+    var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: xAxis,
+            labels: variables,
             datasets: [{
-                label: legend,
-                data: yAxis,
-                borderColor: '#000000',
-                borderWidth: 1
+                label: titulo,
+                data: values,
+                backgroundColor: colors,
+                hoverOffset: 4
             }]
         },
         options: {
-            responsive: true,
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: title
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        precision: 0
+            plugins: {
+                tooltip: {
+                    displayColors: false,
+                    callbacks: {
+                        //De tooltipItem obtenemos el index seleccionado al momento de hacer hover para darle formato.
+                        
                     }
-                }]
+
+                }
             }
         }
     });

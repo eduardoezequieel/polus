@@ -1,60 +1,15 @@
 //Constante de la ruta de la API
 const API_PRODUCTOS2 = '../../app/api/dashboard/productos.php?action=';
 const API_RESEÑAS2 = '../../app/api/dashboard/reseñas.php?action=';
+const API_PEDIDOS2 = '../../app/api/dashboard/pedidos.php?action=';
 
 //Método que se ejecuta cuando carga la página
 document.addEventListener('DOMContentLoaded', function(){
     //Se carga la grafica con un valor predeterminado
     priceHistory();
     bestScore();
-    var datos = ['1','2','3']
-    var productos = ['asd','def','zxc']
-    barGraph(datos, 'pedidosPorcentaje', productos, 'titulo');
+    orderPercentages();
 });
-
-//Funcion para hacer un grafico de pastel.
-function barGraph(datos, id, variables, titulo){
-    //Arreglo que almacena colores de forma aleatoria
-    let colors = [];
-    let values = [];
-    //Arreglo que guarda los valores
-    values = datos;
-    // Se declara e inicializa una variable para sumar los valores a graficar.
-    let total = 0;
-    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se van acumulando los valores.
-    for (i = 0; i < values.length; i++) {
-        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
-        total += values[i];
-    }
-
-    //Se crea una variable con el id y el contexto
-    var ctx = document.getElementById(id).getContext('2d');
-    //Chart
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: variables,
-            datasets: [{
-                label: titulo,
-                data: values,
-                backgroundColor: colors,
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            plugins: {
-                tooltip: {
-                    displayColors: false,
-                    callbacks: {
-                        //De tooltipItem obtenemos el index seleccionado al momento de hacer hover para darle formato.
-                        
-                    }
-
-                }
-            }
-        }
-    });
-}
 
 //Funcion que se ejecuta para cargar la tabla de productos en el dashboard
 document.getElementById('btnHistorialPrecio').addEventListener('click',function(event){
@@ -62,8 +17,6 @@ document.getElementById('btnHistorialPrecio').addEventListener('click',function(
     //Ejecutamos la funcion
     readProductsOnDashboard();    
 });
-
-
 
 //Funcion que carga los productos en el dashboard
 function readProductsOnDashboard(){
@@ -180,6 +133,39 @@ function priceHistory(){
     });
 }
 
+//Funcion para obtener los estados de los pedidos registrados en porcentajes.
+function orderPercentages(){
+    fetch(API_PEDIDOS2 + 'orderPercentages', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    let estados = [];
+                    let porcentajes = [];
+
+                    response.dataset.map(function(row){
+                        estados.push(row.estadopedido);
+                        porcentajes.push(row.porcentajestados);
+                    });
+
+                    barGraph(porcentajes, 'pedidosPorcentaje', estados, 'Estado de los Pedidos');
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillProductos(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
 //Función que obtiene los datos de los productos mejor puntuados
 function bestScore(){
     fetch(API_RESEÑAS2 + 'bestScore', {
@@ -211,9 +197,6 @@ function bestScore(){
                     for (let index = 0; index < cantidad.length; index++) {
                         productos[index] = productos[index] + ', Opiniones: ' + cantidad[index];
                     }
-
-                    console.log(productos);
-                    console.log(promedios);
 
                     pieGraph(promedios, 'mejorPuntuados', productos);
                 } else{

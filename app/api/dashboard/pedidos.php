@@ -45,6 +45,18 @@
                         }
                     }
                     break;
+                case 'orderPercentages':
+                    if ($result['dataset'] = $pedidos->orderPercentages()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Pedidos obtenidos';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay pedidos.';
+                        }
+                    }
+                    break;
                 case 'readOne':
                     $_POST = $pedidos -> validateForm($_POST);
                     if($pedidos->setIdPedido($_POST['idPedido'])){
