@@ -2,6 +2,7 @@
 const API_PRODUCTOS2 = '../../app/api/dashboard/productos.php?action=';
 const API_RESEÑAS2 = '../../app/api/dashboard/reseñas.php?action=';
 const API_PEDIDOS2 = '../../app/api/dashboard/pedidos.php?action=';
+const API_INVENTARIO2 = '../../app/api/dashboard/inventario.php?action=';
 
 //Método que se ejecuta cuando carga la página
 document.addEventListener('DOMContentLoaded', function(){
@@ -42,6 +43,56 @@ function readProductsOnDashboard(){
     }).catch(function (error) {
         console.log(error);
     });
+}
+
+//Funcion que carga los productos en el dashboard
+function readInventoryOnDashboard(){
+    fetch(API_INVENTARIO2 + 'readAll', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillProductos(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function fillInventory(dataset){
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+            <tr>
+                <td>${row.nombre}</td>
+                <td>${row.marca}</td>
+
+                <th scope="row">
+                    <div class="row justify-content-end">
+                        <div class="col-12 d-flex justify-content-end">               
+                            <a href="#" onclick="setProductOnGraph(${row.idproducto})" class="btn btn-outline-primary"><i class="fas fa-plus tamanoBoton"></i></a>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        `;
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-historialPrecio').innerHTML = content;
 }
 
 function fillProductos(dataset){

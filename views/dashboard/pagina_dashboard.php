@@ -45,7 +45,17 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 				<canvas id="pedidosPorcentaje" width="100px" height="100px"></canvas>
 			</div>
 			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-
+				<div class="form-group" id="inventoryHistorydiv">
+					<form method="post" id="inventoryHistory-form">
+						<input class="d-none" type="text" id="id_inventario" name="id_inventario" value="1">
+						<button id="btnInventoryHistory" class="d-none" type="submit">Enviar</button>
+					</form>
+					<h4 class="text-center lead">Historial de Inventario por Producto</h4>
+					<canvas id="historialPrecio" width="100" height="100"></canvas>
+					<div class="d-flex flex-column justify-content-center align-items-center">
+						<button id="btnInventarioPrecio" data-bs-toggle="modal" data-bs-target="#seleccionarInventario" class="btn btn-outline-dark btn-sm" data-toggle="#seleccionarProductoPrecio">Seleccionar...</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -99,6 +109,56 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 	</div>
 </div>
 <!-- Fin del Modal -->
+
+<!-- Modal para seleccionar un producto del inventario para la grafica -->
+<div class="modal fade" id="seleccionarInventario" tabindex="-1" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content justify-content-center px-3 py-2">
+				<!-- Cabecera del Modal -->
+				<div class="modal-header">
+					<!-- Titulo -->
+					<h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+							class="fas fa-info-circle mx-2"></span>Seleccionar Producto del Inventario</h5>
+					<!-- Boton para Cerrar -->
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<br>
+				<!-- Contenido del Modal -->
+				<div class="textoModal px-3 pb-4 mt-2">
+					<div class="row">
+						<div class="col-12 d-flex flex-column">
+							<form class="d-flex mb-3" id='search-historialInventario' name='search-historialInventario'>
+								<input class="form-control me-2 w-50" type="search" placeholder="Buscar... {Nombre del Producto}" aria-label="Search" id='searchInventoryOnDashboard' name='searchInventoryOnDashboard'>
+								<button class="btn btn-outline-dark  me-2" type="submit">Buscar</button>
+								<button class="btn btn-outline-dark" id="btnReiniciarProductos">Reiniciar</button>
+							</form>
+						</div>
+					</div>
+					<div class="row table-responsive">
+						<!-- Columnas de tabla de datos -->
+						<div class="col-12">
+							<table class="table">
+								<thead class="bg-dark tabla">
+									<tr>
+										<th scope="col">Producto</th>
+										<th scope="col">Marca</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody id='tbody-historialPrecio'>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				<!-- Fin del Contenido del Modal -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin del Modal -->
+
 <!-- Bootstrap core JavaScript -->
 <?php
     //Se imprime el script para las direcciones de Bootstrap core JavaScript
