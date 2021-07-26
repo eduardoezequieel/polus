@@ -35,7 +35,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
 				<div class="form-group">
 					<h4 class="text-center lead">Productos Mejores Puntuados</h4>
-					<canvas id="mejorPuntuados" width="100" height="100"></canvas>
+					<canvas id="mejorPuntuados" width="20px" height="20px"></canvas>
 				</div>
 			</div>
 		</div>
@@ -51,11 +51,17 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 						<button id="btnInventoryHistory" class="d-none" type="submit">Enviar</button>
 					</form>
 					<h4 class="text-center lead">Historial de Inventario por Producto</h4>
-					<canvas id="historialPrecio" width="100" height="100"></canvas>
+					<canvas id="historialInventario" width="100" height="100"></canvas>
 					<div class="d-flex flex-column justify-content-center align-items-center">
 						<button id="btnInventarioPrecio" data-bs-toggle="modal" data-bs-target="#seleccionarInventario" class="btn btn-outline-dark btn-sm" data-toggle="#seleccionarProductoPrecio">Seleccionar...</button>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster mt-4">
+			<div class="col-12">
+				<h4 class="text-center lead">Clientes Registrados</h4>
+				<canvas id="clientesMes"></canvas>
 			</div>
 		</div>
 	</div>
@@ -129,9 +135,9 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 					<div class="row">
 						<div class="col-12 d-flex flex-column">
 							<form class="d-flex mb-3" id='search-historialInventario' name='search-historialInventario'>
-								<input class="form-control me-2 w-50" type="search" placeholder="Buscar... {Nombre del Producto}" aria-label="Search" id='searchInventoryOnDashboard' name='searchInventoryOnDashboard'>
+								<input class="form-control me-2 w-50" type="search" placeholder="Buscar... {Nombre del Producto}" aria-label="Search" id='search' name='search'>
 								<button class="btn btn-outline-dark  me-2" type="submit">Buscar</button>
-								<button class="btn btn-outline-dark" id="btnReiniciarProductos">Reiniciar</button>
+								<button class="btn btn-outline-dark" id="btnReiniciarInventario">Reiniciar</button>
 							</form>
 						</div>
 					</div>
@@ -142,11 +148,12 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 								<thead class="bg-dark tabla">
 									<tr>
 										<th scope="col">Producto</th>
-										<th scope="col">Marca</th>
+										<th scope="col">Talla</th>
+										<th scope="col">Cantidad</th>
 										<th scope="col"></th>
 									</tr>
 								</thead>
-								<tbody id='tbody-historialPrecio'>
+								<tbody id='tbody-historialInventario'>
 								</tbody>
 							</table>
 						</div>

@@ -30,6 +30,20 @@
                         }
                     }
                     break;
+                case 'clientesMes':
+                    if($result['dataset'] = $clientes->clientesMes()){
+                        $result['status'] = 1;
+                        $result['message'] = 'Se encontraron más de un registro';
+                    } else {
+                        //Verificando si hubo problemas en la base
+                        if(Database::getException()){
+                            $result['error'] = 1;
+                            $result['exception'] = Database::getException();
+                        } else {    
+                            $result['exception'] = 'No existen clientes en la base';
+                        }
+                    }
+                    break;
                 case 'readOne':
                     $_POST = $clientes->validateForm($_POST);
                         if($clientes->setId($_POST['idCliente'])){

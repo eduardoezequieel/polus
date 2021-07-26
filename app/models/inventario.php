@@ -71,6 +71,17 @@
             return $this->idTalla;
         }
 
+        //Metodo para obtener el historial del inventario de un producto;
+        public function inventoryHistory()
+        {
+            $sql = 'SELECT inventario.idinventario, producto.nombre, historialinventario.cantidad, fecha FROM historialinventario
+                    INNER JOIN inventario USING (idinventario)
+                    INNER JOIN producto USING (idproducto)
+                    WHERE idinventario = ?';
+            $params = array($this->idInventario);
+            return Database::getRows($sql, $params);
+        }
+
         //Método para leer todo
         public function readAll()
         {

@@ -35,7 +35,6 @@ function fillTable(dataset){
 
                             <h5 class="mx-1"></h5>
 
-                            <a href="#" onclick="changeAmount(${row.idinventario},'${row.nombre}','${row.talla}', ${row.cantidad})" class="btn btn-outline-primary"><i class="fas fa-plus tamanoBoton"></i></a>
 
                         </div>
                     </div>

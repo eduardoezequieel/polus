@@ -207,6 +207,16 @@
             return $this -> idEstadoUsuario;
         }
 
+        //Ver clientes registrados por cada mes
+        public function clientesMes()
+        {
+            $sql = 'SELECT COUNT(idcliente) as clientesRegistrados, EXTRACT(MONTH FROM fecharegistro) as Mes 
+                    FROM cliente 
+                    GROUP BY mes ORDER BY mes DESC LIMIT 5';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
+
         //Métodos para administrar cuenta del usuario 
         public function checkUser($correo)
         {

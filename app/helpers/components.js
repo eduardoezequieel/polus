@@ -584,6 +584,55 @@ function barGraph(datos, id, variables, titulo){
     });
 }
 
+//Funcion para hacer un grafico de barras.
+function barGraph2(datos, id, variables, titulo, mensaje){
+    //Arreglo que almacena colores de forma aleatoria
+    let colors = [];
+    let values = [];
+    //Arreglo que guarda los valores
+    values = datos;
+    // Se declara e inicializa una variable para sumar los valores a graficar.
+    let total = 0;
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se van acumulando los valores.
+    for (i = 0; i < values.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+        total += values[i];
+    }
+
+    //Se crea una variable con el id y el contexto
+    var ctx = document.getElementById(id).getContext('2d');
+    //Chart
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: variables,
+            datasets: [{
+                label: titulo,
+                data: values,
+                backgroundColor: colors,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            indexAxis: 'y', 
+            plugins: {
+                tooltip: {
+                    displayColors: false,
+                    callbacks: {
+                        //De tooltipItem obtenemos el index seleccionado al momento de hacer hover para darle formato.
+                        label: function(tooltipItem) {
+                            var value = myChart.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                            return mensaje + value;    
+
+                            }                        
+                    }
+
+                }
+            }
+        }
+    });
+}
+
 //Funcion para hacer un grafico de pastel.
 function pieGraph(datos, id, productos){
     //Arreglo que almacena colores de forma aleatoria
@@ -633,11 +682,11 @@ function pieGraph(datos, id, productos){
 }
 
 //Función para hacer un gráfico de lineas
-function lineGraph(id, xAxis, yAxis, titulo){
+function lineGraph(id, xAxis, yAxis, titulo, mensaje){
     //Se obtiene el canvas
     var ctx = document.getElementById(id).getContext('2d');
     //Chart js
-    var mylineChart = new Chart (ctx, {
+    var myChart = new Chart (ctx, {
         type: 'line',
         data: data = {
             labels: xAxis,
@@ -648,6 +697,21 @@ function lineGraph(id, xAxis, yAxis, titulo){
                 borderColor: 'rgb(0, 0, 0)',
                 tension: 0.1
               }]
+        },
+        options:{
+            plugins:{
+                tooltip:{
+                    displayColors: false,
+                    callbacks: {
+                        //De tooltipItem obtenemos el index seleccionado al momento de hacer hover para darle formato.
+                        label: function(tooltipItem) {
+                            var value = myChart.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                            return mensaje + value;    
+
+                            }
+                    }
+                }
+            }
         }
     });
     

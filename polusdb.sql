@@ -396,7 +396,24 @@ ALTER TABLE resena ADD COLUMN idestadoresena INTEGER NOT NULL REFERENCES estadoR
 
 INSERT INTO estadoResena(estadoResena) VALUES('Visible'),('Oculto');
 
-SELECT avg(idpuntuacion) as Promedio, count(idpuntuacion) as Puntuaciones, producto.nombre FROM resena 
-INNER JOIN producto USING (idproducto)
-GROUP BY producto.idproducto
-ORDER BY promedio DESC
+--Cambios 26/7/2021
+CREATE TABLE historialInventario(
+	idHistorialInventario SERIAL NOT NULL PRIMARY KEY,
+	idInventario INTEGER NOT NULL REFERENCES inventario(idInventario),
+	cantidad NUMERIC NOT NULL, 
+	fecha DATE NOT NULL
+);
+
+CREATE FUNCTION SP_historialInventario() RETURNS TRIGGER 
+AS
+$$
+BEGIN
+INSERT INTO historialInventario(idInventario, cantidad, fecha) VALUES(old.idInventario, old.cantidad, current_date);
+RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_historialInventario BEFORE UPDATE ON inventario 
+FOR EACH ROW
+EXECUTE PROCEDURE SP_historialInventario();
