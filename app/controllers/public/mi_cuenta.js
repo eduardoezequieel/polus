@@ -39,6 +39,11 @@ function readClientRecord() {
                                             <a href="#"
                                                 class="btn btn-outline-primary" onclick="getProducts(${row.idpedido})" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#productosPedidoModal"><i class="fas fa-info"></i>
                                             </a>
+                                            <h5 class="mx-1">
+                                            </h1>
+
+                                            <a href="../../app/reports/public/comprobante_compra.php?id=${row.idpedido}" target="_blank" data-tooltip="Comprabante de compra"
+                                                class="btn btn-outline-secondary"><i class="fas fa-book"></i></a>
 
                                         </div>
                                     </div>

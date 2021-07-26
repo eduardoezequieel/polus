@@ -41,6 +41,29 @@ class Report extends FPDF
         }
     }
 
+    public function startReportPublic($title)
+    {
+        // Se establece la zona horaria a utilizar durante la ejecución del reporte.
+        ini_set('date.timezone', 'America/El_Salvador');
+        // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
+        session_start();
+        // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a main.php
+        if (isset($_SESSION['idCliente'])) {
+            // Se asigna el título del documento a la propiedad de la clase.
+            $this->title = $title;
+            // Se establece el título del documento (true = utf-8).
+            $this->SetTitle('Dashboard - Reporte', true);
+            // Se establecen los margenes del documento (izquierdo, superior y derecho).
+            $this->setMargins(15, 15, 15);
+            // Se añade una nueva página al documento (orientación vertical y formato carta) y se llama al método Header()
+            $this->AddPage('p', 'letter');
+            // Se define un alias para el número total de páginas que se muestra en el pie del documento.
+            $this->AliasNbPages();
+        } else {
+            header('location: ../../../views/public/index.php');
+        }
+    }
+
     /*
     *   Se sobrescribe el método de la librería para establecer la plantilla del encabezado de los reportes.
     *   Se llama automáticamente en el método AddPage()
@@ -48,7 +71,7 @@ class Report extends FPDF
     public function Header()
     {
         // Se establece el logo.
-        $this->Image('../../../resources/img/carrusel3.jpg', 15, 15, 20);
+        $this->Image('../../../resources/img/polusdark.png', 15, 16, 40);
         // Se ubica el título.
         $this->Cell(20);
         $this->SetFont('Arial', 'B', 15);
@@ -57,6 +80,9 @@ class Report extends FPDF
         $this->Cell(20);
         $this->SetFont('Arial', '', 10);
         $this->Cell(166, 10, 'Fecha/Hora: '.date('d-m-Y H:i:s'), 0, 1, 'C');
+        //Se ubica el nombre de usuario que ha iniciado el reporte
+        $this->Cell(20);
+        $this->Cell(166, 10, 'Nombre de usuario: '.$_SESSION['usuario'], 0, 1, 'C');
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->Ln(10);
     }

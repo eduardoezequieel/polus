@@ -264,20 +264,22 @@
     //Función para leer el detalle de los pedidos
     public function getProducts()
     {
-        $sql = 'SELECT producto.nombre, cantidad FROM detallePedido 
-        INNER JOIN producto ON producto.idproducto = detallePedido.idproducto 
-        WHERE idpedido = ?;';
-        $params = array($this -> idPedido);
-        return Database::getRows($sql, $params);
+        $sql = 'SELECT producto.nombre, cantidad,precioproducto, (precioproducto*cantidad) as montototal
+                FROM detallePedido 
+                INNER JOIN producto ON producto.idproducto = detallePedido.idproducto 
+                WHERE idpedido = ?;';
+                $params = array($this -> idPedido);
+                return Database::getRows($sql, $params);
     }
 
     //Función para crear el precio total del pedido
     public function getTotalPrice()
     {
-        $sql= 'SELECT sum(precioproducto) as TotalPedido 
-        FROM detallePedido 
-        WHERE idpedido = ?';
-        $params = array($this -> idPedido);
+        $sql = 'SELECT sum(precioproducto) as TotalPedido,  
+                SUM(precioproducto*cantidad) as totalunitario 
+                FROM detallePedido 
+                WHERE idpedido = ?';
+                $params = array($this -> idPedido);
         return Database::getRow($sql, $params);
     }
 
@@ -599,6 +601,16 @@
                 GROUP BY estadopedido';
         $params = null;
         return Database::getRows($sql, $params);
+    }
+
+    //Método para leer todo lo del cliente que solicita generar reporte
+    public function readClientReport()
+    {
+        $sql = 'SELECT*
+        FROM cliente 
+        WHERE idCliente = ?';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRow($sql, $params);
     }
 
  }

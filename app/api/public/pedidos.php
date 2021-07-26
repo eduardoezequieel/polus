@@ -395,6 +395,33 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
                 }
                 break;
+            //Caso para leer los pedidos que ha hecho el cliente
+            case 'readClientRecord':
+                if ($result['dataset'] = $pedidos->readClientsRecord()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No posee pedidos registrados a su nombre.';
+                    }
+                }
+                break;
+            //Caso para obtener los productos 
+            case 'getProducts':
+                $_POST = $pedidos->validateForm($_POST);
+                if ($pedidos->setIdPedido($_POST['idPedido'])) {
+                    if ($result['dataset'] = $pedidos->getProducts()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No posee pedidos registrados a su nombre.';
+                        }
+                    }  
+                }
+                break;
             //Caso para leer datos del producto que no sea ropa o que no se haya seleccionado la talla
             default:
                 $result['error'] = 1;
