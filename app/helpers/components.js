@@ -571,7 +571,11 @@ function barGraph(datos, id, variables, titulo){
                     displayColors: false,
                     callbacks: {
                         //De tooltipItem obtenemos el index seleccionado al momento de hacer hover para darle formato.
-                        
+                        label: function(tooltipItem) {
+                            var value = myChart.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                            return 'Porcentaje: ' + value + '%';    
+
+                            }                        
                     }
 
                 }

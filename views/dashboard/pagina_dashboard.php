@@ -39,7 +39,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 				</div>
 			</div>
 		</div>
-		<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
+		<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster mt-4">
 			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
 				<h4 class="text-center lead">Estados de los Pedidos</h4>
 				<canvas id="pedidosPorcentaje" width="100px" height="100px"></canvas>

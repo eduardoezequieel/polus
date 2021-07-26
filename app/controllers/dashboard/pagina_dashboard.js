@@ -151,7 +151,7 @@ function orderPercentages(){
                         porcentajes.push(row.porcentajestados);
                     });
 
-                    barGraph(porcentajes, 'pedidosPorcentaje', estados, 'Estado de los Pedidos');
+                    barGraph(porcentajes, 'pedidosPorcentaje', estados, 'Pedidos');
                 } else {
                     sweetAlert(4, response.exception, null);
                 }
