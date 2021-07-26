@@ -348,41 +348,7 @@ function fillSelect(endpoint, select, selected) {
 *
 *   Retorno: ninguno.
 */
-function barGraph(canvas, xAxis, yAxis, legend, title) {
-    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
-    const context = document.getElementById(canvas).getContext('2d');
-    // Se crea una instancia para generar la gráfica con los datos recibidos.
-    const chart = new Chart(context, {
-        type: 'bar',
-        data: {
-            labels: xAxis,
-            datasets: [{
-                label: legend,
-                data: yAxis,
-                borderColor: '#000000',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: title
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        precision: 0
-                    }
-                }]
-            }
-        }
-    });
-}
+
 
 /*
 *   Función para generar una gráfica de pastel con porcentajes. Requiere el archivo chart.js para funcionar.
