@@ -417,3 +417,12 @@ LANGUAGE plpgsql;
 CREATE TRIGGER TR_historialInventario BEFORE UPDATE ON inventario 
 FOR EACH ROW
 EXECUTE PROCEDURE SP_historialInventario();
+
+ALTER TABLE cliente ADD COLUMN fechaRegistro DATE;
+UPDATE cliente SET fechaRegistro = current_date;
+
+UPDATE cliente SET fechaRegistro = '2021-03-04' WHERE idcliente = 1;
+UPDATE cliente SET fechaRegistro = '2021-04-04' WHERE idcliente = 2;
+UPDATE cliente SET fechaRegistro = '2021-05-04' WHERE idcliente = 3;
+UPDATE cliente SET fechaRegistro = '2021-06-04' WHERE idcliente = 4;
+UPDATE cliente SET fechaRegistro = '2021-07-04' WHERE idcliente = 5;
