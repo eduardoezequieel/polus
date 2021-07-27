@@ -7,7 +7,7 @@ const API_CLIENTES2 = '../../app/api/dashboard/clientes.php?action=';
 
 //Método que se ejecuta cuando carga la página
 document.addEventListener('DOMContentLoaded', function(){
-    //Se carga la grafica con un valor predeterminado
+    //metodos para cargar las graficas
     priceHistory();
     bestScore();
     orderPercentages();

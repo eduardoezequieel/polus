@@ -19,39 +19,47 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
           ?>
 		<!-- Mostrar opciones -->
 		<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
-			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-				<div class="form-group" id="priceHistorydiv">
+			<div class="d-flex flex-column justify-content-center align-items-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="form-group mt-5">
 					<form method="post" id="priceHistory-form">
 						<input class="d-none" type="text" id="id_producto" name="id_producto" value="1">
 						<button id="btnPriceHistory" class="d-none" type="submit">Enviar</button>
 					</form>
 					<h4 class="text-center lead">Historial de Precios por Producto</h4>
-					<canvas id="historialPrecio" width="100" height="100"></canvas>
+					<div style="width: 350px;" id="priceHistorydiv">
+						<canvas id="historialPrecio" width="100" height="100"></canvas>
+					</div>
 					<div class="d-flex flex-column justify-content-center align-items-center">
 						<button id="btnHistorialPrecio" data-bs-toggle="modal" data-bs-target="#seleccionarProductoPrecio" class="btn btn-outline-dark btn-sm" data-toggle="#seleccionarProductoPrecio">Seleccionar...</button>
 					</div>
 				</div>
 			</div>
-			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="d-flex flex-column justify-content-center align-items-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
 				<div class="form-group">
 					<h4 class="text-center lead">Productos Mejores Puntuados</h4>
-					<canvas id="mejorPuntuados" width="20px" height="20px"></canvas>
+					<div style="width: 330px;">
+						<canvas id="mejorPuntuados" width="20px" height="20px"></canvas>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster mt-4">
-			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="d-flex justify-content-center align-items-center flex-column col-xl-6 col-md-6 col-sm-12 col-xs-12">
 				<h4 class="text-center lead">Estados de los Pedidos</h4>
-				<canvas id="pedidosPorcentaje" width="100px" height="100px"></canvas>
+				<div style="width: 350px;">
+					<canvas id="pedidosPorcentaje" width="100px" height="100px"></canvas>
+				</div>
 			</div>
-			<div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-				<div class="form-group" id="inventoryHistorydiv">
+			<div class="d-flex justify-content-center align-items-center flex-column col-xl-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="form-group mt-4">
 					<form method="post" id="inventoryHistory-form">
 						<input class="d-none" type="text" id="id_inventario" name="id_inventario" value="1">
 						<button id="btnInventoryHistory" class="d-none" type="submit">Enviar</button>
 					</form>
 					<h4 class="text-center lead">Historial de Inventario por Producto</h4>
-					<canvas id="historialInventario" width="100" height="100"></canvas>
+					<div style="width: 350px;" id="inventoryHistorydiv">
+						<canvas id="historialInventario"></canvas>
+					</div>
 					<div class="d-flex flex-column justify-content-center align-items-center">
 						<button id="btnInventarioPrecio" data-bs-toggle="modal" data-bs-target="#seleccionarInventario" class="btn btn-outline-dark btn-sm" data-toggle="#seleccionarProductoPrecio">Seleccionar...</button>
 					</div>
@@ -59,9 +67,11 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','index_privado_estilos.css')
 			</div>
 		</div>
 		<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster mt-4">
-			<div class="col-12">
+			<div class="col-12 d-flex justify-content-center align-items-center flex-column">
 				<h4 class="text-center lead">Clientes Registrados</h4>
-				<canvas id="clientesMes"></canvas>
+				<div style="width: 600px;">
+					<canvas id="clientesMes"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>
