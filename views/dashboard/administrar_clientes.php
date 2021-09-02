@@ -76,7 +76,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                         <!-- Contenido del Modal -->
                         <div class="textoModal px-3 pb-4 mt-2">
 
-                            <form method="post" id="administrarClientes-form">
+                            <form method="post" action="/form" autocomplete="off" id="administrarClientes-form">
                                 <!-- Fila de primeros tres apartados -->
                                 <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
                                     <!-- Columna de información personal -->

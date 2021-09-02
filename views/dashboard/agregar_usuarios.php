@@ -22,7 +22,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                     <h1>Agregar usuarios</h1>
                 </div>
             </div><br>
-            <form method='post' id='agregarUsuario-form' enctype="multipart/form-data">
+            <form method='post' id='agregarUsuario-form' action="/form" autocomplete="off" enctype="multipart/form-data">
                 <!-- Fila de primeros tres apartados -->
                 <div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
                     <!-- Columna de información personal -->

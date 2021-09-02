@@ -71,7 +71,7 @@ dashboard_Page::sidebarTemplate('Polus - Dashboard','usuarios_privado_estilos.cs
                         <br>
                         <!-- Contenido del Modal -->
                         <div class="textoModal pb-4 mt-2">
-                            <form method='post' id='administrarUsuario-form' enctype="multipart/form-data">
+                            <form method='post' action="/form" autocomplete="off" id='administrarUsuario-form' enctype="multipart/form-data">
                             <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                                 <input class="visually-hidden" type="number" id="idAdmon" name="idAdmon">
                                 <!-- Fila de primeros tres apartados -->

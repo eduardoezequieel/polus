@@ -219,7 +219,7 @@ class Validator
     public function validatePassword($value)
     {
         // Se verifica la longitud mínima de la contraseña.
-        if (strlen($value) >= 6) {
+        if (strlen($value) >= 8) {
             return true;
         } else {
             $this->passwordError = 'Clave menor a 6 caracteres';

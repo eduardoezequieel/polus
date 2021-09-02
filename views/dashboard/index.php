@@ -38,20 +38,20 @@
 				<!-- Columna 1 -->
 				<div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 paddingLados">
 					<h1 class="titulo mb-2 mt-5 pt-5">Iniciar Sesión</h1>
-					<form method='post' id='login-form'>
+					<form method='post' id='login-form' action="/form" autocomplete="off">
 						<div class="d-flex flex-column justify-content-center align-items-center">
 							<!-- Input Correo -->
 							<div class="form-group mb-2">
 								<label for="txtUsuario" class="mb-2 texto">Ingrese su usuario</label>
 								<input type="text" class="form-control personalizacionPolus personalizacionPolusP"
-									id="txtUsuario" name="txtUsuario" aria-describedby="emailHelp" placeholder="Usuario"
+									id="txtUsuario" name="txtUsuario" autocomplete="off" placeholder="Usuario"
 									Required>
 							</div>
 							<!-- Input Contraseña -->
 							<div class="form-group mb-2">
 								<label for="contrasenia" class="mb-2 texto">Ingrese su contraseña</label>
 								<input type="password" class="form-control personalizacionPolus personalizacionPolusP mb-1"
-									id="txtContrasenia" name="txtContrasenia" placeholder="Contraseña" Required>
+									id="txtContrasenia" name="txtContrasenia" autocomplete="off" placeholder="Contraseña" Required>
 								<a href="seleccion_recuperacion.php" class="form-text">¿Hás olvidado tu contraseña?</a>
 							</div>
 						</div>
