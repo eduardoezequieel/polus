@@ -529,6 +529,19 @@ function checkDireccion(){
     
 }
 
+function checkContrasena(i){
+    document.getElementById(i).classList.add("error");
+    var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
+
+    if (document.getElementById(i).value.match(regex)) {
+        document.getElementById(i).classList.remove("error");
+        document.getElementById(i).classList.add("success");
+    } else {
+        document.getElementById(i).classList.remove("sucess");
+        document.getElementById(i).classList.add("error");
+    }
+}
+
 /*
 *   Función para generar una gráfica de barras verticales. Requiere el archivo chart.js para funcionar.
 *

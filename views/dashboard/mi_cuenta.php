@@ -138,7 +138,7 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 				<div class="row justify-content-center">
 					<div class="d-flex justify-content-xl-end mt-2 justify-content-md-end justify-content-center col-xl-4 col-md-6 col-sm-12 col-xs-12">
 						<div>
-							<button class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
 								<i class="fas fa-user fs-3"></i>
 								Usuario
 							</button>
@@ -146,7 +146,7 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 					</div>
 					<div class="d-flex justify-content-center justify-content-xl-center mt-2 justify-content-md-start justify-content-sm-center justify-content-xl-center col-xl-4 col-md-6 col-sm-12 col-xs-12">
 						<div>
-							<button class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
 								<i class="fas fa-envelope fs-3"></i>
 								Correo
 							</button>
@@ -154,13 +154,75 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 					</div>
 					<div class="d-flex justify-content-xl-start justify-content-center mt-2 col-xl-4 col-md-12 col-sm-12 col-xs-12">
 						<div>
-							<button class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cambiarContraseña" class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
 								<i class="fas fa-key fs-3"></i>
 								Clave
 							</button>
 						</div>
 					</div>
 				</div>
+				<!-- Fin del Contenido del Modal -->
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para cambiar la contraseña -->
+<div class="modal fade" id="cambiarContraseña" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content justify-content-center px-3 py-2">
+			<!-- Cabecera del Modal -->
+			<div class="modal-header">
+				<!-- Titulo -->
+				<h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+						class="fas fa-info-circle mx-2"></span>Actualizar Contraseña</h5>
+				<!-- Boton para Cerrar -->
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<br>
+			<!-- Contenido del Modal -->
+			<div class="textoModal px-3 pb-4 mt-2">
+				<div class="row px-3">
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<h4 class="alert-heading">¡Importante!</h4>
+						<p>Tu contraseña debe de cumplir con los siguientes requisitos: </p>
+						<hr>
+							- Minimo 8 caracteres <br>
+							- Maximo 15 <br>
+							- Al menos una letra mayúscula <br>
+							- Al menos una letra minucula <br>
+							- Al menos un dígito <br>
+							- No espacios en blanco <br>
+							- Al menos 1 caracter especial					
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</div>
+				<form action="/form" autocomplete="off">
+					<div class="row justify-content-center">
+						<div class="d-flex justify-content-center col-12">
+							<div class="d-flex flex-column">
+								<div class="form-group formMiCuenta">
+									<label for="txtNuevaContraseña" class="form-label mt-2">Nueva Contraseña:</label>
+									<input onChange="checkContrasena('txtNuevaContraseña')" type="password" class="form-control inputMiCuenta" id="txtNuevaContraseña" name="txtNuevaContraseña" Required >
+								</div>
+
+								<div class="form-group formMiCuenta">
+									<label for="txtConfirmarContraseña" class="form-label mt-2">Confirmar Contraseña:</label>
+									<input onChange="checkContrasena('txtConfirmarContraseña')" type="password" class="form-control inputMiCuenta" id="txtConfirmarContraseña" name="txtConfirmarContraseña" Required >
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="mensaje">
+
+					</div>
+					<div class="row justify-content-center mt-4">
+						<div class="col-12 d-flex justify-content-center">
+							<button class="btn btn-outline-dark">Guardar Cambios</button>
+						</div>
+					</div>
+				</form>
 				<!-- Fin del Contenido del Modal -->
 			</div>
 		</div>

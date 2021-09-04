@@ -10,6 +10,22 @@ body {
   padding-left: 100px;
 }
 
+input.error {
+  border: 3px dashed red;
+}
+
+input.success {
+  border: 3px solid green;
+}
+
+textarea.error {
+  border: 3px dashed red;
+}
+
+textarea.success {
+  border: 3px solid green;
+}
+
 .padding2{
   padding-left: 95px;
 }
