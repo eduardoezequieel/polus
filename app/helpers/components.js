@@ -468,7 +468,8 @@ function checkInputLetras(i){
 }
 
 function checkCorreo(input) {
-    document.getElementById(i).classList.remove("success");
+    document.getElementById(input).classList.remove("success");
+    document.getElementById(input).classList.add("error");
     var field = document.getElementById(input);
     if (field.value.trim() === "") {
         field.classList.remove("success");
