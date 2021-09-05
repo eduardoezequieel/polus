@@ -138,7 +138,7 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 				<div class="row justify-content-center">
 					<div class="d-flex justify-content-xl-end mt-2 justify-content-md-end justify-content-center col-xl-4 col-md-6 col-sm-12 col-xs-12">
 						<div>
-							<button data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cambiarUsuario" class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
 								<i class="fas fa-user fs-3"></i>
 								Usuario
 							</button>
@@ -146,7 +146,7 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 					</div>
 					<div class="d-flex justify-content-center justify-content-xl-center mt-2 justify-content-md-start justify-content-sm-center justify-content-xl-center col-xl-4 col-md-6 col-sm-12 col-xs-12">
 						<div>
-							<button data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cambiarCorreo" class="btn btn-outline-dark tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
 								<i class="fas fa-envelope fs-3"></i>
 								Correo
 							</button>
@@ -161,6 +161,116 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 						</div>
 					</div>
 				</div>
+				<!-- Fin del Contenido del Modal -->
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para cambiar el usuario  -->
+<div class="modal fade" id="cambiarUsuario" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content justify-content-center px-3 py-2">
+			<!-- Cabecera del Modal -->
+			<div class="modal-header">
+				<!-- Titulo -->
+				<h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+						class="fas fa-info-circle mx-2"></span>Actualizar Usuario</h5>
+				<!-- Boton para Cerrar -->
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<br>
+			<!-- Contenido del Modal -->
+			<div class="textoModal px-3 pb-4 mt-2">
+				<div class="row px-3">
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<h4 class="alert-heading">¡Importante!</h4>
+						<p>Asegurate de colocar un usuario valido (Carácteres alfanúmericos).</p>				
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</div>
+				<form id="updateUser-form" method="post" action="/form" autocomplete="off">
+					<div class="row justify-content-center">
+						<div class="d-flex justify-content-center col-12">
+							<div class="d-flex flex-column">
+								<div class="form-group formMiCuenta">
+									<label for="txtNuevoUsuario" class="form-label mt-2">Nuevo Usuario:</label>
+									<div class="d-flex">
+										<input onChange="checkAlfanumerico('txtNuevoUsuario')" type="text" class="form-control inputMiCuenta" id="txtNuevoUsuario" maxlength="25" name="txtNuevoUsuario" Required >
+									</div>
+								</div>
+
+								<div class="form-group formMiCuenta">
+									<label for="txtConfirmarUsuario" class="form-label mt-2">Confirmar Usuario:</label>
+									<div class="d-flex">
+										<input onChange="checkAlfanumerico('txtConfirmarUsuario')" type="text" class="form-control inputMiCuenta" id="txtConfirmarUsuario" maxlength="25" name="txtConfirmarUsuario" Required >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-center mt-4">
+						<div class="col-12 d-flex justify-content-center">
+							<button type="submit" class="btn btn-outline-dark">Guardar Cambios</button>
+						</div>
+					</div>
+				</form>
+				<!-- Fin del Contenido del Modal -->
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para cambiar el correo  -->
+<div class="modal fade" id="cambiarCorreo" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content justify-content-center px-3 py-2">
+			<!-- Cabecera del Modal -->
+			<div class="modal-header">
+				<!-- Titulo -->
+				<h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+						class="fas fa-info-circle mx-2"></span>Actualizar Correo</h5>
+				<!-- Boton para Cerrar -->
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<br>
+			<!-- Contenido del Modal -->
+			<div class="textoModal px-3 pb-4 mt-2">
+				<div class="row px-3">
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<h4 class="alert-heading">¡Importante!</h4>
+						<p>Asegurate de colocar un correo eletrónico valido.</p>				
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</div>
+				<form id="updateEmail-form" method="post" action="/form" autocomplete="off">
+					<div class="row justify-content-center">
+						<div class="d-flex justify-content-center col-12">
+							<div class="d-flex flex-column">
+								<div class="form-group formMiCuenta">
+									<label for="txtNuevoCorreo" class="form-label mt-2">Correo Electrónico:</label>
+									<div class="d-flex">
+										<input onChange="checkCorreo('txtNuevoCorreo')" type="email" class="form-control inputMiCuenta" id="txtNuevoCorreo" maxlength="80" name="txtNuevoCorreo" Required >
+									</div>
+								</div>
+
+								<div class="form-group formMiCuenta">
+									<label for="txtConfirmarCorreo" class="form-label mt-2">Confirmar Correo:</label>
+									<div class="d-flex">
+										<input onChange="checkCorreo('txtConfirmarCorreo')" type="email" class="form-control inputMiCuenta" id="txtConfirmarCorreo" maxlength="80" name="txtConfirmarCorreo" Required >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-center mt-4">
+						<div class="col-12 d-flex justify-content-center">
+							<button type="submit" class="btn btn-outline-dark">Guardar Cambios</button>
+						</div>
+					</div>
+				</form>
 				<!-- Fin del Contenido del Modal -->
 			</div>
 		</div>
@@ -198,28 +308,38 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
 				</div>
-				<form action="/form" autocomplete="off">
+				<form id="updatePassword-form" method="post" action="/form" autocomplete="off">
 					<div class="row justify-content-center">
 						<div class="d-flex justify-content-center col-12">
 							<div class="d-flex flex-column">
 								<div class="form-group formMiCuenta">
 									<label for="txtNuevaContraseña" class="form-label mt-2">Nueva Contraseña:</label>
-									<input onChange="checkContrasena('txtNuevaContraseña')" type="password" class="form-control inputMiCuenta" id="txtNuevaContraseña" name="txtNuevaContraseña" Required >
+									<div class="d-flex">
+										<input onChange="checkContrasena('txtNuevaContraseña')" type="password" class="form-control inputMiCuenta" id="txtNuevaContraseña" maxlength="15" name="txtNuevaContraseña" Required >
+										
+									</div>
 								</div>
 
 								<div class="form-group formMiCuenta">
 									<label for="txtConfirmarContraseña" class="form-label mt-2">Confirmar Contraseña:</label>
-									<input onChange="checkContrasena('txtConfirmarContraseña')" type="password" class="form-control inputMiCuenta" id="txtConfirmarContraseña" name="txtConfirmarContraseña" Required >
+									<div class="d-flex">
+										<input onChange="checkContrasena('txtConfirmarContraseña')" type="password" class="form-control inputMiCuenta" id="txtConfirmarContraseña" maxlength="15" name="txtConfirmarContraseña" Required >
+						
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div id="mensaje">
-
+					<div class="row justify-content-center mt-4">
+						<div class="col-12 d-flex justify-content-center">
+							<div>
+								<button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Mostrar contraseña" class="btn btn-sm btn-outline-dark mx-2"><i id="btnMostrarContraseña1" class="fas fa-eye"></i></button>	
+							</div>
+						</div>
 					</div>
 					<div class="row justify-content-center mt-4">
 						<div class="col-12 d-flex justify-content-center">
-							<button class="btn btn-outline-dark">Guardar Cambios</button>
+							<button type="submit" class="btn btn-outline-dark">Guardar Cambios</button>
 						</div>
 					</div>
 				</form>

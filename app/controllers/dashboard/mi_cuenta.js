@@ -3,6 +3,12 @@ const API = '../../app/api/dashboard/usuarios.php?action=';
 
 document.addEventListener('DOMContentLoaded', function(){
     openProfileDialog()
+
+    //Para inicializar los tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 })
 
 //Metodo para usar un boton diferente de examinar
@@ -69,5 +75,108 @@ document.getElementById('info-form').addEventListener('submit', function(event){
     }).catch(function(error){
         console.log(error);
     })
-})
+});
+
+//Para mostrar la contraseña del primer campo
+document.getElementById('btnMostrarContraseña1').addEventListener('click',function(){
+    //Obtenemos los input
+    var passwordInput = document.getElementById('txtNuevaContraseña');
+    var passwordInput2 = document.getElementById('txtConfirmarContraseña');
+
+    //Si el tipo del input es password se cambia o viceversa.
+    if (passwordInput.type == "password") {
+        passwordInput.type = "text";
+        passwordInput2.type = "text";
+    } else {
+        passwordInput.type = "password";
+        passwordInput2.type = "password";
+    }
+});
+
+//Al activar el evento submit del formulario de cambio de usuario
+document.getElementById('updateUser-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API + 'updateUser', {
+        method: 'post',
+        body: new FormData(document.getElementById('updateUser-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    //Mandando mensaje de exito
+                    closeModal('cambiarUsuario');
+                    sweetAlert(1, response.message, null);
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+});
+
+//Al activar el evento submit del formulario de cambio de correo
+document.getElementById('updateEmail-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API + 'updateEmail', {
+        method: 'post',
+        body: new FormData(document.getElementById('updateEmail-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    //Mandando mensaje de exito
+                    closeModal('cambiarCorreo');
+                    sweetAlert(1, response.message, null);
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+});
+
+//Al activar el evento submit del formulario de cambio de contraseña
+document.getElementById('updatePassword-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API + 'updatePassword', {
+        method: 'post',
+        body: new FormData(document.getElementById('updatePassword-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    //Mandando mensaje de exito
+                    closeModal('cambiarContraseña');
+                    sweetAlert(1, response.message, null);
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+});
 

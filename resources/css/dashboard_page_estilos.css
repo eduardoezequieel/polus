@@ -11,19 +11,19 @@ body {
 }
 
 input.error {
-  border: 3px dashed red;
+  border: 2px dashed red;
 }
 
 input.success {
-  border: 3px solid green;
+  border: 2px solid green;
 }
 
 textarea.error {
-  border: 3px dashed red;
+  border: 2px dashed red;
 }
 
 textarea.success {
-  border: 3px solid green;
+  border: 2px solid green;
 }
 
 .padding2{

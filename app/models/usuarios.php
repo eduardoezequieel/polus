@@ -242,6 +242,20 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    public function changeUser()
+    {
+        $sql = 'UPDATE admon SET usuario = ? WHERE idAdmon = ?';
+        $params = array($this->usuario, $_SESSION['idAdmon']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function changeEmail()
+    {
+        $sql = 'UPDATE admon SET correo = ? WHERE idAdmon = ?';
+        $params = array($this->correo, $_SESSION['idAdmon']);
+        return Database::executeRow($sql, $params);
+    }
+
     public function readProfile()
     {
         $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario

@@ -170,16 +170,6 @@ if(isset($_GET['action'])){
                             $result['status'] = 1;
                             $_SESSION['usuario'] = $usuarios->getUsuario();
                             $result['message'] = 'Perfil modificado correctamente';
-                            if(isset($_POST['txtContrasenia'])){
-                                if($usuarios->setContrasenia($_POST['txtContrasenia'])){
-                                    if($usuarios->changePassword()){
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Contraseña modificada correctamente';
-                                    }
-                                } else{
-                                    $result['exception'] = 'Nueva contraseña incorrecta';
-                                }
-                            } 
                         } else {
                             $result['exception'] = Database::getException();
                         }
@@ -188,6 +178,63 @@ if(isset($_GET['action'])){
                     }
                 } else {
                     $result['exception'] = 'Usuario incorrectos';
+                }
+                break;
+                
+            //Para actualizar la contraseña
+            case 'updatePassword':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setContrasenia($_POST['txtNuevaContraseña'])) {
+                    if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
+                        if ($usuarios->changePassword()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Contraseña actualizada exitosamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Las contraseñas no coinciden.';
+                    }
+                } else {
+                    $result['exception'] = 'Su contraseña no cumple los requisitos especificados.';
+                }
+                break;
+            //Para actualizar el correo electronico
+            case 'updateEmail':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setCorreo($_POST['txtNuevoCorreo'])) {
+                    if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
+                        if ($usuarios->changeEmail()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Correo actualizado exitosamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Los correos no coinciden.';
+                    }
+                } else {
+                    $result['exception'] = 'Ingrese un correo eletrónico valido.';
+                }
+                break;
+            //Para actualizar el correo electronico
+            case 'updateUser':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setUsuario($_POST['txtNuevoUsuario'])) {
+                    if ($_POST['txtNuevoUsuario'] == $_POST['txtConfirmarUsuario']) {
+                        if ($usuarios->changeUser()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Usuario actualizado exitosamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Los usuarios no coinciden.';
+                    }
+                } else {
+                    $result['exception'] = 'Ingrese un usuario valido.';
                 }
                 break;
             case 'readAll':

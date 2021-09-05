@@ -467,21 +467,23 @@ function checkInputLetras(i){
     
 }
 
-function checkCorreo(i){
-    if(formulario[i].value.trim() === ""){
-        formulario[i].classList.remove("success");
-        formulario[i].classList.add("error");
-    } else{
-        formulario[i].classList.remove("error");
-        formulario[i].classList.add("success");
+function checkCorreo(input) {
+    document.getElementById(i).classList.remove("success");
+    var field = document.getElementById(input);
+    if (field.value.trim() === "") {
+        field.classList.remove("success");
+        field.classList.add("error");
+    } else {
+        field.classList.remove("error");
+        field.classList.add("success");
 
-        if(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(formulario[i].value)){
-            formulario[i].classList.remove("error");
-            formulario[i].classList.add("success");
-        } else{
-            formulario[i].classList.remove("success");
-            formulario[i].classList.add("error");
-        }    
+        if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(field.value)) {
+            field.classList.remove("error");
+            field.classList.add("success");
+        } else {
+            field.classList.remove("success");
+            field.classList.add("error");
+        }
     }
 }
 
@@ -530,8 +532,23 @@ function checkDireccion(){
 }
 
 function checkContrasena(i){
+    document.getElementById(i).classList.remove("success");
     document.getElementById(i).classList.add("error");
     var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
+
+    if (document.getElementById(i).value.match(regex)) {
+        document.getElementById(i).classList.remove("error");
+        document.getElementById(i).classList.add("success");
+    } else {
+        document.getElementById(i).classList.remove("sucess");
+        document.getElementById(i).classList.add("error");
+    }
+}
+
+function checkAlfanumerico(i){
+    document.getElementById(i).classList.remove("success");
+    document.getElementById(i).classList.add("error");
+    var regex = /^[a-z0-9]+$/i;
 
     if (document.getElementById(i).value.match(regex)) {
         document.getElementById(i).classList.remove("error");
