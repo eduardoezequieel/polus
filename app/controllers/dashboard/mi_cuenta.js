@@ -77,21 +77,24 @@ document.getElementById('info-form').addEventListener('submit', function(event){
     })
 });
 
-//Para mostrar la contraseña del primer campo
-document.getElementById('btnMostrarContraseña1').addEventListener('click',function(){
-    //Obtenemos los input
-    var passwordInput = document.getElementById('txtNuevaContraseña');
-    var passwordInput2 = document.getElementById('txtConfirmarContraseña');
+//Función para mostrar contraseña
+function showHidePassword1(checkbox, pass1, pass2, pass3) {
+    var check = document.getElementById(checkbox);
+    var password1 = document.getElementById(pass1);
+    var password2 = document.getElementById(pass2);
+    var password3 = document.getElementById(pass3);
 
-    //Si el tipo del input es password se cambia o viceversa.
-    if (passwordInput.type == "password") {
-        passwordInput.type = "text";
-        passwordInput2.type = "text";
+    //Verificando el estado del check
+    if (check.checked == true) {
+        password1.type = 'text';
+        password2.type = 'text';
+        password3.type = 'text';
     } else {
-        passwordInput.type = "password";
-        passwordInput2.type = "password";
+        password1.type = 'password';
+        password2.type = 'password';
+        password3.type = 'password';
     }
-});
+}
 
 //Al activar el evento submit del formulario de cambio de usuario
 document.getElementById('updateUser-form').addEventListener('submit',function(event){

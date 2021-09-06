@@ -184,19 +184,32 @@ if(isset($_GET['action'])){
             //Para actualizar la contraseña
             case 'updatePassword':
                 $_POST = $usuarios->validateForm($_POST);
-                if ($usuarios->setContrasenia($_POST['txtNuevaContraseña'])) {
-                    if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
-                        if ($usuarios->changePassword()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Contraseña actualizada exitosamente.';
+                if ($usuarios->setId($_SESSION['idAdmon'])) {
+                    if($usuarios->checkPassword($_POST['txtActualContraseña'])){
+                        if ($usuarios->setContrasenia($_POST['txtNuevaContraseña'])) {
+                            if ($_POST['txtActualContraseña'] == $_POST['txtNuevaContraseña'] || 
+                                $_POST['txtActualContraseña'] == $_POST['txtConfirmarContraseña']) {
+                                $result['exception'] = 'Su nueva contraseña no puede ser la misma que la actual.';
+                            } else {
+                                if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
+                                    if ($usuarios->changePassword()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Contraseña actualizada exitosamente.';
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
+                                } else {
+                                    $result['exception'] = 'Las contraseñas no coinciden.';
+                                }
+                            }
                         } else {
-                            $result['exception'] = Database::getException();
+                            $result['exception'] = 'Su contraseña no cumple los requisitos especificados.';
                         }
                     } else {
-                        $result['exception'] = 'Las contraseñas no coinciden.';
+                        $result['exception'] = 'La contraseña ingresada no es la actual.';
                     }
                 } else {
-                    $result['exception'] = 'Su contraseña no cumple los requisitos especificados.';
+                    $result['exception'] = 'Id incorrecto.';
                 }
                 break;
             //Para actualizar el correo electronico

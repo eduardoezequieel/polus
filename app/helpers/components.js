@@ -560,6 +560,18 @@ function checkAlfanumerico(i){
     }
 }
 
+//Función para mostrar contraseña
+function showHidePassword(checkbox, pass) {
+    var check = document.getElementById(checkbox);
+    var password = document.getElementById(pass);
+    //Verificando el estado del check
+    if (check.checked == true) {
+        password.type = 'text';
+    } else {
+        password.type = 'password';
+    }
+}
+
 /*
 *   Función para generar una gráfica de barras verticales. Requiere el archivo chart.js para funcionar.
 *

@@ -15,7 +15,7 @@ Class Usuarios extends Validator{
     private $direccion = null;
     private $usuario = null;
     private $contrasenia = null;
-    private     $idEstadoUsuario = null;
+    private $idEstadoUsuario = null;
     private $idTipoUsuario = null;
     private $ruta = '../../../resources/img/dashboard_img/admon_fotos/';
 

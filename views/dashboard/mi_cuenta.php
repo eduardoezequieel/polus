@@ -312,11 +312,17 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 					<div class="row justify-content-center">
 						<div class="d-flex justify-content-center col-12">
 							<div class="d-flex flex-column">
+							<div class="form-group formMiCuenta">
+									<label for="txtActualContraseña" class="form-label mt-2">Contraseña Actual:</label>
+									<div class="d-flex">
+										<input onChange="checkContrasena('txtActualContraseña')" type="password" class="form-control inputMiCuenta" id="txtActualContraseña" maxlength="15" name="txtActualContraseña" Required >	
+									</div>
+								</div>
+
 								<div class="form-group formMiCuenta">
 									<label for="txtNuevaContraseña" class="form-label mt-2">Nueva Contraseña:</label>
 									<div class="d-flex">
-										<input onChange="checkContrasena('txtNuevaContraseña')" type="password" class="form-control inputMiCuenta" id="txtNuevaContraseña" maxlength="15" name="txtNuevaContraseña" Required >
-										
+										<input onChange="checkContrasena('txtNuevaContraseña')" type="password" class="form-control inputMiCuenta" id="txtNuevaContraseña" maxlength="15" name="txtNuevaContraseña" Required >	
 									</div>
 								</div>
 
@@ -324,7 +330,6 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 									<label for="txtConfirmarContraseña" class="form-label mt-2">Confirmar Contraseña:</label>
 									<div class="d-flex">
 										<input onChange="checkContrasena('txtConfirmarContraseña')" type="password" class="form-control inputMiCuenta" id="txtConfirmarContraseña" maxlength="15" name="txtConfirmarContraseña" Required >
-						
 									</div>
 								</div>
 							</div>
@@ -332,8 +337,11 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 					</div>
 					<div class="row justify-content-center mt-4">
 						<div class="col-12 d-flex justify-content-center">
-							<div>
-								<button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Mostrar contraseña" class="btn btn-sm btn-outline-dark mx-2"><i id="btnMostrarContraseña1" class="fas fa-eye"></i></button>	
+							<div class="form-check">
+								<input onChange="showHidePassword1('chMostrarContraseña', 'txtActualContraseña', 'txtNuevaContraseña', 'txtConfirmarContraseña')" class="form-check-input" type="checkbox" value="" id="chMostrarContraseña">
+								<label class="form-check-label" for="chMostrarContraseña">
+									Mostrar Contraseña
+								</label>
 							</div>
 						</div>
 					</div>
