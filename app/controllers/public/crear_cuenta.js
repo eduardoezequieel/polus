@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', function(){
     let date = `${year}-${month}-${day}`;
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFechaNacimiento').setAttribute('max', date);
+    // Se inicializan los tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 })
 
 /*// Función para obtener un token del reCAPTCHA y asignarlo al formulario.
@@ -32,6 +37,20 @@ function reCAPTCHA() {
     });
 }*/
 
+//Función para mostrar contraseña
+function showHidePassword2(checkbox, pass1, pass2) {
+    var check = document.getElementById(checkbox);
+    var password = document.getElementById(pass1);
+    var password2 = document.getElementById(pass2);
+    //Verificando el estado del check
+    if (check.checked == true) {
+        password.type = 'text';
+        password2.type = 'text';
+    } else {
+        password.type = 'password';
+        password2.type = 'password';
+    }
+}
 
 //Evento submit del botón del formulario
 document.getElementById('register-form').addEventListener('submit', function(event){
@@ -113,58 +132,4 @@ botonExaminar('btnAgregarFoto', 'archivo_usuario');
 previewPicture('archivo_usuario','divFoto');
 
 
-//*****Validaciones del lado del cliente******//
-
-//Obtener los elementos de la vista
-const formulario = document.getElementsByTagName('input');
-const direccion = document.getElementById('txtDireccion')
-
-
-//Creación de los eventos change para cada uno de los input
-formulario[1].addEventListener('change', function(){
-    checkInputLetras(1);
-});
-
-formulario[2].addEventListener('change', function(){
-    checkCorreo(2);
-});
-
-formulario[3].addEventListener('change', function(){
-    checkInput(3);
-});
-
-formulario[4].addEventListener('change', function(){
-    checkInput(4);
-});
-
-formulario[5].addEventListener('change', function(){
-    checkInputLetras(5);
-});
-
-formulario[6].addEventListener('change', function(){
-    checkCorreo(6);
-});
-
-formulario[8].addEventListener('change', function(){
-    checkInput(8);
-});
-
-formulario[9].addEventListener('change', function(){
-    checkTelefono(9);
-});
-
-
-direccion.addEventListener('change', function(){
-    checkDireccion();
-});
-
-function clearValidate(){
-    for (let index = 0; index < 9; index++) {
-        formulario[index].classList.remove('success');
-        formulario[index].classList.remove('error');
-    }
-
-    direccion.classList.remove('success');
-    direccion.classList.remove('error');
-}
 

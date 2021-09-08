@@ -446,25 +446,25 @@ function logOut() {
     });
 }
 
-function checkInputLetras(i){
+function checkInputLetras(input) {
+    var field = document.getElementById(input);
+    if (field.value.trim() === "") {
+        field.classList.remove("success");
+        field.classList.add("error");
+    } else {
+        field.classList.remove("error");
+        field.classList.add("success");
 
-    if(formulario[i].value.trim() === ""){
-        formulario[i].classList.remove("success");
-        formulario[i].classList.add("error");
-    } else{
-        formulario[i].classList.remove("error");
-        formulario[i].classList.add("success");
+        if (/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/.test(field.value)) {
+            field.classList.remove("error");
+            field.classList.add("success");
 
-        if(/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/.test(formulario[i].value)){
-            formulario[i].classList.remove("error");
-            formulario[i].classList.add("success");
-            
-        } else{
-            formulario[i].classList.remove("success");
-            formulario[i].classList.add("error");
-        }    
+        } else {
+            field.classList.remove("success");
+            field.classList.add("error");
+        }
     }
-    
+
 }
 
 function checkCorreo(input) {
@@ -500,24 +500,25 @@ function checkInput(i){
     
 }
 
-function checkTelefono(i){
+//Método para verificar telefono
+function checkTelefono(input) {
+    var field = document.getElementById(input);
+    if (field.value.trim() === "") {
+        field.classList.remove("success");
+        field.classList.add("error");
+    } else {
+        field.classList.remove("error");
+        field.classList.add("success");
 
-    if(formulario[i].value.trim() === ""){
-        formulario[i].classList.remove("success");
-        formulario[i].classList.add("error");
-    } else{
-        formulario[i].classList.remove("error");
-        formulario[i].classList.add("success");   
-
-        if(/[0-9-]+$/i.test(formulario[i].value)){
-            formulario[i].classList.remove("error");
-            formulario[i].classList.add("success");
-        } else{
-            formulario[i].classList.remove("success");
-            formulario[i].classList.add("error");
+        if (/[0-9-]+$/i.test(field.value)) {
+            field.classList.remove("error");
+            field.classList.add("success");
+        } else {
+            field.classList.remove("success");
+            field.classList.add("error");
         }
     }
-    
+
 }
 
 function checkDireccion(){
@@ -549,7 +550,21 @@ function checkContrasena(i){
 function checkAlfanumerico(i){
     document.getElementById(i).classList.remove("success");
     document.getElementById(i).classList.add("error");
-    var regex = /^[a-z0-9]+$/i;
+    var regex = /^[a-z0-9.]+$/i;
+
+    if (document.getElementById(i).value.match(regex)) {
+        document.getElementById(i).classList.remove("error");
+        document.getElementById(i).classList.add("success");
+    } else {
+        document.getElementById(i).classList.remove("sucess");
+        document.getElementById(i).classList.add("error");
+    }
+}
+
+function checkDireccion(i){
+    document.getElementById(i).classList.remove("success");
+    document.getElementById(i).classList.add("error");
+    var regex = /^[a-z0-9'\.\-\s\,]+$/i;
 
     if (document.getElementById(i).value.match(regex)) {
         document.getElementById(i).classList.remove("error");

@@ -27,28 +27,35 @@
 	<!-- Fondo -->
 	<div id="background">
 		<!-- Caja -->
-		<div id="form" class="paddingLados animate__animated animate__fadeInUp animate__faster">
-			<div class="row py-4 justify-content-center animate__animated animate__fadeInUp animate__faster">
+		<div id="form" class="paddingLados animate__animated animate__fadeInUp animate__faster p-3">
+			<div class="row justify-content-center animate__animated animate__fadeInUp animate__faster">
 				<!-- Columna 1 -->
-				<div
-					class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center flex-column paddingLados ">
-					<h1 class="titulo2 mb-2 mt-5 pt-5">Iniciar Sesión</h1>
+				<div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 paddingLados">
+					<h1 class="titulo2 mb-2 mt-3 pt-5">Iniciar Sesión</h1>
 					<div class="form-group">
 						<form id="login-form" action="/form" autocomplete="off">
-							<!-- Input Correo -->
-							<div class="form-group mb-2">
-								<label for="exampleInputEmail1" class="mb-2 texto">Ingrese su usuario</label>
-								<input type="email" class="form-control personalizacionPolus personalizacionPolusP"
-									id="correo" name="correo" autocomplete="off"
-									placeholder="ejemplo@mail.com" Required>
-							</div>
-							<!-- Input Contraseña -->
-							<div class="form-group mb-2">
-								<label for="exampleInputPassword1" class="mb-2 texto">Ingrese su contraseña</label>
-								<input type="password"
-									class="form-control personalizacionPolus personalizacionPolusP mb-1"
-									id="contrasenia" name="contrasenia" autocomplete="off" placeholder="Contraseña" Required>
-								<a href="seleccion_recuperacion.php" class="form-text">¿Hás olvidado tu contraseña?</a>
+							<div class="d-flex flex-column justify-content-center align-items-center">
+								<!-- Input Correo -->
+								<div class="form-group mb-2">
+									<label for="exampleInputEmail1" class="mb-2 texto">Ingrese su usuario</label>
+									<input type="email" class="form-control personalizacionPolus personalizacionPolusP"
+										id="correo" name="correo" autocomplete="off"
+										placeholder="ejemplo@mail.com" Required>
+								</div>
+								<!-- Input Contraseña -->
+								<div class="form-group mb-2">
+									<label for="exampleInputPassword1" class="mb-2 texto">Ingrese su contraseña</label>
+									<input type="password"
+										class="form-control personalizacionPolus personalizacionPolusP mb-1"
+										id="contrasenia" name="contrasenia" autocomplete="off" placeholder="Contraseña" Required>
+									<div class="form-check mt-3 mb-2">
+										<input onChange="showHidePassword('chMostrarContraseña', 'contrasenia')" class="form-check-input" type="checkbox" value="" id="chMostrarContraseña">
+										<label class="form-check-label text-white" for="chMostrarContraseña">
+											Mostrar Contraseña
+										</label>
+									</div>
+									<a href="seleccion_recuperacion.php" class="form-text">¿Hás olvidado tu contraseña?</a>
+								</div>
 							</div>
 							<div class="row justify-content-center">
 								<div class="col-12 d-flex justify-content-center align-items-center">
