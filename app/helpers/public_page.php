@@ -30,8 +30,8 @@
                 <link rel="preconnect" href="https://fonts.gstatic.com">
                 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
                 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
                 <!-- Font Awesome -->
                 <script src="https://kit.fontawesome.com/43634cb7dc.js" crossorigin="anonymous"></script>
@@ -92,6 +92,7 @@
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark  animate__animated animate__bounceIn" aria-labelledby="dropdownMenuButton1">
                                         <li><a id="btnMisPedidos" onclick="readClientRecord()" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#pedidosClienteModal" href="#">Mis Pedidos</a></li>
+                                        <li><a id="btnMiCuenta" class="dropdown-item" href="mi_cuenta.php">Mi Cuenta</a></li>
                                         <li><a class="dropdown-item" href="#" onclick="logOutCliente()">Cerrar Sesión</a></li>
                                     </ul>
                                 </div>  

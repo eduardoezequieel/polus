@@ -256,19 +256,36 @@
 
         public function readProfile()
         {
-            $sql = 'SELECT idCliente, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
-            FROM cliente
-            WHERE idCliente = ?';
+            $sql = 'SELECT idCliente, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña
+                    FROM cliente
+                    WHERE idCliente = ?';
             $params = array($_SESSION['idCliente']);
             return Database::getRow($sql, $params);
         }
 
-        public function editProfile()
+        public function editProfile($current_image)
         {
-            $sql = 'UPDATE usuarios
-                    SET nombres_usuario = ?, apellidos_usuario = ?, correo_usuario = ?, alias_usuario = ?
-                    WHERE id_usuario = ?';
-            $params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $_SESSION['id_usuario']);
+            // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+            ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
+            $sql = 'UPDATE cliente SET foto = ?, nombre = ?, apellido = ?, genero = ?, direccion = ?, fechanacimiento = ?, 
+                    telefono = ? 
+                    WHERE idcliente = ?';
+            $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->direccion, 
+                            $this->fechaNacimiento, $this->telefono, $_SESSION['idCliente']);
+            return Database::executeRow($sql, $params);
+        }
+
+        public function updateUser()
+        {
+            $sql = 'UPDATE cliente SET usuario = ? WHERE idCliente = ?';
+            $params = array($this->usuario, $_SESSION['idCliente']);
+            return Database::executeRow($sql, $params);
+        }
+
+        public function updateEmail()
+        {
+            $sql = 'UPDATE cliente SET correo = ? WHERE idCliente = ?';
+            $params = array($this->correo, $_SESSION['idCliente']);
             return Database::executeRow($sql, $params);
         }
 

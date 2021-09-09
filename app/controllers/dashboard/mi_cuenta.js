@@ -64,7 +64,7 @@ document.getElementById('info-form').addEventListener('submit', function(event){
                 //Verificando respuesta satisfactoria
                 if(response.status){
                     //Mandando mensaje de exito
-                    sweetAlert(1, response.message, openProfileDialog());
+                    sweetAlert(1, response.message, 'mi_cuenta.php');
                 } else{
                     sweetAlert(4, response.exception, null);
                 }
@@ -112,7 +112,7 @@ document.getElementById('updateUser-form').addEventListener('submit',function(ev
                 if(response.status){
                     //Mandando mensaje de exito
                     closeModal('cambiarUsuario');
-                    sweetAlert(1, response.message, null);
+                    sweetAlert(1, response.message, 'mi_cuenta.php');
                 } else{
                     sweetAlert(4, response.exception, null);
                 }
@@ -141,7 +141,7 @@ document.getElementById('updateEmail-form').addEventListener('submit',function(e
                 if(response.status){
                     //Mandando mensaje de exito
                     closeModal('cambiarCorreo');
-                    sweetAlert(1, response.message, null);
+                    sweetAlert(1, response.message, 'mi_cuenta.php');
                 } else{
                     sweetAlert(4, response.exception, null);
                 }
@@ -170,7 +170,7 @@ document.getElementById('updatePassword-form').addEventListener('submit',functio
                 if(response.status){
                     //Mandando mensaje de exito
                     closeModal('cambiarContraseña');
-                    sweetAlert(1, response.message, null);
+                    sweetAlert(1, response.message, 'mi_cuenta.php');
                 } else{
                     sweetAlert(4, response.exception, null);
                 }

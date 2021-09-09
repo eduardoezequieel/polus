@@ -207,6 +207,13 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 										<input onChange="checkAlfanumerico('txtConfirmarUsuario')" type="text" class="form-control inputMiCuenta" id="txtConfirmarUsuario" maxlength="25" name="txtConfirmarUsuario" Required >
 									</div>
 								</div>
+
+								<div class="form-group formMiCuenta">
+									<label for="txtContraseñaUsuario" class="form-label mt-2">Contraseña:</label>
+									<div class="d-flex">
+										<input onChange="checkContrasena('txtContraseñaUsuario')" type="password" class="form-control inputMiCuenta" id="txtContraseñaUsuario" maxlength="15" name="txtContraseñaUsuario" Required >
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -260,6 +267,13 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 									<label for="txtConfirmarCorreo" class="form-label mt-2">Confirmar Correo:</label>
 									<div class="d-flex">
 										<input onChange="checkCorreo('txtConfirmarCorreo')" type="email" class="form-control inputMiCuenta" id="txtConfirmarCorreo" maxlength="80" name="txtConfirmarCorreo" Required >
+									</div>
+								</div>
+
+								<div class="form-group formMiCuenta">
+									<label for="txtContraseñaCorreo" class="form-label mt-2">Contraseña:</label>
+									<div class="d-flex">
+										<input onChange="checkContrasena('txtContraseñaCorreo')" type="password" class="form-control inputMiCuenta" id="txtContraseñaCorreo" maxlength="15" name="txtContraseñaCorreo" Required >
 									</div>
 								</div>
 							</div>

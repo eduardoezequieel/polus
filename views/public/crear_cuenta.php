@@ -38,9 +38,9 @@
 					<h1 class="titulo2 text-center m-4">Registro</h1>
 				</div>
 			</div>
-			<form method="post" id="register-form">
+			<form action="/form" autocomplete="off" method="post" id="register-form">
 				<!-- Campo oculto para asignar el token del reCAPTCHA -->
-				<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+				<input type="hidden" id="token_response" name="token_response">
 				<div class="justify-content-center row animate__animated animate__fadeInUp animate__faster">
 					<!-- Columna 1 -->
 					<div
@@ -52,7 +52,7 @@
 						</div>
 						<div class="form-group mb-2">
 							<label for="txtEmail" class="mb-2 texto">Correo:</label>
-							<input type="email"maxlength="80" onchange="checkCorreo('txtEmail')" class="form-control personalizacionPolus personalizacionPolusP mb-1"
+							<input type="email" maxlength="80" onchange="checkCorreo('txtEmail')" class="form-control personalizacionPolus personalizacionPolusP mb-1"
 								id="txtEmail" name="txtEmail" placeholder="ejemplo@mail.com" Required>
 						</div>
 						<div class="form-group mb-2">
@@ -165,11 +165,6 @@
 	<script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
 	<script type="text/javascript" src="../../app/helpers/components.js"></script>
 	<script src="https://www.google.com/recaptcha/api.js?render=6Ldf0VAcAAAAAKtU0qNjwTPKAYdl0ZUr7zCFCdJo"></script>
-
-	<!-- Importación del archivo para que funcione el reCAPTCHA. Para más información https://developers.google.com/recaptcha/docs/v3
-    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6LdBzLQUAAAAAJvH-aCUUJgliLOjLcmrHN06RFXT"></script> -->
-
-
 </body>
 
 </html>

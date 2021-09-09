@@ -3,6 +3,12 @@ const API_USUARIOS = '../../app/api/dashboard/usuarios.php?action=';
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
+    // Se inicializan los tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+
     // Petición para verificar si existen usuarios.
     fetch(API_USUARIOS + 'readAll', {
         method: 'get'
@@ -65,4 +71,19 @@ document.getElementById('primerUso-form').addEventListener('submit', function (e
     });
 
 });
+
+//Función para mostrar contraseña
+function showHidePassword2(checkbox, pass1, pass2) {
+    var check = document.getElementById(checkbox);
+    var password = document.getElementById(pass1);
+    var password2 = document.getElementById(pass2);
+    //Verificando el estado del check
+    if (check.checked == true) {
+        password.type = 'text';
+        password2.type = 'text';
+    } else {
+        password.type = 'password';
+        password2.type = 'password';
+    }
+}
 

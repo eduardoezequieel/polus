@@ -217,13 +217,20 @@ if(isset($_GET['action'])){
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setCorreo($_POST['txtNuevoCorreo'])) {
                     if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
-                        if ($usuarios->changeEmail()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Correo actualizado exitosamente.';
+                        if ($usuarios->setId($_SESSION['idAdmon'])) {
+                            if ($usuarios->checkPassword($_POST['txtContraseñaCorreo'])) {
+                                if ($usuarios->changeEmail()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Correo actualizado exitosamente.';
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                            } else {
+                                $result['exception'] = 'Contraseña incorrecta';
+                            }
                         } else {
-                            $result['exception'] = Database::getException();
+                            $result['exception'] = 'Id incorrecto';
                         }
-                        
                     } else {
                         $result['exception'] = 'Los correos no coinciden.';
                     }
@@ -236,13 +243,20 @@ if(isset($_GET['action'])){
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setUsuario($_POST['txtNuevoUsuario'])) {
                     if ($_POST['txtNuevoUsuario'] == $_POST['txtConfirmarUsuario']) {
-                        if ($usuarios->changeUser()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Usuario actualizado exitosamente.';
+                        if ($usuarios->setId($_SESSION['idAdmon'])) {
+                            if ($usuarios->checkPassword($_POST['txtContraseñaUsuario'])) {
+                                if ($usuarios->changeUser()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Usuario actualizado exitosamente.';
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                            } else {
+                                $result['exception'] = 'Contraseña incorrecta.';
+                            }
                         } else {
-                            $result['exception'] = Database::getException();
+                            $result['exception'] = 'Id incorrecta.';
                         }
-                        
                     } else {
                         $result['exception'] = 'Los usuarios no coinciden.';
                     }

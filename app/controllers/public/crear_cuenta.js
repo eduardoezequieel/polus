@@ -3,7 +3,7 @@ const API_CLIENT = '../../app/api/public/clientes.php?action=';
 
 document.addEventListener('DOMContentLoaded', function(){
     // Se llama a la función que asigna el token del reCAPTCHA al formulario.
-    //reCAPTCHA();
+    reCAPTCHA();
     // Se declara e inicializa un objeto para obtener la fecha y hora actual.
     let today = new Date();
     // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
@@ -20,22 +20,24 @@ document.addEventListener('DOMContentLoaded', function(){
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    });
 })
 
-/*// Función para obtener un token del reCAPTCHA y asignarlo al formulario.
+// Función para obtener un token del reCAPTCHA y asignarlo al formulario.
 function reCAPTCHA() {
     // Método para generar el token del reCAPTCHA.
     grecaptcha.ready(function () {
         // Se declara e inicializa una variable para guardar la llave pública del reCAPTCHA.
-        let publicKey = '6LdBzLQUAAAAAJvH-aCUUJgliLOjLcmrHN06RFXT';
+        let publicKey = '6Ldf0VAcAAAAAKtU0qNjwTPKAYdl0ZUr7zCFCdJo';
         // Se obtiene un token para la página web mediante la llave pública.
-        grecaptcha.execute(publicKey, { action: 'homepage' }).then(function (token) {
+        grecaptcha.execute(publicKey, {
+            action: 'homepage'
+        }).then(function (token) {
             // Se asigna el valor del token al campo oculto del formulario
-            document.getElementById('g-recaptcha-response').value = token;
+            document.getElementById('token_response').value = token;
         });
     });
-}*/
+}
 
 //Función para mostrar contraseña
 function showHidePassword2(checkbox, pass1, pass2) {
@@ -56,7 +58,6 @@ function showHidePassword2(checkbox, pass1, pass2) {
 document.getElementById('register-form').addEventListener('submit', function(event){
 
     event.preventDefault();
-
     //Obteniendo datos a través de fecth
     fetch(API_CLIENT + 'register', {
         method: 'post',
@@ -67,13 +68,11 @@ document.getElementById('register-form').addEventListener('submit', function(eve
             request.json().then(function(response){
                 //Verificando respuesta satisfactoria
                 if(response.status){
-                    previewSavePicture('divFoto', '',0);
                     sweetAlert(1, response.message, 'iniciar_sesion.php');
-                    clearForm('register-form')
-                    clearValidate();
-                    
                 } else{
                     sweetAlert(4, response.exception, null);
+                    // Se genera un nuevo token.
+                    reCAPTCHA();
                 }
             })
         } else {
