@@ -34,6 +34,45 @@ if(isset($_GET['action'])){
                     }
                 }
                 break;
+            //Caso para crear historial de sesion de un usuario
+            case 'createSesionHistory':
+                if ($usuarios->validateSesionHistory()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Sesión ya registrada en la base de datos.';
+                } else {
+                    if ($usuarios->createSesionHistory()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Sesión registrada correctamente.';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                }
+                break;
+            //Caso para obtener el historial de sesiones de un usuario
+            case 'getSesionHistory':
+                if ($result['dataset'] = $usuarios->getSesionHistory()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Este usuario no posee sesiones.';
+                    }
+                }
+                break;
+            //Caso para eliminar un historial de sesion
+            case 'deleteSesionHistory':
+                if ($usuarios->setIdHistorialSesion($_POST['idHistorialSesion'])) {
+                    if ($usuarios->deleteSesionHistory()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Dispositivo eliminado correctamente.';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = 'Id invalido.';
+                }
+                break;
             case 'updateProfileInfo':
                 $_POST = $usuarios->validateForm($_POST);
                 if($usuarios->setId($_SESSION['idAdmon'])){

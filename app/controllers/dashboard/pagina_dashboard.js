@@ -4,6 +4,7 @@ const API_RESEÑAS2 = '../../app/api/dashboard/reseñas.php?action=';
 const API_PEDIDOS2 = '../../app/api/dashboard/pedidos.php?action=';
 const API_INVENTARIO2 = '../../app/api/dashboard/inventario.php?action=';
 const API_CLIENTES2 = '../../app/api/dashboard/clientes.php?action=';
+const API_USUARIOS2 = '../../app/api/dashboard/usuarios.php?action=';
 
 //Método que se ejecuta cuando carga la página
 document.addEventListener('DOMContentLoaded', function(){
@@ -13,7 +14,33 @@ document.addEventListener('DOMContentLoaded', function(){
     orderPercentages();
     inventoryHistory();
     clientesMes();
+
+    //Para registrar las sesiones
+    createSesionHistory();
 });
+
+//Funcion que registra la sesión
+function createSesionHistory(){
+    fetch(API_USUARIOS2 + 'createSesionHistory', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //console.log(response.message);
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 
 //Funcion que se ejecuta para cargar la tabla de productos en el dashboard
 document.getElementById('btnHistorialPrecio').addEventListener('click',function(event){

@@ -2,7 +2,8 @@
 const API = '../../app/api/dashboard/usuarios.php?action=';
 
 document.addEventListener('DOMContentLoaded', function(){
-    openProfileDialog()
+    openProfileDialog();
+    getSesionHistory();
 
     //Para inicializar los tooltips
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -16,6 +17,94 @@ botonExaminar('btnAgregarFoto', 'archivo_usuario');
 
 //Metodo para crear una previsualizacion del archivo a cargar en la base de datos
 previewPicture('archivo_usuario','divFoto');
+
+function getSesionHistory() {
+    fetch(API + 'getSesionHistory', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Variable que contendra el codigo html
+                    let content = '';
+                    response.dataset.map(function(row){
+                        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+                            content += `
+                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 mt-3">
+                                <div class="tarjetaDispositivo">
+                                    <div class="d-flex">
+                                        <div class="d-flex justify-content-end align-items-center p-3" style="width: 100px;">
+                                            <span style="font-size: 24px;" class="fas fa-desktop text-muted"></span>
+                                        </div>
+                                        <div class="p-3">
+                                            <h1 class="lead">${row.phpinfo}</h1>
+                                            <h1 class="lead">${row.fechasesion}</h1>
+                                        </div>
+                                        <div>
+                                            <button onclick="deleteSessionHistory(${row.idhistorialsesion_a})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar" class="btn"><span class="fas fa-times"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+                    document.getElementById('contenedorDispositivos').innerHTML = content;
+
+                } else {
+                    //Se muestra el mensaje
+                    document.getElementById('mensaje').className = 'lead text-center';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function deleteSessionHistory(id) {
+    const data = new FormData();
+    data.append('idHistorialSesion', id);
+
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea eliminar este dispositivo?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(API + 'deleteSesionHistory', {
+                method: 'post',
+                body: data
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                            sweetAlert(1, response.message, 'mi_cuenta.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
 
 function openProfileDialog() {
 

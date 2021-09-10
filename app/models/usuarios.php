@@ -18,11 +18,22 @@ Class Usuarios extends Validator{
     private $idEstadoUsuario = null;
     private $idTipoUsuario = null;
     private $ruta = '../../../resources/img/dashboard_img/admon_fotos/';
+    private $idHistorialSesion = null;
 
     public function setId($value)
     {
         if ($this->validateNaturalNumber($value)) {
             $this->idAdmon = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdHistorialSesion($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idHistorialSesion = $value;
             return true;
         } else {
             return false;
@@ -175,6 +186,10 @@ Class Usuarios extends Validator{
         return $this -> foto;
     }
 
+    public function getIdHistorialSesion(){
+        return $this -> idHistorialSesion;
+    }
+
     public function getRuta()
     {
         return $this->ruta;
@@ -253,6 +268,43 @@ Class Usuarios extends Validator{
     {
         $sql = 'UPDATE admon SET correo = ? WHERE idAdmon = ?';
         $params = array($this->correo, $_SESSION['idAdmon']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Se valida si el inicio de sesion es existente o no
+    public function validateSesionHistory()
+    {
+        $sql = 'SELECT*FROM historialSesionAdmon WHERE phpinfo = ? AND idAdmon = ?';
+        $params = array(php_uname(), $_SESSION['idAdmon']);
+        if (Database::getRow($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Se crea el inicio de sesion
+    public function createSesionHistory()
+    {
+        $sql = 'INSERT INTO historialSesionAdmon(idadmon, phpinfo, fechasesion) 
+                VALUES(?,?,current_date)';
+        $params = array($_SESSION['idAdmon'], php_uname());
+        return Database::executeRow($sql, $params);
+    }
+
+    //Se obtiene el historial de sesiones de un usuario en especifico
+    public function getSesionHistory()
+    {
+        $sql = 'SELECT*FROM historialSesionAdmon WHERE idadmon = ?';
+        $params = array($_SESSION['idAdmon']);
+        return Database::getRows($sql, $params);
+    }
+
+    // Para eliminar un historial de sesion
+    public function deleteSesionHistory()
+    {
+        $sql = 'DELETE FROM historialSesionAdmon WHERE idadmon = ? AND idhistorialsesion_a = ?';
+        $params = array($_SESSION['idAdmon'], $this->idHistorialSesion);
         return Database::executeRow($sql, $params);
     }
 

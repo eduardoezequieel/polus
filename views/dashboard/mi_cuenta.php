@@ -117,6 +117,15 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 			</div>
 		</div>
 	</form>
+
+	<div class="row mt-5 animate__animated animate__fadeInUp animate__faster">
+		<div class="col-12">
+			<h1 class="tituloMiCuenta">DISPOSITIVOS REGISTRADOS</h1>
+		</div>
+	</div>
+	<div class="row mt-4 animate__animated animate__fadeInUp animate__faster" id="contenedorDispositivos">
+		<h1 id="mensaje" class="d-none">No posee dispositivos registrados.</h1>
+	</div>
 	<!-- Final del contenido -->
 </div>
 
