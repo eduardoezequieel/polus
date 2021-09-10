@@ -469,6 +469,24 @@ Class Usuarios extends Validator{
         $params = array($this->idAdmon);
         return Database::executeRow($sql, $params);
     }
+
+    //Función para llenar tabla de bitacoraUsuario
+    public function registerAction($action, $desc)
+    {
+        $sql = 'INSERT INTO bitacoraUsuario VALUES (DEFAULT, ?, current_date , current_time, ?, ?)';
+        $params = array($_SESSION['idAdmon'], $action, $desc);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para evaluar si han pasado 90 días desde la última actualización de clave
+    public function checkLastPasswordUpdate() {
+        $sql = 'SELECT * 
+                FROM bitacoraUsuario 
+                WHERE idadmon = ? AND fecha BETWEEN (SELECT current_date - 90) 
+                AND current_date AND descripcion = \'Cambio de clave\' LIMIT 1';
+        $params = array($_SESSION['idAdmon']);
+        return Database::getRow($sql,$params);
+    }
 }   
 
 ?>

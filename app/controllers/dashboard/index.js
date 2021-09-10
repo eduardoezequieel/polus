@@ -47,7 +47,10 @@ document.getElementById('login-form').addEventListener('submit', function(event)
                 //Verificando respuesta satisfactoria
                 if(response.status){
                     sweetAlert(1, response.message, 'pagina_dashboard.php');
-                } else{
+                } else if (response.error) {
+                    sweetAlert(3,response.message, 'cambiar_clave.php');
+                } 
+                else{
                     sweetAlert(2, response.exception, null);
                 }
             })

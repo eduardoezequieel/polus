@@ -234,6 +234,7 @@ if(isset($_GET['action'])){
                                     if ($usuarios->changePassword()) {
                                         $result['status'] = 1;
                                         $result['message'] = 'Contraseña actualizada exitosamente.';
+                                        $usuarios->registerAction('Actualizar','Cambio de clave');
                                     } else {
                                         $result['exception'] = Database::getException();
                                     }
@@ -365,13 +366,14 @@ if(isset($_GET['action'])){
                                                                 if(isset($_POST['cbTipoUsuario'])){
                                                                     if($usuarios -> setIdTipoUsuario($_POST['cbTipoUsuario'])){
                                                                         $usuarios->setIdEstadoUsuario(1);
-                                                                        $usuarios -> setContrasenia('polus-User');
+                                                                        $usuarios -> setContrasenia('polusUser2*');
                                                                         if ($usuarios->createRow()) {
                                                                             $result['status'] = 1;
                                                                             if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                 $result['message'] = 'Usuario registrado correctamente';
                                                                             } else {
                                                                                 $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                                $usuarios->registerAction('Agregar','Cambio de clave');
                                                                             }
                                                                         } else {
                                                                             $result['exception'] = Database::getException();
@@ -610,8 +612,10 @@ if(isset($_GET['action'])){
                                                                                 $result['status'] = 1;
                                                                                 if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                     $result['message'] = 'Usuario registrado correctamente';
+                                                                                    $usuarios->registerAction('Agregar','Cambio de clave');
                                                                                 } else {
                                                                                     $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                                    $usuarios->registerAction('Agregar','Cambio de clave');
                                                                                 }
                                                                             } else {
                                                                                 $result['exception'] = Database::getException();;
@@ -663,11 +667,17 @@ if(isset($_GET['action'])){
                 $_POST = $usuarios -> validateForm($_POST);
                 if($usuarios->checkUser($_POST['txtUsuario'])){
                     if($usuarios->checkPassword($_POST['txtContrasenia'])){
-                        $result['status'] = 1;
-                        $result['message'] = 'Sesión iniciada correctamente';
                         $_SESSION['idAdmon'] = $usuarios->getId();
                         $_SESSION['usuario'] = $usuarios->getUsuario();
                         $_SESSION['foto'] = $usuarios->getFoto();
+                        if($usuarios->checkLastPasswordUpdate()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Sesión iniciada correctamente';
+                        } else {
+                            $result['error'] = 1;
+                            $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';
+                            
+                        }
                     } else {
                         $result['exception'] = 'La contraseña es incorrecta';
                     }

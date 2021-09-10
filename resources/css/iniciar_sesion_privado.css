@@ -73,6 +73,26 @@ a:hover{
     font-weight: 300;
 }
 
+.tituloCajaTextoFormulario {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    padding-left: 15px;
+  }
+
+  .tituloDato {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .titulo {
+    font-family: 'Manrope', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+   
+  }
+
+
 .texto{
     font-family: 'Roboto', sans-serif;
     font-weight: 300%;
