@@ -441,3 +441,24 @@ CREATE TABLE historialSesionCliente(
 	phpinfo VARCHAR(500) NOT NULL,
 	fechasesion DATE NOT NULL
 );
+
+--Cambios 10/09/2021
+DROP TABLE bitacora;
+
+CREATE TABLE bitacoraUsuario(
+	idBitacora serial not null primary key,
+	idAdmon integer REFERENCES admon(idAdmon),
+	fecha date not null,
+	hora time not null,
+	accion character varying(20) not null, 
+	descripcion character varying(200) not null
+);
+
+CREATE TABLE bitacoraCliente(
+	idBitacora serial not null primary key,
+	idCliente integer REFERENCES cliente(idCliente),
+	fecha date not null,
+	hora time not null,
+	accion character varying(20) not null, 
+	descripcion character varying(200) not null
+);

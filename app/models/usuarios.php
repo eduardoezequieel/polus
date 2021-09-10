@@ -19,7 +19,13 @@ Class Usuarios extends Validator{
     private $idTipoUsuario = null;
     private $ruta = '../../../resources/img/dashboard_img/admon_fotos/';
     private $idHistorialSesion = null;
+    private $idBitacora = null;
+    private $fechaHora = null;
+    private $descripcion = null;
 
+    /*
+        Métodos set
+    */
     public function setId($value)
     {
         if ($this->validateNaturalNumber($value)) {
@@ -160,7 +166,29 @@ Class Usuarios extends Validator{
         }
     }
 
-    //Metodos get
+    public function setIdBitacora($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idBitacora = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setDescripcion($value)
+    {
+        if ($this->validateString($value,1,200)) {
+            $this->descripcion= $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /* 
+        Metodos get
+    */
 
     public function getId(){
         return $this -> idAdmon;
@@ -222,6 +250,14 @@ Class Usuarios extends Validator{
         return $this -> idTipoUsuario;
     }
 
+    public function getIdBitacora(){
+        return $this -> idBitacora;
+    }
+
+    public function getDescripcion(){
+        return $this -> descripcion;
+    }
+
     //Métodos para administrar cuenta del usuario 
     public function checkUser($alias)
     {
@@ -237,6 +273,7 @@ Class Usuarios extends Validator{
         }
     }
 
+    //Función para verificar la contraseña
     public function checkPassword($password)
     {
         $sql = 'SELECT contraseña FROM admon WHERE idAdmon = ?';
@@ -249,6 +286,7 @@ Class Usuarios extends Validator{
         }
     }
 
+    //Función para cambiar la contraseña
     public function changePassword()
     {
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
@@ -257,6 +295,7 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    //Función para cambiar el nombre de usuario
     public function changeUser()
     {
         $sql = 'UPDATE admon SET usuario = ? WHERE idAdmon = ?';
@@ -264,6 +303,7 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    //Función para cambiar el correo electrónico del usuario
     public function changeEmail()
     {
         $sql = 'UPDATE admon SET correo = ? WHERE idAdmon = ?';
@@ -308,6 +348,7 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    //Función para leer los datos del usuario logeado
     public function readProfile()
     {
         $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
@@ -317,6 +358,7 @@ Class Usuarios extends Validator{
         return Database::getRow($sql, $params);
     }
 
+    //Función para cambiar la foto del usuario logeado
     public function updateProfileInfo($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
@@ -329,6 +371,7 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    //Función para cambiar la información de cuenta del usuario logeado
     public function updateProfileAccount()
     {
         $sql = 'UPDATE admon
@@ -351,6 +394,7 @@ Class Usuarios extends Validator{
         return Database::getRows($sql, $params);
     }
 
+    //Función para agregar un nuevo registro
     public function createRow()
     {
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
@@ -375,6 +419,7 @@ Class Usuarios extends Validator{
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer un registro en especifico
     public function readOne()
     {
         $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
@@ -391,6 +436,7 @@ Class Usuarios extends Validator{
         return Database::getRows($sql, $params);
     }
 
+    //Función para actualizar un registro
     public function updateRow($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
@@ -403,18 +449,21 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    //Función para eliminar un registro
     public function deleteRow(){
         $sql = 'DELETE FROM admon WHERE idAdmon = ?';
         $params = array($this->idAdmon);
         return Database::executeRow($sql, $params);
     }
 
+    //Función para suspender un registro
     public function suspenderRow(){
         $sql = 'UPDATE admon SET idEstadoUsuario = 2 WHERE idAdmon = ?';
         $params = array($this->idAdmon);
         return Database::executeRow($sql, $params);
     }
 
+    //Función para activar un registro
     public function activarRow(){
         $sql = 'UPDATE admon SET idEstadoUsuario = 1 WHERE idAdmon = ?';
         $params = array($this->idAdmon);
