@@ -426,3 +426,18 @@ UPDATE cliente SET fechaRegistro = '2021-04-04' WHERE idcliente = 2;
 UPDATE cliente SET fechaRegistro = '2021-05-04' WHERE idcliente = 3;
 UPDATE cliente SET fechaRegistro = '2021-06-04' WHERE idcliente = 4;
 UPDATE cliente SET fechaRegistro = '2021-07-04' WHERE idcliente = 5;
+
+--CAMBIOS IMPORTANTES
+CREATE TABLE historialSesionAdmon(
+	idhistorialsesion_a SERIAL NOT NULL PRIMARY KEY,
+	idAdmon INTEGER NOT NULL REFERENCES admon(idadmon),
+	phpinfo VARCHAR(500) NOT NULL,
+	fechasesion DATE NOT NULL
+);
+
+CREATE TABLE historialSesionCliente(
+	idhistorialsesion_c SERIAL NOT NULL PRIMARY KEY,
+	idCliente INTEGER NOT NULL REFERENCES cliente(idcliente),
+	phpinfo VARCHAR(500) NOT NULL,
+	fechasesion DATE NOT NULL
+);
