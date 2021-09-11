@@ -34,49 +34,68 @@
             </head>
             
             <body>
-            
-                <!-- Vertical navbar -->
-                <div class="vertical-nav" id="sidebar">
-                    <div class="py-4 px-3 mb-2 fondoOscuro">
-                        <div class="media d-flex align-items-center">
-                        <a href="../../views/dashboard/pagina_dashboard.php"><img src="../../resources/img/polus tipografia.png" alt="" class="img-fluid" width="250px"></a>
-                        
-                        </div>
-                    </div>
-                    <p class="titulosSidebar px-3 small pb-2 mb-0">ADMINISTRACIÓN</p>
-                    <ul class="nav flex-column mb-0">
-                        <li class="nav-item">
-                            <a href="#" id="usuariosbtn" class="nav-link text-white"><span class="fas fa-user-tie lead mx-3"></span><span id="usuarioLabel">Usuarios</span> <i class="fas fa-caret-down padding1"></i></a>
-                            <ul class="ocultar animate__animated animate__fadeInLeft animate__faster animate__delay-0s" id="usuarios-mostrar">
-                                <li><a href="../../views/dashboard/agregar_usuarios.php" class="nav-link text-white submenu">Agregar Usuarios</a></li>
-                                <li><a href="../../views/dashboard/administrar_usuarios.php" class="nav-link text-white submenu">Administrar Usuarios</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../views/dashboard/administrar_clientes.php" class="nav-link text-white "><span class="fas fa-user-tag lead mx-3"></span>Clientes</a>            
-                        </li>
-                    </ul>
-            
-                    <p class="titulosSidebar px-3 small pb-2 pt-4 mb-0">TIENDA</p>
-                    <ul class="nav flex-column mb-0">
-                        <li class="nav-item">
-                            <a href="#" id="productosbtn" class="nav-link text-white "><span class="fas fa-store-alt lead mx-3"></span>Productos<i class="fas fa-caret-down padding2"></i></a>
-                            <ul class="ocultar animate__animated animate__fadeInLeft animate__faster animate__delay-0s" id="productos-mostrar">
-                                
-                                <li><a href="../../views/dashboard/administrar_productos.php" class="nav-link text-white submenu">Administrar Productos</a></li>
-                                <li><a href="../../views/dashboard/inventario.php" class="nav-link text-white submenu">Inventario</a></li>
-                            </ul>           
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../views/dashboard/pedidos.php" class="nav-link text-white "><span class="fas fa-truck lead mx-3"></span>Pedidos</a>            
-                        </li>
-                        
-                        
-                    </ul>
-                    
-                </div>
                 '
             );
+
+            //Se obtiene el nombre del archivo de la pagina web actual
+            $filename = basename($_SERVER['PHP_SELF']);
+            //Se comprueba si existe una sesión de admin para mostrar las opcines
+            if (isset($_SESSION['idAdmon'])){
+                //Se verifica si la pag es diferente a index o primer usuario
+                if ($filename != 'index.php' && $filename != 'primer_uso.php'){
+                    print('
+                                    
+                        <!-- Vertical navbar -->
+                        <div class="vertical-nav" id="sidebar">
+                            <div class="py-4 px-3 mb-2 fondoOscuro">
+                                <div class="media d-flex align-items-center">
+                                <a href="../../views/dashboard/pagina_dashboard.php"><img src="../../resources/img/polus tipografia.png" alt="" class="img-fluid" width="250px"></a>
+                                
+                                </div>
+                            </div>
+                            <p class="titulosSidebar px-3 small pb-2 mb-0">ADMINISTRACIÓN</p>
+                            <ul class="nav flex-column mb-0">
+                                <li class="nav-item">
+                                    <a href="#" id="usuariosbtn" class="nav-link text-white"><span class="fas fa-user-tie lead mx-3"></span><span id="usuarioLabel">Usuarios</span> <i class="fas fa-caret-down padding1"></i></a>
+                                    <ul class="ocultar animate__animated animate__fadeInLeft animate__faster animate__delay-0s" id="usuarios-mostrar">
+                                        <li><a href="../../views/dashboard/agregar_usuarios.php" class="nav-link text-white submenu">Agregar Usuarios</a></li>
+                                        <li><a href="../../views/dashboard/administrar_usuarios.php" class="nav-link text-white submenu">Administrar Usuarios</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../../views/dashboard/administrar_clientes.php" class="nav-link text-white "><span class="fas fa-user-tag lead mx-3"></span>Clientes</a>            
+                                </li>
+                            </ul>
+                    
+                            <p class="titulosSidebar px-3 small pb-2 pt-4 mb-0">TIENDA</p>
+                            <ul class="nav flex-column mb-0">
+                                <li class="nav-item">
+                                    <a href="#" id="productosbtn" class="nav-link text-white "><span class="fas fa-store-alt lead mx-3"></span>Productos<i class="fas fa-caret-down padding2"></i></a>
+                                    <ul class="ocultar animate__animated animate__fadeInLeft animate__faster animate__delay-0s" id="productos-mostrar">
+                                        
+                                        <li><a href="../../views/dashboard/administrar_productos.php" class="nav-link text-white submenu">Administrar Productos</a></li>
+                                        <li><a href="../../views/dashboard/inventario.php" class="nav-link text-white submenu">Inventario</a></li>
+                                    </ul>           
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../../views/dashboard/pedidos.php" class="nav-link text-white "><span class="fas fa-truck lead mx-3"></span>Pedidos</a>            
+                                </li>
+                                
+                                
+                            </ul>
+                            
+                        </div>
+                    ');
+
+                } else {
+                    header('location: index.php');
+                }
+            } else {
+                // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a 'primer_uso.php (Crear primer usuario) para direccionar a index.php, de lo contrario se muestra un menú vacío.
+                if ($filename != 'index.php' && $filename != 'primer_uso.php') {
+                    header('location: index.php');
+                } 
+            }
         }
 
         public static function mensajeBienvenida(){
@@ -157,28 +176,45 @@
         }
 
         public static function barraInicial(){
-            print('
-                <div class="container" id="barraInicial">
-                    <div class="row justify-content-end">
-                        <div class="col-3">
-                            <button type="button" class="btn" id="sidebarCollapse"><i class="fas fa-bars lead p-2 text-black"></i></button>
-                        </div>
-                        <div class="col-9 d-flex justify-content-end align-items-right">
-                            <div class="dropdown">
-                                <button class="btn d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../resources/img/dashboard_img/admon_fotos/' . $_SESSION['fotoUsuario'] . '" id="fotoPerfil" alt="" class="rounded-circle fotografiaPerfil2" width="40px">
-                                        <h5 class="text-center mx-3 paddingUsername">' . $_SESSION['usuario'] . '</h5>
-                                        <i class="fas fa-caret-down paddingFlecha"></i>
-                                </button>
-                                <ul class="dropdown-menu  animate__animated animate__bounceIn m-5" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="mi_cuenta.php">Mi Cuenta</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar Sesión</a></li>
-                                </ul>
-                            </div>  
-                        </div>
-                    </div>
-                </div>'
-            );
+            
+            //Se obtiene el nombre del archivo de la pagina web actual
+            $filename = basename($_SERVER['PHP_SELF']);
+            //Se comprueba si existe una sesión de admin para mostrar las opcines
+            if (isset($_SESSION['idAdmon'])){
+                //Se verifica si la pag es diferente a index o primer usuario
+                if ($filename != 'index.php' && $filename != 'primer_uso.php'){
+                    print('
+                        <div class="container" id="barraInicial">
+                            <div class="row justify-content-end">
+                                <div class="col-3">
+                                    <button type="button" class="btn" id="sidebarCollapse"><i class="fas fa-bars lead p-2 text-black"></i></button>
+                                </div>
+                                <div class="col-9 d-flex justify-content-end align-items-right">
+                                    <div class="dropdown">
+                                        <button class="btn d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img src="../../resources/img/dashboard_img/admon_fotos/' . $_SESSION['fotoUsuario'] . '" id="fotoPerfil" alt="" class="rounded-circle fotografiaPerfil2" width="40px">
+                                                <h5 class="text-center mx-3 paddingUsername">' . $_SESSION['usuario'] . '</h5>
+                                                <i class="fas fa-caret-down paddingFlecha"></i>
+                                        </button>
+                                        <ul class="dropdown-menu  animate__animated animate__bounceIn m-5" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" href="mi_cuenta.php">Mi Cuenta</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar Sesión</a></li>
+                                        </ul>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>'
+                    );
+
+                } else {
+                    header('location: index.php');
+                }
+            } else {
+                // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a 'primer_uso.php (Crear primer usuario) para direccionar a index.php, de lo contrario se muestra un menú vacío.
+                if ($filename != 'index.php' && $filename != 'primer_uso.php') {
+                    header('location: index.php');
+                } 
+            }
         }
     }
 ?>
