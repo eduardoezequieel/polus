@@ -15,11 +15,13 @@ if(isset($_GET['action'])){
     if(isset($_SESSION['idAdmon'])){
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
+            //Caso para cerrar sesión
             case 'logOut':
                 unset($_SESSION['idAdmon']);
                 $result['status'] = 1;
                 $result['message'] = 'Sesión cerrada correctamente';
                 break;
+            //Caso para leer la info del perfil
             case 'readProfile':
                 if ($result['dataset'] = $usuarios->readProfile()) {
                     $result['status'] = 1;
@@ -301,6 +303,7 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Ingrese un usuario valido.';
                 }
                 break;
+            //Caso para leer todos los datos
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {
                     $result['status'] = 1;
@@ -314,6 +317,7 @@ if(isset($_GET['action'])){
                     }
                 }
                 break;
+            //Caso para leer todos los tipos de usuario
             case 'readTipoUsuario':
                 if ($result['dataset'] = $usuarios->readAllTipos()) {
                     $result['status'] = 1;
@@ -325,6 +329,7 @@ if(isset($_GET['action'])){
                     }
                 }
                 break;
+            //Caso para buscar registros
             case 'search':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($_POST['search'] != '') {
@@ -347,6 +352,7 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Ingrese un valor para buscar';
                 }
                 break;
+            //Caso para crear un registro
             case 'create':
                 $_POST = $usuarios->validateForm($_POST);
                     if($usuarios->setNombres($_POST['txtNombre'])){
@@ -414,6 +420,7 @@ if(isset($_GET['action'])){
                         $result['exception'] = 'Nombres incorrectos';
                     }
                 break;
+            //Caso para leer un registro
             case 'readOne':
                 if ($usuarios->setId($_POST['idAdmon'])) {
                     if ($result['dataset'] = $usuarios->readOne()) {
@@ -429,6 +436,7 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
+            //Caso para suspender un registro
             case 'suspender':
                 if($_POST['idAdmon'] != $_SESSION['idAdmon']){
                     if ($usuarios->setId($_POST['idAdmon'])) {
@@ -449,6 +457,7 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'No se puede suspender tu propia cuenta';
                 }
                 break;
+            //Caso para activar un registro
             case 'activar':
                 if ($usuarios->setId($_POST['idAdmon'])) {
                     if ($usuarios->activarRow()) {
@@ -464,7 +473,8 @@ if(isset($_GET['action'])){
                 } else {
                     $result['exception'] = 'Usuario incorrecto';
                 }
-                break;         
+                break;  
+            //Caso para actualizar un registro       
             case 'update':
                 $_POST = $usuarios->validateForm($_POST);
                 if($usuarios->setId($_POST['idAdmon'])){
@@ -543,6 +553,7 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'Usuario seleccionado incorrecto';
                 }
                 break;
+            //Caso para eliminar un registro
             case 'delete':
                 if ($_POST['idAdmon'] != $_SESSION['idAdmon']) {
                     if ($usuarios->setId($_POST['idAdmon'])) {
@@ -573,6 +584,7 @@ if(isset($_GET['action'])){
     } else{
          // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
          switch ($_GET['action']) {
+             //Cado para leer todos los datos
             case 'readAll':
                 if ($usuarios->readAll()) {
                     $result['status'] = 1;
@@ -586,6 +598,7 @@ if(isset($_GET['action'])){
                     }
                 }
                 break;
+            //Caso para registrar al primer usuario
             case 'register':
                 $_POST = $usuarios->validateForm($_POST);
                     if($usuarios->setNombres($_POST['txtNombre'])){
@@ -659,6 +672,7 @@ if(isset($_GET['action'])){
                         $result['exception'] = 'Nombres incorrectos';
                     }
                 break;
+            //Caso para entrar al sistema
             case 'logIn':
                 $_POST = $usuarios -> validateForm($_POST);
                 if($usuarios->checkUser($_POST['txtUsuario'])){
