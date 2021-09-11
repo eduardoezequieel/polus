@@ -86,8 +86,8 @@
                                 </form>
                                 <div class="dropdown">
                                     <button class="btn d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="../../resources/img/dashboard_img/cliente_fotos/' . $_SESSION['foto'] . '" id="fotoPerfil" alt="" class="rounded-circle fotografiaPerfil2" width="40px">
-                                            <h5 class="text-center mx-3 paddingUsername">' . $_SESSION['usuario'] . '</h5>
+                                            <img src="../../resources/img/dashboard_img/cliente_fotos/' . $_SESSION['fotoCliente'] . '" id="fotoPerfil" alt="" class="rounded-circle fotografiaPerfil2" width="40px">
+                                            <h5 class="text-center mx-3 paddingUsername">' . $_SESSION['usuarioCliente'] . '</h5>
                                             <i class="fas fa-caret-down paddingFlecha"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark  animate__animated animate__bounceIn" aria-labelledby="dropdownMenuButton1">

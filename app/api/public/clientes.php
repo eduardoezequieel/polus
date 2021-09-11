@@ -20,12 +20,9 @@
 
                 //Caso para cerrar la sesón
                 case 'logOut':
-                    if (session_destroy()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Sesión cerrada correctamente';
-                    } else {
-                        $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
-                    }
+                    unset($_SESSION['idCliente']);
+                    $result['status'] = 1;
+                    $result['message'] = 'Sesión cerrada correctamente';
                     break;
                 //Caso para crear historial de sesion de un usuario
                 case 'createSesionHistory':
@@ -346,8 +343,8 @@
                             if ($clientes->checkPassword($_POST['contrasenia'])) {
                                 $_SESSION['idCliente'] = $clientes->getId();
                                 $_SESSION['correoCliente'] = $clientes->getCorreo();
-                                $_SESSION['foto'] =$clientes->getFoto();
-                                $_SESSION['usuario'] = $clientes->getUsuario();
+                                $_SESSION['fotoCliente'] =$clientes->getFoto();
+                                $_SESSION['usuarioCliente'] = $clientes->getUsuario();
                                 if($clientes->checkLastPasswordUpdate()) {
                                     $result['status'] = 1;
                                     $result['message'] = 'Sesión iniciada correctamente';

@@ -16,12 +16,9 @@ if(isset($_GET['action'])){
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'logOut':
-                if (session_destroy()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Sesión eliminada correctamente';
-                } else {
-                    $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
-                }
+                unset($_SESSION['idAdmon']);
+                $result['status'] = 1;
+                $result['message'] = 'Sesión cerrada correctamente';
                 break;
             case 'readProfile':
                 if ($result['dataset'] = $usuarios->readProfile()) {
@@ -668,7 +665,7 @@ if(isset($_GET['action'])){
                     if($usuarios->checkPassword($_POST['txtContrasenia'])){
                         $_SESSION['idAdmon'] = $usuarios->getId();
                         $_SESSION['usuario'] = $usuarios->getUsuario();
-                        $_SESSION['foto'] = $usuarios->getFoto();
+                        $_SESSION['fotoUsuario'] = $usuarios->getFoto();
                         if($usuarios->checkLastPasswordUpdate()) {
                             $result['status'] = 1;
                             $result['message'] = 'Sesión iniciada correctamente';

@@ -166,7 +166,7 @@
                         <div class="col-9 d-flex justify-content-end align-items-right">
                             <div class="dropdown">
                                 <button class="btn d-flex" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../resources/img/dashboard_img/admon_fotos/' . $_SESSION['foto'] . '" id="fotoPerfil" alt="" class="rounded-circle fotografiaPerfil2" width="40px">
+                                        <img src="../../resources/img/dashboard_img/admon_fotos/' . $_SESSION['fotoUsuario'] . '" id="fotoPerfil" alt="" class="rounded-circle fotografiaPerfil2" width="40px">
                                         <h5 class="text-center mx-3 paddingUsername">' . $_SESSION['usuario'] . '</h5>
                                         <i class="fas fa-caret-down paddingFlecha"></i>
                                 </button>
