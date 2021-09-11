@@ -18,6 +18,8 @@
         private $contrasenia = null;
         private $idEstadoUsuario = null;
         private $ruta = '../../../resources/img/dashboard_img/cliente_fotos/';
+        private $idHistorialSesion = null;
+
 
         /*
             Métodos set
@@ -26,6 +28,16 @@
         {
             if ($this->validateNaturalNumber($value)) {
                 $this->idCliente = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setIdHistorialSesion($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idHistorialSesion = $value;
                 return true;
             } else {
                 return false;
@@ -180,6 +192,10 @@
             return $this -> correo;
         }
 
+        public function getIdHistorialSesion(){
+            return $this -> idHistorialSesion;
+        }
+
         public function getFoto(){
             return $this -> foto;
         }
@@ -210,6 +226,43 @@
 
         public function getIdEstadoUsuario(){
             return $this -> idEstadoUsuario;
+        }
+
+        //Se valida si el inicio de sesion es existente o no
+        public function validateSesionHistory()
+        {
+            $sql = 'SELECT*FROM historialSesionCliente WHERE phpinfo = ? AND idCliente = ?';
+            $params = array(php_uname(), $_SESSION['idCliente']);
+            if (Database::getRow($sql, $params)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //Se crea el inicio de sesion
+        public function createSesionHistory()
+        {
+            $sql = 'INSERT INTO historialSesionCliente(idcliente, phpinfo, fechasesion) 
+                    VALUES (?,?,current_date)';
+            $params = array($_SESSION['idCliente'], php_uname());
+            return Database::executeRow($sql, $params);
+        }
+
+        //Se obtiene el historial de sesiones de un usuario en especifico
+        public function getSesionHistory()
+        {
+            $sql = 'SELECT*FROM historialSesionCliente WHERE idcliente = ?';
+            $params = array($_SESSION['idCliente']);
+            return Database::getRows($sql, $params);
+        }
+
+        // Para eliminar un historial de sesion
+        public function deleteSesionHistory()
+        {
+            $sql = 'DELETE FROM historialSesionCliente WHERE idcliente = ? AND idhistorialsesion_c = ?';
+            $params = array($_SESSION['idCliente'], $this->idHistorialSesion);
+            return Database::executeRow($sql, $params);
         }
 
         //Ver clientes registrados por cada mes
@@ -409,4 +462,3 @@
         }
 
     }
-?>

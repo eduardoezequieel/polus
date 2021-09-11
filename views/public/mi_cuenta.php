@@ -113,22 +113,6 @@ public_Page::navbarTemplate('Polus | Mi Cuenta','.');
 		</div>
 	</div>
     <div class="row mt-4 animate__animated animate__fadeInUp animate__faster" id="contenedorDispositivos">
-        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 mt-3">
-            <div class="tarjetaDispositivo">
-                <div class="d-flex">
-                    <div class="d-flex justify-content-end align-items-center p-3" style="width: 100px;">
-                        <span style="font-size: 24px;" class="fas fa-desktop text-white"></span>
-                    </div>
-                    <div class="p-3">
-                        <h1 class="lead text-white">Windows NT EDUARDO 10.0 build 22000 (Windows 10) AMD64</h1>
-                        <h1 class="lead text-white">2021-09-98</h1>
-                    </div>
-                    <div>
-                        <button type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar" class="btn"><span class="fas fa-times text-white"></span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
         
 		<h1 id="mensaje" class="d-none">No posee dispositivos registrados.</h1>
 	</div> 

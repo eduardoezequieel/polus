@@ -27,6 +27,45 @@
                         $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                     }
                     break;
+                //Caso para crear historial de sesion de un usuario
+                case 'createSesionHistory':
+                    if ($clientes->validateSesionHistory()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Sesión ya registrada en la base de datos.';
+                    } else {
+                        if ($clientes->createSesionHistory()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Sesión registrada correctamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    }
+                    break;
+                //Caso para obtener el historial de sesiones de un usuario
+                case 'getSesionHistory':
+                    if ($result['dataset'] = $clientes->getSesionHistory()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Este usuario no posee sesiones.';
+                        }
+                    }
+                    break;
+                //Caso para eliminar un historial de sesion
+                case 'deleteSesionHistory':
+                    if ($clientes->setIdHistorialSesion($_POST['idHistorialSesion'])) {
+                        if ($clientes->deleteSesionHistory()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Dispositivo eliminado correctamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Id invalido.';
+                    }
+                    break;
                 //Caso para cargar la informacion personal del usuario
                 case 'readProfile':
                     if ($result['dataset'] = $clientes->readProfile()) {

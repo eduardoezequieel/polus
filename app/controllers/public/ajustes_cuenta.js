@@ -5,7 +5,124 @@ const API_CLIENTES = '../../app/api/public/clientes.php?action=';
 document.addEventListener('DOMContentLoaded', function(){
     // Carga la informacion del cliente
     obtenerInfo();
+    // Se registra la sesion
+    createSesionHistory();
+    // Se cargan las sesiones registradas
+    getSesionHistory();
 });
+
+//Funcion que registra la sesión
+function createSesionHistory(){
+    fetch(API_CLIENTES + 'createSesionHistory', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //console.log(response.message);
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Carga el historial de sesiones
+function getSesionHistory() {
+    fetch(API_CLIENTES + 'getSesionHistory', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Variable que contendra el codigo html
+                    let content = '';
+                    response.dataset.map(function(row){
+                        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+                            content += `
+                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 mt-3">
+                                <div class="tarjetaDispositivo">
+                                    <div class="d-flex">
+                                        <div class="d-flex justify-content-end align-items-center p-3" style="width: 100px;">
+                                            <span style="font-size: 24px;" class="fas fa-desktop text-white"></span>
+                                        </div>
+                                        <div class="p-3">
+                                            <h1 class="lead text-white">${row.phpinfo}</h1>
+                                            <h1 class="lead text-white">${row.fechasesion}</h1>
+                                        </div>
+                                        <div>
+                                            <button onclick="deleteSessionHistory(${row.idhistorialsesion_c})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar" class="btn"><span class="fas fa-times text-white"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+                    document.getElementById('contenedorDispositivos').innerHTML = content;
+
+                } else {
+                    //Se muestra el mensaje
+                    document.getElementById('mensaje').className = 'lead text-center';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Para eliminar historial de sesiones
+function deleteSessionHistory(id) {
+    const data = new FormData();
+    data.append('idHistorialSesion', id);
+
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea eliminar este dispositivo?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(API_CLIENTES + 'deleteSesionHistory', {
+                method: 'post',
+                body: data
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                            sweetAlert(1, response.message, 'mi_cuenta.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
 
 //Obtener info
 function obtenerInfo(){
