@@ -164,6 +164,7 @@
                                             if ($clientes->changePassword()) {
                                                 $result['status'] = 1;
                                                 $result['message'] = 'Contraseña actualizada correctamente.';
+                                                $clientes->registerAction('Actualizar','Cambio de clave');
                                             } else {
                                                 $result['exception'] = Database::getException();
                                             }
@@ -241,8 +242,10 @@
                                                                                     $result['status'] = 1;
                                                                                     if ($clientes->saveFile($_FILES['archivo_usuario'], $clientes->getRuta(), $clientes->getFoto())) {
                                                                                         $result['message'] = 'Cliente registrado correctamente';
+                                                                                        $clientes->registerAction('Registrar','Cambio de clave');
                                                                                     } else {
                                                                                         $result['message'] = 'Cliente registrado pero no se guardó la imagen';
+                                                                                        $clientes->registerAction('Registrar','Cambio de clave');
                                                                                     }
                                                                                 } else {
                                                                                     $result['exception'] = Database::getException();
@@ -306,8 +309,14 @@
                                 $_SESSION['correoCliente'] = $clientes->getCorreo();
                                 $_SESSION['foto'] =$clientes->getFoto();
                                 $_SESSION['usuario'] = $clientes->getUsuario();
-                                $result['status'] = 1;
-                                $result['message'] = 'Autenticación correcta';
+                                if($clientes->checkLastPasswordUpdate()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Sesión iniciada correctamente';
+                                } else {
+                                    $result['error'] = 1;
+                                    $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';
+                                    
+                                }
                             } else {
                                 if (Database::getException()) {
                                     $result['exception'] = Database::getException();

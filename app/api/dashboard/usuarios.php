@@ -373,7 +373,6 @@ if(isset($_GET['action'])){
                                                                                 $result['message'] = 'Usuario registrado correctamente';
                                                                             } else {
                                                                                 $result['message'] = 'Usuario registrado pero no se guardó la imagen';
-                                                                                $usuarios->registerAction('Agregar','Cambio de clave');
                                                                             }
                                                                         } else {
                                                                             $result['exception'] = Database::getException();

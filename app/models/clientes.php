@@ -19,6 +19,9 @@
         private $idEstadoUsuario = null;
         private $ruta = '../../../resources/img/dashboard_img/cliente_fotos/';
 
+        /*
+            Métodos set
+        */
         public function setId($value)
         {
             if ($this->validateNaturalNumber($value)) {
@@ -149,7 +152,9 @@
             }
         }
 
-        //Metodos get
+        /*
+            Metodos get
+        */
 
         public function getId(){
             return $this -> idCliente;
@@ -234,6 +239,7 @@
             }
         }
 
+        //Función para verificar contraseña
         public function checkPassword($password)
         {
             $sql = 'SELECT contraseña FROM cliente WHERE idCliente = ?';
@@ -246,6 +252,7 @@
             }
         }
 
+        //Función para cambiar contraseña
         public function changePassword()
         {
             $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
@@ -254,6 +261,7 @@
             return Database::executeRow($sql, $params);
         }
 
+        //Función para leer la información del cliente logueado
         public function readProfile()
         {
             $sql = 'SELECT idCliente, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña
@@ -263,6 +271,7 @@
             return Database::getRow($sql, $params);
         }
 
+        //Función para editar el perfil del cliente logueado
         public function editProfile($current_image)
         {
             // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
@@ -275,6 +284,7 @@
             return Database::executeRow($sql, $params);
         }
 
+        //Función para actualizar el nombre usuario del cliente
         public function updateUser()
         {
             $sql = 'UPDATE cliente SET usuario = ? WHERE idCliente = ?';
@@ -282,6 +292,7 @@
             return Database::executeRow($sql, $params);
         }
 
+        //Función para actualizar el correo electrónico del cliente logueado
         public function updateEmail()
         {
             $sql = 'UPDATE cliente SET correo = ? WHERE idCliente = ?';
@@ -301,6 +312,7 @@
             return Database::getRows($sql, $params);
         }
 
+        //Función para agregar un nuevo registro
         public function createRow()
         {
             // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
@@ -334,7 +346,7 @@
             return Database::getRows($sql, $params);
         }
 
-
+        //Función para leer un registro
         public function readOne()
         {
             $sql = 'SELECT idCliente, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario
@@ -344,6 +356,7 @@
             return Database::getRow($sql, $params);
         }
 
+        //Función para actualizar un registro
         public function updateRow($current_image)
         {
             // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
@@ -356,22 +369,43 @@
             return Database::executeRow($sql, $params);
         }
 
+        //Función para eliminar un registro
         public function deleteRow(){
             $sql = 'DELETE FROM cliente WHERE idCliente = ?';
             $params = array($this->idCliente);
             return Database::executeRow($sql, $params);
         }
 
+        //Función para suspender un registro
         public function suspenderRow(){
             $sql = 'UPDATE cliente SET idEstadoUsuario = 2 WHERE idCliente = ?';
             $params = array($this->idCliente);
             return Database::executeRow($sql, $params);
         }
     
+        //Función para activar un registro
         public function activarRow(){
             $sql = 'UPDATE cliente SET idEstadoUsuario = 1 WHERE idCliente = ?';
             $params = array($this->idCliente);
             return Database::executeRow($sql, $params);
+        }
+
+        //Función para llenar tabla de bitacoraUsuario
+        public function registerAction($action, $desc)
+        {
+            $sql = 'INSERT INTO bitacoraCliente VALUES (DEFAULT, ?, current_date , current_time, ?, ?)';
+            $params = array($_SESSION['idCliente'], $action, $desc);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para evaluar si han pasado 90 días desde la última actualización de clave
+        public function checkLastPasswordUpdate() {
+            $sql = 'SELECT * 
+                    FROM bitacoraCliente 
+                    WHERE idcliente = ? AND fecha BETWEEN (SELECT current_date - 90) 
+                    AND current_date AND descripcion = \'Cambio de clave\' LIMIT 1';
+            $params = array($_SESSION['idCliente']);
+            return Database::getRow($sql,$params);
         }
 
     }
