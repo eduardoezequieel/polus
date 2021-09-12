@@ -185,6 +185,13 @@ function showHidePassword1(checkbox, pass1, pass2, pass3) {
     }
 }
 
+//Al activar el evento submit del formulario updateAuth-form
+document.getElementById('updateAuth-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    console.log(document.getElementById('switchAuth').value);
+})
+
 //Al activar el evento submit del formulario de cambio de usuario
 document.getElementById('updateUser-form').addEventListener('submit',function(event){
     //Evitamos recargar la pagina

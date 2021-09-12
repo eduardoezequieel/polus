@@ -462,3 +462,8 @@ CREATE TABLE bitacoraCliente(
 	accion character varying(20) not null, 
 	descripcion character varying(200) not null
 );
+
+--Cambios 11/09/2021
+ALTER TABLE admon ADD COLUMN dobleautenticacion CHAR(2) NULL
+UPDATE admon SET dobleautenticacion = 'No'
+ALTER TABLE admon ALTER COLUMN dobleautenticacion SET NOT NULL
