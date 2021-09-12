@@ -515,7 +515,7 @@
         //Función para actualizar bitacora
         public function updateBitacora(){
             $sql = 'UPDATE bitacoraCliente SET descripcion = \'Desbloqueo por clave incorrecta\',
-                    accion = \'Desbloqueo\' WHERE idCliente = ?';
+                    accion = \'Desbloqueo\' WHERE idCliente = ? AND descripcion = \'Bloqueo por clave incorrecta\'';
             $params = array($this->idCliente);
             return Database::executeRow($sql, $params);
         }
