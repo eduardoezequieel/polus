@@ -39,6 +39,8 @@
 				<div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 paddingLados">
 					<h1 class="titulo mb-2 mt-3 pt-5">Iniciar Sesión</h1>
 					<form method='post' id='login-form' action="/form" autocomplete="off">
+						<!-- Campo oculto para asignar el id del registro al momento de modificar -->
+						<input class="visually-hidden" type="number" id="idAdmon" name="idAdmon">
 						<div class="d-flex flex-column justify-content-center align-items-center">
 							<!-- Input Correo -->
 							<div class="form-group mb-2">

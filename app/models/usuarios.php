@@ -537,6 +537,22 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    //Función para llenar tabla de bitacoraUsuario fuera de la sesión
+    public function registerActionOut($action, $desc)
+    {
+        $sql = 'INSERT INTO bitacoraUsuario VALUES (DEFAULT, ?, current_date , current_time, ?, ?)';
+        $params = array($this->idAdmon, $action, $desc);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para obtener los registros de usuarios que han pasado 24 horas de block
+    public function checkBlockUsers() {
+        $sql = 'SELECT idadmon FROM bitacoraUsuario 
+                WHERE descripcion = \'Bloqueo por clave incorrecta\' 
+                AND fecha <= current_date - 1 AND current_time >= hora';
+        $params = null;
+        return Database::getRows($sql,$params);
+    }
 }   
 
 ?>

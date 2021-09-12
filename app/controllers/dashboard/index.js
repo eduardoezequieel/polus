@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción
                 if (response.status) {
                     /*sweetAlert(4, 'Debe autenticarse para ingresar', 'primer_uso.php');*/
+                    checkBlockUsers();
                 } else {
                     // Se verifica si ocurrió un problema en la base de datos, de lo contrario se continua normalmente.
                     if (response.error) {
@@ -65,4 +66,43 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 function clearPassword(){
     let contra = document.getElementById('txtContrasenia');
     contra.value = '';
+}
+
+//Función para verificar si hay usuarios bloqueados que ya han cumplido con las 24 horas
+function checkBlockUsers() {
+    // Petición para verificar si usuarios ya cumplidos con su penalización
+    fetch(API_USUARIO + 'checkBlockUsers')
+    .then(function (request) {
+        // Se verifica si la petición es correcta.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción
+                if (response.status) {
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        document.getElementById('idAdmon').value = row.idadmon;
+                        fetch(API_USUARIO + 'activar', {
+                            method: 'post',
+                            body: new FormData(document.getElementById('login-form'))
+                        }).then(function (request){
+                            if(request.ok) {
+                                request.json().then(function (response) {
+                                    //Verificando respuesta satisfactoria
+                                    if(response.status){
+                                        /*sweetAlert(1, response.message, null);*/
+                                    } 
+                                })
+                            } else {
+                                console.log(request.status + ' ' + request.statusText);
+                            }
+                        })
+                    });
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 }

@@ -10,7 +10,7 @@ if(isset($_GET['action'])){
     //Instanciando clases 
     $usuarios = new Usuarios;
     //Array para respuesta de la API
-    $result= array('status'=>0, 'error'=>0, 'message'=>null,'exception'=> null,'intentos'=>0);
+    $result= array('status'=>0, 'error'=>0, 'message'=>null,'exception'=> null);
     //Verificando si hay una sesión iniciada
     if(isset($_SESSION['idAdmon'])){
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
@@ -598,6 +598,19 @@ if(isset($_GET['action'])){
                     }
                 }
                 break;
+            //Caso para obtener los registros de usuarios que han pasado 24 horas de block
+            case 'checkBlockUsers':
+                if ($result['dataset'] = $usuarios->checkBlockUsers()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['error'] = 1;
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Hubo un error al actualizar block.';
+                    }
+                }
+                break;
             //Caso para registrar al primer usuario
             case 'register':
                 $_POST = $usuarios->validateForm($_POST);
@@ -683,11 +696,17 @@ if(isset($_GET['action'])){
                             $_SESSION['fotoUsuario'] = $usuarios->getFoto();
                             //Se verifica la ultima vez que se actualizó la contraseña
                             if($usuarios->checkLastPasswordUpdate()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Sesión iniciada correctamente';
+                                //Se reinicia a 0 los intentos
+                                if ($usuarios->updateIntentos(0)) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Sesión iniciada correctamente';
+                                }
                             } else {
-                                $result['error'] = 1;
-                                $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';  
+                                //Se reinicia a 0 los intentos
+                                if ($usuarios->updateIntentos(0)) {
+                                    $result['error'] = 1;
+                                    $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';  
+                                }
                             }
                         } else {
                             //En caso la contraseña es incorrecta se verifica la cantidad de intentos
@@ -699,6 +718,7 @@ if(isset($_GET['action'])){
                                 } else {
                                     if($usuarios->suspenderRow()) {
                                         $result['exception'] = 'Has superado el máximo de intentos. Se ha bloqueado el usuario.';
+                                        $usuarios->registerActionOut('Bloqueo','Bloqueo por clave incorrecta');
                                     }
                                 }
                             }
@@ -710,6 +730,25 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'El usuario ingreseado no existe en la base de datos.';
                 }
                 break;
+            //Caso para activar un registro bloqueado por 24 horas
+            case 'activar':
+                if ($usuarios->setId($_POST['idAdmon'])) {
+                    if ($usuarios->activarRow()) {
+                        if($usuarios->updateIntentos(0)) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha activado al usuario correctamente';
+                        } 
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Usuario inexistente';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Usuario incorrecto';
+                }
+                break;  
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
         }
