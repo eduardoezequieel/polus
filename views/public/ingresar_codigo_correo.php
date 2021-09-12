@@ -33,16 +33,16 @@
         <!-- Texto -->
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
-                <input type="text" class="form-control personalizacionPolus2 m-1" placeholder="">
+                <input type="text" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
             </div>
             <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
-                <input type="text" class="form-control personalizacionPolus2 m-1" placeholder="">
+                <input type="text" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
             </div>
             <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
-                <input type="text" class="form-control personalizacionPolus2 m-1" placeholder="">
+                <input type="text" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
             </div>
             <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
-                <input type="text" class="form-control personalizacionPolus2 m-1" placeholder="">
+                <input type="text" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
             </div>
 
         </div>
@@ -59,6 +59,8 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="../../app/controllers/public/ingresar_codigo_correo.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../app/helpers/components.js"></script>
   </body>
 </html>

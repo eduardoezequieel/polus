@@ -3,6 +3,16 @@
     require_once('../../helpers/validator.php');
     require_once('../../models/clientes.php');
 
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+    require '../../../libraries/phpmailer65/src/Exception.php';
+    require '../../../libraries/phpmailer65/src/PHPMailer.php';
+    require '../../../libraries/phpmailer65/src/SMTP.php';
+
+    //Creando instancia para mandar correo
+    $mail = new PHPMailer(true);
+
     //Verificando si existe una acción
     if(isset($_GET['action'])){
         //Reanudando sesion
@@ -417,7 +427,60 @@
                     } else {
                         $result['exception'] = 'Usuario incorrecto';
                     }
-                    break;  
+                    break; 
+                //Caso para verificar existencia de un correo
+                case 'checkEmail':
+                    $_POST = $clientes->validateForm($_POST);
+                    if ($clientes->checkUser($_POST['correo'])) {
+                        if ($clientes->checkEstado()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'La cuenta ha sido desactivada.';
+                        }
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'El correo ingresado no existe en la base de datos.';
+                        }
+                    } 
+                    break;
+                //Caso para enviar correo con el codigo de seguridad
+                case 'sendEmail':
+                    $_POST = $clientes->validateForm($_POST);
+                    if($clientes->setCorreo($_POST['correo'])) {
+                        try {
+                        
+                            //Ajustes del servidor   
+                            $mail->SMTPDebug = 0;                   //Enable verbose debug output
+                            $mail->isSMTP();                                            //Send using SMTP
+                            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                            $mail->Username   = 'polusmarket2021@gmail.com';                     //SMTP username
+                            $mail->Password   = 'polus123';                               //SMTP password
+                            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+                            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                        
+                            //Recipients
+                            $mail->setFrom('polusmarket2021@gmail.com', 'Polus Support');
+                            $mail->addAddress($clientes->getCorreo());     //Add a recipient
+                        
+                            //Content
+                            $mail->isHTML(true);                                  //Set email format to HTML
+                            $mail->Subject = 'Prueba';
+                            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+                            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                        
+                            if($mail->send()){
+                                $result['status'] = 1;
+                            }
+                        } catch (Exception $e) {
+                            $result['exception'] = $mail->ErrorInfo;
+                        }
+                    } else {
+                        $result['exception'] = 'El correo no es válido';
+                    }
+                    break;
                 default:
                     $result['exception'] = 'Acción no disponible fuera de la sesión';
             }

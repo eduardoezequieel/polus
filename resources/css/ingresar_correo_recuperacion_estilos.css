@@ -22,6 +22,14 @@ html, body{
     
 }
 
+input.error{
+    border: 1px solid red;
+}
+
+input.success{
+    border: 1px solid green;
+}
+
 #form {
     padding: 30px;
     background:#22242C;

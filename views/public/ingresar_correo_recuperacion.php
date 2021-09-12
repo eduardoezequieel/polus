@@ -26,27 +26,31 @@
     <div id="background">
         <!-- Caja -->
       <div id="form">
+        <form id="correo-form" action="/form" autocomplete="off">
           <!-- Texto -->
-        <h1 class="titulo">Escribe tu Correo <br> Electrónico</h1>
-        <p class="texto2 mt-3">Para poder continuar con la recuperación de tu contraseña, <br> escribe tu dirección de correo  eletrónico.</p>
-        <!-- Input -->
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col d-flex justify-content-center align-items-center">
-                <input type="text" class="form-control personalizacionPolus2 m-1" placeholder="ejemplo@mail.com">
-        </div>
+          <h1 class="titulo">Escribe tu Correo <br> Electrónico</h1>
+          <p class="texto2 mt-3">Para poder continuar con la recuperación de tu contraseña, <br> escribe tu dirección de correo  eletrónico.</p>
+          <!-- Input -->
+          <div class="row d-flex justify-content-center align-items-center">
+              <div class="col d-flex justify-content-center align-items-center">
+                  <input type="email" id="correo" name="correo" class="form-control personalizacionPolus2 m-1" placeholder="ejemplo@mail.com" onchange="checkCorreo('correo')" required>
+          </div>
 
-        <!-- Boton -->
-        <div class="row mt-3">
-            <div class="col col-12 d-flex justify-content-center align-items-center">
-                <a href="ingresar_codigo_correo.php" class="btn boton">Siguiente</a>
-            </div>
-        </div>
-        </div>
+          <!-- Boton -->
+          <div class="row mt-3">
+              <div class="col col-12 d-flex justify-content-center align-items-center">
+                <button class="btn boton my-2" type='submit' id="btnCancelar">Siguiente</button>
+              </div>
+          </div>
+          </div>
+        </form>
       </div>
     </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="../../app/controllers/public/ingresar_correo_recuperacion.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../app/helpers/components.js"></script>
   </body>
 </html>
