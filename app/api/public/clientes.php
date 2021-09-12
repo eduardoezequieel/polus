@@ -451,21 +451,21 @@
                     if($clientes->setCorreo($_POST['correo'])) {
                         try {
                         
-                            //Ajustes del servidor   
-                            $mail->SMTPDebug = 0;                   //Enable verbose debug output
-                            $mail->isSMTP();                                            //Send using SMTP
-                            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                            $mail->Username   = 'polusmarket2021@gmail.com';                     //SMTP username
-                            $mail->Password   = 'polus123';                               //SMTP password
-                            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-                            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                            //Ajustes del servidor
+                            $mail->SMTPDebug = 0;                   
+                            $mail->isSMTP();                                            
+                            $mail->Host       = 'smtp.gmail.com';                     
+                            $mail->SMTPAuth   = true;                                   
+                            $mail->Username   = 'polusmarket2021@gmail.com';                     
+                            $mail->Password   = 'polus123';                               
+                            $mail->SMTPSecure = 'tls';            
+                            $mail->Port       = 587;                                    
                         
-                            //Recipients
+                            //Receptores
                             $mail->setFrom('polusmarket2021@gmail.com', 'Polus Support');
-                            $mail->addAddress($clientes->getCorreo());     //Add a recipient
+                            $mail->addAddress($clientes->getCorreo());    
                         
-                            //Content
+                            //Contenido
                             $mail->isHTML(true);                                  //Set email format to HTML
                             $mail->Subject = 'Prueba';
                             $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
