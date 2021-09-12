@@ -467,3 +467,12 @@ CREATE TABLE bitacoraCliente(
 ALTER TABLE admon ADD COLUMN dobleautenticacion CHAR(2) NULL
 UPDATE admon SET dobleautenticacion = 'No'
 ALTER TABLE admon ALTER COLUMN dobleautenticacion SET NOT NULL
+
+--Cambios 12/09/2021
+ALTER TABLE admon ADD COLUMN intentos INT;
+UPDATE admon SET intentos = 0;
+ALTER TABLE admon ALTER COLUMN intentos SET NOT NULL;
+ALTER TABLE admon ADD COLUMN tokenClave CHARACTER VARYING(60); 
+ALTER TABLE admon ADD COLUMN claveRequest INT; 
+UPDATE admon SET claveRequest = 0;
+ALTER TABLE admon ALTER COLUMN claveRequest SET NOT NULL;

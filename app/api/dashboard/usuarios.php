@@ -10,7 +10,7 @@ if(isset($_GET['action'])){
     //Instanciando clases 
     $usuarios = new Usuarios;
     //Array para respuesta de la API
-    $result= array('status'=>0, 'error'=>0, 'message'=>null,'exception'=> null);
+    $result= array('status'=>0, 'error'=>0, 'message'=>null,'exception'=> null,'intentos'=>0);
     //Verificando si hay una sesión iniciada
     if(isset($_SESSION['idAdmon'])){
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
@@ -676,23 +676,38 @@ if(isset($_GET['action'])){
             case 'logIn':
                 $_POST = $usuarios -> validateForm($_POST);
                 if($usuarios->checkUser($_POST['txtUsuario'])){
-                    if($usuarios->checkPassword($_POST['txtContrasenia'])){
-                        $_SESSION['idAdmon'] = $usuarios->getId();
-                        $_SESSION['usuario'] = $usuarios->getUsuario();
-                        $_SESSION['fotoUsuario'] = $usuarios->getFoto();
-                        if($usuarios->checkLastPasswordUpdate()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Sesión iniciada correctamente';
+                    if($usuarios->checkEstado()) {
+                        if($usuarios->checkPassword($_POST['txtContrasenia'])){
+                            $_SESSION['idAdmon'] = $usuarios->getId();
+                            $_SESSION['usuario'] = $usuarios->getUsuario();
+                            $_SESSION['fotoUsuario'] = $usuarios->getFoto();
+                            //Se verifica la ultima vez que se actualizó la contraseña
+                            if($usuarios->checkLastPasswordUpdate()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Sesión iniciada correctamente';
+                            } else {
+                                $result['error'] = 1;
+                                $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';  
+                            }
                         } else {
-                            $result['error'] = 1;
-                            $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';
-                            
+                            //En caso la contraseña es incorrecta se verifica la cantidad de intentos
+                            if ($data = $usuarios->checkIntentos()){
+                                if ($data['intentos'] < 3) {
+                                    if ($usuarios->updateIntentos($data['intentos'] + 1)) {
+                                        $result['exception'] = 'La contraseña es incorrecta.';
+                                    }
+                                } else {
+                                    if($usuarios->suspenderRow()) {
+                                        $result['exception'] = 'Has superado el máximo de intentos. Se ha bloqueado el usuario.';
+                                    }
+                                }
+                            }
                         }
                     } else {
-                        $result['exception'] = 'La contraseña es incorrecta';
+                        $result['exception'] = 'El usuario ingresado está bloqueado.';
                     }
                 } else{
-                    $result['exception'] = 'El usuario es incorrecto o está suspendido';
+                    $result['exception'] = 'El usuario ingreseado no existe en la base de datos.';
                 }
                 break;
             default:

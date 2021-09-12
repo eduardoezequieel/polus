@@ -20,8 +20,8 @@ Class Usuarios extends Validator{
     private $ruta = '../../../resources/img/dashboard_img/admon_fotos/';
     private $idHistorialSesion = null;
     private $idBitacora = null;
-    private $fechaHora = null;
     private $descripcion = null;
+    private $intentos = null;
 
     /*
         Métodos set
@@ -186,6 +186,16 @@ Class Usuarios extends Validator{
         }
     }
 
+    public function setIntentos($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->intentos = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /* 
         Metodos get
     */
@@ -258,15 +268,30 @@ Class Usuarios extends Validator{
         return $this -> descripcion;
     }
 
+    public function getIntentos(){
+        return $this -> intentos;
+    }
+
     //Métodos para administrar cuenta del usuario 
     public function checkUser($alias)
     {
-        $sql = 'SELECT idAdmon,foto FROM admon WHERE usuario = ? AND idEstadoUsuario = 1';
+        $sql = 'SELECT idAdmon,foto,idestadousuario FROM admon WHERE usuario = ?';
         $params = array($alias);
         if ($data = Database::getRow($sql, $params)) {
             $this->idAdmon = $data['idadmon'];
             $this->usuario = $alias;
             $this->foto= $data['foto'];
+            $this->idEstadoUsuario = $data['idestadousuario'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Método para verificar el estado del usuario
+    public function checkEstado()
+    {
+        if ($this->idEstadoUsuario == 1) {
             return true;
         } else {
             return false;
@@ -487,6 +512,31 @@ Class Usuarios extends Validator{
         $params = array($_SESSION['idAdmon']);
         return Database::getRow($sql,$params);
     }
+
+    //Función para verificar la cantidad de intentos
+    public function checkIntentos() {
+        $sql = 'SELECT intentos FROM admon WHERE idadmon = ?';
+        $params = array($this->idAdmon);
+        return Database::getRow($sql,$params);
+    }
+
+    //Función para actualizar los intentos de un registro
+    public function updateIntentos($intentos)
+    {
+        $sql = 'UPDATE admon
+                SET intentos = ?
+                WHERE idadmon = ?';
+        $params = array($intentos,$this->idAdmon);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para bloquear un registro
+    public function bloquearRow(){
+        $sql = 'UPDATE admon SET idEstadoUsuario = 3 WHERE idadmon = ?';
+        $params = array($this->idAdmon);
+        return Database::executeRow($sql, $params);
+    }
+
 }   
 
 ?>
