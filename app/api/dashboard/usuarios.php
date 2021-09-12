@@ -717,7 +717,7 @@ if(isset($_GET['action'])){
                                     }
                                 } else {
                                     if($usuarios->suspenderRow()) {
-                                        $result['exception'] = 'Has superado el máximo de intentos. Se ha bloqueado el usuario.';
+                                        $result['exception'] = 'Has superado el máximo de intentos. Se ha bloqueado el usuario por 24 horas.';
                                         $usuarios->registerActionOut('Bloqueo','Bloqueo por clave incorrecta');
                                     }
                                 }
@@ -735,8 +735,10 @@ if(isset($_GET['action'])){
                 if ($usuarios->setId($_POST['idAdmon'])) {
                     if ($usuarios->activarRow()) {
                         if($usuarios->updateIntentos(0)) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Se ha activado al usuario correctamente';
+                            if($usuarios->updateBitacora()){
+                                $result['status'] = 1;
+                                $result['message'] = 'Se ha activado al usuario correctamente';
+                            }
                         } 
                     } else {
                         if (Database::getException()) {

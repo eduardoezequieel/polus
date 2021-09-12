@@ -339,29 +339,42 @@
                 case 'logIn':
                     $_POST = $clientes->validateForm($_POST);
                     if ($clientes->checkUser($_POST['correo'])) {
-                        if ($clientes->getIdEstadoUsuario()) {
+                        if ($clientes->checkEstado()) {
                             if ($clientes->checkPassword($_POST['contrasenia'])) {
                                 $_SESSION['idCliente'] = $clientes->getId();
                                 $_SESSION['correoCliente'] = $clientes->getCorreo();
                                 $_SESSION['fotoCliente'] =$clientes->getFoto();
                                 $_SESSION['usuarioCliente'] = $clientes->getUsuario();
                                 if($clientes->checkLastPasswordUpdate()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Sesión iniciada correctamente';
+                                    //Se reinicia a 0 los intentos
+                                    if ($clientes->updateIntentos(0)) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Sesión iniciada correctamente';
+                                    }
                                 } else {
-                                    $result['error'] = 1;
-                                    $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';
-                                    
+                                    //Se reinicia a 0 los intentos
+                                    if ($clientes->updateIntentos(0)) {
+                                        $result['error'] = 1;
+                                        $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';  
+                                    }
                                 }
                             } else {
-                                if (Database::getException()) {
-                                    $result['exception'] = Database::getException();
-                                } else {
-                                    $result['exception'] = 'Clave incorrecta';
+                                //En caso la contraseña es incorrecta se verifica la cantidad de intentos
+                                if ($data = $clientes->checkIntentos()){
+                                    if ($data['intentos'] < 3) {
+                                        if ($clientes->updateIntentos($data['intentos'] + 1)) {
+                                            $result['exception'] = 'La contraseña es incorrecta.';
+                                        }
+                                    } else {
+                                        if($clientes->suspenderRow()) {
+                                            $result['exception'] = 'Has superado el máximo de intentos. Se ha bloqueado el usuario por 24 horas.';
+                                            $clientes->registerActionOut('Bloqueo','Bloqueo por clave incorrecta');
+                                        }
+                                    }
                                 }
                             }
                         } else {
-                            $result['exception'] = 'La cuenta ha sido desactivada';
+                            $result['exception'] = 'La cuenta ha sido desactivada.';
                         }
                     } else {
                         if (Database::getException()) {
@@ -371,6 +384,40 @@
                         }
                     }
                     break;
+                //Caso para obtener los registros de usuarios que han pasado 24 horas de block
+                case 'checkBlockUsers':
+                    if ($result['dataset'] = $clientes->checkBlockUsers()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['error'] = 1;
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Hubo un error al actualizar block.';
+                        }
+                    }
+                    break;
+                //Caso para activar un registro bloqueado por 24 horas
+                case 'activar':
+                    if ($clientes->setId($_POST['idCliente'])) {
+                        if ($clientes->activarRow()) {
+                            if($clientes->updateIntentos(0)) {
+                                if($clientes->updateBitacora()){
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Se ha activado al usuario correctamente';
+                                }
+                            } 
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'Usuario inexistente';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Usuario incorrecto';
+                    }
+                    break;  
                 default:
                     $result['exception'] = 'Acción no disponible fuera de la sesión';
             }

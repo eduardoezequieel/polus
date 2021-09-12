@@ -553,6 +553,14 @@ Class Usuarios extends Validator{
         $params = null;
         return Database::getRows($sql,$params);
     }
+
+    //Función para actualizar bitacora
+    public function updateBitacora(){
+        $sql = 'UPDATE bitacoraUsuario SET descripcion = \'Desbloqueo por clave incorrecta\',
+                accion = \'Desbloqueo\' WHERE idadmon = ?';
+        $params = array($this->idAdmon);
+        return Database::executeRow($sql, $params);
+    }
 }   
 
 ?>

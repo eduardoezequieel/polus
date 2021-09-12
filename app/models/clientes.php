@@ -292,6 +292,16 @@
             }
         }
 
+        //Método para verificar el estado del usuario
+        public function checkEstado()
+        {
+            if ($this->idEstadoUsuario == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         //Función para verificar contraseña
         public function checkPassword($password)
         {
@@ -459,6 +469,55 @@
                     AND current_date AND descripcion = \'Cambio de clave\' LIMIT 1';
             $params = array($_SESSION['idCliente']);
             return Database::getRow($sql,$params);
+        }
+
+         //Función para verificar la cantidad de intentos
+        public function checkIntentos() {
+            $sql = 'SELECT intentos FROM cliente WHERE idcliente = ?';
+            $params = array($this->idCliente);
+            return Database::getRow($sql,$params);
+        }
+
+        //Función para actualizar los intentos de un registro
+        public function updateIntentos($intentos)
+        {
+            $sql = 'UPDATE cliente
+                    SET intentos = ?
+                    WHERE idcliente = ?';
+            $params = array($intentos,$this->idCliente);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para bloquear un registro
+        public function bloquearRow(){
+            $sql = 'UPDATE cliente SET idEstadoUsuario = 3 WHERE idcliente = ?';
+            $params = array($this->idCliente);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para llenar tabla de bitacoraCliente fuera de la sesión
+        public function registerActionOut($action, $desc)
+        {
+            $sql = 'INSERT INTO bitacoraCliente VALUES (DEFAULT, ?, current_date , current_time, ?, ?)';
+            $params = array($this->idCliente, $action, $desc);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para obtener los registros de clientes que han pasado 24 horas de block
+        public function checkBlockUsers() {
+            $sql = 'SELECT idcliente FROM bitacoraCliente
+                    WHERE descripcion = \'Bloqueo por clave incorrecta\' 
+                    AND fecha <= current_date - 1 AND current_time >= hora';
+            $params = null;
+            return Database::getRows($sql,$params);
+        }
+
+        //Función para actualizar bitacora
+        public function updateBitacora(){
+            $sql = 'UPDATE bitacoraCliente SET descripcion = \'Desbloqueo por clave incorrecta\',
+                    accion = \'Desbloqueo\' WHERE idCliente = ?';
+            $params = array($this->idCliente);
+            return Database::executeRow($sql, $params);
         }
 
     }

@@ -34,10 +34,12 @@
 					<h1 class="titulo2 mb-2 mt-3 pt-5">Iniciar Sesión</h1>
 					<div class="form-group">
 						<form id="login-form" action="/form" autocomplete="off">
+						<!-- Campo oculto para asignar el id del registro al momento de modificar -->
+						<input class="visually-hidden" type="number" id="idCliente" name="idCliente">
 							<div class="d-flex flex-column justify-content-center align-items-center">
 								<!-- Input Correo -->
 								<div class="form-group mb-2">
-									<label for="exampleInputEmail1" class="mb-2 texto">Ingrese su usuario</label>
+									<label for="exampleInputEmail1" class="mb-2 texto">Ingrese su correo</label>
 									<input type="email" class="form-control personalizacionPolus personalizacionPolusP"
 										id="correo" name="correo" autocomplete="off"
 										placeholder="ejemplo@mail.com" Required>

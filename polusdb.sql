@@ -476,3 +476,11 @@ ALTER TABLE admon ADD COLUMN tokenClave CHARACTER VARYING(60);
 ALTER TABLE admon ADD COLUMN claveRequest INT; 
 UPDATE admon SET claveRequest = 0;
 ALTER TABLE admon ALTER COLUMN claveRequest SET NOT NULL;
+
+ALTER TABLE cliente ADD COLUMN intentos INT;
+UPDATE cliente SET intentos = 0;
+ALTER TABLE cliente ALTER COLUMN intentos SET NOT NULL;
+ALTER TABLE cliente ADD COLUMN tokenClave CHARACTER VARYING(60); 
+ALTER TABLE cliente ADD COLUMN claveRequest INT; 
+UPDATE cliente SET claveRequest = 0;
+ALTER TABLE cliente ALTER COLUMN claveRequest SET NOT NULL;
