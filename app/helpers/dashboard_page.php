@@ -43,6 +43,32 @@
             if (isset($_SESSION['idAdmon'])){
                 //Se verifica si la pag es diferente a index o primer usuario
                 if ($filename != 'index.php' && $filename != 'primer_uso.php'){
+
+                    if(isset($_SESSION['tiempo']))
+                    {
+                    //
+                    $tinactivo = 10;
+                    //Calculamos tiempo de vida inactivo.
+                    $tiempo = time() - $_SESSION['tiempo'];    
+                        //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+                        if($tiempo > $tinactivo)
+                        {
+                            //Removemos sesión.
+                            unset($_SESSION['idAdmon']); 
+                            //Destruimos sesión.   
+                            session_destroy();  
+                            // Se redirecciona
+                            header("Location: logout.php"); 
+                            exit();
+                        } else {  // si no ha caducado la sesion, actualizamos
+                            $_SESSION['tiempo'] = time();
+                        }
+                    }
+                    else
+                    {
+                    $_SESSION['tiempo'] = time();
+                    }
+
                     print('
                                     
                         <!-- Vertical navbar -->
@@ -214,6 +240,7 @@
                 if ($filename != 'index.php' && $filename != 'primer_uso.php') {
                     header('location: index.php');
                 } 
+                
             }
         }
     }

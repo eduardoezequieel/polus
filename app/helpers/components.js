@@ -775,7 +775,7 @@ function lineGraph(id, xAxis, yAxis, titulo, mensaje){
     
 }
 
-(function() {
+/*(function() {
     const idleDurationSecs = 60;
     const redirectUrl = 'index.php';
     let idleTimeout;
@@ -783,7 +783,7 @@ function lineGraph(id, xAxis, yAxis, titulo, mensaje){
     const resetIdleTimeout = function() {
         if(idleTimeout) clearTimeout(idleTimeout);
         idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 1000);
-        
+        session_destroy()
     };
 	
 	// Key events for reset time
@@ -808,4 +808,4 @@ function lineGraph(id, xAxis, yAxis, titulo, mensaje){
     window.onselect = resetIdleTimeout;
     window.onscroll = resetIdleTimeout;
 
-})();
+})();*/
