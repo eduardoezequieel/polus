@@ -23,6 +23,7 @@ Class Usuarios extends Validator{
     private $descripcion = null;
     private $intentos = null;
     private $dobleautenticacion = null;
+    private $token = null;
 
     /*
         Métodos set
@@ -207,35 +208,52 @@ Class Usuarios extends Validator{
         }
     }
 
+    public function setToken($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->token = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /* 
         Metodos get
     */
 
-    public function getId(){
+    public function getId()
+    {
         return $this -> idAdmon;
     }
 
-    public function getNombres(){
+    public function getNombres()
+    {
         return $this -> nombre;
     }
 
-    public function getApellidos(){
+    public function getApellidos()
+    {
         return $this -> apellido;
     }
 
-    public function getGenero(){
+    public function getGenero()
+    {
         return $this -> genero;
     }
 
-    public function getCorreo(){
+    public function getCorreo()
+    {
         return $this -> correo;
     }
 
-    public function getFoto(){
+    public function getFoto()
+    {
         return $this -> foto;
     }
 
-    public function getIdHistorialSesion(){
+    public function getIdHistorialSesion()
+    {
         return $this -> idHistorialSesion;
     }
 
@@ -244,49 +262,81 @@ Class Usuarios extends Validator{
         return $this->ruta;
     }
 
-    public function getNacimiento(){
+    public function getNacimiento()
+    {
         return $this -> fechaNacimiento;
     }
 
-    public function getTelefono(){
+    public function getTelefono()
+    {
         return $this -> telefono;
     }
 
-    public function getDireccion(){
+    public function getDireccion()
+    {
         return $this -> direccion;
     }
-    public function getUsuario(){
+    public function getUsuario()
+    {
         return $this -> usuario;
     }
 
-    public function getContrasenia(){
+    public function getContrasenia()
+    {
         return $this -> contrasenia;
     }
 
-    public function getIdEstadoUsuario(){
+    public function getIdEstadoUsuario()
+    {
         return $this -> idEstadoUsuario;
     }
 
-    public function getIdTipoUsuario(){
+    public function getIdTipoUsuario()
+    {
         return $this -> idTipoUsuario;
     }
 
-    public function getIdBitacora(){
+    public function getIdBitacora()
+    {
         return $this -> idBitacora;
     }
 
-    public function getDescripcion(){
+    public function getDescripcion()
+    {
         return $this -> descripcion;
     }
 
-    public function getIntentos(){
+    public function getIntentos()
+    {
         return $this -> intentos;
+    }
+
+    public function getToken()
+    {
+        return $this -> token;
     }
 
     //Métodos para administrar cuenta del usuario 
     public function checkUser($alias)
     {
         $sql = 'SELECT idAdmon,foto,idestadousuario, correo FROM admon WHERE usuario = ?';
+        $params = array($alias);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->idAdmon = $data['idadmon'];
+            $this->usuario = $alias;
+            $this->correo = $data['correo'];
+            $this->foto= $data['foto'];
+            $this->idEstadoUsuario = $data['idestadousuario'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Métodos para administrar cuenta del usuario 
+    public function checkEmail2($alias)
+    {
+        $sql = 'SELECT idAdmon,foto,idestadousuario, correo FROM admon WHERE correo = ?';
         $params = array($alias);
         if ($data = Database::getRow($sql, $params)) {
             $this->idAdmon = $data['idadmon'];
@@ -549,7 +599,8 @@ Class Usuarios extends Validator{
     }
 
     //Función para evaluar si han pasado 90 días desde la última actualización de clave
-    public function checkLastPasswordUpdate() {
+    public function checkLastPasswordUpdate() 
+    {
         $sql = 'SELECT * 
                 FROM bitacoraUsuario 
                 WHERE idadmon = ? AND fecha BETWEEN (SELECT current_date - 90) 
@@ -559,7 +610,8 @@ Class Usuarios extends Validator{
     }
 
     //Función para verificar la cantidad de intentos
-    public function checkIntentos() {
+    public function checkIntentos() 
+    {
         $sql = 'SELECT intentos FROM admon WHERE idadmon = ?';
         $params = array($this->idAdmon);
         return Database::getRow($sql,$params);
@@ -576,7 +628,8 @@ Class Usuarios extends Validator{
     }
 
     //Función para bloquear un registro
-    public function bloquearRow(){
+    public function bloquearRow()
+    {
         $sql = 'UPDATE admon SET idEstadoUsuario = 3 WHERE idadmon = ?';
         $params = array($this->idAdmon);
         return Database::executeRow($sql, $params);
@@ -591,7 +644,8 @@ Class Usuarios extends Validator{
     }
 
     //Función para obtener los registros de usuarios que han pasado 24 horas de block
-    public function checkBlockUsers() {
+    public function checkBlockUsers() 
+    {
         $sql = 'SELECT idadmon FROM bitacoraUsuario 
                 WHERE descripcion = \'Bloqueo por clave incorrecta\' 
                 AND fecha <= current_date - 1 AND current_time >= hora';
@@ -600,10 +654,63 @@ Class Usuarios extends Validator{
     }
 
     //Función para actualizar bitacora
-    public function updateBitacora(){
+    public function updateBitacora()
+    {
         $sql = 'UPDATE bitacoraUsuario SET descripcion = \'Desbloqueo por clave incorrecta\',
                 accion = \'Desbloqueo\' WHERE idadmon = ? AND descripcion = \'Bloqueo por clave incorrecta\'';
         $params = array($this->idAdmon);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para insertar token a la base
+    public function updateToken()
+    {
+        //Encriptando token
+        $hash = password_hash($this->token, PASSWORD_DEFAULT);
+        //Subiendo token a la base
+        $sql = 'UPDATE admon
+                SET tokenclave = ?, claverequest = 1
+                WHERE correo = ?';
+        $params = array($hash, $this->correo);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para verificar token 
+    public function checkToken($tokenIngresado) 
+    {
+        $sql = 'SELECT tokenclave FROM admon WHERE correo = ? AND claverequest = 1';
+        $params = array($_SESSION['correoUsuario']);
+        $data = Database::getRow($sql,$params);
+        if (password_verify($tokenIngresado, $data['tokenclave'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Función para cambiar contraseña por recuperación
+    public function changePasswordOut()
+    {
+        $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
+        $sql = 'UPDATE admon SET contraseña = ? WHERE correo = ?';
+        $params = array($hash, $_SESSION['correoUsuario']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para insertar clave request
+    public function updateClaveRequest(){
+        $sql = 'UPDATE admon
+                SET claverequest = 0
+                WHERE correo = ?';
+        $params = array($_SESSION['correoUsuario']);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para llenar tabla de bitacoraCliente fuera de la sesión
+    public function registerActionOut2($action, $desc)
+    {
+        $sql = 'INSERT INTO bitacoraUsuario VALUES (DEFAULT, ?, current_date , current_time, ?, ?)';
+        $params = array($_SESSION['codigousuario'], $action, $desc);
         return Database::executeRow($sql, $params);
     }
 }   

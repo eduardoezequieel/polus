@@ -62,7 +62,7 @@
 										Mostrar Contraseña
 									</label>
 								</div>
-								<a href="seleccion_recuperacion.php" class="form-text">¿Hás olvidado tu contraseña?</a>
+								<a href="ingresar_correo_recuperacion.php" class="form-text">¿Hás olvidado tu contraseña?</a>
 							</div>
 						</div>
 						<div class="row justify-content-center">
