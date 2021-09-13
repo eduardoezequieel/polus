@@ -81,7 +81,16 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row justify-content-center mt-4">
+						<div class="col-12 d-flex justify-content-center">
+							<div class="form-check">
+								<input id="chMostrarContraseña"  onChange="showHidePassword1('chMostrarContraseña', 'txtNuevaContraseña', 'txtConfirmarContraseña')" class="form-check-input" type="checkbox" value="" >
+								<label class="form-check-label" for="chMostrarContraseña">
+									Mostrar Contraseña
+								</label>
+							</div>
+						</div>
+				</div>
                 <div class="row justify-content-center my-4">
                     <div class="col-12 d-flex justify-content-center">
                         <button type="submit" class="btn boton"><span
