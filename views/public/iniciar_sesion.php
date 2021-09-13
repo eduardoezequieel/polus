@@ -20,6 +20,7 @@
 		rel="stylesheet">
 	<!-- Hoja de Estilos -->
 	<link rel="stylesheet" href="../../resources/css/iniciar_sesion_publico.css">
+	<link rel="stylesheet" href="../../resources/css/index_publico_styles.css">
 	<title>Polus - Iniciar Sesión</title>
 </head>
 
@@ -76,10 +77,59 @@
 		</div>
 	</div>
 
+	<!-- Modal para cambiar el usuario -->
+<div class="modal fade" id="validarCodigo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="exampleModalLabel"><span
+                        class="fas fa-info-circle mx-3 text-white"></span>Factor de Doble Autenticación</h5>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="fas fa-times text-white"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="row px-3">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading">¡Importante!</h4>
+                        <p class="text-dark">Verifica tu correo electrónico para obtener el código de verificación</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                <form id="validarCodigo-form" method="post" action="/form" autocomplete="off">
+                    <div class="row justify-content-center">
+                        <div class="d-flex justify-content-center col-12">
+                            <div class="d-flex flex-column">
+                                <div class="form-group formMiCuenta mt-2">
+                                <label for="txtCodigo" class="mb-2 texto">Código de Verificación:</label>
+                                    <div class="d-flex">
+                                        <input type="text" maxlength="6" onchange="checkContrasena('txtCorreo')" class="form-control mb-2 personalizacionPolus personalizacionPolusP"
+                                        id="txtCodigo" name="txtCodigo" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-outline-light">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Fin del Contenido del Modal -->
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
 	</script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../../app/controllers/public/iniciar_sesion.js"></script>
 	<script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
 	<script type="text/javascript" src="../../app/helpers/components.js"></script>

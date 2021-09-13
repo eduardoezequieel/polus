@@ -128,7 +128,7 @@ public_Page::navbarTemplate('Polus | Mi Cuenta','.');
             </div>
             <div class="modal-body">
                 <div class="row justify-content-center">
-					<div class="d-flex justify-content-xl-end mt-2 justify-content-md-end justify-content-center col-xl-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="d-flex justify-content-xl-end justify-content-center mt-3 col-xl-6 col-md-12 col-sm-12 col-xs-12">
 						<div>
 							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cambiarUsuario" class="btn btn-outline-light tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
 								<i class="fas fa-user fs-3"></i>
@@ -136,7 +136,7 @@ public_Page::navbarTemplate('Polus | Mi Cuenta','.');
 							</button>
 						</div>
 					</div>
-					<div class="d-flex justify-content-center justify-content-xl-center mt-2 justify-content-md-start justify-content-sm-center justify-content-xl-center col-xl-4 col-md-6 col-sm-12 col-xs-12">
+					<div class="d-flex justify-content-xl-start justify-content-center mt-3 col-xl-6 col-md-12 col-sm-12 col-xs-12">
 						<div>
 							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cambiarCorreo" class="btn btn-outline-light tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
 								<i class="fas fa-envelope fs-3"></i>
@@ -144,11 +144,19 @@ public_Page::navbarTemplate('Polus | Mi Cuenta','.');
 							</button>
 						</div>
 					</div>
-					<div class="d-flex justify-content-xl-start justify-content-center mt-2 col-xl-4 col-md-12 col-sm-12 col-xs-12">
+					<div class="d-flex justify-content-xl-end justify-content-center mt-3 col-xl-6 col-md-12 col-sm-12 col-xs-12">
 						<div>
 							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cambiarContraseña" class="btn btn-outline-light tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
 								<i class="fas fa-key fs-3"></i>
 								Clave
+							</button>
+						</div>
+					</div>
+                    <div class="d-flex justify-content-xl-start justify-content-center mt-3 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+						<div>
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#cambiarAuth" class="btn btn-outline-light tamañoBotonesMiCuenta d-flex flex-column justify-content-center align-items-center">
+								<i class="fas fa-at fs-3"></i>
+								Autenticación
 							</button>
 						</div>
 					</div>
@@ -369,6 +377,62 @@ public_Page::navbarTemplate('Polus | Mi Cuenta','.');
     </div>
 </div>
 
+<!-- Modal para cambiar el usuario -->
+<div class="modal fade" id="cambiarAuth" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="exampleModalLabel"><span
+                        class="fas fa-info-circle mx-3 text-white"></span>Factor de Doble Autenticación</h5>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="fas fa-times text-white"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="row px-3">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading">¡Importante!</h4>
+                        <p class="text-dark">Debes verificar tu identidad para activar/desactivar el factor de doble autenticación.</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                <form id="updateAuth-form" method="post" action="/form" autocomplete="off">
+                    <div class="row justify-content-center">
+                        <div class="d-flex justify-content-center col-12">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex justify-content-center align-items-center mt-2">
+									<div class="form-check form-switch">
+										<input class="form-check-input" type="checkbox" id="switchAuth">
+										<label class="form-check-label text-white" for="switchAuth">Factor de Doble Autenticación</label>
+									</div>
+									<input type="hidden" value="no" id="switchValue" name="switchValue">
+								</div>
+
+                                <div class="form-group formMiCuenta mt-2">
+                                <label for="txtPasswordAuth" class="mb-2 texto">Contraseña:</label>
+                                    <div class="d-flex">
+                                        <input type="password" maxlength="15" onchange="checkContrasena('txtPasswordAuth')" class="form-control mb-2 personalizacionPolus personalizacionPolusP"
+                                        id="txtPasswordAuth" name="txtPasswordAuth" Required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-outline-light">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Fin del Contenido del Modal -->
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <?php
 public_Page::footerTemplate('ajustes_cuenta.js');

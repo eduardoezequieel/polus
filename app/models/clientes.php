@@ -20,6 +20,8 @@
         private $ruta = '../../../resources/img/dashboard_img/cliente_fotos/';
         private $idHistorialSesion = null;
         private $token = null;
+        private $dobleautenticacion = null;
+
 
         /*
             Métodos set
@@ -28,6 +30,16 @@
         {
             if ($this->validateNaturalNumber($value)) {
                 $this->idCliente = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setDobleAutenticacion($value)
+        {
+            if ($this->validateAlphabetic($value,1,3)) {
+                $this->dobleautenticacion = $value;
                 return true;
             } else {
                 return false;
@@ -254,6 +266,15 @@
             }
         }
 
+        //Metodo para guardar las preferencias del factor de doble autenticacion
+        public function updateAuth()
+        {
+            $sql = 'UPDATE cliente SET dobleautenticacion = ? 
+                    WHERE idCliente = ?';
+            $params = array($this->dobleautenticacion, $_SESSION['idCliente']);
+            return Database::executeRow($sql, $params);
+        }
+
         //Se crea el inicio de sesion
         public function createSesionHistory()
         {
@@ -338,10 +359,18 @@
             return Database::executeRow($sql, $params);
         }
 
+        //Capturar doble autenticacion del usuario
+        public function checkAuthMode()
+        {
+            $sql = 'SELECT dobleautenticacion FROM cliente WHERE idCliente = ?';
+            $params = array($_SESSION['idCliente']);
+            return Database::getRow($sql, $params);
+        }
+
         //Función para leer la información del cliente logueado
         public function readProfile()
         {
-            $sql = 'SELECT idCliente, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña
+            $sql = 'SELECT idCliente, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, dobleautenticacion
                     FROM cliente
                     WHERE idCliente = ?';
             $params = array($_SESSION['idCliente']);

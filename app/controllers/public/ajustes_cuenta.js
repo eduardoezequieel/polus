@@ -124,6 +124,48 @@ function deleteSessionHistory(id) {
     });
 }
 
+//Cuando se presiona el switch
+document.getElementById('switchAuth').addEventListener('change',function(){
+    if (document.getElementById('switchValue').value == 'no') {
+        document.getElementById('switchValue').value = 'si';
+    } else {
+        document.getElementById('switchValue').value = 'no';
+    }
+})
+
+//Al activar el evento submit del formulario updateAuth-form
+document.getElementById('updateAuth-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API_CLIENTES + 'updateAuth', {
+        method: 'post',
+        body: new FormData(document.getElementById('updateAuth-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    //Mandando mensaje de exito
+                    closeModal('cambiarAuth');
+                    if (document.getElementById('switchValue').value == 'si') {
+                        sweetAlert(1, 'Usted ha habilitado la autenticación en dos pasos, podra ver los cambios la proxima vez que inicie sesión.', 'mi_cuenta.php');
+                    } else if(document.getElementById('switchValue').value == 'no') {
+                        sweetAlert(1, 'Usted ha deshabilitado la autenticación en dos pasos, podra ver los cambios la proxima vez que inicie sesión.', 'mi_cuenta.php');
+                    }
+                } else{
+                    sweetAlert(4, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+})
+
 //Obtener info
 function obtenerInfo(){
     fetch(API_CLIENTES + 'readProfile', {
@@ -143,6 +185,12 @@ function obtenerInfo(){
                     document.getElementById('txtDireccion').value = response.dataset.direccion;
                     document.getElementById('lblUsuario').textContent = response.dataset.usuario;
                     document.getElementById('lblCorreo').textContent = response.dataset.correo;
+                    document.getElementById('switchValue').value = response.dataset.dobleautenticacion;
+                    if (response.dataset.dobleautenticacion == 'si') {
+                        document.getElementById('switchAuth').setAttribute('checked', true);
+                    } else {
+        
+                    }
                     previewSavePicture('divFoto', response.dataset.foto,2);
                 } else {
                     sweetAlert(4, response.exception, 'index.php');

@@ -484,3 +484,8 @@ ALTER TABLE cliente ADD COLUMN tokenClave CHARACTER VARYING(60);
 ALTER TABLE cliente ADD COLUMN claveRequest INT; 
 UPDATE cliente SET claveRequest = 0;
 ALTER TABLE cliente ALTER COLUMN claveRequest SET NOT NULL;
+
+--Mas cambios 
+ALTER TABLE cliente ADD COLUMN dobleautenticacion CHAR(2);
+UPDATE cliente SET dobleautenticacion = 'no';
+ALTER TABLE cliente ALTER COLUMN dobleautenticacion SET NOT NULL;

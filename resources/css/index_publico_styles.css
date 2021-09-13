@@ -18,6 +18,14 @@ nav {
     background-color: #16181D;
 }
 
+.form-check-input{
+    background-color: #16181D !important;
+}
+
+.form-check-input:checked{
+    background-color: #456ed4 !important;
+}
+
 .tituloProducto {
     font-family: 'Roboto Mono', sans-serif;
     letter-spacing: 1px;

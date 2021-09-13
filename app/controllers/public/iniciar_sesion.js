@@ -22,7 +22,12 @@ document.getElementById('login-form').addEventListener('submit', function (event
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    sweetAlert(1, response.message, 'index.php');
+                    if (response.auth == 'si') {
+                        sendVerificationCode();
+                        openModal('validarCodigo');
+                    } else if (response.auth == 'no') {
+                        sweetAlert(1, response.message, 'index.php');
+                    }
                 } else if (response.error) {
                     sweetAlert(3,response.message, 'cambiar_clave.php');
                 }
@@ -36,6 +41,54 @@ document.getElementById('login-form').addEventListener('submit', function (event
     }).catch(function (error) {
         console.log(error);
     });
+});
+
+//Enviar correo
+function sendVerificationCode(){
+    fetch(API_CLIENTES + 'sendVerificationCode', {
+        method: 'get'
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    console.log(response.message);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+}
+
+//Al activar el evento submit del formulario validar codigo:
+document.getElementById('validarCodigo-form').addEventListener('submit', function(event){
+    //Desactivar el recargar página
+    event.preventDefault();
+    //Capturando datos 
+    fetch(API_CLIENTES + 'validateCode', {
+        method: 'post',
+        body: new FormData(document.getElementById('validarCodigo-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    closeModal('validarCodigo');
+                    sweetAlert(1, response.message, 'index.php');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+
 });
 
 //Función para verificar si hay usuarios bloqueados que ya han cumplido con las 24 horas

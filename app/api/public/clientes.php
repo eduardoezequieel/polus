@@ -21,7 +21,7 @@
         //Creando un objeto de la clase
         $clientes = new Clientes();
         //Array para guardar respuesta de la API
-        $result = array('status'=>0, 'recaptcha' => 0, 'error'=>0, 'message'=>null, 'exception'=>null);
+        $result = array('status'=>0, 'recaptcha' => 0, 'error'=>0, 'message'=>null, 'exception'=>null, 'auth'=>null);
         
         //Verificando si hay alguna sesión abierta
         if(isset($_SESSION['idCliente'])){
@@ -83,6 +83,28 @@
                         } else {
                             $result['exception'] = 'No hay informacion con este id.';
                         }
+                    }
+                    break;
+                //Caso para activar o deshabilitar la autenticacion en dos pasos
+                case 'updateAuth':
+                    $_POST = $clientes->validateForm($_POST);
+                    if ($clientes->setDobleAutenticacion($_POST['switchValue'])) {
+                        if ($clientes->setId($_SESSION['idCliente'])) {
+                            if ($clientes->checkPassword($_POST['txtPasswordAuth'])) {
+                                if ($clientes->updateAuth()) {
+                                    $result['status'] = 1;
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                            } else {
+                                $result['exception'] = 'La contraseña es invalida.';
+                            }
+                        } else {
+                            $result['exception'] = 'Id no asignado.';
+                        }
+
+                    } else {
+                        $result['exception'] = 'Usted esta intentando ingresar un valor no valido.';
                     }
                     break;
                 //Caso para actualizar la informacion personal del usuario
@@ -359,8 +381,26 @@
                                 if($clientes->checkLastPasswordUpdate()) {
                                     //Se reinicia a 0 los intentos
                                     if ($clientes->updateIntentos(0)) {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Sesión iniciada correctamente';
+                                        //Se verifica la preferencia de autenticacion del usuario
+                                        if ($autenticacion = $clientes->checkAuthMode()) {
+                                            if ($autenticacion['dobleautenticacion'] == 'si') {
+                                                $result['auth'] = 'si';
+                                                $result['status'] = 1;
+                                                $result['dataset'] = $clientes->getId();
+                                                $_SESSION['idCliente_temp'] = $clientes->getId();
+                                                unset($_SESSION['idCliente']);
+                                            } else {
+                                                $result['auth'] = 'no';
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Sesion iniciada correctamente.';
+                                            }
+                                        } else {
+                                            if (Database::getException()) {
+                                                $result['exception'] = Database::getException();
+                                            } else {
+                                                $result['exception'] = 'Por alguna razón usted no posee ninguna preferencia de autenticación.';
+                                            }   
+                                        }
                                     }
                                 } else {
                                     //Se reinicia a 0 los intentos
@@ -394,6 +434,52 @@
                             $result['exception'] = 'Correo incorrecto';
                         }
                     }
+                    break;
+                //Caso para enviar un correo con el codigo de verificación requerido.
+                case 'sendVerificationCode':
+                    $_SESSION['codigoVerificacion'] = random_int(100, 999999);
+                    try {
+                            
+                        //Ajustes del servidor
+                        $mail->SMTPDebug = 0;                   
+                        $mail->isSMTP();                                            
+                        $mail->Host       = 'smtp.gmail.com';                     
+                        $mail->SMTPAuth   = true;                                   
+                        $mail->Username   = 'polusmarket2021@gmail.com';                     
+                        $mail->Password   = 'polus123';                               
+                        $mail->SMTPSecure = 'tls';            
+                        $mail->Port       = 587;                                    
+                    
+                        //Receptores
+                        $mail->setFrom('polusmarket2021@gmail.com', 'Polus Support');
+                        $mail->addAddress($_SESSION['correoCliente']);    
+                    
+                        //Contenido
+                        $mail->isHTML(true);                                  //Set email format to HTML
+                        $mail->Subject = 'Codigo de Verificación';
+                        $mail->Body    = 'Tu código de verificación es: <b>' . $_SESSION['codigoVerificacion'] . '</b>.';
+                        $mail->AltBody = 'Tu código de verificación es: ' . $_SESSION['codigoVerificacion'] . '.';
+                    
+                        if($mail->send()){
+                            $result['status'] = 1;
+                        }
+                    } catch (Exception $e) {
+                        $result['exception'] = $mail->ErrorInfo;
+                    }
+                    break;
+                //Caso para verificar el codigo
+                case 'validateCode':
+                    $_POST = $clientes->validateForm($_POST);
+                    if ($_SESSION['codigoVerificacion'] == $_POST['txtCodigo']) {
+                        $_SESSION['idCliente'] = $_SESSION['idCliente_temp'];
+                        unset($_SESSION['codigoVerificacion']);
+                        unset($_SESSION['idCliente_temp']);
+                        $result['status'] = 1;
+                        $result['message'] = 'Sesión iniciada correctamente.';
+                    } else {
+                        $result['exception'] = 'El código que usted ha ingresado es invalido.';
+                    }
+                    
                     break;
                 //Caso para obtener los registros de usuarios que han pasado 24 horas de block
                 case 'checkBlockUsers':
