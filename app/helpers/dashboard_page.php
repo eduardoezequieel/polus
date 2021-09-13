@@ -47,7 +47,7 @@
                     if(isset($_SESSION['tiempo']))
                     {
                     //
-                    $tinactivo = 10;
+                    $tinactivo = 300;
                     //Calculamos tiempo de vida inactivo.
                     $tiempo = time() - $_SESSION['tiempo'];    
                         //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.

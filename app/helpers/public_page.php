@@ -47,6 +47,32 @@
             if (isset($_SESSION['idCliente'])) {
                 // Se verifica si la página web actual es diferente a login.php y register.php, de lo contrario se direcciona a index.php
                 if ($filename != 'iniciar_sesion.php' && $filename != 'crear_cuenta.php') {
+
+                    if(isset($_SESSION['tiempo']))
+                    {
+                    //
+                    $tinactivo = 300;
+                    //Calculamos tiempo de vida inactivo.
+                    $tiempo = time() - $_SESSION['tiempo'];    
+                        //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+                        if($tiempo > $tinactivo)
+                        {
+                            //Removemos sesión.
+                            unset($_SESSION['idCliente']); 
+                            //Destruimos sesión.   
+                            session_destroy();  
+                            // Se redirecciona
+                            header("Location: logout.php"); 
+                            exit();
+                        } else {  // si no ha caducado la sesion, actualizamos
+                            $_SESSION['tiempo'] = time();
+                        }
+                    }
+                    else
+                    {
+                    $_SESSION['tiempo'] = time();
+                    }
+
                     print('
                         <!--Inicio del navbar-->
                         <body>
