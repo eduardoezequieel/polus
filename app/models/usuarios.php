@@ -520,11 +520,11 @@ Class Usuarios extends Validator{
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
         $sql = 'INSERT INTO admon(nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, 
-                direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario, dobleautenticacion)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario, dobleautenticacion, claverequest)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         $params = array($this->nombre, $this->apellido, $this->genero, $this->correo, $this->foto, 
                         $this->fechaNacimiento, $this->telefono, $this->direccion, $this->usuario, 
-                        $hash, $this->idEstadoUsuario, $this->idTipoUsuario, 'no');
+                        $hash, $this->idEstadoUsuario, $this->idTipoUsuario, 'no',0);
         return Database::executeRow($sql, $params);
     }
 

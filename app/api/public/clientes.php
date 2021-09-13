@@ -311,10 +311,10 @@
                                                                                     $result['status'] = 1;
                                                                                     if ($clientes->saveFile($_FILES['archivo_usuario'], $clientes->getRuta(), $clientes->getFoto())) {
                                                                                         $result['message'] = 'Cliente registrado correctamente';
-                                                                                        $clientes->registerAction('Registrar','Cambio de clave');
+                                                                                    
                                                                                     } else {
                                                                                         $result['message'] = 'Cliente registrado pero no se guardó la imagen';
-                                                                                        $clientes->registerAction('Registrar','Cambio de clave');
+                                                                                       
                                                                                     }
                                                                                 } else {
                                                                                     $result['exception'] = Database::getException();
