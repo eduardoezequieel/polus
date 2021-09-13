@@ -603,8 +603,8 @@ Class Usuarios extends Validator{
     {
         $sql = 'SELECT * 
                 FROM bitacoraUsuario 
-                WHERE idadmon = ? AND fecha BETWEEN (SELECT current_date - 90) 
-                AND current_date AND descripcion = \'Cambio de clave\' LIMIT 1';
+                WHERE idadmon = ? AND fecha < (SELECT current_date - 90) 
+                AND descripcion = \'Cambio de clave\' LIMIT 1';
         $params = array($_SESSION['idAdmon']);
         return Database::getRow($sql,$params);
     }

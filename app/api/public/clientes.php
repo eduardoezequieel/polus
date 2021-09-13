@@ -381,6 +381,12 @@
                                 if($clientes->checkLastPasswordUpdate()) {
                                     //Se reinicia a 0 los intentos
                                     if ($clientes->updateIntentos(0)) {
+                                        $result['error'] = 1;
+                                        $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';  
+                                    }
+                                } else {
+                                    //Se reinicia a 0 los intentos
+                                    if ($clientes->updateIntentos(0)) {
                                         //Se verifica la preferencia de autenticacion del usuario
                                         if ($autenticacion = $clientes->checkAuthMode()) {
                                             if ($autenticacion['dobleautenticacion'] == 'si') {
@@ -401,12 +407,6 @@
                                                 $result['exception'] = 'Por alguna razón usted no posee ninguna preferencia de autenticación.';
                                             }   
                                         }
-                                    }
-                                } else {
-                                    //Se reinicia a 0 los intentos
-                                    if ($clientes->updateIntentos(0)) {
-                                        $result['error'] = 1;
-                                        $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';  
                                     }
                                 }
                             } else {
@@ -521,6 +521,7 @@
                     if ($clientes->checkUser($_POST['correo'])) {
                         if ($clientes->checkEstado()) {
                             $result['status'] = 1;
+                            $_SESSION['codigocliente'] = $clientes->getId();
                         } else {
                             $result['exception'] = 'La cuenta ha sido desactivada.';
                         }
@@ -563,7 +564,6 @@
                                 if($mail->send()){
                                     $result['status'] = 1;
                                     $_SESSION['correoCliente'] = $clientes->getCorreo();
-                                    $_SESSION['codigocliente'] = $clientes->getId();
                                 }
                             } catch (Exception $e) {
                                 $result['exception'] = $mail->ErrorInfo;

@@ -508,8 +508,8 @@
         public function checkLastPasswordUpdate() {
             $sql = 'SELECT * 
                     FROM bitacoraCliente 
-                    WHERE idcliente = ? AND fecha BETWEEN (SELECT current_date - 90) 
-                    AND current_date AND descripcion = \'Cambio de clave\' LIMIT 1';
+                    WHERE idcliente = ? AND fecha < (SELECT current_date - 90) 
+                    AND descripcion = \'Cambio de clave\' LIMIT 1';
             $params = array($_SESSION['idCliente']);
             return Database::getRow($sql,$params);
         }
