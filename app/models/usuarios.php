@@ -648,7 +648,8 @@ Class Usuarios extends Validator{
     {
         $sql = 'SELECT idadmon FROM bitacoraUsuario 
                 WHERE descripcion = \'Bloqueo por clave incorrecta\' 
-                AND fecha <= current_date - 1 AND current_time >= hora';
+                AND fecha <= current_date - 1 AND current_time >= hora
+                OR fecha <= current_date - 2';
         $params = null;
         return Database::getRows($sql,$params);
     }
