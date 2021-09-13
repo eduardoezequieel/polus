@@ -19,7 +19,7 @@
         private $idEstadoUsuario = null;
         private $ruta = '../../../resources/img/dashboard_img/cliente_fotos/';
         private $idHistorialSesion = null;
-
+        private $token = null;
 
         /*
             Métodos set
@@ -164,6 +164,16 @@
             }
         }
 
+        public function setToken($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->token = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         /*
             Metodos get
         */
@@ -226,6 +236,10 @@
 
         public function getIdEstadoUsuario(){
             return $this -> idEstadoUsuario;
+        }
+
+        public function getToken(){
+            return $this -> token;
         }
 
         //Se valida si el inicio de sesion es existente o no
@@ -489,7 +503,8 @@
         }
 
         //Función para bloquear un registro
-        public function bloquearRow(){
+        public function bloquearRow()
+        {
             $sql = 'UPDATE cliente SET idEstadoUsuario = 3 WHERE idcliente = ?';
             $params = array($this->idCliente);
             return Database::executeRow($sql, $params);
@@ -504,7 +519,8 @@
         }
 
         //Función para obtener los registros de clientes que han pasado 24 horas de block
-        public function checkBlockUsers() {
+        public function checkBlockUsers() 
+        {
             $sql = 'SELECT idcliente FROM bitacoraCliente
                     WHERE descripcion = \'Bloqueo por clave incorrecta\' 
                     AND fecha <= current_date - 1 AND current_time >= hora';
@@ -513,11 +529,62 @@
         }
 
         //Función para actualizar bitacora
-        public function updateBitacora(){
+        public function updateBitacora()
+        {
             $sql = 'UPDATE bitacoraCliente SET descripcion = \'Desbloqueo por clave incorrecta\',
                     accion = \'Desbloqueo\' WHERE idCliente = ? AND descripcion = \'Bloqueo por clave incorrecta\'';
             $params = array($this->idCliente);
             return Database::executeRow($sql, $params);
         }
 
+        //Función para insertar token a la base
+        public function updateToken(){
+            //Encriptando token
+            $hash = password_hash($this->token, PASSWORD_DEFAULT);
+            //Subiendo token a la base
+            $sql = 'UPDATE cliente
+                    SET tokenclave = ?, claverequest = 1
+                    WHERE correo = ?';
+            $params = array($hash, $this->correo);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para verificar token 
+        public function checkToken($tokenIngresado) 
+        {
+            $sql = 'SELECT tokenclave FROM cliente WHERE correo = ? AND claverequest = 1';
+            $params = array($_SESSION['correoCliente']);
+            $data = Database::getRow($sql,$params);
+            if (password_verify($tokenIngresado, $data['tokenclave'])) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //Función para cambiar contraseña por recuperación
+        public function changePasswordOut()
+        {
+            $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
+            $sql = 'UPDATE cliente SET contraseña = ? WHERE correo = ?';
+            $params = array($hash, $_SESSION['correoCliente']);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para insertar clave request
+        public function updateClaveRequest(){
+            $sql = 'UPDATE cliente
+                    SET claverequest = 0
+                    WHERE correo = ?';
+            $params = array($_SESSION['correoCliente']);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para llenar tabla de bitacoraCliente fuera de la sesión
+        public function registerActionOut2($action, $desc)
+        {
+            $sql = 'INSERT INTO bitacoraCliente VALUES (DEFAULT, ?, current_date , current_time, ?, ?)';
+            $params = array($_SESSION['codigocliente'], $action, $desc);
+            return Database::executeRow($sql, $params);
+        }
     }

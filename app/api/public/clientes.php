@@ -198,6 +198,7 @@
                             $result['exception'] = 'Correo invalido.';
                         }  
                         break;
+                    //Caso para actualizar la clave
                     case 'updatePassword':
                         if ($clientes->setId($_SESSION['idCliente'])) {
                             if ($clientes->checkPassword($_POST['txtContraseñaActual'])) {
@@ -449,37 +450,76 @@
                 case 'sendEmail':
                     $_POST = $clientes->validateForm($_POST);
                     if($clientes->setCorreo($_POST['correo'])) {
-                        try {
+                        $clientes->setToken(random_int(1000,9999));
+                        if($clientes->updateToken()){
+                            try {
                         
-                            //Ajustes del servidor
-                            $mail->SMTPDebug = 0;                   
-                            $mail->isSMTP();                                            
-                            $mail->Host       = 'smtp.gmail.com';                     
-                            $mail->SMTPAuth   = true;                                   
-                            $mail->Username   = 'polusmarket2021@gmail.com';                     
-                            $mail->Password   = 'polus123';                               
-                            $mail->SMTPSecure = 'tls';            
-                            $mail->Port       = 587;                                    
-                        
-                            //Receptores
-                            $mail->setFrom('polusmarket2021@gmail.com', 'Polus Support');
-                            $mail->addAddress($clientes->getCorreo());    
-                        
-                            //Contenido
-                            $mail->isHTML(true);                                  //Set email format to HTML
-                            $mail->Subject = 'Prueba';
-                            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-                            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-                        
-                            if($mail->send()){
-                                $result['status'] = 1;
+                                //Ajustes del servidor
+                                $mail->SMTPDebug = 0;                   
+                                $mail->isSMTP();                                            
+                                $mail->Host       = 'smtp.gmail.com';                     
+                                $mail->SMTPAuth   = true;                                   
+                                $mail->Username   = 'polusmarket2021@gmail.com';                     
+                                $mail->Password   = 'polus123';                               
+                                $mail->SMTPSecure = 'tls';            
+                                $mail->Port       = 587;                                    
+                            
+                                //Receptores
+                                $mail->setFrom('polusmarket2021@gmail.com', 'Polus Support');
+                                $mail->addAddress($clientes->getCorreo());    
+                            
+                                //Contenido
+                                $mail->isHTML(true);                                  
+                                $mail->Subject = 'Recupera tu clave';
+                                $mail->Body    = 'Hemos recibido una petición para recuperar tu contraseña. 
+                                                    El código de seguridad <b>'.$clientes->getToken().'</b>';
+    
+                                if($mail->send()){
+                                    $result['status'] = 1;
+                                    $_SESSION['correoCliente'] = $clientes->getCorreo();
+                                    $_SESSION['codigocliente'] = $clientes->getId();
+                                }
+                            } catch (Exception $e) {
+                                $result['exception'] = $mail->ErrorInfo;
                             }
-                        } catch (Exception $e) {
-                            $result['exception'] = $mail->ErrorInfo;
                         }
+                        
                     } else {
                         $result['exception'] = 'El correo no es válido';
                     }
+                    break;
+                //Caso para verificar el token
+                case 'checkToken':
+                    $_POST = $clientes->validateForm($_POST);
+                    if ($clientes->checkToken($_POST['tokeningresado'])){
+                        $result['status'] = 1;
+                        $result['message'] = 'Código verificado correctamente.';
+                    } else {
+                        $result['exception'] = 'El código no coincide.';
+                    }
+                    break;
+                //Reestablecer contraseña
+                case 'updatePasswordOut':
+                    if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
+                        if ($clientes->setContrasenia($_POST['txtNuevaContraseña'])) {
+                            if ($clientes->changePasswordOut()) {
+                                if($clientes->updateClaveRequest()){
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Contraseña actualizada correctamente.';
+                                    $clientes->registerActionOut2('Actualizar','Cambio de clave');
+                                    unset($_SESSION['correoCliente']);
+                                    unset($_SESSION['codigocliente']);          
+                                }
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Contraseña invalida.';
+                        }
+                    } else {
+                        $result['exception'] = 'Las contraseñas no coinciden.';
+                    }
+                    
                     break;
                 default:
                     $result['exception'] = 'Acción no disponible fuera de la sesión';

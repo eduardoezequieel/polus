@@ -26,34 +26,36 @@
     <div id="background">
         <!-- Caja -->
       <div id="form">
-          <!-- Imagen -->
-        <img src="../../resources/img/codigoCorreo.png" alt="" class="img-fluid centrarImagenes" id="imagenInicio">
-        <h1 class="titulo">Ingresa tu código</h1>
-        <p class="texto2 mt-3">Has recibido un código en tu correo eletrónico, por favor colocalo aquí para <br> continuar con la recuperación de contraseña.</p>
-        <!-- Texto -->
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
-                <input type="text" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
-            </div>
-            <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
-                <input type="text" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
-            </div>
-            <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
-                <input type="text" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
-            </div>
-            <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
-                <input type="text" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
+          <form id="codigo-form" action="/form" autocomplete="off">
+            <!-- Imagen -->
+            <img src="../../resources/img/codigoCorreo.png" alt="" class="img-fluid centrarImagenes" id="imagenInicio">
+            <h1 class="titulo">Ingresa tu código</h1>
+            <p class="texto2 mt-3">Has recibido un código en tu correo eletrónico, por favor colocalo aquí para <br> continuar con la recuperación de contraseña.</p>
+            <!-- Texto -->
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
+                    <input type="text" id="1" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
+                </div>
+                <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
+                    <input type="text" id="2" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
+                </div>
+                <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
+                    <input type="text" id="3" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
+                </div>
+                <div class="col-3 d-flex justify-content-center align-items-center minimizarDiv">
+                    <input type="text" id="4" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
+                </div>
+                <input class="visually-hidden" type="text" id="tokeningresado" name="tokeningresado" maxlength="1" class="form-control personalizacionPolus2 m-1" placeholder="">
             </div>
 
-        </div>
-
-        <!-- Boton -->
-        <div class="row mt-3">
-            <div class="col col-12 d-flex justify-content-center align-items-center">
-                <a href="recuperar_contraseña.php" class="btn boton2">Siguiente</a>
+            <!-- Boton -->
+            <div class="row mt-3">
+                <div class="col col-12 d-flex justify-content-center align-items-center">
+                  <button class="btn boton my-2" type='submit' id="btnCancelar">Siguiente</button>
+                </div>
             </div>
-        </div>
-        </div>
+            </div>
+          </form>
       </div>
     </div>
 
