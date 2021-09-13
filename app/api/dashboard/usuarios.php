@@ -255,43 +255,6 @@ if(isset($_GET['action'])){
                 break;
                 
             //Para actualizar la contraseña
-            case 'updatePassword2':
-                $_POST = $usuarios->validateForm($_POST);
-                if ($usuarios->setId($_SESSION['idAdmon'])) {
-                    if($usuarios->checkPassword($_POST['txtActualContraseña'])){
-                        if ($usuarios->setContrasenia($_POST['txtNuevaContraseña'])) {
-                            if ($_POST['txtActualContraseña'] == $_POST['txtNuevaContraseña'] || 
-                                $_POST['txtActualContraseña'] == $_POST['txtConfirmarContraseña']) {
-                                $result['exception'] = 'Su nueva contraseña no puede ser la misma que la actual.';
-                            } else {
-                                if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
-                                    if ($usuarios->changePassword()) {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Contraseña actualizada exitosamente.';
-                                        $usuarios->registerAction('Actualizar','Cambio de clave');
-                                        if($data = $usuarios->checkLastPasswordUpdate()) {
-                                            if($usuarios->setIdBitacora($data['idbitacora'])){
-                                                $usuarios->updateBitacoraClave();
-                                            }
-                                        }
-                                    } else {
-                                        $result['exception'] = Database::getException();
-                                    }
-                                } else {
-                                    $result['exception'] = 'Las contraseñas no coinciden.';
-                                }
-                            }
-                        } else {
-                            $result['exception'] = 'Su contraseña no cumple los requisitos especificados.';
-                        }
-                    } else {
-                        $result['exception'] = 'La contraseña ingresada no es la actual.';
-                    }
-                } else {
-                    $result['exception'] = 'Id incorrecto.';
-                }
-                break;
-            //Para actualizar la contraseña
             case 'updatePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_SESSION['idAdmon'])) {
@@ -667,6 +630,45 @@ if(isset($_GET['action'])){
     } else{
          // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
          switch ($_GET['action']) {
+             //Para actualizar la contraseña
+            case 'updatePassword3':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_SESSION['idAdmon_tmp'])) {
+                    if($usuarios->checkPassword($_POST['txtActualContraseña'])){
+                        if ($usuarios->setContrasenia($_POST['txtNuevaContraseña'])) {
+                            if ($_POST['txtActualContraseña'] == $_POST['txtNuevaContraseña'] || 
+                                $_POST['txtActualContraseña'] == $_POST['txtConfirmarContraseña']) {
+                                $result['exception'] = 'Su nueva contraseña no puede ser la misma que la actual.';
+                            } else {
+                                if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
+                                    if ($usuarios->changePassword2()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Contraseña actualizada exitosamente.';
+                                        $usuarios->registerAction2('Actualizar','Cambio de clave');
+                                        $_SESSION['idAdmon'] = $usuarios->getId();
+                                        unset($_SESSION['idAdmon_tmp']);
+                                        if($data = $usuarios->checkLastPasswordUpdate()) {
+                                            if($usuarios->setIdBitacora($data['idbitacora'])){
+                                                $usuarios->updateBitacoraClave();
+                                            }
+                                        }
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
+                                } else {
+                                    $result['exception'] = 'Las contraseñas no coinciden.';
+                                }
+                            }
+                        } else {
+                            $result['exception'] = 'Su contraseña no cumple los requisitos especificados.';
+                        }
+                    } else {
+                        $result['exception'] = 'La contraseña ingresada no es la actual.';
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
+                }
+                break;
              //Cado para leer todos los datos
             case 'readAll':
                 if ($usuarios->readAll()) {
@@ -780,6 +782,7 @@ if(isset($_GET['action'])){
                     if($usuarios->checkEstado()) {
                         if($usuarios->checkPassword($_POST['txtContrasenia'])){
                             $_SESSION['idAdmon'] = $usuarios->getId();
+                            $_SESSION['idAdmon_tmp'] = $usuarios->getId();
                             $_SESSION['usuario'] = $usuarios->getUsuario();
                             $_SESSION['fotoUsuario'] = $usuarios->getFoto();
                             $_SESSION['correoUsuario'] = $usuarios->getCorreo();
@@ -788,7 +791,8 @@ if(isset($_GET['action'])){
                                 //Se reinicia a 0 los intentos
                                 if ($usuarios->updateIntentos(0)) {
                                     $result['error'] = 1;
-                                    $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';  
+                                    $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';
+                                    unset($_SESSION['idAdmon']);  
                                 }
                             } else {   
                                 //Se reinicia a 0 los intentos

@@ -697,6 +697,23 @@ Class Usuarios extends Validator{
         return Database::executeRow($sql, $params);
     }
 
+    //Función para cambiar contraseña por recuperación
+    public function changePassword2()
+    {
+        $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
+        $sql = 'UPDATE admon SET contraseña = ? WHERE idadmon = ?';
+        $params = array($hash, $this->idAdmon);
+        return Database::executeRow($sql, $params);
+    }
+
+     //Función para llenar tabla de bitacoraUsuario
+     public function registerAction2($action, $desc)
+     {
+         $sql = 'INSERT INTO bitacoraUsuario VALUES (DEFAULT, ?, current_date , current_time, ?, ?)';
+         $params = array($_SESSION['idAdmon_tmp'], $action, $desc);
+         return Database::executeRow($sql, $params);
+     }
+
     //Función para insertar clave request
     public function updateClaveRequest(){
         $sql = 'UPDATE admon

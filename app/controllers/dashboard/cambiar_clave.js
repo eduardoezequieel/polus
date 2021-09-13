@@ -7,7 +7,7 @@ document.getElementById('primeruso-form').addEventListener('submit', function (e
     event.preventDefault();
 
     //Verificando las credenciales del usuario
-    fetch(API_USUARIO + 'updatePassword2', {
+    fetch(API_USUARIO + 'updatePassword3', {
         method: 'post',
         body: new FormData(document.getElementById('primeruso-form'))
     }).then(request => {

@@ -266,9 +266,9 @@
                                                 $result['status'] = 1;
                                                 $result['message'] = 'Contraseña actualizada correctamente.';
                                                 $clientes->registerAction('Actualizar','Cambio de clave');
-                                                if($data = $usuarios->checkLastPasswordUpdate()) {
-                                                    if($usuarios->setIdBitacora($data['idbitacora'])){
-                                                        $usuarios->updateBitacoraClave();
+                                                if($data = $clientes->checkLastPasswordUpdate()) {
+                                                    if($clientes->setIdBitacora($data['idbitacora'])){
+                                                        $clientes->updateBitacoraClave();
                                                     }
                                                 }
                                             } else {
@@ -416,6 +416,7 @@
                         if ($clientes->checkEstado()) {
                             if ($clientes->checkPassword($_POST['contrasenia'])) {
                                 $_SESSION['idCliente'] = $clientes->getId();
+                                $_SESSION['idCliente_tmp'] = $clientes->getId();
                                 $_SESSION['correoCliente'] = $clientes->getCorreo();
                                 $_SESSION['fotoCliente'] =$clientes->getFoto();
                                 $_SESSION['usuarioCliente'] = $clientes->getUsuario();
@@ -423,7 +424,8 @@
                                     //Se reinicia a 0 los intentos
                                     if ($clientes->updateIntentos(0)) {
                                         $result['error'] = 1;
-                                        $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';  
+                                        $result['message'] = 'Hemos detectado que ya es tiempo de actualizar tu contraseña por seguridad.';
+                                        unset($_SESSION['idCliente']);  
                                     }
                                 } else {
                                     //Se reinicia a 0 los intentos
@@ -645,6 +647,45 @@
                         }
                     } else {
                         $result['exception'] = 'Las contraseñas no coinciden.';
+                    }
+                    
+                    break;
+                //Caso para actualizar la clave
+                case 'updatePassword2':
+                    if ($clientes->setId($_SESSION['idCliente_tmp'])) {
+                        if ($clientes->checkPassword($_POST['txtContraseñaActual'])) {
+                            if ($_POST['txtContraseñaActual'] == $_POST['txtNuevaContraseña'] || 
+                                $_POST['txtContraseñaActual'] == $_POST['txtConfirmarContraseña']) {
+                                $result['exception'] = 'La contraseña nueva no puede ser igual que la actual.';
+                            } else {
+                                if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
+                                    if ($clientes->setContrasenia($_POST['txtNuevaContraseña'])) {
+                                        if ($clientes->changePassword()) {
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Contraseña actualizada correctamente.';
+                                            $clientes->registerAction2('Actualizar','Cambio de clave');
+                                            $_SESSION['idCliente'] = $clientes->getId();
+                                            unset($_SESSION['idAdmon_tmp']);
+                                            if($data = $clientes->checkLastPasswordUpdate()) {
+                                                if($clientes->setIdBitacora($data['idbitacora'])){
+                                                    $clientes->updateBitacoraClave();
+                                                }
+                                            }
+                                        } else {
+                                            $result['exception'] = Database::getException();
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Contraseña invalida.';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Las contraseñas no coinciden.';
+                                }
+                            }
+                        } else {
+                            $result['exception'] = 'La contraseña actual es incorrecta.';
+                        }
+                    } else {
+                        $result['exception'] = 'Id invalido';
                     }
                     
                     break;

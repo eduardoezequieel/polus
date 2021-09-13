@@ -21,11 +21,21 @@
         private $idHistorialSesion = null;
         private $token = null;
         private $dobleautenticacion = null;
-
+        private $idBitacora = null;
 
         /*
             Métodos set
         */
+        public function setIdBitacora($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idBitacora = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function setId($value)
         {
             if ($this->validateNaturalNumber($value)) {
@@ -225,6 +235,11 @@
         public function getRuta()
         {
             return $this->ruta;
+        }
+
+        public function getBitacora()
+        {
+            return $this->idBitacora;
         }
 
         public function getNacimiento(){
@@ -622,6 +637,32 @@
         {
             $sql = 'SELECT MAX(idCliente) as cliente FROM cliente';
             $params =null;
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para actualizar bitacora
+        public function updateBitacoraClave()
+        {
+            $sql = 'UPDATE bitacoraCliente SET descripcion = \'Clave actualizada\',
+                    accion = \'Actualizar\' WHERE idbitacora = ?';
+            $params = array($this->idBitacora);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para cambiar contraseña por recuperación
+        public function changePassword2()
+        {
+            $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
+            $sql = 'UPDATE cliente SET contraseña = ? WHERE idcliente= ?';
+            $params = array($hash, $this->idAdmon);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Función para llenar tabla de bitacoraUsuario
+        public function registerAction2($action, $desc)
+        {
+            $sql = 'INSERT INTO bitacoraCliente VALUES (DEFAULT, ?, current_date , current_time, ?, ?)';
+            $params = array($_SESSION['idCliente_tmp'], $action, $desc);
             return Database::executeRow($sql, $params);
         }
     }
