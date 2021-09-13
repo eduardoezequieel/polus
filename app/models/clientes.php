@@ -439,11 +439,11 @@
             // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
             $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
             $sql = 'INSERT INTO cliente(nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, 
-                    direccion, usuario, contraseña, idEstadoUsuario, dobleautenticacion, claverequest, fecharegistro)
-                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,current_date)';
+                    direccion, usuario, contraseña, idEstadoUsuario, dobleautenticacion, claverequest, fecharegistro,intentos)
+                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,current_date,?)';
             $params = array($this->nombre, $this->apellido, $this->genero, $this->correo, $this->foto, 
                             $this->fechaNacimiento, $this->telefono, $this->direccion, $this->usuario, 
-                            $hash, $this->idEstadoUsuario, 'no', 0);
+                            $hash, $this->idEstadoUsuario, 'no', 0,0);
             return Database::executeRow($sql, $params);
         }
 
