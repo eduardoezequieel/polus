@@ -3,6 +3,19 @@ require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/usuarios.php');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require '../../../libraries/phpmailer65/src/Exception.php';
+require '../../../libraries/phpmailer65/src/PHPMailer.php';
+require '../../../libraries/phpmailer65/src/SMTP.php';
+
+//Creando instancia para mandar correo
+$mail = new PHPMailer(true);
+//To load the Spanish version
+$mail->setLanguage('es', '../../../libraries/phpmailer65/language');
+
+
 //Verificando si existe un acción
 if(isset($_GET['action'])){
     //Se crea una sesion o se reanuda la actual
@@ -10,7 +23,7 @@ if(isset($_GET['action'])){
     //Instanciando clases 
     $usuarios = new Usuarios;
     //Array para respuesta de la API
-    $result= array('status'=>0, 'error'=>0, 'message'=>null,'exception'=> null);
+    $result= array('status'=>0, 'error'=>0, 'message'=>null,'exception'=> null, 'auth'=> null);
     //Verificando si hay una sesión iniciada
     if(isset($_SESSION['idAdmon'])){
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
@@ -31,6 +44,28 @@ if(isset($_GET['action'])){
                     } else {
                         $result['exception'] = 'Usuario inexistente';
                     }
+                }
+                break;
+            //Caso para activar o deshabilitar la autenticacion en dos pasos
+            case 'updateAuth':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setDobleAutenticacion($_POST['switchValue'])) {
+                    if ($usuarios->setId($_SESSION['idAdmon'])) {
+                        if ($usuarios->checkPassword($_POST['txtPasswordAuth'])) {
+                            if ($usuarios->updateAuth()) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'La contraseña es invalida.';
+                        }
+                    } else {
+                        $result['exception'] = 'Id no asignado.';
+                    }
+
+                } else {
+                    $result['exception'] = 'Usted esta intentando ingresar un valor no valido.';
                 }
                 break;
             //Caso para crear historial de sesion de un usuario
@@ -578,6 +613,7 @@ if(isset($_GET['action'])){
                     $result['exception'] = 'No se puede eliminar a sí mismo';
                 }
                 break;          
+            //Default
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -694,12 +730,31 @@ if(isset($_GET['action'])){
                             $_SESSION['idAdmon'] = $usuarios->getId();
                             $_SESSION['usuario'] = $usuarios->getUsuario();
                             $_SESSION['fotoUsuario'] = $usuarios->getFoto();
+                            $_SESSION['correoUsuario'] = $usuarios->getCorreo();
                             //Se verifica la ultima vez que se actualizó la contraseña
                             if($usuarios->checkLastPasswordUpdate()) {
                                 //Se reinicia a 0 los intentos
                                 if ($usuarios->updateIntentos(0)) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Sesión iniciada correctamente';
+                                    //Se verifica la preferencia de autenticacion del usuario
+                                    if ($autenticacion = $usuarios->checkAuthMode()) {
+                                        if ($autenticacion['dobleautenticacion'] == 'si') {
+                                            $result['auth'] = 'si';
+                                            $result['status'] = 1;
+                                            $result['dataset'] = $usuarios->getId();
+                                            $_SESSION['idAdmon_temp'] = $usuarios->getId();
+                                            unset($_SESSION['idAdmon']);
+                                        } else {
+                                            $result['auth'] = 'no';
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Sesion iniciada correctamente.';
+                                        }
+                                    } else {
+                                        if (Database::getException()) {
+                                            $result['exception'] = Database::getException();
+                                        } else {
+                                            $result['exception'] = 'Por alguna razón usted no posee ninguna preferencia de autenticación.';
+                                        }   
+                                    }
                                 }
                             } else {
                                 //Se reinicia a 0 los intentos
@@ -729,6 +784,74 @@ if(isset($_GET['action'])){
                 } else{
                     $result['exception'] = 'El usuario ingreseado no existe en la base de datos.';
                 }
+                break;
+            //Caso para validar un correo electronico
+            case 'validateEmail':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_POST['idAdmonCorreo'])) {
+                    if ($correo = $usuarios->checkEmail()) {
+                        if ($correo['correo'] == $_POST['txtCorreo']) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Correo verificado.';
+                        } else {
+                            $result['exception'] = 'El correo electrónico ingresado no coincide con su cuenta.';
+                        }
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay correo';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Id pendiente de ingresar.';
+                }
+                break;
+            //Caso para enviar un correo con el codigo de verificación requerido.
+            case 'sendVerificationCode':
+                $_SESSION['codigoVerificacion'] = random_int(100, 999999);
+                try {
+                        
+                    //Ajustes del servidor
+                    $mail->SMTPDebug = 0;                   
+                    $mail->isSMTP();                                            
+                    $mail->Host       = 'smtp.gmail.com';                     
+                    $mail->SMTPAuth   = true;                                   
+                    $mail->Username   = 'polusmarket2021@gmail.com';                     
+                    $mail->Password   = 'polus123';                               
+                    $mail->SMTPSecure = 'tls';            
+                    $mail->Port       = 587;                                    
+                
+                    //Receptores
+                    $mail->setFrom('polusmarket2021@gmail.com', 'Polus Support');
+                    $mail->addAddress($_SESSION['correoUsuario']);    
+                
+                    //Contenido
+                    $mail->isHTML(true);                                  //Set email format to HTML
+                    $mail->Subject = 'Codigo de Verificación';
+                    $mail->Body    = 'Tu código de verificación es: <b>' . $_SESSION['codigoVerificacion'] . '</b>.';
+                    $mail->AltBody = 'Tu código de verificación es: ' . $_SESSION['codigoVerificacion'] . '.';
+                
+                    if($mail->send()){
+                        $result['status'] = 1;
+                    }
+                } catch (Exception $e) {
+                    $result['exception'] = $mail->ErrorInfo;
+                }
+                break;
+            //Caso para verificar el codigo
+            case 'validateCode':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($_SESSION['codigoVerificacion'] == $_POST['txtCodigo']) {
+                    $_SESSION['idAdmon'] = $_SESSION['idAdmon_temp'];
+                    unset($_SESSION['codigoVerificacion']);
+                    unset($_SESSION['idAdmon_temp']);
+                    $result['status'] = 1;
+                    $result['message'] = 'Sesión iniciada correctamente.';
+                } else {
+                    $result['exception'] = 'El código que usted ha ingresado es invalido.';
+                }
+                
                 break;
             //Caso para activar un registro bloqueado por 24 horas
             case 'activar':

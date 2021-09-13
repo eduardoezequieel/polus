@@ -22,6 +22,7 @@ Class Usuarios extends Validator{
     private $idBitacora = null;
     private $descripcion = null;
     private $intentos = null;
+    private $dobleautenticacion = null;
 
     /*
         Métodos set
@@ -30,6 +31,16 @@ Class Usuarios extends Validator{
     {
         if ($this->validateNaturalNumber($value)) {
             $this->idAdmon = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setDobleAutenticacion($value)
+    {
+        if ($this->validateAlphabetic($value,1,3)) {
+            $this->dobleautenticacion = $value;
             return true;
         } else {
             return false;
@@ -275,11 +286,12 @@ Class Usuarios extends Validator{
     //Métodos para administrar cuenta del usuario 
     public function checkUser($alias)
     {
-        $sql = 'SELECT idAdmon,foto,idestadousuario FROM admon WHERE usuario = ?';
+        $sql = 'SELECT idAdmon,foto,idestadousuario, correo FROM admon WHERE usuario = ?';
         $params = array($alias);
         if ($data = Database::getRow($sql, $params)) {
             $this->idAdmon = $data['idadmon'];
             $this->usuario = $alias;
+            $this->correo = $data['correo'];
             $this->foto= $data['foto'];
             $this->idEstadoUsuario = $data['idestadousuario'];
             return true;
@@ -287,6 +299,39 @@ Class Usuarios extends Validator{
             return false;
         }
     }
+
+    //Verificar correo
+    public function checkEmail()
+    {
+        $sql = 'SELECT correo FROM admon WHERE idAdmon = ?';
+        $params = array($this->idAdmon);
+        return Database::getRow($sql, $params);
+    }
+
+    //Obtener id mediante correo
+    public function createAdmonSession()
+    {
+        $sql = 'SELECT idadmon FROM admon WHERE correo = ?';
+        $params = array($_SESSION['correoUsuario']);
+        return Database::getRow($sql, $params);
+    }
+
+     //Metodo para guardar las preferencias del factor de doble autenticacion
+     public function updateAuth()
+     {
+         $sql = 'UPDATE admon SET dobleautenticacion = ? 
+                 WHERE idAdmon = ?';
+         $params = array($this->dobleautenticacion, $_SESSION['idAdmon']);
+         return Database::executeRow($sql, $params);
+     }
+ 
+     //Capturar doble autenticacion del usuario
+     public function checkAuthMode()
+     {
+         $sql = 'SELECT dobleautenticacion FROM admon WHERE idAdmon = ?';
+         $params = array($_SESSION['idAdmon']);
+         return Database::getRow($sql, $params);
+     }
 
     //Método para verificar el estado del usuario
     public function checkEstado()
@@ -376,7 +421,7 @@ Class Usuarios extends Validator{
     //Función para leer los datos del usuario logeado
     public function readProfile()
     {
-        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
+        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario, dobleautenticacion
         FROM admon
         WHERE idAdmon = ?';
         $params = array($_SESSION['idAdmon']);

@@ -417,14 +417,15 @@ dashboard_Page::sidebarTemplate('Polus - Mi Cuenta',' ');
 							<div class="d-flex flex-column">
 								<div class="d-flex justify-content-center align-items-center mt-2">
 									<div class="form-check form-switch">
-										<input class="form-check-input" value="Si" type="checkbox" id="switchAuth">
+										<input class="form-check-input" type="checkbox" id="switchAuth">
 										<label class="form-check-label" for="switchAuth">Factor de Doble Autenticación</label>
 									</div>
+									<input type="hidden" value="no" id="switchValue" name="switchValue">
 								</div>
 								<div class="form-group formMiCuenta">
-									<label for="txtContraseñaAuth" class="form-label mt-2">Contraseña:</label>
+									<label for="txtPasswordAuth" class="form-label mt-2">Contraseña:</label>
 									<div class="d-flex">
-										<input onChange="checkContrasena('txtContraseñaAuth')" type="password" class="form-control inputMiCuenta" id="txtContraseñaAuth" maxlength="15" name="txtContraseñaAuth"  >
+										<input onChange="checkContrasena('txtPasswordAuth')" type="password" class="form-control inputMiCuenta" id="txtPasswordAuth" maxlength="15" name="txtPasswordAuth" Required>
 									</div>
 								</div>
 							</div>

@@ -47,7 +47,12 @@ document.getElementById('login-form').addEventListener('submit', function(event)
             request.json().then(function(response){
                 //Verificando respuesta satisfactoria
                 if(response.status){
-                    sweetAlert(1, response.message, 'pagina_dashboard.php');
+                    if (response.auth == 'si') {
+                        document.getElementById('idAdmonCorreo').value = response.dataset;
+                        openModal('validarCorreo');
+                    } else {
+                        sweetAlert(1,response.message, 'pagina_dashboard.php');
+                    }
                 } else if (response.error) {
                     sweetAlert(3,response.message, 'cambiar_clave.php');
                 } 
@@ -60,7 +65,83 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         }
     })
 
-})
+});
+
+//Al activar el evento submit del formulario validar correo:
+document.getElementById('validarCorreo-form').addEventListener('submit', function(event){
+    //Desactivar el recargar página
+    event.preventDefault();
+    //Capturando datos 
+    fetch(API_USUARIO + 'validateEmail', {
+        method: 'post',
+        body: new FormData(document.getElementById('validarCorreo-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    closeModal('validarCorreo');
+                    sendVerificationCode();
+                    openModal('validarCodigo');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+
+});
+
+//Al activar el evento submit del formulario validar codigo:
+document.getElementById('validarCodigo-form').addEventListener('submit', function(event){
+    //Desactivar el recargar página
+    event.preventDefault();
+    //Capturando datos 
+    fetch(API_USUARIO + 'validateCode', {
+        method: 'post',
+        body: new FormData(document.getElementById('validarCodigo-form'))
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    closeModal('validarCodigo');
+                    sweetAlert(1, response.message, 'pagina_dashboard.php');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+
+});
+
+//Enviar correo
+function sendVerificationCode(){
+    fetch(API_USUARIO + 'sendVerificationCode', {
+        method: 'get'
+    }).then(function(request){
+        //Verificando si la petición fue correcta
+        if(request.ok){
+            request.json().then(function(response){
+                //Verificando respuesta satisfactoria
+                if(response.status){
+                    console.log(response.message);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    })
+}
 
 //Función para limpiar contraseña
 function clearPassword(){
