@@ -40,6 +40,16 @@ input.success{
     box-shadow: 0 8px 6px -6px black;
 }
 
+#formDash {
+    padding: 30px;
+    background:#ffffff;
+    color: black;
+    border-radius: 16px;
+    -webkit-box-shadow: 0 8px 6px -6px #f1f4f9;
+    -moz-box-shadow: 0 8px 6px -6px #f1f4f9;
+    box-shadow: 0 8px 6px -6px #f1f4f9;
+}
+
 #imagenInicio{
     width: 300px;
 }
@@ -59,12 +69,30 @@ input.success{
     text-align: center;
 }
 
+.titulo1{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: 300;
+}
+
 .texto{
     font-family: 'Roboto', sans-serif;
     font-weight: 300%;
     text-align: center;
     letter-spacing: 1px;
     color: rgb(210, 210, 210);;
+}
+
+.texto3{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300%;
+    text-align: center;
+    letter-spacing: 1px;
+    color: black;
 }
 
 .boton{
@@ -150,4 +178,12 @@ input.success{
     text-align: center;
     letter-spacing: 1px;
     color: rgb(210, 210, 210);;
+}
+
+.personalizacionPolus{
+    background-color: #e9e9e9;
+    border: hidden;
+    color:rgb(0, 0, 0);
+    border-radius: 16px;
+    padding: 10px;
 }
