@@ -255,6 +255,43 @@ if(isset($_GET['action'])){
                 break;
                 
             //Para actualizar la contraseña
+            case 'updatePassword2':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_SESSION['idAdmon'])) {
+                    if($usuarios->checkPassword($_POST['txtActualContraseña'])){
+                        if ($usuarios->setContrasenia($_POST['txtNuevaContraseña'])) {
+                            if ($_POST['txtActualContraseña'] == $_POST['txtNuevaContraseña'] || 
+                                $_POST['txtActualContraseña'] == $_POST['txtConfirmarContraseña']) {
+                                $result['exception'] = 'Su nueva contraseña no puede ser la misma que la actual.';
+                            } else {
+                                if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
+                                    if ($usuarios->changePassword()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Contraseña actualizada exitosamente.';
+                                        $usuarios->registerAction('Actualizar','Cambio de clave');
+                                        if($data = $usuarios->checkLastPasswordUpdate()) {
+                                            if($usuarios->setIdBitacora($data['idbitacora'])){
+                                                $usuarios->updateBitacoraClave();
+                                            }
+                                        }
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
+                                } else {
+                                    $result['exception'] = 'Las contraseñas no coinciden.';
+                                }
+                            }
+                        } else {
+                            $result['exception'] = 'Su contraseña no cumple los requisitos especificados.';
+                        }
+                    } else {
+                        $result['exception'] = 'La contraseña ingresada no es la actual.';
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
+                }
+                break;
+            //Para actualizar la contraseña
             case 'updatePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_SESSION['idAdmon'])) {
@@ -409,8 +446,18 @@ if(isset($_GET['action'])){
                                                                             $result['status'] = 1;
                                                                             if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                 $result['message'] = 'Usuario registrado correctamente';
+                                                                                if($data = $usuarios->getLastId()) {
+                                                                                    if($usuarios->setId($data['admon'])) {
+                                                                                        $usuarios->registerActionOut('Agregar','Cambio de clave');
+                                                                                    }
+                                                                                }
                                                                             } else {
                                                                                 $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                                if($data = $usuarios->getLastId()) {
+                                                                                    if($usuarios->setId($data['admon'])) {
+                                                                                        $usuarios->registerActionOut('Agregar','Cambio de clave');
+                                                                                    }
+                                                                                }
                                                                             }
                                                                         } else {
                                                                             $result['exception'] = Database::getException();
@@ -671,6 +718,11 @@ if(isset($_GET['action'])){
                                                                                 if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                     $result['message'] = 'Usuario registrado correctamente';
                                                                                     $usuarios->registerAction('Agregar','Cambio de clave');
+                                                                                    if($data = $usuarios->getLastId()) {
+                                                                                        if($usuarios->setId($data['admon'])) {
+                                                                                            $usuarios->registerActionOut('Agregar','Cambio de clave');
+                                                                                        }
+                                                                                    }
                                                                                 } else {
                                                                                     $result['message'] = 'Usuario registrado pero no se guardó la imagen';
                                                                                     $usuarios->registerAction('Agregar','Cambio de clave');

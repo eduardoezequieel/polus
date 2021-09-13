@@ -713,6 +713,23 @@ Class Usuarios extends Validator{
         $params = array($_SESSION['codigousuario'], $action, $desc);
         return Database::executeRow($sql, $params);
     }
+
+    //Función para obtener el ultimo id
+    public function getLastId()
+    {
+        $sql = 'SELECT MAX(idAdmon) as admon FROM admon';
+        $params =null;
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para actualizar bitacora
+    public function updateBitacoraClave()
+    {
+        $sql = 'UPDATE bitacoraUsuario SET descripcion = \'Clave actualizada\',
+                accion = \'Actualizar\' WHERE idbitacora = ?';
+        $params = array($this->idBitacora);
+        return Database::executeRow($sql, $params);
+    }
 }   
 
 ?>

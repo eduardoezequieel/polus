@@ -252,6 +252,43 @@
                         }
                         
                         break;
+                    //Caso para actualizar la clave
+                    case 'updatePassword2':
+                        if ($clientes->setId($_SESSION['idCliente'])) {
+                            if ($clientes->checkPassword($_POST['txtContraseñaActual'])) {
+                                if ($_POST['txtContraseñaActual'] == $_POST['txtNuevaContraseña'] || 
+                                    $_POST['txtContraseñaActual'] == $_POST['txtConfirmarContraseña']) {
+                                    $result['exception'] = 'La contraseña nueva no puede ser igual que la actual.';
+                                } else {
+                                    if ($_POST['txtNuevaContraseña'] == $_POST['txtConfirmarContraseña']) {
+                                        if ($clientes->setContrasenia($_POST['txtNuevaContraseña'])) {
+                                            if ($clientes->changePassword()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Contraseña actualizada correctamente.';
+                                                $clientes->registerAction('Actualizar','Cambio de clave');
+                                                if($data = $usuarios->checkLastPasswordUpdate()) {
+                                                    if($usuarios->setIdBitacora($data['idbitacora'])){
+                                                        $usuarios->updateBitacoraClave();
+                                                    }
+                                                }
+                                            } else {
+                                                $result['exception'] = Database::getException();
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Contraseña invalida.';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Las contraseñas no coinciden.';
+                                    }
+                                }
+                            } else {
+                                $result['exception'] = 'La contraseña actual es incorrecta.';
+                            }
+                        } else {
+                            $result['exception'] = 'Id invalido';
+                        }
+                        
+                        break;
                 //Caso por default
                 default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
@@ -311,7 +348,11 @@
                                                                                     $result['status'] = 1;
                                                                                     if ($clientes->saveFile($_FILES['archivo_usuario'], $clientes->getRuta(), $clientes->getFoto())) {
                                                                                         $result['message'] = 'Cliente registrado correctamente';
-                                                                                    
+                                                                                        if($data = $clientes->getLastId()) {
+                                                                                            if($clientes->setId($data['ciente'])) {
+                                                                                                $clientes->registerActionOut('Agregar','Cambio de clave');
+                                                                                            }
+                                                                                        }
                                                                                     } else {
                                                                                         $result['message'] = 'Cliente registrado pero no se guardó la imagen';
                                                                                        

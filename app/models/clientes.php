@@ -616,4 +616,12 @@
             $params = array($_SESSION['codigocliente'], $action, $desc);
             return Database::executeRow($sql, $params);
         }
+
+        //Función para obtener el ultimo id
+        public function getLastId()
+        {
+            $sql = 'SELECT MAX(idCliente) as cliente FROM cliente';
+            $params =null;
+            return Database::executeRow($sql, $params);
+        }
     }
