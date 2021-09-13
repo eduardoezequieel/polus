@@ -880,6 +880,7 @@ if(isset($_GET['action'])){
                 if ($usuarios->checkEmail2($_POST['correo'])) {
                     if ($usuarios->checkEstado()) {
                         $result['status'] = 1;
+                        $_SESSION['codigousuario'] = $usuarios->getId();
                     } else {
                         $result['exception'] = 'La cuenta ha sido desactivada.';
                     }
@@ -921,8 +922,7 @@ if(isset($_GET['action'])){
 
                             if($mail->send()){
                                 $result['status'] = 1;
-                                $_SESSION['correoUsuario'] = $usuarios->getCorreo();
-                                $_SESSION['codigousuario'] = $usuarios->getId();
+                                $_SESSION['correoUsuario'] = $usuarios->getCorreo();   
                             }
                         } catch (Exception $e) {
                             $result['exception'] = $mail->ErrorInfo;
